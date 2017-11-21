@@ -1,4 +1,4 @@
-package com.epam.training.transport.db.entity;
+package com.epam.training.transport.model.db.entity;
 
 import javax.persistence.*;
 
@@ -6,9 +6,9 @@ import javax.persistence.*;
 public abstract class BaseEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", unique = true, precision = 15)
-    protected long id;
+    private long id;
 
     BaseEntity() {
     }
