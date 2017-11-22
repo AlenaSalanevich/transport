@@ -5,7 +5,7 @@ import com.epam.training.transport.model.TransportType;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "TRANSPORT_ENTITY")
+@Table(name = "TRANSPORT")
 public class TransportEntity extends BaseEntity {
 
     @Column(name = "type", nullable = false)
