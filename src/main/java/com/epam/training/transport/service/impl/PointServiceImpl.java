@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.PersistenceException;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service ("pointService")
@@ -29,6 +30,6 @@ public class PointServiceImpl implements PointService {
            point = pointRepository.findByName(name).get();
             }
         }
-        return point;
+        return Objects.requireNonNull(point, "Point does not found!");
     }
 }
