@@ -1,15 +1,20 @@
 package com.epam.training.transport.model.db.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
-@Table(name = "POINT_ENTITY")
+@Table(name = "POINTS")
 public class PointEntity extends BaseEntity {
 
     @Column(name = "name", unique = true, length = 100, nullable = false)
     private String name;
+
+    @OneToMany(mappedBy = "pointEntity", cascade = CascadeType.ALL)
+    private Set<RoutePointEntity> routePointEntity;
 
     public PointEntity() {
     }
@@ -27,5 +32,11 @@ public class PointEntity extends BaseEntity {
         this.name = name;
     }
 
+    public Set<RoutePointEntity> getRoutePointEntity() {
+        return routePointEntity;
+    }
 
+    public void setRoutePointEntity(Set<RoutePointEntity> routePointEntity) {
+        this.routePointEntity = routePointEntity;
+    }
 }

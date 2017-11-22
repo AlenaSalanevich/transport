@@ -1,11 +1,12 @@
 package com.epam.training.transport.model.db.entity;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 @Entity
-@Table(name = "ROUTE_ENTITY")
+@Table(name = "ROUTES")
 public class RouteEntity extends BaseEntity {
+
 
     @Column(name = "number", nullable = false, unique = true, length = 20)
     private int number;
@@ -13,25 +14,24 @@ public class RouteEntity extends BaseEntity {
     @Column(name = "description")
     private String description;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    private List<PointEntity> points;
+    @OneToMany(mappedBy = "routeEntity", cascade = CascadeType.ALL)
+    private Set<RoutePointEntity> routePointEntity;
 
-    public List<PointEntity> getPoints() {
-        return points;
+    private Set<RoutePointEntity> getRoutePointEntity() {
+        return routePointEntity;
     }
 
-    public void setPoints(final List<PointEntity> points) {
-        this.points = points;
+    public void setRoutePointEntity(Set<RoutePointEntity> routePointEntity) {
+        this.routePointEntity = routePointEntity;
     }
 
     public RouteEntity() {
     }
 
-    public RouteEntity(final long id, final int number, final String description, final List<PointEntity> points) {
+    public RouteEntity(final long id, final int number, final String description) {
         super(id);
         this.number = number;
         this.description = description;
-        this.points = points;
     }
 
     public int getNumber() {
