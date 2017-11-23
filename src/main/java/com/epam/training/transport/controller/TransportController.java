@@ -11,22 +11,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@RequestMapping(path = Routes.API_TRANSPORTS)
+@RequestMapping(path = "/" + Routes.API_TRANSPORTS)
 public class TransportController {
 
     public TransportController() {
-   System.out.print("hahahah");
+        System.out.print("hahahah");
     }
-@Autowired
+
+    @Autowired
     TransportRepository transportRepository;
 
     @GetMapping
     @ResponseBody
-    String getString(){
-        TransportEntity transportEntity = new TransportEntity();
-        transportEntity.setTransportType(TransportType.BUS);
-        transportEntity.setLP("kdvfhj");
-        transportRepository.save(transportEntity);
+    String getString() {
         return "I'm alive!";
     }
 

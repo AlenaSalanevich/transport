@@ -17,14 +17,16 @@ public class PointController {
     @Autowired
     PointService pointService;
 @PostMapping(value = "/add")
-  public ResponseEntity<?> create (@RequestBody final PointCreateParams pointParams){
+  public ResponseEntity<?> create (@RequestBody final PointCreateParams pointParams) {
     String name = pointParams.getName();
-   PointEntity point;
-   try { point= pointService.getOrCreate(name);}
-   catch (final RuntimeException e){
-       return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("The point is not added!");
-   }
+    PointEntity point;
+    try {
+        point = pointService.getOrCreate(name);
+    } catch (final RuntimeException e) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("The point is not added!");
+    }
     return ResponseEntity.ok("The point is added!");
+
 }
 
 }
