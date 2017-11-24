@@ -14,16 +14,6 @@ public class RouteEntity extends BaseEntity {
     @Column(name = "description")
     private String description;
 
-    @OneToMany(mappedBy = "routeEntity", cascade = CascadeType.ALL)
-    private Set<RoutePointEntity> routePointEntity;
-
-    private Set<RoutePointEntity> getRoutePointEntity() {
-        return routePointEntity;
-    }
-
-    public void setRoutePointEntity(Set<RoutePointEntity> routePointEntity) {
-        this.routePointEntity = routePointEntity;
-    }
 
     public RouteEntity() {
     }

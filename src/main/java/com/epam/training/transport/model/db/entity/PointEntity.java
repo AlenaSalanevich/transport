@@ -13,8 +13,7 @@ public class PointEntity extends BaseEntity {
     @Column(name = "name", unique = true, length = 100, nullable = false)
     private String name;
 
-    @OneToMany(mappedBy = "pointEntity", cascade = CascadeType.ALL)
-    private Set<RoutePointEntity> routePointEntity;
+
 
     public PointEntity() {
     }
@@ -32,11 +31,4 @@ public class PointEntity extends BaseEntity {
         this.name = name;
     }
 
-    public Set<RoutePointEntity> getRoutePointEntity() {
-        return routePointEntity;
-    }
-
-    public void setRoutePointEntity(Set<RoutePointEntity> routePointEntity) {
-        this.routePointEntity = routePointEntity;
-    }
 }
