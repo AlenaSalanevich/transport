@@ -1,6 +1,7 @@
 package com.epam.training.transport.controller.params;
 
-public class PointCreateParams {
+public class PointParams {
+
     private String name;
 
     public String getName() {
@@ -11,8 +12,11 @@ public class PointCreateParams {
         this.name = name;
     }
 
-    public PointCreateParams(String name) {
+    public PointParams(String name) {
 
         this.name = name;
+    }
+    public PointParams(){
+
     }
 }

@@ -7,5 +7,6 @@ import java.util.Optional;
 
 public interface PointRepository extends PagingAndSortingRepository<PointEntity, Long> {
 
-    Optional<PointEntity> findByName(final String name);
+    PointEntity findByName(final String name);
+     void deleteByName (final String name);
 }
