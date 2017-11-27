@@ -7,11 +7,15 @@ import com.epam.training.transport.controller.response.ErrorResponse;
 import com.epam.training.transport.model.db.entity.PointEntity;
 import com.epam.training.transport.service.PointService;
 
+import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import javax.persistence.PersistenceException;
 
 @Controller
 @RequestMapping(path = "/" + Routes.API_POINTS)
@@ -23,13 +27,22 @@ public class PointController {
     PointService pointService;
 
     @PostMapping(value = "/add")
-    @ResponseBody
-    public PointEntity create(@RequestBody
+        public ResponseEntity<?> create(@RequestBody
     final PointParams params) {
+
         String name = params.getName();
+        if (name.isEmpty()) {
+            LOGGER.warn(params);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Parameter name couldn't be empty!");
+        }
+        PointEntity point = null;
+        try {point = pointService.create(name);}
+        catch (RuntimeException e){
+            LOGGER.error(e.getLocalizedMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getLocalizedMessage());
 
-        return  pointService.create(name);
-
+        }
+        return ResponseEntity.ok(point);
     }
 
     @PostMapping(value = "/delete")
@@ -75,7 +88,9 @@ public class PointController {
     }
 
     @GetMapping(value = "/load/all")
-    public ResponseEntity<?> loadAll() {
-        return ResponseEntity.ok(pointService.loadAll());
+    @ResponseBody
+    public Iterable<PointEntity> loadAll() {
+
+        return pointService.loadAll();
     }
 }

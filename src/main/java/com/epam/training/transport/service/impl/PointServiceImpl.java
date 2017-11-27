@@ -5,13 +5,9 @@ import com.epam.training.transport.model.db.repository.PointRepository;
 import com.epam.training.transport.service.PointService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
 
-import javax.persistence.PersistenceException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
 
 @Service("pointService")
 public class PointServiceImpl implements PointService {
@@ -22,6 +18,10 @@ public class PointServiceImpl implements PointService {
     @Override
     public PointEntity create(final String name) {
         PointEntity point = new PointEntity();
+        point = load(name);
+        if (pointRepository.findByName(name) != null) {
+            return point;
+        }
         point.setName(name);
         pointRepository.save(point);
         return point;
@@ -37,13 +37,13 @@ public class PointServiceImpl implements PointService {
     }
 
     @Override
-    public List<PointEntity> loadAll() {
-        List<PointEntity> allPoints = new ArrayList<>();
+    public Iterable<PointEntity> loadAll() {
+       /* List<PointEntity> allPoints = new ArrayList<>();
         Iterable<PointEntity> all = pointRepository.findAll();
         for (PointEntity point : all) {
             allPoints.add(point);
-        }
-        return allPoints;
+        }*/
+        return pointRepository.findAll();
     }
 
     @Override

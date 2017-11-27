@@ -22,6 +22,9 @@ public class PointEntity extends BaseEntity {
         super(id);
         this.name = name;
     }
+    public PointEntity (String name){
+        this.name = name;
+    }
 
     public String getName() {
         return name;
