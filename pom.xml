@@ -58,21 +58,26 @@
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
-       <dependency>
+        <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <scope>runtime</scope>
             <version>5.1.6</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/com.h2database/h2 -->
+        <!-- https://mvnrepository.com/artifact/log4j/log4j -->
         <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <version>1.4.196</version>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
         </dependency>
 
-
+        <!-- https://mvnrepository.com/artifact/com.h2database/h2 -->
+        <!--        <dependency>
+                    <groupId>com.h2database</groupId>
+                    <artifactId>h2</artifactId>
+                    <version>1.4.196</version>
+                </dependency>-->
 
         <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
         <!--     <dependency>
@@ -81,18 +86,18 @@
                  <version>9.4.1212</version>
              </dependency>-->
 
-      <dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
             <optional>true</optional>
         </dependency>
 
-    <!--    &lt;!&ndash; https://mvnrepository.com/artifact/commons-codec/commons-codec &ndash;&gt;
-        <dependency>
-            <groupId>commons-codec</groupId>
-            <artifactId>commons-codec</artifactId>
-            <version>1.9</version>
-        </dependency>-->
+        <!--    &lt;!&ndash; https://mvnrepository.com/artifact/commons-codec/commons-codec &ndash;&gt;
+            <dependency>
+                <groupId>commons-codec</groupId>
+                <artifactId>commons-codec</artifactId>
+                <version>1.9</version>
+            </dependency>-->
 
         <!-- https://mvnrepository.com/artifact/org.jetbrains/annotations -->
         <dependency>
@@ -101,38 +106,47 @@
             <version>15.0</version>
         </dependency>
 
-      <!--  <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-tomcat</artifactId>
-            &lt;!&ndash;<scope>provided</scope>&ndash;&gt;
-        </dependency>-->
+        <!--  <dependency>
+              <groupId>org.springframework.boot</groupId>
+              <artifactId>spring-boot-starter-tomcat</artifactId>
+              &lt;!&ndash;<scope>provided</scope>&ndash;&gt;
+          </dependency>-->
 
-    <dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
 
-       <!--https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt &ndash;&gt;
+        <!-- https://mvnrepository.com/artifact/org.testng/testng -->
         <dependency>
-            <groupId>io.jsonwebtoken</groupId>
-            <artifactId>jjwt</artifactId>
-            <version>0.7.0</version>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>6.11</version>
+            <scope>test</scope>
         </dependency>
 
-        &lt;!&ndash; https://mvnrepository.com/artifact/org.apache.commons/commons-text &ndash;&gt;
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-text</artifactId>
-            <version>1.1</version>
-        </dependency>
 
-        &lt;!&ndash; https://mvnrepository.com/artifact/org.apache.commons/commons-rng-core &ndash;&gt;
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-rng-core</artifactId>
-            <version>1.0</version>
-        </dependency>-->
+        <!--https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt
+         <dependency>
+             <groupId>io.jsonwebtoken</groupId>
+             <artifactId>jjwt</artifactId>
+             <version>0.7.0</version>
+         </dependency>-->
+
+        <!--https://mvnrepository.com/artifact/org.apache.commons/commons-text
+         <dependency>
+             <groupId>org.apache.commons</groupId>
+             <artifactId>commons-text</artifactId>
+             <version>1.1</version>
+         </dependency>-->
+
+         <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-rng-core
+         <dependency>
+             <groupId>org.apache.commons</groupId>
+             <artifactId>commons-rng-core</artifactId>
+             <version>1.0</version>
+         </dependency>-->
 
     </dependencies>
 
@@ -141,6 +155,9 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <classifier>executable</classifier>
+                </configuration>
             </plugin>
         </plugins>
     </build>

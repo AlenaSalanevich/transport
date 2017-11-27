@@ -1,0 +1,13 @@
+package com.epam.training.transport.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+
+@Controller
+public class GlobalErrorHandler {
+
+    @ExceptionHandler
+    public void exceptionHandler(){
+
+    }
+}

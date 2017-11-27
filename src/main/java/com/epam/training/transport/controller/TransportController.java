@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.logging.Logger;
+
 @Controller
 @RequestMapping(path = "/" + Routes.API_TRANSPORTS)
 public class TransportController {

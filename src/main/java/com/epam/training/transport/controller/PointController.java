@@ -3,8 +3,10 @@ package com.epam.training.transport.controller;
 import com.epam.training.transport.Routes;
 import com.epam.training.transport.controller.params.PointParams;
 import com.epam.training.transport.controller.params.PointUpdateParams;
+import com.epam.training.transport.controller.response.ErrorResponse;
 import com.epam.training.transport.model.db.entity.PointEntity;
 import com.epam.training.transport.service.PointService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,20 +17,18 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(path = "/" + Routes.API_POINTS)
 public class PointController {
 
+    private static final org.apache.log4j.Logger LOGGER = org.apache.log4j.Logger.getLogger(PointController.class);
+
     @Autowired
     PointService pointService;
 
     @PostMapping(value = "/add")
-    public ResponseEntity<?> create(@RequestBody
+    @ResponseBody
+    public PointEntity create(@RequestBody
     final PointParams params) {
         String name = params.getName();
-        try {
-            pointService.create(name);
-        } catch (final RuntimeException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                .body("The point is not added!");
-        }
-        return ResponseEntity.ok("The point is added!");
+
+        return  pointService.create(name);
 
     }
 
@@ -43,8 +43,9 @@ public class PointController {
         try {
             pointService.delete(name);
         } catch (RuntimeException e) {
+            LOGGER.error(e.getLocalizedMessage());
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                .body("Point is not deleted!");
+                .body(new ErrorResponse(e.getLocalizedMessage()));
         }
         return ResponseEntity.ok("Point is deleted!");
     }
