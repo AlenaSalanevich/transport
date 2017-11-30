@@ -1,30 +1,23 @@
 package com.epam.training.transport.controller.params;
 
 public class PointUpdateParams {
-    private String oldName;
+    private String name;
     private String newName;
 
-    public PointUpdateParams(String oldName, String newName) {
-        this.oldName = oldName;
+    public PointUpdateParams(String name, String newName) {
+        this.name = name;
         this.newName = newName;
     }
     public PointUpdateParams(){
 
     }
 
-    public String getOldName() {
-        return oldName;
+    public String getName() {
+        return name;
     }
 
-    public void setOldName(String oldName) {
-        this.oldName = oldName;
-    }
-
-    public String getNewName() {
+      public String getNewName() {
         return newName;
     }
 
-    public void setNewName(String newName) {
-        this.newName = newName;
-    }
 }

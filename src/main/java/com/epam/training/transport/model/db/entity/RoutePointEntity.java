@@ -7,14 +7,14 @@ import java.io.Serializable;
 @Table(name = "ROUTE_POINT")
 public class RoutePointEntity extends BaseEntity implements Serializable {
 
-      @Column(name = "sequence")
+    @Column(name = "sequence")
     private int sequence;
 
-    @ManyToOne
+    @ManyToOne (fetch = FetchType.EAGER)
     @JoinColumn(name = "point_id")
     private PointEntity pointEntity;
 
-    @ManyToOne
+    @ManyToOne (fetch = FetchType.EAGER)
     @JoinColumn(name = "route_id")
     private RouteEntity routeEntity;
 

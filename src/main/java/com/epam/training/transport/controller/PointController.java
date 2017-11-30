@@ -27,64 +27,30 @@ public class PointController {
     PointService pointService;
 
     @PostMapping(value = "/add")
-        public ResponseEntity<?> create(@RequestBody
+    @ResponseBody
+    public PointEntity create(@RequestBody
     final PointParams params) {
-
-        String name = params.getName();
-        if (name.isEmpty()) {
-            LOGGER.warn(params);
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Parameter name couldn't be empty!");
-        }
-        PointEntity point = null;
-        try {point = pointService.create(name);}
-        catch (RuntimeException e){
-            LOGGER.error(e.getLocalizedMessage());
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getLocalizedMessage());
-
-        }
-        return ResponseEntity.ok(point);
+        return pointService.create(params.getName());
     }
 
     @PostMapping(value = "/delete")
     public ResponseEntity<?> delete(@RequestBody
     final PointParams params) {
-        String name = params.getName();
-        if (name.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                .body("The parameter name can't be empty!");
-        }
-        try {
-            pointService.delete(name);
-        } catch (RuntimeException e) {
-            LOGGER.error(e.getLocalizedMessage());
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                .body(new ErrorResponse(e.getLocalizedMessage()));
-        }
+        pointService.delete(params.getName());
         return ResponseEntity.ok("Point is deleted!");
     }
 
     @PostMapping(value = "/update")
     public ResponseEntity<?> update(@RequestBody
     final PointUpdateParams params) {
-        String oldName = params.getOldName();
-        String newName = params.getNewName();
-        if (oldName.isEmpty() || newName.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                .body("The parameters can't be nullable!");
-        }
-        pointService.update(oldName, newName);
-        return (ResponseEntity<?>) ResponseEntity.ok("The point is updated!");
+        pointService.update(params.getName(), params.getNewName());
+        return ResponseEntity.ok("The point is updated!");
     }
 
     @PostMapping(value = "/load")
     public ResponseEntity<?> load(@RequestBody
     final PointParams params) {
-        String name = params.getName();
-        if (name.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                .body("The parameter name can't be empty!");
-        }
-        return ResponseEntity.ok(pointService.load(name));
+        return ResponseEntity.ok(pointService.load(params.getName()));
     }
 
     @GetMapping(value = "/load/all")

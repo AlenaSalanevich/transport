@@ -4,13 +4,13 @@ import com.epam.training.transport.model.db.entity.PointEntity;
 
 public interface PointService {
 
-    PointEntity create(String name);
+    PointEntity create(final String name);
 
-    void delete(String name);
+    void delete(final String name);
 
     Iterable<PointEntity> loadAll();
 
-    PointEntity load(String name);
+    PointEntity load(final String name);
 
-    void update(String oldName, String newName);
+    void update(final String oldName, final String newName);
 }

@@ -6,22 +6,22 @@ import com.epam.training.transport.service.PointService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import javax.transaction.Transactional;
 
+@Transactional
 @Service("pointService")
 public class PointServiceImpl implements PointService {
 
     @Autowired
     PointRepository pointRepository;
 
+    public PointServiceImpl(final PointRepository pointRepository) {
+        this.pointRepository = pointRepository;
+    }
+
     @Override
     public PointEntity create(final String name) {
         PointEntity point = new PointEntity();
-        point = load(name);
-        if (pointRepository.findByName(name) != null) {
-            return point;
-        }
         point.setName(name);
         pointRepository.save(point);
         return point;
@@ -38,11 +38,10 @@ public class PointServiceImpl implements PointService {
 
     @Override
     public Iterable<PointEntity> loadAll() {
-       /* List<PointEntity> allPoints = new ArrayList<>();
-        Iterable<PointEntity> all = pointRepository.findAll();
-        for (PointEntity point : all) {
-            allPoints.add(point);
-        }*/
+        /*
+         * List<PointEntity> allPoints = new ArrayList<>(); Iterable<PointEntity> all =
+         * pointRepository.findAll(); for (PointEntity point : all) { allPoints.add(point); }
+         */
         return pointRepository.findAll();
     }
 

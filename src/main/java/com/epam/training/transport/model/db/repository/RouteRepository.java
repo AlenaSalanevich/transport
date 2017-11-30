@@ -5,5 +5,9 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface RouteRepository extends PagingAndSortingRepository <RouteEntity, Long> {
+public interface RouteRepository extends PagingAndSortingRepository<RouteEntity, Long> {
+
+    RouteEntity findByNumber(int number);
+
+    void deleteByNumber(int number);
 }
