@@ -20,7 +20,8 @@ public class ScheduleEntity extends BaseEntity {
     private TransportEntity  transport;
 
 
-    @Column(name = "direction", nullable = false)
+    @Column(name = "direction", nullable = false, length = 20)
+    @Enumerated(EnumType.STRING)
     private Direction direction;
 
     @Column(name = "is_holiday", nullable = false)

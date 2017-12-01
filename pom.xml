@@ -92,12 +92,12 @@
             <optional>true</optional>
         </dependency>
 
-        <!--    &lt;!&ndash; https://mvnrepository.com/artifact/commons-codec/commons-codec &ndash;&gt;
+        <!--    &lt;!&ndash; https://mvnrepository.com/artifact/commons-codec/commons-codec -->
             <dependency>
                 <groupId>commons-codec</groupId>
                 <artifactId>commons-codec</artifactId>
                 <version>1.9</version>
-            </dependency>-->
+            </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.jetbrains/annotations -->
         <dependency>
@@ -126,38 +126,50 @@
             <scope>test</scope>
         </dependency>
 
+         <!-- https://mvnrepository.com/artifact/junit/junit -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
+            <version>4.12</version>
             <scope>test</scope>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.mockito/mockito-core -->
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>2.7.22</version>
             <scope>test</scope>
         </dependency>
+<!--
+        &lt;!&ndash; https://mvnrepository.com/artifact/org.slf4j/slf4j-log4j12 &ndash;&gt;
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.7.25</version>
+            <scope>test</scope>
+        </dependency>-->
 
-
-        <!--https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt
+        <!--https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-->
          <dependency>
              <groupId>io.jsonwebtoken</groupId>
              <artifactId>jjwt</artifactId>
              <version>0.7.0</version>
-         </dependency>-->
+         </dependency>
 
-        <!--https://mvnrepository.com/artifact/org.apache.commons/commons-text
+        <!--https://mvnrepository.com/artifact/org.apache.commons/commons-text-->
          <dependency>
              <groupId>org.apache.commons</groupId>
              <artifactId>commons-text</artifactId>
              <version>1.1</version>
-         </dependency>-->
+         </dependency>
 
-         <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-rng-core
+         <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-rng-core-->
          <dependency>
              <groupId>org.apache.commons</groupId>
              <artifactId>commons-rng-core</artifactId>
              <version>1.0</version>
-         </dependency>-->
+         </dependency>
 
     </dependencies>
 

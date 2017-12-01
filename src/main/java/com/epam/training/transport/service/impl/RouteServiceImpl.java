@@ -7,9 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Transactional
-@Service
+@Service ("routeService")
 public class RouteServiceImpl implements RouteService {
 
     @Autowired
@@ -35,7 +36,7 @@ public class RouteServiceImpl implements RouteService {
     }
 
     @Override
-    public Iterable<RouteEntity> loadAll() {
+    public List<RouteEntity> loadAll() {
         return routeRepository.findAll();
     }
 

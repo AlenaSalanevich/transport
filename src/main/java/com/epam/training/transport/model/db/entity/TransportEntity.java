@@ -3,12 +3,14 @@ package com.epam.training.transport.model.db.entity;
 import com.epam.training.transport.model.TransportType;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "TRANSPORT")
 public class TransportEntity extends BaseEntity {
 
-    @Column(name = "type", nullable = false)
+    @Column(name = "type", nullable = false, length = 20)
+    @Enumerated(EnumType.STRING)
     private TransportType transportType;
 
     private String LP;
@@ -23,7 +25,7 @@ public class TransportEntity extends BaseEntity {
         return transportType;
     }
 
-    public void setTransportType(TransportType transportType) {
+    public void setTransportType(final TransportType transportType) {
         this.transportType = transportType;
     }
 
@@ -31,7 +33,7 @@ public class TransportEntity extends BaseEntity {
         return LP;
     }
 
-    public void setLP(String LP) {
+    public void setLP(final String LP) {
         this.LP = LP;
     }
 
@@ -39,12 +41,12 @@ public class TransportEntity extends BaseEntity {
         return noFunctionally;
     }
 
-    public void setNoFunctionally(boolean noFunctionally) {
+    public void setNoFunctionally(final boolean noFunctionally) {
         this.noFunctionally = noFunctionally;
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (this == o)
             return true;
         if (o == null || getClass() != o.getClass())

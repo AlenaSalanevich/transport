@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping(path = "/" + Routes.API_ROUTES)
 public class RouteController {
@@ -41,7 +43,7 @@ public class RouteController {
 
     @GetMapping(value = "/load/all")
     @ResponseBody
-    public Iterable<RouteEntity> loadAll() {
+    public List<RouteEntity> loadAll() {
         return routeService.loadAll();
     }
 

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Transactional
 @Service("pointService")
@@ -17,6 +18,9 @@ public class PointServiceImpl implements PointService {
 
     public PointServiceImpl(final PointRepository pointRepository) {
         this.pointRepository = pointRepository;
+    }
+
+    public PointServiceImpl() {
     }
 
     @Override
@@ -37,18 +41,16 @@ public class PointServiceImpl implements PointService {
     }
 
     @Override
-    public Iterable<PointEntity> loadAll() {
-        /*
-         * List<PointEntity> allPoints = new ArrayList<>(); Iterable<PointEntity> all =
-         * pointRepository.findAll(); for (PointEntity point : all) { allPoints.add(point); }
-         */
+    public List<PointEntity> loadAll() {
+
         return pointRepository.findAll();
     }
 
     @Override
-    public void update(String oldName, String newName) {
-        PointEntity point = pointRepository.findByName(oldName);
-        point.setName(newName);
-        pointRepository.save(point);
+    public PointEntity update(String name, String newName) {
+        PointEntity upPoint = pointRepository.findByName(name);
+        upPoint.setName(newName);
+        pointRepository.save(upPoint);
+        return upPoint;
     }
 }

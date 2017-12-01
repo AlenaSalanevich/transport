@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface PointRepository extends PagingAndSortingRepository<PointEntity, Long> {
+public interface PointRepository extends JpaRepository<PointEntity, Long> {
 
     PointEntity findByName(final String name);
      void deleteByName (final String name);

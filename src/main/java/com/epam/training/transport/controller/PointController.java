@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.PersistenceException;
+import java.util.List;
 
 @Controller
 @RequestMapping(path = "/" + Routes.API_POINTS)
@@ -30,6 +31,7 @@ public class PointController {
     @ResponseBody
     public PointEntity create(@RequestBody
     final PointParams params) {
+
         return pointService.create(params.getName());
     }
 
@@ -37,25 +39,29 @@ public class PointController {
     public ResponseEntity<?> delete(@RequestBody
     final PointParams params) {
         pointService.delete(params.getName());
+
         return ResponseEntity.ok("Point is deleted!");
     }
 
     @PostMapping(value = "/update")
-    public ResponseEntity<?> update(@RequestBody
+    @ResponseBody
+    public PointEntity update(@RequestBody
     final PointUpdateParams params) {
-        pointService.update(params.getName(), params.getNewName());
-        return ResponseEntity.ok("The point is updated!");
+
+        return pointService.update(params.getName(), params.getNewName());
     }
 
     @PostMapping(value = "/load")
-    public ResponseEntity<?> load(@RequestBody
+    @ResponseBody
+    public PointEntity load(@RequestBody
     final PointParams params) {
-        return ResponseEntity.ok(pointService.load(params.getName()));
+
+        return pointService.load(params.getName());
     }
 
     @GetMapping(value = "/load/all")
     @ResponseBody
-    public Iterable<PointEntity> loadAll() {
+    public List<PointEntity> loadAll() {
 
         return pointService.loadAll();
     }
