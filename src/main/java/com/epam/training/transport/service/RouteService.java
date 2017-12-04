@@ -6,13 +6,15 @@ import java.util.List;
 
 public interface RouteService {
 
-    RouteEntity create(final int number, final String description);
+    RouteEntity create(final String number, final String description);
 
-    void delete(final int number);
+    void delete(final long id);
 
     List<RouteEntity> loadAll();
 
-    RouteEntity load(final int number);
+    RouteEntity load(final String number);
 
-    RouteEntity update(final int oldNumber, final int newNumber);
+    RouteEntity load(final long id);
+
+    RouteEntity update(final long id, final String number, final String description);
 }

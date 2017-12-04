@@ -8,11 +8,13 @@ public interface PointService {
 
     PointEntity create(final String name);
 
-    void delete(final String name);
+    void delete(final long id);
 
     List<PointEntity> loadAll();
 
     PointEntity load(final String name);
 
-    PointEntity update(final String oldName, final String newName);
+    PointEntity load(final long id);
+
+    PointEntity update(final long id, final String name);
 }

@@ -11,16 +11,19 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Transactional
-@Service ("transportService")
+@Service("transportService")
 public class TransportServiceImpl implements TransportService {
 
     @Autowired
     TransportRepository transportRepository;
 
     @Override
-    public TransportEntity create(final String LP, final boolean noFunctionally, final TransportType transportType) {
+    public TransportEntity create(
+        final String registrationNumber,
+        final boolean noFunctionally,
+        final TransportType transportType) {
         TransportEntity transport = new TransportEntity();
-        transport.setLP(LP);
+        transport.setRegistrationNumber(registrationNumber);
         transport.setNoFunctionally(noFunctionally);
         transport.setTransportType(transportType);
         transportRepository.save(transport);
@@ -28,8 +31,8 @@ public class TransportServiceImpl implements TransportService {
     }
 
     @Override
-    public TransportEntity load(final String LP) {
-        return transportRepository.findByLP(LP);
+    public TransportEntity load(final String registrationNumber) {
+        return transportRepository.findByRegistrationNumber(registrationNumber);
     }
 
     @Override
@@ -48,14 +51,25 @@ public class TransportServiceImpl implements TransportService {
     }
 
     @Override
-    public void delete(final String LP) {
-        transportRepository.deleteByLP(LP);
-    }
-
-    @Override
-    public TransportEntity update(final String LP, final String newLP) {
-        TransportEntity transport = transportRepository.findByLP(LP);
-        transport.setLP(newLP);
+    public TransportEntity update(
+        final long id,
+        final String registrationNumber,
+        final boolean noFunctionally,
+        final TransportType transportType) {
+        TransportEntity transport = transportRepository.findOne(id);
+        if (!registrationNumber.isEmpty() || registrationNumber.equals("")) {
+            if (!transport.getRegistrationNumber()
+                .equals(registrationNumber)) {
+                transport.setRegistrationNumber(registrationNumber);
+            }
+        }
+        if (!transport.isNoFunctionally() == noFunctionally) {
+            transport.setNoFunctionally(noFunctionally);
+        }
+        if (!transport.getTransportType()
+            .equals(transportType)) {
+            transport.setTransportType(transportType);
+        }
         transportRepository.save(transport);
         return transport;
     }

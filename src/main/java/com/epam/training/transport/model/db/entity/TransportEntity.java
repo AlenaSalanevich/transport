@@ -3,7 +3,6 @@ package com.epam.training.transport.model.db.entity;
 import com.epam.training.transport.model.TransportType;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "TRANSPORT")
@@ -13,7 +12,7 @@ public class TransportEntity extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private TransportType transportType;
 
-    private String LP;
+    private String registrationNumber;
 
     @Column(name = "no_functionally", nullable = false)
     private boolean noFunctionally;
@@ -29,12 +28,12 @@ public class TransportEntity extends BaseEntity {
         this.transportType = transportType;
     }
 
-    public String getLP() {
-        return LP;
+    public String getRegistrationNumber() {
+        return registrationNumber;
     }
 
-    public void setLP(final String LP) {
-        this.LP = LP;
+    public void setRegistrationNumber(final String registrationNumber) {
+        this.registrationNumber = registrationNumber;
     }
 
     public boolean isNoFunctionally() {
@@ -60,14 +59,14 @@ public class TransportEntity extends BaseEntity {
             return false;
         if (transportType != that.transportType)
             return false;
-        return LP != null ? LP.equals(that.LP) : that.LP == null;
+        return registrationNumber != null ? registrationNumber.equals(that.registrationNumber) : that.registrationNumber == null;
     }
 
     @Override
     public int hashCode() {
         int result = super.hashCode();
         result = 31 * result + (transportType != null ? transportType.hashCode() : 0);
-        result = 31 * result + (LP != null ? LP.hashCode() : 0);
+        result = 31 * result + (registrationNumber != null ? registrationNumber.hashCode() : 0);
         result = 31 * result + (noFunctionally ? 1 : 0);
         return result;
     }

@@ -1,8 +1,8 @@
 package com.epam.training.transport.controller;
 
 import com.epam.training.transport.Routes;
+import com.epam.training.transport.controller.params.RouteCreateParams;
 import com.epam.training.transport.controller.params.RouteParams;
-import com.epam.training.transport.controller.params.RouteUpdateParams;
 import com.epam.training.transport.model.db.entity.RouteEntity;
 import com.epam.training.transport.service.RouteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,19 +25,19 @@ public class RouteController {
 
     @PostMapping(value = "/add")
     @ResponseBody
-    public RouteEntity create(@RequestBody RouteParams params) {
+    public RouteEntity create(@RequestBody RouteCreateParams params) {
         return routeService.create(params.getNumber(), params.getDescription());
     }
 
     @PostMapping(value = "/update")
     @ResponseBody
-    public RouteEntity update(@RequestBody RouteUpdateParams updateParams) {
-        return routeService.update(updateParams.getNewNumber(), updateParams.getNewNumber());
+    public RouteEntity update(@RequestBody RouteParams updateParams) {
+        return routeService.update(updateParams.getId(), updateParams.getNumber(), updateParams.getDescription());
     }
 
     @PostMapping(value = "/delete")
     public ResponseEntity<?> delete(@RequestBody RouteParams params) {
-        routeService.delete(params.getNumber());
+        routeService.delete(params.getId());
         return ResponseEntity.ok("Route is deleted!");
     }
 
@@ -50,6 +50,6 @@ public class RouteController {
     @PostMapping(value = "/load")
     @ResponseBody
     public RouteEntity load(@RequestBody RouteParams params) {
-        return routeService.load(params.getNumber());
+        return routeService.load(params.getId());
     }
 }

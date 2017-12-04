@@ -1,6 +1,5 @@
 package com.epam.training.transport.service;
 
-import com.epam.training.transport.controller.params.PointParams;
 import com.epam.training.transport.model.db.entity.PointEntity;
 import com.epam.training.transport.model.db.repository.PointRepository;
 import com.epam.training.transport.service.impl.PointServiceImpl;
@@ -9,7 +8,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

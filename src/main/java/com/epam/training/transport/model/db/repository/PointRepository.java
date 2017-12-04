@@ -11,5 +11,4 @@ import java.util.Optional;
 public interface PointRepository extends JpaRepository<PointEntity, Long> {
 
     PointEntity findByName(final String name);
-     void deleteByName (final String name);
 }

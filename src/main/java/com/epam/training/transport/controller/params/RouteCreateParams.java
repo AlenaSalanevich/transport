@@ -1,24 +1,17 @@
 package com.epam.training.transport.controller.params;
 
-public class RouteParams {
-
-    private long id;
+public class RouteCreateParams {
 
     private String number;
 
     private String description;
 
-    public RouteParams() {
+    public RouteCreateParams() {
     }
 
-    public RouteParams(final long id, final String number, final String description) {
-        this.id = id;
+    public RouteCreateParams(final String number, final String description) {
         this.number = number;
         this.description = description;
-    }
-
-    public long getId() {
-        return id;
     }
 
     public String getNumber() {
@@ -28,4 +21,5 @@ public class RouteParams {
     public String getDescription() {
         return description;
     }
+
 }

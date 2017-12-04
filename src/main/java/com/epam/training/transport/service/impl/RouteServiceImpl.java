@@ -10,7 +10,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Transactional
-@Service ("routeService")
+@Service("routeService")
 public class RouteServiceImpl implements RouteService {
 
     @Autowired
@@ -21,7 +21,7 @@ public class RouteServiceImpl implements RouteService {
     }
 
     @Override
-    public RouteEntity create(final int number, final String description) {
+    public RouteEntity create(final String number, final String description) {
         RouteEntity route = new RouteEntity();
         route.setNumber(number);
         route.setDescription(description);
@@ -30,8 +30,8 @@ public class RouteServiceImpl implements RouteService {
     }
 
     @Override
-    public void delete(final int number) {
-        routeRepository.deleteByNumber(number);
+    public void delete(final long id) {
+        routeRepository.delete(id);
 
     }
 
@@ -41,14 +41,25 @@ public class RouteServiceImpl implements RouteService {
     }
 
     @Override
-    public RouteEntity load(final int number) {
+    public RouteEntity load(final String number) {
         return routeRepository.findByNumber(number);
     }
 
     @Override
-    public RouteEntity update(final int oldNumber, final int newNumber) {
-        RouteEntity upRoute = routeRepository.findByNumber(oldNumber);
-        upRoute.setNumber(newNumber);
+    public RouteEntity load(final long id) {
+        return routeRepository.findOne(id);
+    }
+
+    @Override
+    public RouteEntity update(final long id, final String number, final String description) {
+        RouteEntity upRoute = routeRepository.findOne(id);
+        if (!(number.equals(upRoute.getNumber())) || (!number.isEmpty())) {
+            upRoute.setNumber(number);
+        }
+        if (!(description.equals(upRoute.getDescription())) && !description.isEmpty() && !description.equals("")) {
+
+            upRoute.setDescription(description);
+        }
         routeRepository.save(upRoute);
         return upRoute;
     }

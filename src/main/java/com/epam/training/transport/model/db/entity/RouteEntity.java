@@ -9,7 +9,7 @@ public class RouteEntity extends BaseEntity {
 
 
     @Column(name = "number", nullable = false, unique = true, length = 20)
-    private int number;
+    private String number;
 
     @Column(name = "description")
     private String description;
@@ -18,17 +18,17 @@ public class RouteEntity extends BaseEntity {
     public RouteEntity() {
     }
 
-    public RouteEntity(final long id, final int number, final String description) {
+    public RouteEntity(final long id, final String  number, final String description) {
         super(id);
         this.number = number;
         this.description = description;
     }
 
-    public int getNumber() {
+    public String  getNumber() {
         return number;
     }
 
-    public void setNumber(final int number) {
+    public void setNumber(final String number) {
         this.number = number;
     }
 

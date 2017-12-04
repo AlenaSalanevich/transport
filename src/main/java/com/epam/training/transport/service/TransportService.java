@@ -7,9 +7,9 @@ import java.util.List;
 
 public interface TransportService {
 
-    TransportEntity create(final String LP, final boolean noFunctionally, final TransportType transportType);
+    TransportEntity create(final String registrationNumber, final boolean noFunctionally, final TransportType transportType);
 
-    TransportEntity load(final String LP);
+    TransportEntity load(final String registrationNumber);
 
     TransportEntity load(final long id);
 
@@ -17,7 +17,5 @@ public interface TransportService {
 
     void delete(final long id);
 
-    void delete (String LP);
-
-    TransportEntity update(final String LP, final String newLP);
+    TransportEntity update(final long id, final String registrationNumber, final boolean noFunctionally, final TransportType transportType);
 }

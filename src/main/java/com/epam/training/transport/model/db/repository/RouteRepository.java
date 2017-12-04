@@ -7,7 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface RouteRepository extends JpaRepository<RouteEntity, Long> {
 
-    RouteEntity findByNumber(int number);
-
-    void deleteByNumber(int number);
+    RouteEntity findByNumber(final String number);
 }

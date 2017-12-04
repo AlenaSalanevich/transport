@@ -28,16 +28,25 @@ public class PointServiceImpl implements PointService {
         PointEntity point = new PointEntity();
         point.setName(name);
         pointRepository.save(point);
+
         return point;
     }
 
     @Override
-    public void delete(final String name) {
-        pointRepository.deleteByName(name);
+    public void delete(final long id) {
+        pointRepository.delete(id);
     }
 
-    public PointEntity load(String name) {
+    @Override
+    public PointEntity load(final String name) {
+
         return pointRepository.findByName(name);
+    }
+
+    @Override
+    public PointEntity load(final long id) {
+
+        return pointRepository.findOne(id);
     }
 
     @Override
@@ -47,10 +56,12 @@ public class PointServiceImpl implements PointService {
     }
 
     @Override
-    public PointEntity update(String name, String newName) {
-        PointEntity upPoint = pointRepository.findByName(name);
-        upPoint.setName(newName);
-        pointRepository.save(upPoint);
+    public PointEntity update(final long id, final String name) {
+        PointEntity upPoint = pointRepository.findOne(id);
+        if (!name.isEmpty() || name.equals("")) {
+            upPoint.setName(name);
+            pointRepository.save(upPoint);
+        }
         return upPoint;
     }
 }

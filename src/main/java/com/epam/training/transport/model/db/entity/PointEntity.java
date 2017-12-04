@@ -13,8 +13,6 @@ public class PointEntity extends BaseEntity {
     @Column(name = "name", unique = true, length = 100, nullable = false)
     private String name;
 
-
-
     public PointEntity() {
     }
 
@@ -22,7 +20,8 @@ public class PointEntity extends BaseEntity {
         super(id);
         this.name = name;
     }
-    public PointEntity (String name){
+
+    public PointEntity(String name) {
         this.name = name;
     }
 

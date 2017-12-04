@@ -2,9 +2,7 @@ package com.epam.training.transport.controller.params;
 
 import com.epam.training.transport.model.TransportType;
 
-public class TransportParams {
-
-    private long id;
+public class TransportCreateParams {
 
     private String registrationNumber;
 
@@ -12,22 +10,13 @@ public class TransportParams {
 
     private TransportType transportType;
 
-    public TransportParams() {
+    public TransportCreateParams(){
     }
 
-    public TransportParams(
-        final long id,
-        final String registrationNumber,
-        final boolean noFunctionally,
-        final TransportType transportType) {
-        this.id = id;
+    public TransportCreateParams(final String registrationNumber, final boolean noFunctionally,final TransportType transportType) {
         this.registrationNumber = registrationNumber;
         this.noFunctionally = noFunctionally;
         this.transportType = transportType;
-    }
-
-    public long getId() {
-        return id;
     }
 
     public String getRegistrationNumber() {

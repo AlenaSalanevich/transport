@@ -2,17 +2,14 @@ package com.epam.training.transport.controller;
 
 import com.epam.training.transport.Routes;
 
+import com.epam.training.transport.controller.params.TransportCreateParams;
 import com.epam.training.transport.controller.params.TransportParams;
-import com.epam.training.transport.controller.params.TransportUpdateParams;
-import com.epam.training.transport.model.TransportType;
 import com.epam.training.transport.model.db.entity.TransportEntity;
-import com.epam.training.transport.model.db.repository.TransportRepository;
 import com.epam.training.transport.service.TransportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import sun.plugin2.message.transport.Transport;
 
 import java.util.List;
 
@@ -26,36 +23,41 @@ public class TransportController {
     @Autowired
     TransportService transportService;
 
+    public TransportController(final TransportService transportService) {
+        this.transportService = transportService;
+    }
+
     @PostMapping(value = "/add")
     @ResponseBody
-    public TransportEntity create(@RequestBody TransportParams params) {
+    public TransportEntity create(@RequestBody TransportCreateParams params) {
 
-        return transportService.create(params.getLP(), params.isNoFunctionally(), params.getTransportType());
+        return transportService.create(params.getRegistrationNumber(), params.isNoFunctionally(), params.getTransportType());
     }
 
     @PostMapping(value = "/update")
     @ResponseBody
-    public TransportEntity update (@RequestBody TransportUpdateParams params){
-        return transportService.update(transportService.load(params.getId()).getLP(),params.getNewLP());
+    public TransportEntity update(@RequestBody TransportParams params) {
+        return transportService.update(params.getId(), params.getRegistrationNumber(), params.isNoFunctionally(), params
+            .getTransportType());
     }
 
     @PostMapping(value = "/load")
     @ResponseBody
-    public TransportEntity load (@RequestBody TransportParams params){
-        return transportService.load(params.getLP());
+    public TransportEntity load(@RequestBody TransportParams params) {
+        return transportService.load(params.getId());
     }
 
     @PostMapping(value = "/delete")
     @ResponseBody
-    public ResponseEntity<?> delete (@RequestBody TransportParams params){
-        transportService.delete(params.getLP());
+    public ResponseEntity<?> delete(@RequestBody TransportParams params) {
+        transportService.delete(params.getId());
         return ResponseEntity.ok("Transport is deleted!");
     }
 
     @GetMapping(value = "/load/all")
     @ResponseBody
-    public List<TransportEntity> loadAll (){
-        return  transportService.loadAll();
+    public List<TransportEntity> loadAll() {
+        return transportService.loadAll();
     }
 
 }

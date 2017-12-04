@@ -7,7 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface TransportRepository extends JpaRepository<TransportEntity, Long> {
 
-  void deleteByLP(final String LP);
-
-  TransportEntity findByLP(final String LP);
+    TransportEntity findByRegistrationNumber(final String registrationNumber);
 }
