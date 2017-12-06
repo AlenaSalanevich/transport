@@ -3,11 +3,14 @@ package com.epam.training.transport.service.impl;
 import com.epam.training.transport.model.db.entity.PointEntity;
 import com.epam.training.transport.model.db.repository.PointRepository;
 import com.epam.training.transport.service.PointService;
+import org.omg.CORBA.Object;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Objects;
 
 @Transactional
 @Service("pointService")
@@ -25,6 +28,7 @@ public class PointServiceImpl implements PointService {
 
     @Override
     public PointEntity create(final String name) {
+
         PointEntity point = new PointEntity();
         point.setName(name);
         pointRepository.save(point);
@@ -40,28 +44,28 @@ public class PointServiceImpl implements PointService {
     @Override
     public PointEntity load(final String name) {
 
-        return pointRepository.findByName(name);
+        return Objects.requireNonNull(pointRepository.findByName(name), "Point not found!");
     }
 
     @Override
     public PointEntity load(final long id) {
 
-        return pointRepository.findOne(id);
+        return Objects.requireNonNull(pointRepository.findOne(id), "Point not found!");
     }
 
     @Override
     public List<PointEntity> loadAll() {
 
-        return pointRepository.findAll();
+        return Objects.requireNonNull(pointRepository.findAll(), "No such points!");
     }
 
     @Override
     public PointEntity update(final long id, final String name) {
-        PointEntity upPoint = pointRepository.findOne(id);
-        if (!name.isEmpty() || name.equals("")) {
-            upPoint.setName(name);
-            pointRepository.save(upPoint);
-        }
+
+        PointEntity upPoint = load(id);
+        upPoint.setName(name);
+        pointRepository.save(upPoint);
+
         return upPoint;
     }
 }

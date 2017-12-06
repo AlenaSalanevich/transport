@@ -1,7 +1,11 @@
 package com.epam.training.transport.service.impl;
 
+import com.epam.training.transport.model.db.entity.PointEntity;
 import com.epam.training.transport.model.db.entity.RouteEntity;
+import com.epam.training.transport.model.db.entity.RoutePointEntity;
 import com.epam.training.transport.model.db.repository.RouteRepository;
+import com.epam.training.transport.service.PointService;
+import com.epam.training.transport.service.RoutePointService;
 import com.epam.training.transport.service.RouteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,15 +20,23 @@ public class RouteServiceImpl implements RouteService {
     @Autowired
     RouteRepository routeRepository;
 
+    @Autowired
+    PointService pointService;
+    @Autowired
+    RoutePointService routePointService;
+
     public RouteServiceImpl(final RouteRepository routeRepository) {
         this.routeRepository = routeRepository;
     }
 
     @Override
-    public RouteEntity create(final String number, final String description) {
+    public RouteEntity create(final String number, final String description, final long id, final int sequence) {
         RouteEntity route = new RouteEntity();
+        PointEntity point = pointService.load(id);
+        RoutePointEntity routePointEntity= routePointService.create(point, sequence);
         route.setNumber(number);
         route.setDescription(description);
+        route.addPoint(routePointEntity);
         routeRepository.save(route);
         return route;
     }

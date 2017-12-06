@@ -51,16 +51,18 @@ public class PointServiceTest {
     @Before
     public void setUp() throws Exception {
         point = new PointEntity();
-        point.setId(1);
+        point.setId(1l);
         point.setName("AAA");
         point1 = new PointEntity();
-        point1.setId(2);
+        point1.setId(2l);
         point1.setName("DDD");
         points = new ArrayList<>();
         points.add(point);
         points.add(point1);
 
         Mockito.when(pointRepository.findByName(Mockito.eq("AAA")))
+            .thenReturn(point);
+        Mockito.when(pointRepository.findOne(Mockito.eq(1l)))
             .thenReturn(point);
         Mockito.when(pointRepository.findAll())
             .thenReturn(Arrays.asList(point, point1));
@@ -84,9 +86,9 @@ public class PointServiceTest {
 
     @Test
     public void delete() throws Exception {
-        pointService.delete("BBB");
+        pointService.delete(2l);
         Mockito.verify(pointRepository, Mockito.times(1))
-            .deleteByName(Mockito.eq("BBB"));
+            .delete(Mockito.eq(2l));
     }
 
     @Test
@@ -96,15 +98,20 @@ public class PointServiceTest {
         assertEquals(en, points);
     }
 
+    /*
+     * @Test public void load() throws Exception { PointEntity point = pointService.load("AAA");
+     * assertEquals("AAA", point.getName()); }
+     */
+
     @Test
     public void load() throws Exception {
-        PointEntity point = pointService.load("AAA");
-        assertEquals("AAA", point.getName());
+        PointEntity point = pointService.load(1l);
+        assertEquals(1l, point.getId());
     }
 
     @Test
     public void update() throws Exception {
-        pointService.update("AAA", "CCC");
+        pointService.update(1l, "CCC");
         ArgumentCaptor<PointEntity> captor = ArgumentCaptor.forClass(PointEntity.class);
         Mockito.verify(pointRepository, Mockito.times(1))
             .save(captor.capture());

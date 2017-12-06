@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface RouteService {
 
-    RouteEntity create(final String number, final String description);
+    RouteEntity create(final String number, final String description, final long id, final int sequence);
 
     void delete(final long id);
 

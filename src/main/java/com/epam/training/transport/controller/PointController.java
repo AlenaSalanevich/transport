@@ -27,7 +27,7 @@ public class PointController {
     public PointEntity create(@RequestBody
     final PointCreateParams params) {
 
-        return pointService.create(params.getName());
+        return pointService.create(params.getName().trim());
     }
 
     @PostMapping(value = "/delete")
@@ -42,8 +42,11 @@ public class PointController {
     @ResponseBody
     public PointEntity update(@RequestBody
     final PointParams updateParams) {
-
-        return pointService.update(updateParams.getId(), updateParams.getName());
+        String name = updateParams.getName().trim();
+        if ((name.isEmpty()) || (name.equals(""))) {
+            return pointService.load(updateParams.getId());
+        }
+        return pointService.update(updateParams.getId(),name);
     }
 
     @PostMapping(value = "/load")
@@ -54,7 +57,7 @@ public class PointController {
         return pointService.load(params.getId());
     }
 
-    @GetMapping(value = "/load/all")
+    @GetMapping()
     @ResponseBody
     public List<PointEntity> loadAll() {
 

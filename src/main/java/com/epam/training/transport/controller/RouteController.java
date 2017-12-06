@@ -23,7 +23,7 @@ public class RouteController {
         this.routeService = routeService;
     }
 
-    @PostMapping(value = "/add")
+/*    @PostMapping(value = "/add")
     @ResponseBody
     public RouteEntity create(@RequestBody RouteCreateParams params) {
         return routeService.create(params.getNumber(), params.getDescription());
@@ -51,5 +51,5 @@ public class RouteController {
     @ResponseBody
     public RouteEntity load(@RequestBody RouteParams params) {
         return routeService.load(params.getId());
-    }
+    }*/
 }

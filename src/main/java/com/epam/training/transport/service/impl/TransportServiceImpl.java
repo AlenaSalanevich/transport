@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Objects;
 
 @Transactional
 @Service("transportService")
@@ -32,17 +33,18 @@ public class TransportServiceImpl implements TransportService {
 
     @Override
     public TransportEntity load(final String registrationNumber) {
-        return transportRepository.findByRegistrationNumber(registrationNumber);
+        return Objects.requireNonNull(transportRepository.findByRegistrationNumber(registrationNumber),
+            "Transport with same registration number is not found!");
     }
 
     @Override
     public TransportEntity load(final long id) {
-        return transportRepository.findOne(id);
+        return Objects.requireNonNull(transportRepository.findOne(id), "Transport with  is not found!");
     }
 
     @Override
     public List<TransportEntity> loadAll() {
-        return transportRepository.findAll();
+        return Objects.requireNonNull(transportRepository.findAll(), "There is no such transport!");
     }
 
     @Override
@@ -56,21 +58,13 @@ public class TransportServiceImpl implements TransportService {
         final String registrationNumber,
         final boolean noFunctionally,
         final TransportType transportType) {
-        TransportEntity transport = transportRepository.findOne(id);
-        if (!registrationNumber.isEmpty() || registrationNumber.equals("")) {
-            if (!transport.getRegistrationNumber()
-                .equals(registrationNumber)) {
-                transport.setRegistrationNumber(registrationNumber);
-            }
-        }
-        if (!transport.isNoFunctionally() == noFunctionally) {
-            transport.setNoFunctionally(noFunctionally);
-        }
-        if (!transport.getTransportType()
-            .equals(transportType)) {
-            transport.setTransportType(transportType);
-        }
+
+        TransportEntity transport = load(id);
+        transport.setRegistrationNumber(registrationNumber);
+        transport.setNoFunctionally(noFunctionally);
+        transport.setTransportType(transportType);
         transportRepository.save(transport);
+
         return transport;
     }
 }

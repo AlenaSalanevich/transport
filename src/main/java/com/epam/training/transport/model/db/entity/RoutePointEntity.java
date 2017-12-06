@@ -10,11 +10,11 @@ public class RoutePointEntity extends BaseEntity implements Serializable {
     @Column(name = "sequence")
     private int sequence;
 
-    @ManyToOne (fetch = FetchType.EAGER)
+    @ManyToOne (cascade = CascadeType.ALL)
     @JoinColumn(name = "point_id")
     private PointEntity pointEntity;
 
-    @ManyToOne (fetch = FetchType.EAGER)
+    @ManyToOne (cascade = CascadeType.ALL)
     @JoinColumn(name = "route_id")
     private RouteEntity routeEntity;
 

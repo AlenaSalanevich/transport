@@ -4,6 +4,7 @@ import com.epam.training.transport.Routes;
 
 import com.epam.training.transport.controller.params.TransportCreateParams;
 import com.epam.training.transport.controller.params.TransportParams;
+import com.epam.training.transport.model.TransportType;
 import com.epam.training.transport.model.db.entity.TransportEntity;
 import com.epam.training.transport.service.TransportService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,8 +38,14 @@ public class TransportController {
     @PostMapping(value = "/update")
     @ResponseBody
     public TransportEntity update(@RequestBody TransportParams params) {
-        return transportService.update(params.getId(), params.getRegistrationNumber(), params.isNoFunctionally(), params
-            .getTransportType());
+        long id = params.getId();
+        TransportEntity transport = transportService.load(id);
+        String number =
+            params.getRegistrationNumber()
+                .trim();
+        TransportType type = params.getTransportType();
+        boolean noFunctionally = params.isNoFunctionally();
+       return transportService.update(id, number, noFunctionally, type);
     }
 
     @PostMapping(value = "/load")
@@ -54,7 +61,7 @@ public class TransportController {
         return ResponseEntity.ok("Transport is deleted!");
     }
 
-    @GetMapping(value = "/load/all")
+    @GetMapping()
     @ResponseBody
     public List<TransportEntity> loadAll() {
         return transportService.loadAll();
