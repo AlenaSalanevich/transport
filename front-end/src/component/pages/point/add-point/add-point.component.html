@@ -1,0 +1,27 @@
+<div class="add-point-form-container">
+  <div class="add-point-form">
+    <form class="add-point-data-form mat-elevation-z2" (ngSubmit)="tryCreatePoint()" #createForm="ngForm">
+      <div class="add-point-text-container">
+        <h2 class="add-point-page-title">Add new point</h2>
+        <h3 class="add-point-page-error" [hidden]="error.length == 0">
+          {{error}}
+        </h3>
+      </div>
+      <mat-input-container class="add-point-data-row">
+        <input matInput placeholder="Name of point" id="name" required minlength="{{minPointLenth}}"
+               maxlength="{{maxFileTypeName}}"
+               [(ngModel)]="pointInfo().name" name="name"
+               #name="ngModel">
+      </mat-input-container>
+
+      <div class="add-point-buttons">
+        <button class="add-point-button" type="submit" mat-raised-button color="primary"
+                [disabled]="!createForm.form.valid"> Add point
+        </button>
+        <button class="add-point-button" type="submit" mat-raised-button color="primary"
+                (click)="redirectToPoints()"> Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

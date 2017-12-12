@@ -1,0 +1,38 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<mat-toolbar class="app-bar mat-elevation-z6" color="primary">
+
+  <button mat-button class="m-toolbar-button" routerLink="/schedule" routerLinkActive="m-toolbar-button-active">
+    <mat-icon><i class="material-icons">schedule</i>
+    </mat-icon>
+    <span class = "material-icons_text"> Schedule</span>
+  </button>
+
+  <button mat-button class="m-toolbar-button" routerLink="/route"
+          routerLinkActive="m-toolbar-button-active"><mat-icon><i class="material-icons">router</i></mat-icon>
+    <span class = "material-icons_text"> Route</span>
+  </button>
+
+  <button mat-button class="m-toolbar-button" routerLink="/point"
+          routerLinkActive="m-toolbar-button-active"><mat-icon><i class="material-icons">store</i></mat-icon>
+    <span class = "material-icons_text"> Point</span>
+  </button>
+
+  <button mat-button class="m-toolbar-button" routerLink="/transport"
+          routerLinkActive="m-toolbar-button-active">
+    <mat-icon><i class="material-icons">directions_bus</i></mat-icon>
+    <span class = "material-icons_text"> Transport</span>
+  </button>
+
+  <span class="app-toolbar-filler"></span>
+  <button mat-icon-button class="m-toolbar-button" *ngIf="!authed" routerLink="/login"
+          routerLinkActive="m-toolbar-button-active">
+    <mat-icon><i class="material-icons" aria-hidden="true">lock_outline</i></mat-icon>
+  </button>
+  <button mat-button class="m-toolbar-button" *ngIf="authed" routerLink="/" (click)="logout()">
+   <mat-icon> <i class="material-icons">lock_open</i></mat-icon>
+  </button>
+
+</mat-toolbar>
+<div class="root-content">
+  <router-outlet></router-outlet>
+</div>

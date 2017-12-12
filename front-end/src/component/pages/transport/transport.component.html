@@ -1,0 +1,49 @@
+<div >
+
+  <mat-table  #table [dataSource]="dataSource">
+
+    <ng-container matColumnDef="registrationNumber">
+
+      <mat-header-cell  *matHeaderCellDef> Registration number</mat-header-cell>
+
+      <mat-cell *matCellDef="let element"> {{element.registrationNumber}}</mat-cell>
+
+    </ng-container>
+
+    <ng-container matColumnDef="transportType">
+
+      <mat-header-cell *matHeaderCellDef> Transport type</mat-header-cell>
+
+      <mat-cell class="file-type-mat-cell" *matCellDef="let element"> {{element.transportType}}</mat-cell>
+
+    </ng-container>
+
+    <!--<ng-container matColumnDef=noFunctionally">
+
+      <mat-header-cell  *matHeaderCellDef> No functionally</mat-header-cell>
+
+      <mat-cell *matCellDef="let element"> {{element.noFunctionally}}</mat-cell>
+
+    </ng-container>-->
+
+    <mat-header-row *matHeaderRowDef="displayedColumns">
+
+    </mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;">
+    </mat-row>
+
+  </mat-table>
+
+</div>
+
+<!--
+<div >
+  <button mat-icon-button [routerLink]="['./add'] ">
+    <mat-icon><i class="material-icons md-48 blue" aria-hidden="true">add_circle</i></mat-icon>
+  </button>
+</div>
+
+<div>
+  <router-outlet></router-outlet>
+</div>
+-->
