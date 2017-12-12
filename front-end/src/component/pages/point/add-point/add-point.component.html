@@ -9,8 +9,8 @@
       </div>
       <mat-input-container class="add-point-data-row">
         <input matInput placeholder="Name of point" id="name" required minlength="{{minPointLenth}}"
-               maxlength="{{maxFileTypeName}}"
-               [(ngModel)]="pointInfo().name" name="name"
+               maxlength="{{maxPointLenth}}"
+               [(ngModel)]="pointInfo.name" name="name"
                #name="ngModel">
       </mat-input-container>
 

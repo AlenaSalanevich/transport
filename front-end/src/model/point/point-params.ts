@@ -1,16 +1,9 @@
 export class PointParams {
 
-  private _name: string;
+  name: string;
 
   constructor(name: string) {
-    this._name = name;
+    this.name = name;
   }
 
-  get name(): string {
-    return this._name;
-  }
-
-  set name(value: string) {
-    this._name = value;
-  }
 }

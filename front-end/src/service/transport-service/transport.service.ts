@@ -2,12 +2,15 @@ import {Injectable} from '@angular/core';
 import {Http} from "@angular/http";
 import {SecurityService} from "../security-service/security.service";
 import {TransportEntity} from "../../model/transport/transport-entity";
+import {TransportParams} from "../../model/transport/transport-params";
+import {Utils} from "../../utils/utils";
 
 
 @Injectable()
 export class TransportService {
 
   private static readonly LOAD_TRANSPORTS_URL = '/api/transports';
+  private static readonly ADD_TRANSPORT_URL ='api/transports/add';
 
   constructor(private readonly http: Http, private readonly security: SecurityService) {
   }
@@ -24,4 +27,11 @@ export class TransportService {
   private hadnlerError(error: Response | any) {
     return Promise.reject(error.message || error)
   }
+
+  public createTransport(params: TransportParams, handler: (message: string, result: boolean) => void): void {
+  this.http.post(TransportService.ADD_TRANSPORT_URL, params)
+.toPromise()
+.then(response => handler(null, true))
+.catch(error=>Utils.handleErrorMessageJson(error, (ex: string) => handler(ex, false)));
+}
 }

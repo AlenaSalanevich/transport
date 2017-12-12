@@ -10,5 +10,7 @@ export class RouteList {
 
   static readonly PAGE_ROUTE = 'route';
 
-  static readonly PAGE_ADD_POINT = 'add'
+  static readonly PAGE_ADD_POINT = 'add';
+
+  static readonly PAGE_ADD_TRANSPORT = 'add'
 }

@@ -9,7 +9,8 @@ import {RouteList} from "../../../../utils/route-list";
 @Component({
   selector: 'app-add-point',
   templateUrl: './add-point.component.html',
-  styleUrls: ['./add-point.component.css']
+  styleUrls: ['./add-point.component.css'],
+  providers: [PointDataSource, PointService]
 })
 export class AddPointComponent extends PageComponent {
 
@@ -19,7 +20,7 @@ export class AddPointComponent extends PageComponent {
 
 
   constructor(private readonly pointService: PointService,
-              private readonly pointDataSource: PointDataSource,
+              private readonly dataSource: PointDataSource,
               private readonly router: Router) {
     super()
     this._pointInfo = new PointParams('');
@@ -32,7 +33,7 @@ export class AddPointComponent extends PageComponent {
         let pointInfo = this.pointInfo;
         pointInfo.name = '';
         this._error = '';
-        this.pointDataSource.refresh();
+        this.dataSource.refresh();
         this.redirectToPoints();
       }
       else {
@@ -42,7 +43,8 @@ export class AddPointComponent extends PageComponent {
   }
 
   redirectToPoints() {
-    this.router.navigateByUrl('/' + RouteList.PAGE_POINT)
+    this.router.navigateByUrl('/' + RouteList.PAGE_POINT);
+    this.dataSource.refresh()
   }
 
   get pointInfo(): PointParams {

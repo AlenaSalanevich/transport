@@ -16,19 +16,19 @@ export class TransportEntity {
   }
 
 
-  get id(): number {
+  public get id(): number {
     return this._id;
   }
 
-  get transportType(): string {
+  public get transportType(): string {
     return this._transportType;
   }
 
-  get registrationNumber(): string {
+  public get registrationNumber(): string {
     return this._registrationNumber;
   }
 
-  get noFunctionally(): boolean {
+  public get noFunctionally(): boolean {
     return this._noFunctionally;
   }
 }

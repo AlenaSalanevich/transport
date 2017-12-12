@@ -1,12 +1,12 @@
-<div >
+<div>
 
-  <mat-table class = "point-table" #table [dataSource]="dataSource">
+  <mat-table #table [dataSource]="dataSource">
 
     <ng-container matColumnDef="name">
 
       <mat-header-cell *matHeaderCellDef> Point</mat-header-cell>
 
-      <mat-cell  *matCellDef="let element"> {{element.name}}</mat-cell>
+      <mat-cell *matCellDef="let element"> {{element.name}}</mat-cell>
 
     </ng-container>
 
@@ -17,6 +17,7 @@
     </mat-row>
 
   </mat-table>
+
   <div class="add-point-button-position">
     <button mat-icon-button [routerLink]="['./add'] ">
       <mat-icon><i class="material-icons md-48 blue" aria-hidden="true">add_circle</i></mat-icon>
@@ -26,6 +27,7 @@
   <div class="form-point">
     <router-outlet></router-outlet>
   </div>
-
 </div>
+
+
 

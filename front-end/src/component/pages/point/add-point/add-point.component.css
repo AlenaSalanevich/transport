@@ -1,7 +1,7 @@
 .add-point-form-container {
-  width: 400px;
-  margin-left: 30%;
-  margin-top: 10%;
+  margin-left: 10%;
+  margin-top: 3%;
+width: max-content;
 }
 
 .add-point-form {
@@ -46,4 +46,5 @@
 .add-point-text-container {
   margin-bottom: 30px;
   margin-top: 10px;
+  font-size: small;
 }

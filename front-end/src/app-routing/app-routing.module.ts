@@ -8,6 +8,7 @@ import {PointComponent} from "../component/pages/point/point.component";
 import {RouteComponent} from "../component/pages/route/route.component";
 import {TransportComponent} from "../component/pages/transport/transport.component";
 import {AddPointComponent} from "../component/pages/point/add-point/add-point.component";
+import {AddTransportComponent} from "../component/pages/transport/add-transport/add-transport.component";
 
 
 const routes: Routes = [
@@ -20,7 +21,11 @@ const routes: Routes = [
     children: [{path: RouteList.PAGE_ADD_POINT, component: AddPointComponent}]
   },
   {path: RouteList.PAGE_ROUTE, component: RouteComponent},
-  {path: RouteList.PAGE_TRANSPORT, component: TransportComponent}
+  {
+    path: RouteList.PAGE_TRANSPORT,
+    component: TransportComponent,
+    children: [{path: RouteList.PAGE_ADD_TRANSPORT, component: AddTransportComponent}]
+  }
 ];
 
 /**

@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {DataSource} from "@angular/cdk/collections";
+import {CollectionViewer, DataSource} from "@angular/cdk/collections";
 import {TransportEntity} from "../../model/transport/transport-entity";
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
 import {TransportService} from "./transport.service";
@@ -26,8 +26,7 @@ constructor (private readonly transportService: TransportService){
   connect(): Observable<TransportEntity[]>{
     return this.transports;
   }
-  disconnect(){
-
+  disconnect(collectionViewer: CollectionViewer): void {
   }
 }
 

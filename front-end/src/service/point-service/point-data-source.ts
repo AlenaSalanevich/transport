@@ -2,7 +2,7 @@ import {Injectable} from "@angular/core";
 import {PointEntity} from "../../model/point/poit-entity";
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
 import {PointService} from "./point.service";
-import {DataSource} from "@angular/cdk/collections";
+import {CollectionViewer, DataSource} from "@angular/cdk/collections";
 import {Observable} from "rxjs/Observable";
 
 
@@ -28,6 +28,6 @@ export class PointDataSource extends DataSource<PointEntity> {
     return this.points;
   }
 
-  disconnect() {
+  disconnect(collectionViewer: CollectionViewer): void {
   }
 }

@@ -37,6 +37,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {PointDataSource} from "./service/point-service/point-data-source";
 import {PointService} from "./service/point-service/point.service";
 import { AddPointComponent } from './component/pages/point/add-point/add-point.component';
+import { AddTransportComponent } from './component/pages/transport/add-transport/add-transport.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { AddPointComponent } from './component/pages/point/add-point/add-point.c
     ScheduleComponent,
     LoginComponent,
     AddPointComponent,
+    AddTransportComponent,
 
   ],
   imports: [

@@ -12,6 +12,7 @@ public class TransportEntity extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private TransportType transportType;
 
+    @Column (name = "registration_number", unique = true, nullable = false, length = 20)
     private String registrationNumber;
 
     @Column(name = "no_functionally", nullable = false)

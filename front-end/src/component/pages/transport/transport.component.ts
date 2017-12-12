@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, ViewEncapsulation} from '@angular/core';
 import {PageComponent} from "../../page.component";
 import {TransportDataSource} from "../../../service/transport-service/transport-data-source";
 import {TransportEntity} from "../../../model/transport/transport-entity";
