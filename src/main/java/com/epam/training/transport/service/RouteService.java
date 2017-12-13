@@ -19,7 +19,4 @@ public interface RouteService {
     RouteEntity load(final String number);
 
     RouteEntity load(final long id);
-
-    RoutePointEntity createRoutePoint(final PointEntity point, final String sequence);
-
 }

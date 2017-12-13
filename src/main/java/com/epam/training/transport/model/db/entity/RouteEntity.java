@@ -14,7 +14,7 @@ public class RouteEntity extends BaseEntity {
     @Column(name = "description")
     private String description;
 
-    @OneToMany(mappedBy = "route")
+    @OneToMany(mappedBy = "route", cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE}, orphanRemoval = true)
     List<RoutePointEntity> routePoints = new ArrayList<>();
 
     public RouteEntity() {
@@ -26,9 +26,9 @@ public class RouteEntity extends BaseEntity {
         this.description = description;
     }
 
-    public void addRoutePoint(final RoutePointEntity routePoint) {
+   /* public void addRoutePoint(final RoutePointEntity routePoint) {
         this.routePoints.add(routePoint);
-    }
+    }*/
 
     public List<RoutePointEntity> getRoutePoints() {
         return routePoints;

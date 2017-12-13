@@ -38,32 +38,36 @@ public class RouteController {
 
     @PostMapping(value = "/add/point")
     @ResponseBody
-    public RouteView addPointToRoute(@RequestBody RoutePointParams routePointParams) {
+    public RouteEntity addPointToRoute(@RequestBody RoutePointParams routePointParams) {
 
         RouteEntity route = routeService.load(routePointParams.getRouteId());
         PointEntity point = pointService.load(routePointParams.getPointId());
         String sequence = routePointParams.getSequence();
         routeService.addPointToRoute(route, point, sequence);
 
-        RouteView routeView = new RouteView(route.getId(), route.getNumber(), route.getDescription(), route.getRoutePoints());
-        return routeView;
+     RouteView routeView = new RouteView();
+     routeView.setId(route.getId());
+     routeView.setNumber(route.getNumber());
+     routeView.setDescription(route.getDescription());
+
+           return route;
     }
 
     @PostMapping(value = "/delete")
-    public ResponseEntity<?> delete(@RequestBody RouteParams params) {
+    public ResponseEntity<?> delete(@RequestBody final RouteParams params) {
         routeService.delete(params.getId());
         return ResponseEntity.ok("Route is deleted!");
     }
 
-    @GetMapping(value = "/load/all")
+    @GetMapping
     @ResponseBody
     public List<RouteEntity> loadAll() {
         return routeService.loadAll();
     }
 
-    @PostMapping(value = "/load")
+    @GetMapping(value = "/load")
     @ResponseBody
-    public RouteEntity load(@RequestBody RouteParams params) {
-        return routeService.load(params.getId());
+    public RouteEntity load(@RequestParam final long id) {
+        return routeService.load(id);
     }
 }

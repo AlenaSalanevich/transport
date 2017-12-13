@@ -7,7 +7,7 @@ import java.io.Serializable;
 @Table(name = "ROUTE_POINT")
 public class RoutePointEntity extends BaseEntity implements Serializable {
 
-    @Column(name = "sequence")
+    @Column(name = "sequence", nullable = false)
     private String sequence;
 
     @ManyToOne

@@ -1,7 +1,9 @@
 package com.epam.training.transport.controller.params.views;
 
+import com.epam.training.transport.model.db.entity.PointEntity;
 import com.epam.training.transport.model.db.entity.RoutePointEntity;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class RouteView {
@@ -9,9 +11,9 @@ public class RouteView {
     private long id;
     private String number;
     private String description;
-    private List<RoutePointEntity> points;
+    private HashMap<PointEntity, String> points;
 
-    public RouteView(final long id,final String number,final String description, final List<RoutePointEntity> points) {
+    public RouteView(final long id,final String number,final String description, final HashMap<PointEntity, String> points) {
         this.id = id;
         this.number = number;
         this.description = description;
@@ -45,11 +47,11 @@ public class RouteView {
         this.description = description;
     }
 
-    public List<RoutePointEntity> getPoints() {
+    public HashMap<PointEntity, String> getPoints() {
         return points;
     }
 
-    public void setPoints(final List<RoutePointEntity> points) {
+    public void setPoints( final HashMap<PointEntity, String> points) {
         this.points = points;
     }
 }

@@ -19,6 +19,7 @@ public class RouteServiceImpl implements RouteService {
 
     @Autowired
     RouteRepository routeRepository;
+
     @Autowired
     RoutePointRepository routePointRepository;
 
@@ -40,19 +41,13 @@ public class RouteServiceImpl implements RouteService {
     }
 
     @Override
-    public RoutePointEntity createRoutePoint(final PointEntity point, final String sequence) {
-
-        return null;
-    }
-
-    @Override
     public RouteEntity addPointToRoute(final RouteEntity route, final PointEntity point, final String sequence) {
         RoutePointEntity routePoint = new RoutePointEntity();
-     //   routePoint.setRoute(route);
+        routePoint.setRoute(route);
         routePoint.setPoint(point);
         routePoint.setSequence(sequence);
-        routePointRepository.save(routePoint);
-        route.addRoutePoint(routePoint);
+       // routePointRepository.save(routePoint);
+        route.getRoutePoints().add(routePoint);
         routeRepository.save(route);
         return route;
     }
