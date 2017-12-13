@@ -1,5 +1,7 @@
 package com.epam.training.transport.controller.params;
 
+import java.util.List;
+
 public class RouteParams {
 
     private long id;

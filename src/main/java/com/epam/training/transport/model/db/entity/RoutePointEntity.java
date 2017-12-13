@@ -8,49 +8,49 @@ import java.io.Serializable;
 public class RoutePointEntity extends BaseEntity implements Serializable {
 
     @Column(name = "sequence")
-    private int sequence;
+    private String sequence;
 
-    @ManyToOne (cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "point_id")
-    private PointEntity pointEntity;
+    private PointEntity point;
 
-    @ManyToOne (cascade = CascadeType.ALL)
+   @ManyToOne
     @JoinColumn(name = "route_id")
-    private RouteEntity routeEntity;
+    private RouteEntity route;
 
 
     public RoutePointEntity() {
     }
 
-    public RoutePointEntity(final long id, final PointEntity pointEntity, final RouteEntity routeEntity, final int sequence) {
+    public RoutePointEntity(final long id, final PointEntity point, /*final RouteEntity route,*/ final String sequence) {
         super(id);
-        this.pointEntity = pointEntity;
-        this.routeEntity = routeEntity;
+        this.point = point;
+      /*  this.route = route;*/
         this.sequence = sequence;
     }
 
 
-    public PointEntity getPointEntity() {
-        return pointEntity;
+    public PointEntity getPoint() {
+        return point;
     }
 
-    public void setPointEntity(final PointEntity pointEntity) {
-        this.pointEntity = pointEntity;
+    public void setPoint(final PointEntity point) {
+        this.point = point;
     }
 
-      public RouteEntity getRouteEntity() {
-        return routeEntity;
+   public RouteEntity getRoute() {
+        return route;
     }
 
-    public void setRouteEntity(final RouteEntity routeEntity) {
-        this.routeEntity = routeEntity;
+    public void setRoute(final RouteEntity route) {
+        this.route = route;
     }
 
-        public int getSequence() {
+        public String getSequence() {
         return sequence;
     }
 
-    public void setSequence(final int sequence) {
+    public void setSequence(final String sequence) {
         this.sequence = sequence;
     }
 

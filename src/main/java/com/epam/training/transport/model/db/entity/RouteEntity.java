@@ -2,9 +2,7 @@ package com.epam.training.transport.model.db.entity;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "ROUTES")
@@ -16,7 +14,7 @@ public class RouteEntity extends BaseEntity {
     @Column(name = "description")
     private String description;
 
-    @OneToMany(mappedBy = "routeEntity",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "route")
     List<RoutePointEntity> routePoints = new ArrayList<>();
 
     public RouteEntity() {
@@ -28,7 +26,7 @@ public class RouteEntity extends BaseEntity {
         this.description = description;
     }
 
-    public void addPoint(final RoutePointEntity routePoint){
+    public void addRoutePoint(final RoutePointEntity routePoint) {
         this.routePoints.add(routePoint);
     }
 

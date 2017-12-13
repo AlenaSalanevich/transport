@@ -6,7 +6,8 @@ import {TransportDataSource} from "./service/transport-service/transport-data-so
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+
 })
 export class AppComponent {
 
@@ -16,7 +17,7 @@ export class AppComponent {
   static readonly MAX_PASSWORD_LENGTH = 25;
   static readonly MIN_POINT_LENGTH = 3;
   static readonly MAX_POINT_LENGTH = 25;
-  static readonly  MIN_REGISTER_NUMBER_LENGTH = 9;
+  static readonly MIN_REGISTER_NUMBER_LENGTH = 9;
   static readonly MAX_REGISTER_NUMBER_LENGTH = 15;
   static readonly MIN_TRANSPORT_TYPE_LENGTH = 3;
   static readonly MAX_TRANSPORT_TYPE_LENGTH = 10;
@@ -26,9 +27,9 @@ export class AppComponent {
    */
   private _authed: boolean;
 
-  constructor( private readonly security: SecurityService, private readonlypointDataSource: PointDataSource, private readonly transportDataSource: TransportDataSource) {
+  constructor(private readonly security: SecurityService) {
     this._authed = false;
-    this.security.authProperty.subscribe(result=>this._authed=result)
+    this.security.authProperty.subscribe(result => this._authed = result)
 
   }
 
@@ -44,5 +45,4 @@ export class AppComponent {
   get authed(): boolean {
     return this._authed;
   }
-
 }
