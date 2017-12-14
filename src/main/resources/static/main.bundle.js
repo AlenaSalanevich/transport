@@ -32,12 +32,14 @@ webpackEmptyAsyncContext.id = "../../../../../src/$$_lazy_route_resource lazy re
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__component_pages_route_route_component__ = __webpack_require__("../../../../../src/component/pages/route/route.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__component_pages_transport_transport_component__ = __webpack_require__("../../../../../src/component/pages/transport/transport.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__component_pages_point_add_point_add_point_component__ = __webpack_require__("../../../../../src/component/pages/point/add-point/add-point.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__component_pages_transport_add_transport_add_transport_component__ = __webpack_require__("../../../../../src/component/pages/transport/add-transport/add-transport.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -58,7 +60,11 @@ var routes = [
         children: [{ path: __WEBPACK_IMPORTED_MODULE_3__utils_route_list__["a" /* RouteList */].PAGE_ADD_POINT, component: __WEBPACK_IMPORTED_MODULE_9__component_pages_point_add_point_add_point_component__["a" /* AddPointComponent */] }]
     },
     { path: __WEBPACK_IMPORTED_MODULE_3__utils_route_list__["a" /* RouteList */].PAGE_ROUTE, component: __WEBPACK_IMPORTED_MODULE_7__component_pages_route_route_component__["a" /* RouteComponent */] },
-    { path: __WEBPACK_IMPORTED_MODULE_3__utils_route_list__["a" /* RouteList */].PAGE_TRANSPORT, component: __WEBPACK_IMPORTED_MODULE_8__component_pages_transport_transport_component__["a" /* TransportComponent */] }
+    {
+        path: __WEBPACK_IMPORTED_MODULE_3__utils_route_list__["a" /* RouteList */].PAGE_TRANSPORT,
+        component: __WEBPACK_IMPORTED_MODULE_8__component_pages_transport_transport_component__["a" /* TransportComponent */],
+        children: [{ path: __WEBPACK_IMPORTED_MODULE_3__utils_route_list__["a" /* RouteList */].PAGE_ADD_TRANSPORT, component: __WEBPACK_IMPORTED_MODULE_10__component_pages_transport_add_transport_add_transport_component__["a" /* AddTransportComponent */] }]
+    }
 ];
 /**
  * The configuration of the router module.
@@ -157,11 +163,15 @@ var AppComponent = (function () {
     AppComponent.MAX_PASSWORD_LENGTH = 25;
     AppComponent.MIN_POINT_LENGTH = 3;
     AppComponent.MAX_POINT_LENGTH = 25;
+    AppComponent.MIN_REGISTER_NUMBER_LENGTH = 9;
+    AppComponent.MAX_REGISTER_NUMBER_LENGTH = 15;
+    AppComponent.MIN_TRANSPORT_TYPE_LENGTH = 3;
+    AppComponent.MAX_TRANSPORT_TYPE_LENGTH = 10;
     AppComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
             selector: 'app-root',
             template: __webpack_require__("../../../../../src/app.component.html"),
-            styles: [__webpack_require__("../../../../../src/app.component.css")]
+            styles: [__webpack_require__("../../../../../src/app.component.css")],
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__service_security_service_security_service__["a" /* SecurityService */]])
     ], AppComponent);
@@ -198,12 +208,14 @@ var AppComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__service_point_service_point_data_source__ = __webpack_require__("../../../../../src/service/point-service/point-data-source.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__service_point_service_point_service__ = __webpack_require__("../../../../../src/service/point-service/point.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__component_pages_point_add_point_add_point_component__ = __webpack_require__("../../../../../src/component/pages/point/add-point/add-point.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__component_pages_transport_add_transport_add_transport_component__ = __webpack_require__("../../../../../src/component/pages/transport/add-transport/add-transport.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -238,6 +250,7 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_6__component_pages_schedule_schedule_component__["a" /* ScheduleComponent */],
                 __WEBPACK_IMPORTED_MODULE_7__component_pages_login_login_component__["a" /* LoginComponent */],
                 __WEBPACK_IMPORTED_MODULE_20__component_pages_point_add_point_add_point_component__["a" /* AddPointComponent */],
+                __WEBPACK_IMPORTED_MODULE_21__component_pages_transport_add_transport_add_transport_component__["a" /* AddTransportComponent */],
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_8__angular_forms__["c" /* FormsModule */],
@@ -357,6 +370,34 @@ var PageComponent = (function (_super) {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(PageComponent.prototype, "minTransportTypeLenth", {
+        get: function () {
+            return __WEBPACK_IMPORTED_MODULE_1__app_component__["a" /* AppComponent */].MIN_TRANSPORT_TYPE_LENGTH;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(PageComponent.prototype, "maxTransportTypeLenth", {
+        get: function () {
+            return __WEBPACK_IMPORTED_MODULE_1__app_component__["a" /* AppComponent */].MAX_TRANSPORT_TYPE_LENGTH;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(PageComponent.prototype, "minRegisterNumber", {
+        get: function () {
+            return __WEBPACK_IMPORTED_MODULE_1__app_component__["a" /* AppComponent */].MIN_REGISTER_NUMBER_LENGTH;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(PageComponent.prototype, "maxRegisterNumber", {
+        get: function () {
+            return __WEBPACK_IMPORTED_MODULE_1__app_component__["a" /* AppComponent */].MAX_REGISTER_NUMBER_LENGTH;
+        },
+        enumerable: true,
+        configurable: true
+    });
     return PageComponent;
 }(__WEBPACK_IMPORTED_MODULE_0__base_component__["a" /* BaseComponent */]));
 
@@ -470,7 +511,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".add-point-form-container {\r\n  width: 400px;\r\n  margin-left: 30%;\r\n  margin-top: 10%;\r\n}\r\n\r\n.add-point-form {\r\n}\r\n\r\n.add-point-data-form {\r\n  border-collapse: collapse;\r\n  border-radius: 2px;\r\n  border-spacing: 0px;\r\n  padding: 10px;\r\n  background-color: white;\r\n}\r\n\r\n.add-point-data-row {\r\n  width: 100%;\r\n  display: block;\r\n  margin-top: 40px;\r\n  margin-bottom: 20px;\r\n}\r\n\r\n.add-point-button {\r\n  width: 100%;\r\n  margin-bottom: 5px;\r\n}\r\n\r\n.add-point-buttons {\r\n  -webkit-box-orient: vertical;\r\n  -webkit-box-direction: normal;\r\n      -ms-flex-direction: column;\r\n          flex-direction: column;\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n}\r\n\r\n.add-point-page-title {\r\n  color: #636363;\r\n  text-align: center;\r\n}\r\n\r\n.add-point-page-error {\r\n  color: #ff002b;\r\n  text-align: center;\r\n  margin-top: 10px;\r\n}\r\n\r\n.add-point-text-container {\r\n  margin-bottom: 30px;\r\n  margin-top: 10px;\r\n}\r\n", ""]);
+exports.push([module.i, ".add-point-form-container {\r\n  margin-left: 10%;\r\n  margin-top: 3%;\r\nwidth: -webkit-max-content;\r\nwidth: -moz-max-content;\r\nwidth: max-content;\r\n}\r\n\r\n.add-point-form {\r\n}\r\n\r\n.add-point-data-form {\r\n  border-collapse: collapse;\r\n  border-radius: 2px;\r\n  border-spacing: 0px;\r\n  padding: 10px;\r\n  background-color: white;\r\n}\r\n\r\n.add-point-data-row {\r\n  width: 100%;\r\n  display: block;\r\n  margin-top: 40px;\r\n  margin-bottom: 20px;\r\n}\r\n\r\n.add-point-button {\r\n  width: 100%;\r\n  margin-bottom: 5px;\r\n}\r\n\r\n.add-point-buttons {\r\n  -webkit-box-orient: vertical;\r\n  -webkit-box-direction: normal;\r\n      -ms-flex-direction: column;\r\n          flex-direction: column;\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n}\r\n\r\n.add-point-page-title {\r\n  color: #636363;\r\n  text-align: center;\r\n}\r\n\r\n.add-point-page-error {\r\n  color: #ff002b;\r\n  text-align: center;\r\n  margin-top: 10px;\r\n}\r\n\r\n.add-point-text-container {\r\n  margin-bottom: 30px;\r\n  margin-top: 10px;\r\n  font-size: small;\r\n}\r\n", ""]);
 
 // exports
 
@@ -483,7 +524,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/component/pages/point/add-point/add-point.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"add-point-form-container\">\n  <div class=\"add-point-form\">\n    <form class=\"add-point-data-form mat-elevation-z2\" (ngSubmit)=\"tryCreatePoint()\" #createForm=\"ngForm\">\n      <div class=\"add-point-text-container\">\n        <h2 class=\"add-point-page-title\">Add new point</h2>\n        <h3 class=\"add-point-page-error\" [hidden]=\"error.length == 0\">\n          {{error}}\n        </h3>\n      </div>\n      <mat-input-container class=\"add-point-data-row\">\n        <input matInput placeholder=\"Name of point\" id=\"name\" required minlength=\"{{minPointLenth}}\"\n               maxlength=\"{{maxFileTypeName}}\"\n               [(ngModel)]=\"pointInfo().name\" name=\"name\"\n               #name=\"ngModel\">\n      </mat-input-container>\n\n      <div class=\"add-point-buttons\">\n        <button class=\"add-point-button\" type=\"submit\" mat-raised-button color=\"primary\"\n                [disabled]=\"!createForm.form.valid\"> Add point\n        </button>\n        <button class=\"add-point-button\" type=\"submit\" mat-raised-button color=\"primary\"\n                (click)=\"redirectToPoints()\"> Cancel\n        </button>\n      </div>\n    </form>\n  </div>\n</div>\n"
+module.exports = "<div class=\"add-point-form-container\">\n  <div class=\"add-point-form\">\n    <form class=\"add-point-data-form mat-elevation-z2\" (ngSubmit)=\"tryCreatePoint()\" #createForm=\"ngForm\">\n      <div class=\"add-point-text-container\">\n        <h2 class=\"add-point-page-title\">Add new point</h2>\n        <h3 class=\"add-point-page-error\" [hidden]=\"error.length == 0\">\n          {{error}}\n        </h3>\n      </div>\n      <mat-input-container class=\"add-point-data-row\">\n        <input matInput placeholder=\"Name of point\" id=\"name\" required minlength=\"{{minPointLenth}}\"\n               maxlength=\"{{maxPointLenth}}\"\n               [(ngModel)]=\"pointInfo.name\" name=\"name\"\n               #name=\"ngModel\">\n      </mat-input-container>\n\n      <div class=\"add-point-buttons\">\n        <button class=\"add-point-button\" type=\"submit\" mat-raised-button color=\"primary\"\n                [disabled]=\"!createForm.form.valid\"> Add point\n        </button>\n        <button class=\"add-point-button\" type=\"submit\" mat-raised-button color=\"primary\"\n                (click)=\"redirectToPoints()\"> Cancel\n        </button>\n      </div>\n    </form>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -527,10 +568,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var AddPointComponent = (function (_super) {
     __extends(AddPointComponent, _super);
-    function AddPointComponent(pointService, pointDataSource, router) {
+    function AddPointComponent(pointService, dataSource, router) {
         var _this = _super.call(this) || this;
         _this.pointService = pointService;
-        _this.pointDataSource = pointDataSource;
+        _this.dataSource = dataSource;
         _this.router = router;
         _this._pointInfo = new __WEBPACK_IMPORTED_MODULE_2__model_point_point_params__["a" /* PointParams */]('');
         _this._error = '';
@@ -543,7 +584,7 @@ var AddPointComponent = (function (_super) {
                 var pointInfo = _this.pointInfo;
                 pointInfo.name = '';
                 _this._error = '';
-                _this.pointDataSource.refresh();
+                _this.dataSource.refresh();
                 _this.redirectToPoints();
             }
             else {
@@ -553,6 +594,7 @@ var AddPointComponent = (function (_super) {
     };
     AddPointComponent.prototype.redirectToPoints = function () {
         this.router.navigateByUrl('/' + __WEBPACK_IMPORTED_MODULE_6__utils_route_list__["a" /* RouteList */].PAGE_POINT);
+        this.dataSource.refresh();
     };
     Object.defineProperty(AddPointComponent.prototype, "pointInfo", {
         get: function () {
@@ -578,7 +620,8 @@ var AddPointComponent = (function (_super) {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
             selector: 'app-add-point',
             template: __webpack_require__("../../../../../src/component/pages/point/add-point/add-point.component.html"),
-            styles: [__webpack_require__("../../../../../src/component/pages/point/add-point/add-point.component.css")]
+            styles: [__webpack_require__("../../../../../src/component/pages/point/add-point/add-point.component.css")],
+            providers: [__WEBPACK_IMPORTED_MODULE_4__service_point_service_point_data_source__["a" /* PointDataSource */], __WEBPACK_IMPORTED_MODULE_3__service_point_service_point_service__["a" /* PointService */]]
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__service_point_service_point_service__["a" /* PointService */],
             __WEBPACK_IMPORTED_MODULE_4__service_point_service_point_data_source__["a" /* PointDataSource */],
@@ -612,7 +655,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/component/pages/point/point.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div >\n\n  <mat-table class = \"point-table\" #table [dataSource]=\"dataSource\">\n\n    <ng-container matColumnDef=\"name\">\n\n      <mat-header-cell *matHeaderCellDef> Point</mat-header-cell>\n\n      <mat-cell  *matCellDef=\"let element\"> {{element.name}}</mat-cell>\n\n    </ng-container>\n\n    <mat-header-row *matHeaderRowDef=\"displayedColumns\">\n\n    </mat-header-row>\n    <mat-row *matRowDef=\"let row; columns: displayedColumns;\">\n    </mat-row>\n\n  </mat-table>\n  <div class=\"add-point-button-position\">\n    <button mat-icon-button [routerLink]=\"['./add'] \">\n      <mat-icon><i class=\"material-icons md-48 blue\" aria-hidden=\"true\">add_circle</i></mat-icon>\n    </button>\n  </div>\n\n  <div class=\"form-point\">\n    <router-outlet></router-outlet>\n  </div>\n\n</div>\n\n"
+module.exports = "<div>\n\n  <mat-table #table [dataSource]=\"dataSource\">\n\n    <ng-container matColumnDef=\"name\">\n\n      <mat-header-cell *matHeaderCellDef> Point</mat-header-cell>\n\n      <mat-cell *matCellDef=\"let element\"> {{element.name}}</mat-cell>\n\n    </ng-container>\n\n    <mat-header-row *matHeaderRowDef=\"displayedColumns\">\n\n    </mat-header-row>\n    <mat-row *matRowDef=\"let row; columns: displayedColumns;\">\n    </mat-row>\n\n  </mat-table>\n\n  <div class=\"add-point-button-position\">\n    <button mat-icon-button [routerLink]=\"['./add'] \">\n      <mat-icon><i class=\"material-icons md-48 blue\" aria-hidden=\"true\">add_circle</i></mat-icon>\n    </button>\n  </div>\n\n</div>\n\n  <div class=\"form-point\">\n    <router-outlet></router-outlet>\n  </div>\n\n\n\n\n"
 
 /***/ }),
 
@@ -624,6 +667,7 @@ module.exports = "<div >\n\n  <mat-table class = \"point-table\" #table [dataSou
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__page_component__ = __webpack_require__("../../../../../src/component/page.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__service_point_service_point_data_source__ = __webpack_require__("../../../../../src/service/point-service/point-data-source.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_observable_of__ = __webpack_require__("../../../../rxjs/_esm5/add/observable/of.js");
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -643,6 +687,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -822,6 +867,131 @@ var ScheduleComponent = (function (_super) {
 
 /***/ }),
 
+/***/ "../../../../../src/component/pages/transport/add-transport/add-transport.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".add-point-form-container {\r\n  margin-left: 40%;\r\n  margin-top: 3%;\r\n  width: -webkit-max-content;\r\n  width: -moz-max-content;\r\n  width: max-content;\r\n}\r\n\r\n\r\n.add-point-form {\r\n  width: 100%\r\n}\r\n\r\n.add-point-data-form {\r\n  border-collapse: collapse;\r\n  border-radius: 2px;\r\n  border-spacing: 0px;\r\n  padding: 10px;\r\n  background-color: white;\r\n}\r\n\r\n.add-point-data-row {\r\n  width: 100%;\r\n  display: block;\r\n  margin-top: 40px;\r\n  margin-bottom: 20px;\r\n}\r\n\r\n.add-point-button {\r\n  width: 100%;\r\n  margin-bottom: 5px;\r\n}\r\n\r\n.add-point-buttons {\r\n  -webkit-box-orient: vertical;\r\n  -webkit-box-direction: normal;\r\n      -ms-flex-direction: column;\r\n          flex-direction: column;\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n}\r\n\r\n.add-point-page-title {\r\n  color: #636363;\r\n  text-align: center;\r\n}\r\n\r\n.add-point-page-error {\r\n  color: #ff002b;\r\n  text-align: center;\r\n  margin-top: 10px;\r\n}\r\n\r\n.add-point-text-container {\r\n  margin-bottom: 30px;\r\n  margin-top: 10px;\r\n}\r\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/component/pages/transport/add-transport/add-transport.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"add-point-form-container\">\n  <div class=\"add-point-form\">\n    <form class=\"add-point-data-form mat-elevation-z2\" (ngSubmit)=\"tryCreateTransport()\" #createForm=\"ngForm\">\n      <div class=\"add-point-text-container\">\n        <h2 class=\"add-point-page-title\">Add new transport</h2>\n        <h3 class=\"add-point-page-error\" [hidden]=\"error.length == 0\">\n          {{error}}\n        </h3>\n      </div>\n      <mat-input-container class=\"add-point-data-row\">\n        <input matInput placeholder=\"Transport register number\" id=\"registrationNumber\" required minlength=\"{{minRegisterNumber}}\"\n               maxlength=\"{{maxRegisterNumber}}\"\n               [(ngModel)]=\"transportInfo.registrationNumber\" name=\"registrationNumber\"\n               #name=\"ngModel\">\n      </mat-input-container>\n\n      <mat-input-container class=\"add-point-data-row\">\n        <input matInput placeholder=\"Transport type\" id=\"transportType\" required minlength=\"{{minTransportTypeLenth}}\"\n               maxlength=\"{{maxTransportTypeLenth}}\"\n               [(ngModel)]=\"transportInfo.transportType\" name=\"transportType\"\n               #name=\"ngModel\">\n      </mat-input-container>\n\n      <mat-input-container class=\"add-point-data-row\">\n        <input matInput placeholder=\"Transport is no functionally\" id=\"noFunctionally\"\n               [(ngModel)]=\"transportInfo.noFunctionally\" name=\"noFunctionally\"\n               #name=\"ngModel\">\n      </mat-input-container>\n\n\n      <div class=\"add-point-buttons\">\n        <button class=\"add-point-button\" type=\"submit\" mat-raised-button color=\"primary\"\n                [disabled]=\"!createForm.form.valid\"> Add transport\n        </button>\n        <button class=\"add-point-button\" type=\"submit\" mat-raised-button color=\"primary\"\n                (click)=\"redirectToTransports()\"> Cancel\n        </button>\n      </div>\n    </form>\n  </div>\n</div>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/component/pages/transport/add-transport/add-transport.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddTransportComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__service_transport_service_transport_data_source__ = __webpack_require__("../../../../../src/service/transport-service/transport-data-source.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__service_transport_service_transport_service__ = __webpack_require__("../../../../../src/service/transport-service/transport.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__page_component__ = __webpack_require__("../../../../../src/component/page.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__model_transport_transport_params__ = __webpack_require__("../../../../../src/model/transport/transport-params.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__utils_route_list__ = __webpack_require__("../../../../../src/utils/route-list.ts");
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+var AddTransportComponent = (function (_super) {
+    __extends(AddTransportComponent, _super);
+    function AddTransportComponent(transportService, transportDataSource, router) {
+        var _this = _super.call(this) || this;
+        _this.transportService = transportService;
+        _this.transportDataSource = transportDataSource;
+        _this.router = router;
+        _this._transportInfo = new __WEBPACK_IMPORTED_MODULE_4__model_transport_transport_params__["a" /* TransportParams */]('', '', false);
+        _this._error = '';
+        return _this;
+    }
+    AddTransportComponent.prototype.tryCreateTransport = function () {
+        var _this = this;
+        this.transportService.createTransport(this._transportInfo, function (message, result) {
+            if (result) {
+                var transportInfo = _this.transportInfo;
+                transportInfo.registrationNumber = '';
+                transportInfo.transportType = '';
+                transportInfo.noFunctionally = true;
+                _this.redirectToTransports();
+                _this.transportDataSource.refresh();
+            }
+            else {
+                _this._error = message;
+            }
+        });
+    };
+    AddTransportComponent.prototype.ngOnInit = function () {
+    };
+    AddTransportComponent.prototype.redirectToTransports = function () {
+        this.router.navigateByUrl('/' + __WEBPACK_IMPORTED_MODULE_6__utils_route_list__["a" /* RouteList */].PAGE_TRANSPORT);
+    };
+    Object.defineProperty(AddTransportComponent.prototype, "transportInfo", {
+        get: function () {
+            return this._transportInfo;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(AddTransportComponent.prototype, "error", {
+        get: function () {
+            return this._error;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    AddTransportComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'app-add-transport',
+            template: __webpack_require__("../../../../../src/component/pages/transport/add-transport/add-transport.component.html"),
+            styles: [__webpack_require__("../../../../../src/component/pages/transport/add-transport/add-transport.component.css")],
+            providers: [__WEBPACK_IMPORTED_MODULE_1__service_transport_service_transport_data_source__["a" /* TransportDataSource */], __WEBPACK_IMPORTED_MODULE_2__service_transport_service_transport_service__["a" /* TransportService */]]
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__service_transport_service_transport_service__["a" /* TransportService */], __WEBPACK_IMPORTED_MODULE_1__service_transport_service_transport_data_source__["a" /* TransportDataSource */], __WEBPACK_IMPORTED_MODULE_5__angular_router__["a" /* Router */]])
+    ], AddTransportComponent);
+    return AddTransportComponent;
+}(__WEBPACK_IMPORTED_MODULE_3__page_component__["a" /* PageComponent */]));
+
+
+
+/***/ }),
+
 /***/ "../../../../../src/component/pages/transport/transport.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -830,7 +1000,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, ".material-icons.md-48 {\r\n  font-size: 48px;\r\n}\r\n\r\n.material-icons.blue {\r\n  color: #3f51b5;\r\n}\r\n\r\n.mat-icon-button{\r\n  position: fixed;\r\n  right: 5%;\r\n  bottom: 5%;\r\n}\r\n\r\n.add-point-button-position {\r\n  position: absolute;\r\n  float: right;\r\n  z-index: 10;\r\n}\r\n\r\n.form-point {\r\n  position: relative;\r\n}\r\n\r\n.point-content {\r\n  position: absolute;\r\n  width: 81.5%;\r\n  color: #636363;\r\n  font-family: inherit;\r\n}\r\n\r\n.point-table {\r\n  background: inherit;\r\n  overflow-y: scroll;\r\n  max-height: 100vh;\r\n}\r\n\r\n.point-mat-header-cell {\r\n  font-family: inherit;\r\n  font-weight: bold;\r\n  font-size: inherit;\r\n}\r\n\r\n.point-mat-cell {\r\n  font-family: inherit;\r\n  font-weight: normal;\r\n  color: inherit;\r\n}\r\n", ""]);
 
 // exports
 
@@ -843,7 +1013,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/component/pages/transport/transport.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div >\n\n  <mat-table  #table [dataSource]=\"dataSource\">\n\n    <ng-container matColumnDef=\"registrationNumber\">\n\n      <mat-header-cell  *matHeaderCellDef> Registration number</mat-header-cell>\n\n      <mat-cell *matCellDef=\"let element\"> {{element.registrationNumber}}</mat-cell>\n\n    </ng-container>\n\n    <ng-container matColumnDef=\"transportType\">\n\n      <mat-header-cell *matHeaderCellDef> Transport type</mat-header-cell>\n\n      <mat-cell class=\"file-type-mat-cell\" *matCellDef=\"let element\"> {{element.transportType}}</mat-cell>\n\n    </ng-container>\n\n    <!--<ng-container matColumnDef=noFunctionally\">\n\n      <mat-header-cell  *matHeaderCellDef> No functionally</mat-header-cell>\n\n      <mat-cell *matCellDef=\"let element\"> {{element.noFunctionally}}</mat-cell>\n\n    </ng-container>-->\n\n    <mat-header-row *matHeaderRowDef=\"displayedColumns\">\n\n    </mat-header-row>\n    <mat-row *matRowDef=\"let row; columns: displayedColumns;\">\n    </mat-row>\n\n  </mat-table>\n\n</div>\n\n<!--\n<div >\n  <button mat-icon-button [routerLink]=\"['./add'] \">\n    <mat-icon><i class=\"material-icons md-48 blue\" aria-hidden=\"true\">add_circle</i></mat-icon>\n  </button>\n</div>\n\n<div>\n  <router-outlet></router-outlet>\n</div>\n-->\n"
+module.exports = "<div >\n\n  <mat-table  #table [dataSource]=\"dataSource\">\n\n    <ng-container matColumnDef=\"registrationNumber\">\n\n      <mat-header-cell  *matHeaderCellDef> Registration number</mat-header-cell>\n\n      <mat-cell *matCellDef=\"let element\"> {{element.registrationNumber}}</mat-cell>\n\n    </ng-container>\n\n    <ng-container matColumnDef=\"transportType\">\n\n      <mat-header-cell *matHeaderCellDef> Transport type</mat-header-cell>\n\n      <mat-cell class=\"file-type-mat-cell\" *matCellDef=\"let element\"> {{element.transportType}}</mat-cell>\n\n    </ng-container>\n\n    <!--<ng-container matColumnDef=noFunctionally\">\n\n      <mat-header-cell  *matHeaderCellDef> No functionally</mat-header-cell>\n\n      <mat-cell *matCellDef=\"let element\"> {{element.noFunctionally}}</mat-cell>\n\n    </ng-container>-->\n\n    <mat-header-row *matHeaderRowDef=\"displayedColumns\">\n\n    </mat-header-row>\n    <mat-row *matRowDef=\"let row; columns: displayedColumns;\">\n    </mat-row>\n\n  </mat-table>\n\n\n\n<div >\n  <button mat-icon-button [routerLink]=\"['./add'] \">\n    <mat-icon><i class=\"material-icons md-48 blue\" aria-hidden=\"true\">add_circle</i></mat-icon>\n  </button>\n</div>\n\n</div>\n\n<div class=\"form-point\">\n  <router-outlet></router-outlet>\n</div>\n"
 
 /***/ }),
 
@@ -952,19 +1122,27 @@ Object(__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__["a" /* pl
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PointParams; });
 var PointParams = (function () {
     function PointParams(name) {
-        this._name = name;
+        this.name = name;
     }
-    Object.defineProperty(PointParams.prototype, "name", {
-        get: function () {
-            return this._name;
-        },
-        set: function (value) {
-            this._name = value;
-        },
-        enumerable: true,
-        configurable: true
-    });
     return PointParams;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/model/transport/transport-params.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TransportParams; });
+var TransportParams = (function () {
+    function TransportParams(transportType, registrationNumber, noFunctionally) {
+        this.transportType = transportType;
+        this.registrationNumber = registrationNumber;
+        this.noFunctionally = noFunctionally;
+    }
+    return TransportParams;
 }());
 
 
@@ -1079,7 +1257,7 @@ var PointDataSource = (function (_super) {
     PointDataSource.prototype.connect = function () {
         return this.points;
     };
-    PointDataSource.prototype.disconnect = function () {
+    PointDataSource.prototype.disconnect = function (collectionViewer) {
     };
     PointDataSource = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
@@ -1357,7 +1535,7 @@ var TransportDataSource = (function (_super) {
     TransportDataSource.prototype.connect = function () {
         return this.transports;
     };
-    TransportDataSource.prototype.disconnect = function () {
+    TransportDataSource.prototype.disconnect = function (collectionViewer) {
     };
     TransportDataSource = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
@@ -1378,6 +1556,7 @@ var TransportDataSource = (function (_super) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/esm5/http.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__security_service_security_service__ = __webpack_require__("../../../../../src/service/security-service/security.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_utils__ = __webpack_require__("../../../../../src/utils/utils.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1387,6 +1566,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -1407,7 +1587,14 @@ var TransportService = (function () {
     TransportService.prototype.hadnlerError = function (error) {
         return Promise.reject(error.message || error);
     };
+    TransportService.prototype.createTransport = function (params, handler) {
+        this.http.post(TransportService_1.ADD_TRANSPORT_URL, params)
+            .toPromise()
+            .then(function (response) { return handler(null, true); })
+            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_3__utils_utils__["a" /* Utils */].handleErrorMessageJson(error, function (ex) { return handler(ex, false); }); });
+    };
     TransportService.LOAD_TRANSPORTS_URL = '/api/transports';
+    TransportService.ADD_TRANSPORT_URL = 'api/transports/add';
     TransportService = TransportService_1 = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */], __WEBPACK_IMPORTED_MODULE_2__security_service_security_service__["a" /* SecurityService */]])
@@ -1430,10 +1617,11 @@ var RouteList = (function () {
     }
     RouteList.PAGE_LOGIN = 'login';
     RouteList.PAGE_SCHEDULE = 'schedule';
-    RouteList.PAGE_POINT = 'points';
-    RouteList.PAGE_TRANSPORT = 'transports';
+    RouteList.PAGE_POINT = 'point';
+    RouteList.PAGE_TRANSPORT = 'transport';
     RouteList.PAGE_ROUTE = 'route';
     RouteList.PAGE_ADD_POINT = 'add';
+    RouteList.PAGE_ADD_TRANSPORT = 'add';
     return RouteList;
 }());
 

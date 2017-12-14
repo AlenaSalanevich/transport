@@ -4,6 +4,7 @@ import com.epam.training.transport.model.Direction;
 
 import javax.persistence.*;
 import java.sql.Time;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 @Entity
@@ -11,11 +12,11 @@ import java.util.List;
 public class ScheduleEntity extends BaseEntity {
 
 
-    @ManyToOne(cascade = {CascadeType.ALL})
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name = "route_id")
     private RouteEntity route;
 
-    @ManyToOne(cascade = {CascadeType.ALL})
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name = "transport_id")
     private TransportEntity  transport;
 
@@ -44,6 +45,54 @@ public class ScheduleEntity extends BaseEntity {
         this.direction = direction;
         this.isHoliday = isHoliday;
         this.startTime = startTime;
+        this.endTime = endTime;
+    }
+
+    public RouteEntity getRoute() {
+        return route;
+    }
+
+    public void setRoute(final RouteEntity route) {
+        this.route = route;
+    }
+
+    public TransportEntity getTransport() {
+        return transport;
+    }
+
+    public void setTransport(final TransportEntity transport) {
+        this.transport = transport;
+    }
+
+    public Direction getDirection() {
+        return direction;
+    }
+
+    public void setDirection(final Direction direction) {
+        this.direction = direction;
+    }
+
+    public boolean isHoliday() {
+        return isHoliday;
+    }
+
+    public void setHoliday(final boolean holiday) {
+        isHoliday = holiday;
+    }
+
+    public Time getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Time startTime) {
+        this.startTime = startTime;
+    }
+
+    public Time getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Time endTime) {
         this.endTime = endTime;
     }
 }

@@ -1,0 +1,51 @@
+.add-point-form-container {
+  margin-left: 40%;
+  margin-top: 3%;
+  width: max-content;
+}
+
+
+.add-point-form {
+  width: 100%
+}
+
+.add-point-data-form {
+  border-collapse: collapse;
+  border-radius: 2px;
+  border-spacing: 0px;
+  padding: 10px;
+  background-color: white;
+}
+
+.add-point-data-row {
+  width: 100%;
+  display: block;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+.add-point-button {
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+.add-point-buttons {
+  flex-direction: column;
+  display: flex;
+}
+
+.add-point-page-title {
+  color: #636363;
+  text-align: center;
+}
+
+.add-point-page-error {
+  color: #ff002b;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.add-point-text-container {
+  margin-bottom: 30px;
+  margin-top: 10px;
+}

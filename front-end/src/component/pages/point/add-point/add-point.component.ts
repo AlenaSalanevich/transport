@@ -18,6 +18,12 @@ export class AddPointComponent extends PageComponent {
 
   private _error: string;
 
+  transportType = [
+    {value: 'BUS', viewValue: 'Bus'},
+    {value: 'TRAM', viewValue: 'Tram'},
+    {value: 'TROLLEYBUS', viewValue: 'Trolleybus'}
+  ];
+
 
   constructor(private readonly pointService: PointService,
               private readonly dataSource: PointDataSource,

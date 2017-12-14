@@ -1,0 +1,41 @@
+<div class="add-point-form-container">
+  <div class="add-point-form">
+    <form class="add-point-data-form mat-elevation-z2" (ngSubmit)="tryCreateTransport()" #createForm="ngForm">
+      <div class="add-point-text-container">
+        <h2 class="add-point-page-title">Add new transport</h2>
+        <h3 class="add-point-page-error" [hidden]="error.length == 0">
+          {{error}}
+        </h3>
+      </div>
+      <mat-input-container class="add-point-data-row">
+        <input matInput placeholder="Transport register number" id="registrationNumber" required minlength="{{minRegisterNumber}}"
+               maxlength="{{maxRegisterNumber}}"
+               [(ngModel)]="transportInfo.registrationNumber" name="registrationNumber"
+               #name="ngModel">
+      </mat-input-container>
+
+      <mat-input-container class="add-point-data-row">
+        <input matInput placeholder="Transport type" id="transportType" required minlength="{{minTransportTypeLenth}}"
+               maxlength="{{maxTransportTypeLenth}}"
+               [(ngModel)]="transportInfo.transportType" name="transportType"
+               #name="ngModel">
+      </mat-input-container>
+
+      <mat-input-container class="add-point-data-row">
+        <input matInput placeholder="Transport is no functionally" id="noFunctionally"
+               [(ngModel)]="transportInfo.noFunctionally" name="noFunctionally"
+               #name="ngModel">
+      </mat-input-container>
+
+
+      <div class="add-point-buttons">
+        <button class="add-point-button" type="submit" mat-raised-button color="primary"
+                [disabled]="!createForm.form.valid"> Add transport
+        </button>
+        <button class="add-point-button" type="submit" mat-raised-button color="primary"
+                (click)="redirectToTransports()"> Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
