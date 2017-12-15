@@ -12,6 +12,8 @@ public interface RouteService {
 
     RouteEntity addPointToRoute(RouteEntity route, PointEntity point, String sequence);
 
+    RouteEntity deletePointFromRoute(long routeId, long pointId);
+
     void delete(final long id);
 
     List<RouteEntity> loadAll();

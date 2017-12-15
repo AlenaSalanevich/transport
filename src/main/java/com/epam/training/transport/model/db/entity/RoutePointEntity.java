@@ -1,5 +1,7 @@
 package com.epam.training.transport.model.db.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -10,25 +12,24 @@ public class RoutePointEntity extends BaseEntity implements Serializable {
     @Column(name = "sequence", nullable = false)
     private String sequence;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH }, fetch = FetchType.LAZY)
     @JoinColumn(name = "point_id")
     private PointEntity point;
 
-   @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "route_id")
+    @JsonIgnore
     private RouteEntity route;
-
 
     public RoutePointEntity() {
     }
 
-    public RoutePointEntity(final long id, final PointEntity point, /*final RouteEntity route,*/ final String sequence) {
+    public RoutePointEntity(final long id, final PointEntity point, final RouteEntity route, final String sequence) {
         super(id);
         this.point = point;
-      /*  this.route = route;*/
+        this.route = route;
         this.sequence = sequence;
     }
-
 
     public PointEntity getPoint() {
         return point;
@@ -38,7 +39,7 @@ public class RoutePointEntity extends BaseEntity implements Serializable {
         this.point = point;
     }
 
-   public RouteEntity getRoute() {
+    public RouteEntity getRoute() {
         return route;
     }
 
@@ -46,7 +47,7 @@ public class RoutePointEntity extends BaseEntity implements Serializable {
         this.route = route;
     }
 
-        public String getSequence() {
+    public String getSequence() {
         return sequence;
     }
 

@@ -11,6 +11,11 @@ export class TransportService {
 
   private static readonly LOAD_TRANSPORTS_URL = '/api/transports';
   private static readonly ADD_TRANSPORT_URL ='api/transports/add';
+  public static readonly  TRANSPORT_TYPE_BUS = "BUS";
+  public static readonly  TRANSPORT_TYPE_TRAM = "TRAM";
+  public static readonly  TRANSPORT_TYPE_TROLLEYBUS = "TROLLEYBUS";
+  public static readonly  TRANSPORT_FUNCTIONALITY_BROKEN= "BROKEN";
+  public  static readonly TRANSPORT_FUNCTIONALITY_WORKING= "WORKING";
 
   constructor(private readonly http: Http, private readonly security: SecurityService) {
   }

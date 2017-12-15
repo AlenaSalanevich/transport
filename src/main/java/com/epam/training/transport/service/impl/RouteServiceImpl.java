@@ -11,7 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Transactional
 @Service("routeService")
@@ -46,10 +48,27 @@ public class RouteServiceImpl implements RouteService {
         routePoint.setRoute(route);
         routePoint.setPoint(point);
         routePoint.setSequence(sequence);
-       // routePointRepository.save(routePoint);
-        route.getRoutePoints().add(routePoint);
+        route.getRoutePoints()
+            .add(routePoint);
         routeRepository.save(route);
         return route;
+    }
+
+    @Override
+    public RouteEntity deletePointFromRoute(final long routeId, final long pointId) {
+        RouteEntity route = load(routeId);
+        List<RoutePointEntity> routePoints = route.getRoutePoints();
+        List<RoutePointEntity> routePointsTemp = new ArrayList<>(routePoints);
+        for (RoutePointEntity routePoint : routePointsTemp) {
+
+            if (routePoint.getPoint()
+                .getId() == pointId) {
+
+                routePoints.remove(routePoints.indexOf(routePoint));
+                routePointRepository.delete(routePoint.getId());
+            }
+        }
+        return Objects.requireNonNull(route, "Fail");
     }
 
     @Override

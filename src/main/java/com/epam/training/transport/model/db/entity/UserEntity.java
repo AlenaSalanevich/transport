@@ -12,7 +12,7 @@ public class UserEntity extends BaseEntity {
     @Column(name = "password", length = 10, nullable = false)
     private String password;
 
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}, fetch = FetchType.LAZY)
     @JoinColumn(name = "role_id")
     private RoleEntity role;
 

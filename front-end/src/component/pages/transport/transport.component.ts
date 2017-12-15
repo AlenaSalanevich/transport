@@ -15,6 +15,8 @@ import {DataSource} from "@angular/cdk/collections";
 })
 export class TransportComponent extends PageComponent {
 
+
+
   displayedColumns = ['registrationNumber', 'transportType'/*, 'noFunctionally'*/];
 
   dataSource: DataSource<TransportEntity>;

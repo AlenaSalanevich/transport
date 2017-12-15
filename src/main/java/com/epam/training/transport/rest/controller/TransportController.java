@@ -7,13 +7,17 @@ import com.epam.training.transport.rest.params.TransportParams;
 import com.epam.training.transport.model.TransportType;
 import com.epam.training.transport.model.db.entity.TransportEntity;
 import com.epam.training.transport.service.TransportService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
+@Api(tags = "Transport controller")
 @Controller
 @RequestMapping(path = "/" + Routes.API_TRANSPORTS)
 public class TransportController {
@@ -35,7 +39,7 @@ public class TransportController {
         return transportService.create(params.getRegistrationNumber(), params.isNoFunctionally(), params.getTransportType());
     }
 
-    @PostMapping(value = "/update")
+    @PutMapping(value = "/update")
     @ResponseBody
     public TransportEntity update(@RequestBody TransportParams params) {
         long id = params.getId();
@@ -48,16 +52,16 @@ public class TransportController {
        return transportService.update(id, number, noFunctionally, type);
     }
 
-    @PostMapping(value = "/load")
+    @GetMapping("/{id}")
     @ResponseBody
-    public TransportEntity load(@RequestBody TransportParams params) {
-        return transportService.load(params.getId());
+    public TransportEntity load(@PathVariable final long id) {
+        return transportService.load(id);
     }
 
-    @PostMapping(value = "/delete")
+    @DeleteMapping("/{id}")
     @ResponseBody
-    public ResponseEntity<?> delete(@RequestBody TransportParams params) {
-        transportService.delete(params.getId());
+    public ResponseEntity<?> delete(@PathVariable final  long id) {
+        transportService.delete(id);
         return ResponseEntity.ok("Transport is deleted!");
     }
 

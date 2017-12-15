@@ -12,7 +12,7 @@
   bottom: 5%;
 }
 
-.add-point-button-position {
+.add-transport-button-position {
   position: absolute;
   float: right;
   z-index: 10;
@@ -29,7 +29,7 @@
   font-family: inherit;
 }
 
-.point-table {
+.mat-table {
   background: inherit;
   overflow-y: scroll;
   max-height: 100vh;

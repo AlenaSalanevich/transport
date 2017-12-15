@@ -5,15 +5,14 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table (name = "ROLES")
+@Table(name = "ROLES")
 public class RoleEntity extends BaseEntity {
 
-    @Column (name = "role", length = 10, nullable = false, unique = true)
+    @Column(name = "role", length = 10, nullable = false, unique = true)
     private String role;
 
     public RoleEntity() {
-           }
-
+    }
 
     public RoleEntity(long id, String role) {
         super(id);
@@ -30,8 +29,6 @@ public class RoleEntity extends BaseEntity {
 
     @Override
     public String toString() {
-        return "RoleEntity{" +
-                "role='" + role + '\'' +
-                '}';
+        return "RoleEntity{" + "role='" + role + '\'' + '}';
     }
 }

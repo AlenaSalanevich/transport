@@ -14,7 +14,8 @@ public class RouteEntity extends BaseEntity {
     @Column(name = "description")
     private String description;
 
-    @OneToMany(mappedBy = "route", cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE}, orphanRemoval = true)
+    @OneToMany(mappedBy = "route", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OrderColumn(name = "sequence")
     List<RoutePointEntity> routePoints = new ArrayList<>();
 
     public RouteEntity() {
@@ -25,10 +26,6 @@ public class RouteEntity extends BaseEntity {
         this.number = number;
         this.description = description;
     }
-
-   /* public void addRoutePoint(final RoutePointEntity routePoint) {
-        this.routePoints.add(routePoint);
-    }*/
 
     public List<RoutePointEntity> getRoutePoints() {
         return routePoints;

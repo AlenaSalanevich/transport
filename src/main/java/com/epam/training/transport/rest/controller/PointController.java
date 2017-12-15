@@ -6,6 +6,7 @@ import com.epam.training.transport.rest.params.PointParams;
 import com.epam.training.transport.model.db.entity.PointEntity;
 import com.epam.training.transport.service.PointService;
 
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Api(tags = "Point controller")
 @Controller
 @RequestMapping(path = "/" + Routes.API_POINTS)
 public class PointController {
@@ -27,34 +29,37 @@ public class PointController {
     public PointEntity create(@RequestBody
     final PointCreateParams params) {
 
-        return pointService.create(params.getName().trim());
+        return pointService.create(params.getName()
+            .trim());
     }
 
-    @PostMapping(value = "/delete")
-    public ResponseEntity<?> delete(@RequestBody
-    final PointParams params) {
-        pointService.delete(params.getId());
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> delete(@PathVariable
+    final long id) {
+        pointService.delete(id);
 
         return ResponseEntity.ok("Point is deleted!");
     }
 
-    @PostMapping(value = "/update")
+    @PutMapping(value = "/update")
     @ResponseBody
     public PointEntity update(@RequestBody
     final PointParams updateParams) {
-        String name = updateParams.getName().trim();
+        String name =
+            updateParams.getName()
+                .trim();
         if ((name.isEmpty()) || (name.equals(""))) {
             return pointService.load(updateParams.getId());
         }
-        return pointService.update(updateParams.getId(),name);
+        return pointService.update(updateParams.getId(), name);
     }
 
-    @PostMapping(value = "/load")
+    @GetMapping("/{id}")
     @ResponseBody
-    public PointEntity load(@RequestBody
-    final PointParams params) {
+    public PointEntity load(@PathVariable
+    final long id) {
 
-        return pointService.load(params.getId());
+        return pointService.load(id);
     }
 
     @GetMapping()

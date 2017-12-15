@@ -8,25 +8,30 @@
         </h3>
       </div>
       <mat-input-container class="add-point-data-row">
-        <input matInput placeholder="Transport register number" id="registrationNumber" required minlength="{{minRegisterNumber}}"
+        <input matInput placeholder="Transport register number" id="registrationNumber" required
+               minlength="{{minRegisterNumber}}"
                maxlength="{{maxRegisterNumber}}"
                [(ngModel)]="transportInfo.registrationNumber" name="registrationNumber"
                #name="ngModel">
       </mat-input-container>
 
-      <mat-input-container class="add-point-data-row">
-        <input matInput placeholder="Transport type" id="transportType" required minlength="{{minTransportTypeLenth}}"
-               maxlength="{{maxTransportTypeLenth}}"
-               [(ngModel)]="transportInfo.transportType" name="transportType"
-               #name="ngModel">
+      <mat-input-container>
+        <mat-select placeholder="Transport type" [formControl]="transportTypeControl" required [(ngModel)]="selectedTransportType"   name="transportType">
+          <mat-option *ngFor="let transportType of availableTransportTypes" [value]="transportType.value">
+            {{ transportType.viewValue }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="transportTypeControl.hasError('required')">Please choose a transport type</mat-error>
       </mat-input-container>
 
-      <mat-input-container class="add-point-data-row">
-        <input matInput placeholder="Transport is no functionally" id="noFunctionally"
-               [(ngModel)]="transportInfo.noFunctionally" name="noFunctionally"
-               #name="ngModel">
+      <mat-input-container>
+        <mat-select placeholder="Transport functionality" [(ngModel)]="selectedTransportFunctionality" required
+                    true name="noFunctionally">
+          <mat-option *ngFor="let noFunctionally of _availableTransportFunctionality" [value]="noFunctionally.value">
+            {{ noFunctionally.viewValue }}
+          </mat-option>
+        </mat-select>
       </mat-input-container>
-
 
       <div class="add-point-buttons">
         <button class="add-point-button" type="submit" mat-raised-button color="primary"

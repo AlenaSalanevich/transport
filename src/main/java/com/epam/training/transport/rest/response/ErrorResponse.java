@@ -1,4 +1,4 @@
-package com.epam.training.transport.controller.response;
+package com.epam.training.transport.rest.response;
 
 public class ErrorResponse {
 

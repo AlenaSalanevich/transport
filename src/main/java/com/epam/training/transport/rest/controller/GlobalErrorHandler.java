@@ -23,7 +23,7 @@ public class GlobalErrorHandler {
                + " ! Make sure you try to add (or update) unique/correct data!";
     }
 
-    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ResponseStatus(HttpStatus.CONFLICT)
     @ResponseBody
     @ExceptionHandler(NullPointerException.class)
     public String nullPointExceptionHandler() {
@@ -33,7 +33,7 @@ public class GlobalErrorHandler {
                 + " ! Make sure you try to add (or update) unique/correct data!";
     }
 
-    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ResponseStatus(HttpStatus.CONFLICT)
     @ResponseBody
     @ExceptionHandler(EmptyResultDataAccessException.class)
     public String emptyDataExeptionHandler() {

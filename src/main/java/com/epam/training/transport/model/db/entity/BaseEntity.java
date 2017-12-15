@@ -27,8 +27,10 @@ public abstract class BaseEntity {
 
     @Override
     public boolean equals(final Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
 
         final BaseEntity that = (BaseEntity) o;
 
@@ -42,8 +44,6 @@ public abstract class BaseEntity {
 
     @Override
     public String toString() {
-        return "BaseEntity{" +
-                "id=" + id +
-                '}';
+        return "BaseEntity{" + "id=" + id + '}';
     }
 }
