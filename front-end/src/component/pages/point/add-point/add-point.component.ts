@@ -28,7 +28,7 @@ export class AddPointComponent extends PageComponent {
 
   tryCreatePoint() {
     this.pointService.createPoint(this._pointInfo, (message, result) => {
-      if (result) {
+        if (result) {
         let pointInfo = this.pointInfo;
         pointInfo.name = '';
         this._error = '';

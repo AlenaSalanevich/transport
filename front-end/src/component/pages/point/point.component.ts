@@ -26,6 +26,7 @@ export class PointComponent extends PageComponent {
   }
 
   ngOnInit() {
+    alert(this.pointDataSource);
     this.pointDataSource.refresh();
   }
 }

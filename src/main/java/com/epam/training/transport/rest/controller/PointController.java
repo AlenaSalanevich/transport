@@ -26,16 +26,13 @@ public class PointController {
 
     @PostMapping(value = "/add")
     @ResponseBody
-    public PointEntity create(@RequestBody
-    final PointCreateParams params) {
+    public PointEntity create(@RequestBody final PointCreateParams params) {
 
-        return pointService.create(params.getName()
-            .trim());
+        return pointService.create(params.getName());
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable
-    final long id) {
+    public ResponseEntity<?> delete(@PathVariable final long id) {
         pointService.delete(id);
 
         return ResponseEntity.ok("Point is deleted!");
@@ -43,11 +40,10 @@ public class PointController {
 
     @PutMapping(value = "/update")
     @ResponseBody
-    public PointEntity update(@RequestBody
-    final PointParams updateParams) {
+    public PointEntity update(@RequestBody final PointParams updateParams) {
         String name =
-            updateParams.getName()
-                .trim();
+                updateParams.getName()
+                        .trim();
         if ((name.isEmpty()) || (name.equals(""))) {
             return pointService.load(updateParams.getId());
         }
@@ -56,8 +52,7 @@ public class PointController {
 
     @GetMapping("/{id}")
     @ResponseBody
-    public PointEntity load(@PathVariable
-    final long id) {
+    public PointEntity load(@PathVariable final long id) {
 
         return pointService.load(id);
     }

@@ -3,11 +3,15 @@ package com.epam.training.transport.service.impl;
 import com.epam.training.transport.model.db.entity.PointEntity;
 import com.epam.training.transport.model.db.repository.PointRepository;
 import com.epam.training.transport.service.PointService;
+import com.epam.training.transport.service.exceptions.ErrorCode;
+import com.epam.training.transport.service.exceptions.ServiceException;
 import org.omg.CORBA.Object;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
+import javax.sql.rowset.serial.SerialException;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Objects;
@@ -31,7 +35,11 @@ public class PointServiceImpl implements PointService {
 
         PointEntity point = new PointEntity();
         point.setName(name);
-        pointRepository.save(point);
+        try {
+            pointRepository.save(point);
+        } catch (DataIntegrityViolationException e) {
+            throw new ServiceException(ErrorCode.NAME_ALREADY_EXISTS, e);
+        }
 
         return point;
     }
@@ -44,13 +52,13 @@ public class PointServiceImpl implements PointService {
     @Override
     public PointEntity load(final String name) {
 
-        return Objects.requireNonNull(pointRepository.findByName(name), "Point not found!");
+        return pointRepository.findByName(name);
     }
 
     @Override
     public PointEntity load(final long id) {
-
-        return Objects.requireNonNull(pointRepository.findOne(id), "Point not found!");
+        
+        return pointRepository.findOne(id);
     }
 
     @Override

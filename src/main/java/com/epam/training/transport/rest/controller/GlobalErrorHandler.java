@@ -1,5 +1,7 @@
 package com.epam.training.transport.rest.controller;
 
+import com.epam.training.transport.rest.response.ErrorResponse;
+import com.epam.training.transport.service.exceptions.ServiceException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
@@ -15,31 +17,19 @@ public class GlobalErrorHandler {
 
     @ResponseStatus(HttpStatus.CONFLICT)
     @ResponseBody
-    @ExceptionHandler(DataIntegrityViolationException.class)
-    public String dataExceptionHandler() {
-        LOGGER.error(DataIntegrityViolationException.class.toString());
-        return "It's "
-               + DataIntegrityViolationException.class.toString()
-               + " ! Make sure you try to add (or update) unique/correct data!";
+    @ExceptionHandler(ServiceException.class)
+    public ErrorResponse serviceExceptionHandler(ServiceException e) {
+        LOGGER.error(e.getClass().toString());
+        return new ErrorResponse("It's "
+                + e.getClass().toString() + " " + e.getErrorCode().toString());
     }
 
     @ResponseStatus(HttpStatus.CONFLICT)
     @ResponseBody
-    @ExceptionHandler(NullPointerException.class)
-    public String nullPointExceptionHandler() {
-        LOGGER.error(NullPointerException.class.toString());
-        return "It's "
-                + NullPointerException.class.toString()
-                + " ! Make sure you try to add (or update) unique/correct data!";
+    @ExceptionHandler(Exception.class)
+    public String ExceptionHandler(Exception e) {
+        LOGGER.error(e);
+        return "Unexpected error! Please contact system  admin";
     }
 
-    @ResponseStatus(HttpStatus.CONFLICT)
-    @ResponseBody
-    @ExceptionHandler(EmptyResultDataAccessException.class)
-    public String emptyDataExeptionHandler() {
-        LOGGER.error(EmptyResultDataAccessException.class.toString());
-        return "It's "
-                + EmptyResultDataAccessException.class.toString()
-                + " ! Make sure you try to add (or update) unique/correct data!";
-    }
 }
