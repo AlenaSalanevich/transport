@@ -74,6 +74,7 @@ public class PointServiceImpl implements PointService {
             throw new ServiceException(ErrorCode.NOT_FOUND);
         }
         return point;
+
     }
 
     @Override
