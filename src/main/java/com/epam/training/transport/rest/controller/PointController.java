@@ -41,13 +41,8 @@ public class PointController {
     @PutMapping(value = "/update")
     @ResponseBody
     public PointEntity update(@RequestBody final PointParams updateParams) {
-        String name =
-                updateParams.getName()
-                        .trim();
-        if ((name.isEmpty()) || (name.equals(""))) {
-            return pointService.load(updateParams.getId());
-        }
-        return pointService.update(updateParams.getId(), name);
+
+        return pointService.update(updateParams.getId(), updateParams.getName());
     }
 
     @GetMapping("/{id}")

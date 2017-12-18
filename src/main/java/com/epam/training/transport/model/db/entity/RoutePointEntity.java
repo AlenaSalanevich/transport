@@ -6,17 +6,17 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "ROUTE_POINT")
-public class RoutePointEntity extends BaseEntity implements Serializable {
+@Table(name = "ROUTE_POINT", uniqueConstraints = {@UniqueConstraint(columnNames = {"sequence"}), @UniqueConstraint(columnNames = {"point_id"})})
+public class RoutePointEntity extends BaseEntity implements Serializable{
 
     @Column(name = "sequence", nullable = false)
     private String sequence;
 
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH }, fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "point_id")
     private PointEntity point;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "route_id")
     @JsonIgnore
     private RouteEntity route;

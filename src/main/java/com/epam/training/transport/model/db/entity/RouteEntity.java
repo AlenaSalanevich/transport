@@ -14,8 +14,7 @@ public class RouteEntity extends BaseEntity {
     @Column(name = "description")
     private String description;
 
-    @OneToMany(mappedBy = "route", cascade = CascadeType.ALL, orphanRemoval = true)
-    @OrderColumn(name = "sequence")
+    @OneToMany(mappedBy = "route", cascade = CascadeType.ALL)
     List<RoutePointEntity> routePoints = new ArrayList<>();
 
     public RouteEntity() {
@@ -23,6 +22,11 @@ public class RouteEntity extends BaseEntity {
 
     public RouteEntity(final long id, final String number, final String description) {
         super(id);
+        this.number = number;
+        this.description = description;
+    }
+
+    public RouteEntity(final String number, final String description) {
         this.number = number;
         this.description = description;
     }

@@ -48,6 +48,7 @@ public class RouteServiceImpl implements RouteService {
         routePoint.setRoute(route);
         routePoint.setPoint(point);
         routePoint.setSequence(sequence);
+        routePointRepository.save(routePoint);
         route.getRoutePoints()
             .add(routePoint);
         routeRepository.save(route);

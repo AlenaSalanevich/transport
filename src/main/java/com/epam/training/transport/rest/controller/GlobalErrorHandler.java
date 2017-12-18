@@ -19,17 +19,43 @@ public class GlobalErrorHandler {
     @ResponseBody
     @ExceptionHandler(ServiceException.class)
     public ErrorResponse serviceExceptionHandler(ServiceException e) {
-        LOGGER.error(e.getClass().toString());
-        return new ErrorResponse("It's "
-                + e.getClass().toString() + " " + e.getErrorCode().toString());
+        LOGGER.error(e.getClass()
+            .toString());
+        final ErrorResponse errorResponse = new ErrorResponse();
+        errorResponse.setErrorCode(e.getErrorCode()
+                                       .toString());
+        errorResponse.setCause(e.getCause()
+                                   .toString());
+        errorResponse.setExceptionClass(e.getClass()
+                                            .toString());
+        switch (e.getErrorCode()) {
+            case NAME_ALREADY_EXISTS: {
+                errorResponse.setMessage("Field is not unique");
+                break;
+            }
+            case REQUIRED_FIELD: {
+                errorResponse.setMessage("Field can not be empty");
+                break;
+            }
+            case NOT_FOUND: {
+                errorResponse.setMessage("Required object is not found");
+                break;
+            }
+            case UNKNOWN: {
+                errorResponse.setMessage("Unexpected error! Please contact system  admin");
+                break;
+            }
+        }
+        return errorResponse;
     }
 
-    @ResponseStatus(HttpStatus.CONFLICT)
-    @ResponseBody
-    @ExceptionHandler(Exception.class)
-    public String ExceptionHandler(Exception e) {
-        LOGGER.error(e);
-        return "Unexpected error! Please contact system  admin";
-    }
+    /*
+     * @ResponseStatus(HttpStatus.CONFLICT)
+     * 
+     * @ResponseBody
+     * 
+     * @ExceptionHandler(Exception.class) public String ExceptionHandler(Exception e) {
+     * LOGGER.error(e); return "Unexpected error! Please contact system  admin"; }
+     */
 
 }

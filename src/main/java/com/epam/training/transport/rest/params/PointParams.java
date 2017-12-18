@@ -1,7 +1,9 @@
 package com.epam.training.transport.rest.params;
 
 public class PointParams {
+
     private long id;
+
     private String name;
 
     public PointParams(final long id, final String name) {

@@ -32,7 +32,10 @@ public class PointServiceImpl implements PointService {
 
     @Override
     public PointEntity create(final String name) {
-
+        if (name.trim()
+            .isEmpty()) {
+            throw new ServiceException(ErrorCode.REQUIRED_FIELD);
+        }
         PointEntity point = new PointEntity();
         point.setName(name);
         try {
@@ -46,33 +49,54 @@ public class PointServiceImpl implements PointService {
 
     @Override
     public void delete(final long id) {
-        pointRepository.delete(id);
+        try {
+            pointRepository.delete(id);
+        } catch (EmptyResultDataAccessException e) {
+            throw new ServiceException(ErrorCode.NOT_FOUND, e);
+        }
     }
 
     @Override
     public PointEntity load(final String name) {
 
-        return pointRepository.findByName(name);
+        PointEntity point = pointRepository.findByName(name);
+        if (point == null) {
+            throw new ServiceException(ErrorCode.NOT_FOUND);
+        }
+        return point;
     }
 
     @Override
     public PointEntity load(final long id) {
-        
-        return pointRepository.findOne(id);
+
+        PointEntity point = pointRepository.findOne(id);
+        if (point == null) {
+            throw new ServiceException(ErrorCode.NOT_FOUND);
+        }
+        return point;
     }
 
     @Override
     public List<PointEntity> loadAll() {
 
-        return Objects.requireNonNull(pointRepository.findAll(), "No such points!");
+        return pointRepository.findAll();
     }
 
     @Override
     public PointEntity update(final long id, final String name) {
 
         PointEntity upPoint = load(id);
-        upPoint.setName(name);
-        pointRepository.save(upPoint);
+        String upName = name.trim();
+        if (upName.isEmpty()) {
+            throw new ServiceException(ErrorCode.REQUIRED_FIELD);
+        }
+        upPoint.setName(upName);
+
+        try {
+            pointRepository.save(upPoint);
+        } catch (DataIntegrityViolationException e) {
+            throw new ServiceException(ErrorCode.NAME_ALREADY_EXISTS, e);
+        }
 
         return upPoint;
     }
