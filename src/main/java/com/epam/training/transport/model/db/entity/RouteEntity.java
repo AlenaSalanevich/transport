@@ -1,12 +1,14 @@
 package com.epam.training.transport.model.db.entity;
 
+import org.jetbrains.annotations.NotNull;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "ROUTES")
-public class RouteEntity extends BaseEntity {
+public class RouteEntity extends BaseEntity implements Comparable<RouteEntity> {
 
     @Column(name = "number", nullable = false, unique = true, length = 20)
     private String number;
@@ -53,5 +55,10 @@ public class RouteEntity extends BaseEntity {
 
     public void setDescription(final String description) {
         this.description = description;
+    }
+
+    @Override
+    public int compareTo(@NotNull RouteEntity o) {
+        return this.number.compareTo(o.getNumber());
     }
 }

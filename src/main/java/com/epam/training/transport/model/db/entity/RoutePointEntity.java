@@ -1,16 +1,19 @@
 package com.epam.training.transport.model.db.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Comparator;
 
 @Entity
-@Table(name = "ROUTE_POINT", uniqueConstraints = {@UniqueConstraint(columnNames = {"sequence"}), @UniqueConstraint(columnNames = {"point_id"})})
-public class RoutePointEntity extends BaseEntity implements Serializable{
+@Table(name = "ROUTE_POINT",
+       uniqueConstraints = { /*@UniqueConstraint(columnNames = { "sequence"}),*/ @UniqueConstraint(columnNames = { "point_id"})})
+public class RoutePointEntity extends BaseEntity implements Serializable, Comparable<RoutePointEntity> {
 
     @Column(name = "sequence", nullable = false)
-    private String sequence;
+    private int sequence;
 
     @ManyToOne
     @JoinColumn(name = "point_id")
@@ -24,7 +27,7 @@ public class RoutePointEntity extends BaseEntity implements Serializable{
     public RoutePointEntity() {
     }
 
-    public RoutePointEntity(final long id, final PointEntity point, final RouteEntity route, final String sequence) {
+    public RoutePointEntity(final long id, final PointEntity point, final RouteEntity route, final int sequence) {
         super(id);
         this.point = point;
         this.route = route;
@@ -47,12 +50,47 @@ public class RoutePointEntity extends BaseEntity implements Serializable{
         this.route = route;
     }
 
-    public String getSequence() {
+    public int getSequence() {
         return sequence;
     }
 
-    public void setSequence(final String sequence) {
+    public void setSequence(final int sequence) {
         this.sequence = sequence;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+        if (!super.equals(o))
+            return false;
+
+        RoutePointEntity that = (RoutePointEntity) o;
+
+        if (sequence != that.sequence)
+            return false;
+        if (point != null ? !point.equals(that.point) : that.point != null)
+            return false;
+        return route != null ? route.equals(that.route) : that.route == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + sequence;
+        result = 31 * result + (point != null ? point.hashCode() : 0);
+        result = 31 * result + (route != null ? route.hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public int compareTo(@NotNull RoutePointEntity o) {
+        return this.sequence - o.getSequence();
+    }
+
+   /* public static Comparator<RoutePointEntity> CompareRoutePointByName = Comparator.comparing(o -> o.getPoint()
+            .getName()
+            .toLowerCase());*/
 }

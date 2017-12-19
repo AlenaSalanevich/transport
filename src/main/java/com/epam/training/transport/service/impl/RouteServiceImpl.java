@@ -11,9 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Transactional
 @Service("routeService")
@@ -42,18 +43,13 @@ public class RouteServiceImpl implements RouteService {
         return route;
     }
 
-    @Override
-    public RouteEntity addPointToRoute(final RouteEntity route, final PointEntity point, final String sequence) {
-        RoutePointEntity routePoint = new RoutePointEntity();
-        routePoint.setRoute(route);
-        routePoint.setPoint(point);
-        routePoint.setSequence(sequence);
-        routePointRepository.save(routePoint);
-        route.getRoutePoints()
-            .add(routePoint);
-        routeRepository.save(route);
-        return route;
-    }
+    /*
+     * @Override public RouteEntity addPointToRoute(final RouteEntity route, final PointEntity
+     * point, final int sequence, final long i) { RoutePointEntity routePoint = new
+     * RoutePointEntity(); routePoint.setRoute(route); routePoint.setPoint(point);
+     * routePoint.setSequence(sequence); routePointRepository.save(routePoint);
+     * route.getRoutePoints() .add(routePoint); routeRepository.save(route); return route; }
+     */
 
     @Override
     public RouteEntity deletePointFromRoute(final long routeId, final long pointId) {
@@ -69,7 +65,7 @@ public class RouteServiceImpl implements RouteService {
                 routePointRepository.delete(routePoint.getId());
             }
         }
-        return Objects.requireNonNull(route, "Fail");
+        return route;
     }
 
     @Override
@@ -92,4 +88,47 @@ public class RouteServiceImpl implements RouteService {
         return routeRepository.findOne(id);
     }
 
+    @Override
+    public RouteEntity addPointToRoute(final RouteEntity route, final PointEntity point, final int sequence) {
+        List<RoutePointEntity> routePointsList = route.getRoutePoints();
+        Collections.sort(routePointsList);
+
+        RoutePointEntity routePoint = new RoutePointEntity();
+        routePoint.setRoute(route);
+        routePoint.setPoint(point);
+        routePoint.setSequence(sequence);
+
+        Optional<RoutePointEntity> optional =
+            routePointsList.stream()
+                .filter(rp -> rp.getSequence() == sequence)
+                .findFirst();
+
+        if (optional.isPresent()) {
+            int position = routePointsList.indexOf(optional.get());
+            List<RoutePointEntity> beforePointSequence =
+                routePointsList.stream()
+                    .limit((position))
+                    .collect(Collectors.toList());
+            beforePointSequence.add(routePoint);
+
+            List<RoutePointEntity> afterPointStream =
+                route.getRoutePoints()
+                    .stream()
+                    .skip(position)
+                    .map(routePointEntity -> {
+                        routePointEntity.setSequence(routePointEntity.getSequence() + 1);
+                        return routePointEntity;
+                    })
+                    .collect(Collectors.toList());
+            List<RoutePointEntity> upRoutePoints =
+                Stream.concat(beforePointSequence.stream(), afterPointStream.stream())
+                    .collect(Collectors.toList());
+            route.setRoutePoints(upRoutePoints);
+            routeRepository.save(route);
+        } else {
+            routePointsList.add(routePoint);
+            routeRepository.save(route);
+        }
+        return route;
+    }
 }

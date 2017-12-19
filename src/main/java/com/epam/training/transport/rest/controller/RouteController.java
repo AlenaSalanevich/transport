@@ -14,7 +14,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping(path = "/" + Routes.API_ROUTES)
@@ -47,10 +49,8 @@ public class RouteController {
 
         RouteEntity route = routeService.load(routePointParams.getRouteId());
         PointEntity point = pointService.load(routePointParams.getPointId());
-        String sequence =
-            routePointParams.getSequence()
-                .trim();
-        if (sequence.isEmpty()) {
+        int sequence = routePointParams.getSequence();
+        if (sequence == 0) {
             throw new NullPointerException();
         }
         routeService.addPointToRoute(route, point, sequence);
@@ -76,7 +76,7 @@ public class RouteController {
     @GetMapping()
     @ResponseBody
     public List<RouteEntity> loadAll() {
-        return routeService.loadAll();
+        return routeService.loadAll().stream().sorted().collect(Collectors.toList());
     }
 
     @GetMapping("/{id}")

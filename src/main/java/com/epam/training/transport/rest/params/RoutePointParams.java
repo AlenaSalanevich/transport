@@ -6,9 +6,9 @@ public class RoutePointParams {
 
     private  long pointId;
 
-    private String sequence;
+    private int sequence;
 
-    public RoutePointParams(final String sequence) {
+    public RoutePointParams(final int sequence) {
         this.sequence = sequence;
     }
 
@@ -20,11 +20,11 @@ public class RoutePointParams {
         this.pointId = pointId;
     }
 
-    public String getSequence() {
+    public int getSequence() {
         return sequence;
     }
 
-    public void setSequence(final String sequence) {
+    public void setSequence(final int sequence) {
         this.sequence = sequence;
     }
 
