@@ -10,7 +10,7 @@ public interface RouteService {
 
     RouteEntity create(final String number, final String description);
 
-    RouteEntity addPointToRoute(RouteEntity route, PointEntity point,int sequence);
+    RouteEntity addPointToRoute(final long routeId, final long pointId, final int sequence);
 
     RouteEntity deletePointFromRoute(long routeId, long pointId);
 

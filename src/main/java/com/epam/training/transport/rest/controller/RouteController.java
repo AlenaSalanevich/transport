@@ -1,11 +1,11 @@
 package com.epam.training.transport.rest.controller;
 
-import com.epam.training.transport.model.db.entity.RoutePointEntity;
 import com.epam.training.transport.rest.params.RoutePointDeleteParams;
+import com.epam.training.transport.service.exceptions.ErrorCode;
+import com.epam.training.transport.service.exceptions.ServiceException;
 import com.epam.training.transport.utils.Routes;
 import com.epam.training.transport.rest.params.RouteCreateParams;
 import com.epam.training.transport.rest.params.RoutePointParams;
-import com.epam.training.transport.model.db.entity.PointEntity;
 import com.epam.training.transport.model.db.entity.RouteEntity;
 import com.epam.training.transport.service.PointService;
 import com.epam.training.transport.service.RouteService;
@@ -14,9 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping(path = "/" + Routes.API_ROUTES)
@@ -27,35 +25,36 @@ public class RouteController {
     @Autowired
     PointService pointService;
 
-    RouteController(final RouteService routeService) {
+    RouteController(final RouteService routeService, final PointService pointService) {
         this.routeService = routeService;
+        this.pointService = pointService;
     }
 
     @PostMapping(value = "/add")
     @ResponseBody
     public RouteEntity create(@RequestBody RouteCreateParams params) {
-        String number =
+        final String number =
             params.getNumber()
                 .trim();
         if (number.isEmpty()) {
-            throw new NullPointerException();
+            throw new ServiceException(ErrorCode.REQUIRED_FIELD);
         }
-        return routeService.create(params.getNumber(), params.getDescription());
+        return routeService.create(number, params.getDescription());
     }
 
     @PostMapping(value = "/add/point")
     @ResponseBody
     public RouteEntity addPointToRoute(@RequestBody RoutePointParams routePointParams) {
 
-        RouteEntity route = routeService.load(routePointParams.getRouteId());
-        PointEntity point = pointService.load(routePointParams.getPointId());
-        int sequence = routePointParams.getSequence();
-        if (sequence == 0) {
-            throw new NullPointerException();
-        }
-        routeService.addPointToRoute(route, point, sequence);
+        final long routeId = routePointParams.getRouteId();
+        final long pointId = routePointParams.getPointId();
+        final int sequence = routePointParams.getSequence();
 
-        return route;
+        if (sequence == 0) {
+            throw new ServiceException(ErrorCode.REQUIRED_FIELD);
+        }
+
+        return routeService.addPointToRoute(routeId, pointId, sequence);
     }
 
     @PostMapping(value = "/delete/point")
@@ -76,7 +75,7 @@ public class RouteController {
     @GetMapping()
     @ResponseBody
     public List<RouteEntity> loadAll() {
-        return routeService.loadAll().stream().sorted().collect(Collectors.toList());
+        return routeService.loadAll();
     }
 
     @GetMapping("/{id}")

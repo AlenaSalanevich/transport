@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.sql.Time;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Transactional
 @Service("scheduleService")
@@ -45,8 +47,15 @@ public class ScheduleServiceImpl implements ScheduleService {
     }
 
     @Override
-    public List<ScheduleEntity> loadAll() {
-        return scheduleRepository.findAll();
+    public List<ScheduleEntity> loadAll(final Optional<Boolean> isHoliday) {
+      if (isHoliday.isPresent()){
+          { if (isHoliday.get()){
+              return scheduleRepository.findAll().stream().filter(scheduleEntity -> scheduleEntity.isHoliday()==true).collect(Collectors.toList());
+          }
+          return scheduleRepository.findAll().stream().filter((scheduleEntity -> scheduleEntity.isHoliday()==false)).collect(Collectors.toList());
+          }
+      }
+        return scheduleRepository.findAll().stream().sorted().collect(Collectors.toList());
     }
 
     @Override

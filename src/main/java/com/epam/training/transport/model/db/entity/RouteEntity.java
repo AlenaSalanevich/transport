@@ -58,7 +58,51 @@ public class RouteEntity extends BaseEntity implements Comparable<RouteEntity> {
     }
 
     @Override
-    public int compareTo(@NotNull RouteEntity o) {
-        return this.number.compareTo(o.getNumber());
+    public int compareTo(@NotNull
+    final RouteEntity o) {
+        return this.number.toLowerCase()
+            .compareTo(o.getNumber()
+                .toLowerCase());
+    }
+
+    @Override
+    public String toString() {
+        return "RouteEntity{"
+               + "number='"
+               + number
+               + '\''
+               + ", description='"
+               + description
+               + '\''
+               + ", routePoints="
+               + routePoints
+               + '}';
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+        if (!super.equals(o))
+            return false;
+
+        final RouteEntity that = (RouteEntity) o;
+
+        if (number != null ? !number.equals(that.number) : that.number != null)
+            return false;
+        if (description != null ? !description.equals(that.description) : that.description != null)
+            return false;
+        return routePoints != null ? routePoints.equals(that.routePoints) : that.routePoints == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (number != null ? number.hashCode() : 0);
+        result = 31 * result + (description != null ? description.hashCode() : 0);
+        result = 31 * result + (routePoints != null ? routePoints.hashCode() : 0);
+        return result;
     }
 }

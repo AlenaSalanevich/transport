@@ -7,6 +7,7 @@ import com.epam.training.transport.service.exceptions.ErrorCode;
 import com.epam.training.transport.service.exceptions.ServiceException;
 import org.omg.CORBA.Object;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,7 @@ import javax.sql.rowset.serial.SerialException;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Transactional
 @Service("pointService")
@@ -36,14 +38,12 @@ public class PointServiceImpl implements PointService {
             .isEmpty()) {
             throw new ServiceException(ErrorCode.REQUIRED_FIELD);
         }
-        PointEntity point = new PointEntity();
-        point.setName(name);
+        final PointEntity point = new PointEntity(name);
         try {
             pointRepository.save(point);
         } catch (DataIntegrityViolationException e) {
             throw new ServiceException(ErrorCode.NAME_ALREADY_EXISTS, e);
         }
-
         return point;
     }
 
@@ -59,7 +59,7 @@ public class PointServiceImpl implements PointService {
     @Override
     public PointEntity load(final String name) {
 
-        PointEntity point = pointRepository.findByName(name);
+        final PointEntity point = pointRepository.findByName(name);
         if (point == null) {
             throw new ServiceException(ErrorCode.NOT_FOUND);
         }
@@ -69,7 +69,7 @@ public class PointServiceImpl implements PointService {
     @Override
     public PointEntity load(final long id) {
 
-        PointEntity point = pointRepository.findOne(id);
+        final PointEntity point = pointRepository.findOne(id);
         if (point == null) {
             throw new ServiceException(ErrorCode.NOT_FOUND);
         }
@@ -79,14 +79,17 @@ public class PointServiceImpl implements PointService {
     @Override
     public List<PointEntity> loadAll() {
 
-        return pointRepository.findAll();
+        return pointRepository.findAll()
+            .stream()
+            .sorted()
+            .collect(Collectors.toList());
     }
 
     @Override
     public PointEntity update(final long id, final String name) {
 
-        PointEntity upPoint = load(id);
-        String upName = name.trim();
+        final PointEntity upPoint = load(id);
+        final String upName = name.trim();
         if (upName.isEmpty()) {
             throw new ServiceException(ErrorCode.REQUIRED_FIELD);
         }
@@ -94,7 +97,7 @@ public class PointServiceImpl implements PointService {
 
         try {
             pointRepository.save(upPoint);
-        } catch (DataIntegrityViolationException e) {
+        } catch (final DataAccessException e) {
             throw new ServiceException(ErrorCode.NAME_ALREADY_EXISTS, e);
         }
 

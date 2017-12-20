@@ -1,26 +1,25 @@
 package com.epam.training.transport.service;
 
 import com.epam.training.transport.model.Direction;
-import com.epam.training.transport.model.db.entity.RouteEntity;
 import com.epam.training.transport.model.db.entity.ScheduleEntity;
-import com.epam.training.transport.model.db.entity.TransportEntity;
 
 import java.sql.Time;
 import java.util.List;
+import java.util.Optional;
 
 public interface ScheduleService {
 
     ScheduleEntity create(
-            long routeId,
-            long transportId,
-            Direction direction,
-            boolean isHoliday,
-            Time startTime,
-            Time endTime);
+        final long routeId,
+        final long transportId,
+        final Direction direction,
+        final boolean isHoliday,
+        final Time startTime,
+        final Time endTime);
 
-    List<ScheduleEntity> loadAll();
+    List<ScheduleEntity> loadAll(final Optional<Boolean> isHoliday);
 
-    ScheduleEntity load(long id);
+    ScheduleEntity load(final long id);
 
-    void delete (long id);
+    void delete(final long id);
 }

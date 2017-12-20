@@ -1,9 +1,6 @@
 package com.epam.training.transport.rest.controller;
 
-import com.epam.training.transport.model.db.entity.PointEntity;
-import com.epam.training.transport.model.db.entity.RouteEntity;
 import com.epam.training.transport.model.db.entity.ScheduleEntity;
-import com.epam.training.transport.rest.params.RouteCreateParams;
 import com.epam.training.transport.rest.params.RoutePointParams;
 import com.epam.training.transport.rest.params.ScheduleCreateParams;
 import com.epam.training.transport.service.PointService;
@@ -16,12 +13,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping(path = "/" + Routes.API_SCHEDULES)
 public class ScheduleController {
-
-    public static final String API_GET_ALL = "/" + Routes.API_SCHEDULES;
 
     @Autowired
     RouteService routeService;
@@ -30,7 +26,16 @@ public class ScheduleController {
     @Autowired
     ScheduleService scheduleService;
 
-    ScheduleController() {
+    public ScheduleController() {
+    }
+
+    public ScheduleController(
+        final RouteService routeService,
+        final PointService pointService,
+        final ScheduleService scheduleService) {
+        this.pointService = pointService;
+        this.scheduleService = scheduleService;
+        this.routeService = routeService;
     }
 
     @PostMapping(value = "/add")
@@ -62,10 +67,11 @@ public class ScheduleController {
         return ResponseEntity.ok("Route is deleted!");
     }
 
-    @GetMapping()
+    @GetMapping("/{isHoliday}")
     @ResponseBody
-    public List<ScheduleEntity> loadAll() {
-        return scheduleService.loadAll();
+    public List<ScheduleEntity> loadAll(@PathVariable
+    final Optional<Boolean> isHoliday) {
+        return scheduleService.loadAll(isHoliday);
     }
 
     @GetMapping("/{id}")

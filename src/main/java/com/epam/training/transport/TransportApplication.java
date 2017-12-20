@@ -11,12 +11,12 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @SpringBootApplication
 public class TransportApplication {
 
-	public static void main(String[] args) throws InterruptedException {
-		SpringApplication.run(TransportApplication.class, args);
-	}
+    public static void main(String[] args) throws InterruptedException {
+        SpringApplication.run(TransportApplication.class, args);
+    }
 
-	@RequestMapping(value = "/root")
-	public String root() {
-		return "index";
+    @RequestMapping(value = "/root")
+    public String root() {
+        return "index";
+    }
 }
-	}

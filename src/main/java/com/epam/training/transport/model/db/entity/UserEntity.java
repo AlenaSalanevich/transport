@@ -12,7 +12,7 @@ public class UserEntity extends BaseEntity {
     @Column(name = "password", length = 10, nullable = false)
     private String password;
 
-    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}, fetch = FetchType.LAZY)
+    @OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}, fetch = FetchType.LAZY)
     @JoinColumn(name = "role_id")
     private RoleEntity role;
 
@@ -26,11 +26,17 @@ public class UserEntity extends BaseEntity {
         this.role = role;
     }
 
+    public UserEntity(final String login, final String password, final RoleEntity role) {
+        this.login = login;
+        this.password = password;
+        this.role = role;
+    }
+
     public String getLogin() {
         return login;
     }
 
-    public void setLogin( final String login) {
+    public void setLogin(final String login) {
         this.login = login;
     }
 

@@ -18,16 +18,14 @@ public class GlobalErrorHandler {
     @ResponseStatus(HttpStatus.CONFLICT)
     @ResponseBody
     @ExceptionHandler(ServiceException.class)
-    public ErrorResponse serviceExceptionHandler(ServiceException e) {
+    public ErrorResponse serviceExceptionHandler(final ServiceException e) {
         LOGGER.error(e.getClass()
             .toString());
-        final ErrorResponse errorResponse = new ErrorResponse();
-        errorResponse.setErrorCode(e.getErrorCode()
-                                       .toString());
-        errorResponse.setCause(e.getCause()
-                                   .toString());
-        errorResponse.setExceptionClass(e.getClass()
-                                            .toString());
+        final ErrorResponse errorResponse =
+            new ErrorResponse("", e.getErrorCode()
+                .name(), e.getCause()
+                    .toString(), e.getClass()
+                        .toString());
         switch (e.getErrorCode()) {
             case NAME_ALREADY_EXISTS: {
                 errorResponse.setMessage("Field is not unique");

@@ -1,24 +1,42 @@
 package com.epam.training.transport.model.db.entity;
 
 import com.epam.training.transport.model.TransportType;
+import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "TRANSPORT")
-public class TransportEntity extends BaseEntity {
+public class TransportEntity extends BaseEntity implements Comparable<TransportEntity> {
+
+    @Column(name = "registration_number", unique = true, nullable = false, length = 20)
+    private String registrationNumber;
 
     @Column(name = "type", nullable = false, length = 20)
     @Enumerated(EnumType.STRING)
     private TransportType transportType;
 
-    @Column (name = "registration_number", unique = true, nullable = false, length = 20)
-    private String registrationNumber;
-
     @Column(name = "no_functionally", nullable = false)
     private boolean noFunctionally;
 
     public TransportEntity() {
+    }
+
+    public TransportEntity(
+        final long id,
+        final String registrationNumber,
+        final TransportType transportType,
+        final boolean noFunctionally) {
+        super(id);
+        this.transportType = transportType;
+        this.registrationNumber = registrationNumber;
+        this.noFunctionally = noFunctionally;
+    }
+
+    public TransportEntity(final String registrationNumber, final TransportType transportType, final boolean noFunctionally) {
+        this.transportType = transportType;
+        this.registrationNumber = registrationNumber;
+        this.noFunctionally = noFunctionally;
     }
 
     public TransportType getTransportType() {
@@ -54,7 +72,7 @@ public class TransportEntity extends BaseEntity {
         if (!super.equals(o))
             return false;
 
-        TransportEntity that = (TransportEntity) o;
+        final TransportEntity that = (TransportEntity) o;
 
         if (noFunctionally != that.noFunctionally)
             return false;
@@ -70,5 +88,13 @@ public class TransportEntity extends BaseEntity {
         result = 31 * result + (registrationNumber != null ? registrationNumber.hashCode() : 0);
         result = 31 * result + (noFunctionally ? 1 : 0);
         return result;
+    }
+
+    @Override
+    public int compareTo(@NotNull final TransportEntity o) {
+        return this.getRegistrationNumber()
+            .toLowerCase()
+            .compareTo(o.getRegistrationNumber()
+                .toLowerCase());
     }
 }

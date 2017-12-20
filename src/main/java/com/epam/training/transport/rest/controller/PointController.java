@@ -19,7 +19,6 @@ import java.util.List;
 @RequestMapping(path = "/" + Routes.API_POINTS)
 public class PointController {
 
-    private static final org.apache.log4j.Logger LOGGER = org.apache.log4j.Logger.getLogger(PointController.class);
 
     @Autowired
     PointService pointService;

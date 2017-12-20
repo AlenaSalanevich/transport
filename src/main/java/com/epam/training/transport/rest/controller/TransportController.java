@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Api(tags = "Transport controller")
@@ -42,33 +43,40 @@ public class TransportController {
     @PutMapping(value = "/update")
     @ResponseBody
     public TransportEntity update(@RequestBody TransportParams params) {
-        long id = params.getId();
-        TransportEntity transport = transportService.load(id);
-        String number =
+
+        final long id = params.getId();
+        final String number =
             params.getRegistrationNumber()
                 .trim();
-        TransportType type = params.getTransportType();
-        boolean noFunctionally = params.isNoFunctionally();
-       return transportService.update(id, number, noFunctionally, type);
+        final TransportType type = params.getTransportType();
+        final boolean noFunctionally = params.isNoFunctionally();
+        return transportService.update(id, number, noFunctionally, type);
     }
 
     @GetMapping("/{id}")
     @ResponseBody
-    public TransportEntity load(@PathVariable final long id) {
+    public TransportEntity load(@PathVariable
+    final long id) {
+
         return transportService.load(id);
     }
 
     @DeleteMapping("/{id}")
     @ResponseBody
-    public ResponseEntity<?> delete(@PathVariable final  long id) {
+    public ResponseEntity<?> delete(@PathVariable
+    final long id) {
         transportService.delete(id);
+
         return ResponseEntity.ok("Transport is deleted!");
     }
 
     @GetMapping()
     @ResponseBody
-    public List<TransportEntity> loadAll() {
-        return transportService.loadAll();
+    public List<TransportEntity> loadAll(@RequestParam
+    final Optional<TransportType> transportType, @RequestParam
+    final Optional<Boolean> noFunctionally) {
+
+        return transportService.loadAll(transportType, noFunctionally);
     }
 
 }

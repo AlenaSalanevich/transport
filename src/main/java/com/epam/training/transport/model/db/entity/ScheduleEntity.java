@@ -11,15 +11,13 @@ import java.util.List;
 @Table(name = "SCHEDULE")
 public class ScheduleEntity extends BaseEntity {
 
-
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}, fetch = FetchType.LAZY)
     @JoinColumn(name = "route_id")
     private RouteEntity route;
 
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}, fetch = FetchType.LAZY)
     @JoinColumn(name = "transport_id")
-    private TransportEntity  transport;
-
+    private TransportEntity transport;
 
     @Column(name = "direction", nullable = false, length = 20)
     @Enumerated(EnumType.STRING)
@@ -37,9 +35,30 @@ public class ScheduleEntity extends BaseEntity {
     public ScheduleEntity() {
     }
 
-    public ScheduleEntity(final long id, final RouteEntity route, final TransportEntity transport,
-                          final Direction direction, final boolean isHoliday, final Time startTime, final Time endTime) {
+    public ScheduleEntity(
+        final long id,
+        final RouteEntity route,
+        final TransportEntity transport,
+        final Direction direction,
+        final boolean isHoliday,
+        final Time startTime,
+        final Time endTime) {
         super(id);
+        this.route = route;
+        this.transport = transport;
+        this.direction = direction;
+        this.isHoliday = isHoliday;
+        this.startTime = startTime;
+        this.endTime = endTime;
+    }
+
+    public ScheduleEntity(
+        final RouteEntity route,
+        final TransportEntity transport,
+        final Direction direction,
+        final boolean isHoliday,
+        final Time startTime,
+        final Time endTime) {
         this.route = route;
         this.transport = transport;
         this.direction = direction;
@@ -84,7 +103,7 @@ public class ScheduleEntity extends BaseEntity {
         return startTime;
     }
 
-    public void setStartTime(Time startTime) {
+    public void setStartTime(final Time startTime) {
         this.startTime = startTime;
     }
 
@@ -92,7 +111,7 @@ public class ScheduleEntity extends BaseEntity {
         return endTime;
     }
 
-    public void setEndTime(Time endTime) {
+    public void setEndTime(final Time endTime) {
         this.endTime = endTime;
     }
 }

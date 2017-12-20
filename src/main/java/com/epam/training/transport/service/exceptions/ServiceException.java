@@ -4,15 +4,15 @@ public class ServiceException extends RuntimeException {
 
     private ErrorCode errorCode;
 
-    public ServiceException(ErrorCode errorCode) {
+    public ServiceException(final ErrorCode errorCode) {
         this.errorCode = errorCode;
     }
 
-    public ServiceException(Throwable cause) {
+    public ServiceException(final Throwable cause) {
         this(ErrorCode.UNKNOWN, cause);
     }
 
-    public ServiceException(ErrorCode errorCode, Throwable cause) {
+    public ServiceException(final ErrorCode errorCode, final Throwable cause) {
         super(cause);
         this.errorCode = errorCode;
     }

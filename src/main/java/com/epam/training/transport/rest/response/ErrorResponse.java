@@ -23,6 +23,11 @@ public class ErrorResponse {
         this.message = message;
     }
 
+    public ErrorResponse(final String errorCode, final String exceptionClass) {
+        this.exceptionClass = exceptionClass;
+        this.errorCode = errorCode;
+    }
+
     public ErrorResponse(final String message, final String errorCode, final String exceptionClass) {
         this.message = message;
         this.exceptionClass = exceptionClass;

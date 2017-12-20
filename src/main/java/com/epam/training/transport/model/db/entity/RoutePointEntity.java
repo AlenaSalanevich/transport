@@ -5,14 +5,12 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Comparator;
 
 @Entity
-@Table(name = "ROUTE_POINT",
-       uniqueConstraints = { /*@UniqueConstraint(columnNames = { "sequence"}),*/ @UniqueConstraint(columnNames = { "point_id"})})
+@Table(name = "ROUTE_POINT", uniqueConstraints = { @UniqueConstraint(columnNames = { "point_id"})})
 public class RoutePointEntity extends BaseEntity implements Serializable, Comparable<RoutePointEntity> {
 
-    @Column(name = "sequence", nullable = false)
+    @Column(name = "sequence", nullable = false, length = 10)
     private int sequence;
 
     @ManyToOne
@@ -31,6 +29,12 @@ public class RoutePointEntity extends BaseEntity implements Serializable, Compar
         super(id);
         this.point = point;
         this.route = route;
+        this.sequence = sequence;
+    }
+
+    public RoutePointEntity(final RouteEntity route, final PointEntity point, final int sequence) {
+        this.route = route;
+        this.point = point;
         this.sequence = sequence;
     }
 
@@ -59,7 +63,7 @@ public class RoutePointEntity extends BaseEntity implements Serializable, Compar
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (this == o)
             return true;
         if (o == null || getClass() != o.getClass())
@@ -67,7 +71,7 @@ public class RoutePointEntity extends BaseEntity implements Serializable, Compar
         if (!super.equals(o))
             return false;
 
-        RoutePointEntity that = (RoutePointEntity) o;
+        final RoutePointEntity that = (RoutePointEntity) o;
 
         if (sequence != that.sequence)
             return false;
@@ -86,11 +90,8 @@ public class RoutePointEntity extends BaseEntity implements Serializable, Compar
     }
 
     @Override
-    public int compareTo(@NotNull RoutePointEntity o) {
+    public int compareTo(@NotNull
+    final RoutePointEntity o) {
         return this.sequence - o.getSequence();
     }
-
-   /* public static Comparator<RoutePointEntity> CompareRoutePointByName = Comparator.comparing(o -> o.getPoint()
-            .getName()
-            .toLowerCase());*/
 }
