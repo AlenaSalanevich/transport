@@ -75,7 +75,8 @@ import {AddTransportComponent} from './component/pages/transport/add-transport/a
     MatCardModule,
     MatTooltipModule,
     ReactiveFormsModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatSidenavModule
   ],
   providers: [SecurityService, TransportDataSource, TransportService, PointDataSource, PointService],
   bootstrap: [AppComponent]
