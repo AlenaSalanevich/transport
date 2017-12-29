@@ -15,7 +15,7 @@ export class Utils {
 
     let errMsg: string;
     if (error instanceof Response) {
-      errMsg = error.text();
+      errMsg = error        .text();
     } else {
       errMsg = error.message ? error.message : error.toString();
     }

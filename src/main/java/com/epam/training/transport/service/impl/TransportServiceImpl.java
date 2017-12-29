@@ -6,14 +6,18 @@ import com.epam.training.transport.model.db.repository.TransportRepository;
 import com.epam.training.transport.service.TransportService;
 import com.epam.training.transport.service.exceptions.ErrorCode;
 import com.epam.training.transport.service.exceptions.ServiceException;
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
+import org.unitils.reflectionassert.util.HibernateUtil;
 
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.function.Function;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 @Transactional
@@ -28,6 +32,7 @@ public class TransportServiceImpl implements TransportService {
         final String registrationNumber,
         final boolean noFunctionally,
         final TransportType transportType) {
+
         final TransportEntity transport = new TransportEntity(registrationNumber, transportType, noFunctionally);
 
         try {
@@ -35,7 +40,6 @@ public class TransportServiceImpl implements TransportService {
         } catch (final DataIntegrityViolationException e) {
             throw new ServiceException(ErrorCode.NAME_ALREADY_EXISTS, e);
         }
-
         return transport;
     }
 
@@ -52,55 +56,14 @@ public class TransportServiceImpl implements TransportService {
     @Override
     public List<TransportEntity> loadAll(
         final Optional<TransportType> optTransportType,
-               final Optional<Boolean> optNoFunctionally) {
+        final Optional<Boolean> optNoFunctionally) {
 
-        if (optNoFunctionally.isPresent()) {
-            if (optNoFunctionally.get()) {
-                return transportRepository.findAll()
-                        .stream()
-                        .filter(transportEntity -> transportEntity.isNoFunctionally() == true)
-                        .sorted()
-                        .collect(Collectors.toList());
-
-            }
-            return transportRepository.findAll()
-                    .stream()
-                    .filter(transportEntity -> transportEntity.isNoFunctionally() == false)
-                    .sorted()
-                    .collect(Collectors.toList());
-        }
-
-        if (optTransportType.isPresent()) {
-            switch (optTransportType.get()) {
-                case BUS: {
-                    return transportRepository.findAll()
-                            .stream()
-                            .filter(transportEntity -> transportEntity.getTransportType()
-                                    .equals(TransportType.BUS))
-                            .collect(Collectors.toList());
-                }
-                case TRAM: {
-                    return transportRepository.findAll()
-                            .stream()
-                            .filter(transportEntity -> transportEntity.getTransportType()
-                                    .equals(TransportType.TRAM))
-                            .collect(Collectors.toList());
-                }
-                case TROLLEYBUS: {
-                    return transportRepository.findAll()
-                            .stream()
-                            .filter(transportEntity -> transportEntity.getTransportType()
-                                    .equals(TransportType.TROLLEYBUS))
-                            .collect(Collectors.toList());
-
-                }
-            }
-        }
-                return transportRepository.findAll()
-                        .stream()
-                        .sorted()
-                        .collect(Collectors.toList());
-        }
+        return optTransportType.map(transportType -> optNoFunctionally.map(noFunctionally -> transportRepository
+            .findAllByTransportTypeAndNoFunctionally(transportType, noFunctionally))
+            .orElseGet(() -> transportRepository.findAllByTransportType(transportType)))
+            .orElseGet(() -> optNoFunctionally.map(noFunctionally -> transportRepository.findAllByNoFunctionally(noFunctionally))
+                .orElseGet(() -> transportRepository.findAll()));
+    }
 
     @Override
     public void delete(final long id) {
@@ -108,17 +71,13 @@ public class TransportServiceImpl implements TransportService {
     }
 
     @Override
-    public TransportEntity update(
-        final long id,
-        final String registrationNumber,
-        final boolean noFunctionally,
-        final TransportType transportType) {
+    public TransportEntity update(final long id, final TransportEntity upTransport) {
 
         final TransportEntity transport = load(id);
-        transport.setRegistrationNumber(registrationNumber);
-        transport.setNoFunctionally(noFunctionally);
-        transport.setTransportType(transportType);
 
+        transport.setRegistrationNumber(upTransport.getRegistrationNumber());
+        transport.setNoFunctionally(upTransport.isNoFunctionally());
+        transport.setTransportType(upTransport.getTransportType());
         try {
             transportRepository.save(transport);
         } catch (final DataIntegrityViolationException e) {

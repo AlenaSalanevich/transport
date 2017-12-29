@@ -16,11 +16,11 @@ export class AppComponent {
   static readonly MIN_PASSWORD_LENGTH = 6;
   static readonly MAX_PASSWORD_LENGTH = 25;
   static readonly MIN_POINT_LENGTH = 3;
-  static readonly MAX_POINT_LENGTH = 25;
+  static readonly MAX_POINT_LENGTH = 20;
   static readonly MIN_REGISTER_NUMBER_LENGTH = 9;
-  static readonly MAX_REGISTER_NUMBER_LENGTH = 15;
+  static readonly MAX_REGISTER_NUMBER_LENGTH = 20;
   static readonly MIN_TRANSPORT_TYPE_LENGTH = 3;
-  static readonly MAX_TRANSPORT_TYPE_LENGTH = 10;
+  static readonly MAX_TRANSPORT_TYPE_LENGTH = 20;
 
   /**
    * The flag that the user is authed.

@@ -13,6 +13,9 @@ public class RoutePointEntity extends BaseEntity implements Serializable, Compar
     @Column(name = "sequence", nullable = false, length = 10)
     private int sequence;
 
+    @Column(name = "departure_time)", nullable = false, length = 5)
+    private String departureTime;
+
     @ManyToOne
     @JoinColumn(name = "point_id")
     private PointEntity point;
@@ -22,20 +25,29 @@ public class RoutePointEntity extends BaseEntity implements Serializable, Compar
     @JsonIgnore
     private RouteEntity route;
 
+
+
     public RoutePointEntity() {
     }
 
-    public RoutePointEntity(final long id, final PointEntity point, final RouteEntity route, final int sequence) {
+    public RoutePointEntity(
+        final long id,
+        final PointEntity point,
+        final RouteEntity route,
+        final int sequence,
+        final String departureTime) {
         super(id);
         this.point = point;
         this.route = route;
         this.sequence = sequence;
+        this.departureTime = departureTime;
     }
 
-    public RoutePointEntity(final RouteEntity route, final PointEntity point, final int sequence) {
+    public RoutePointEntity(final RouteEntity route, final PointEntity point, final int sequence, final String departureTime) {
         this.route = route;
         this.point = point;
         this.sequence = sequence;
+        this.departureTime = departureTime;
     }
 
     public PointEntity getPoint() {
@@ -62,6 +74,14 @@ public class RoutePointEntity extends BaseEntity implements Serializable, Compar
         this.sequence = sequence;
     }
 
+    public String getDepartureTime() {
+        return departureTime;
+    }
+
+    public void setDepartureTime(final String departureTime) {
+        this.departureTime = departureTime;
+    }
+
     @Override
     public boolean equals(final Object o) {
         if (this == o)
@@ -77,7 +97,9 @@ public class RoutePointEntity extends BaseEntity implements Serializable, Compar
             return false;
         if (point != null ? !point.equals(that.point) : that.point != null)
             return false;
-        return route != null ? route.equals(that.route) : that.route == null;
+        if (route != null ? !route.equals(that.route) : that.route != null)
+            return false;
+        return departureTime != null ? departureTime.equals(that.departureTime) : that.departureTime == null;
     }
 
     @Override
@@ -86,6 +108,7 @@ public class RoutePointEntity extends BaseEntity implements Serializable, Compar
         result = 31 * result + sequence;
         result = 31 * result + (point != null ? point.hashCode() : 0);
         result = 31 * result + (route != null ? route.hashCode() : 0);
+        result = 31 * result + (departureTime != null ? departureTime.hashCode() : 0);
         return result;
     }
 

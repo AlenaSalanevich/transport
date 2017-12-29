@@ -23,7 +23,7 @@ public class GlobalErrorHandler {
             .toString());
         final ErrorResponse errorResponse =
             new ErrorResponse("", e.getErrorCode()
-                .name(), e.getCause()
+                .name().toString(), e.getCause()
                     .toString(), e.getClass()
                         .toString());
         switch (e.getErrorCode()) {

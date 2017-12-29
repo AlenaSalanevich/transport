@@ -5,7 +5,7 @@ import com.epam.training.transport.service.exceptions.ErrorCode;
 import com.epam.training.transport.service.exceptions.ServiceException;
 import com.epam.training.transport.utils.Routes;
 import com.epam.training.transport.rest.params.RouteCreateParams;
-import com.epam.training.transport.rest.params.RoutePointParams;
+import com.epam.training.transport.rest.params.RoutePointModel;
 import com.epam.training.transport.model.db.entity.RouteEntity;
 import com.epam.training.transport.service.PointService;
 import com.epam.training.transport.service.RouteService;
@@ -44,24 +44,17 @@ public class RouteController {
 
     @PostMapping(value = "/add/point")
     @ResponseBody
-    public RouteEntity addPointToRoute(@RequestBody RoutePointParams routePointParams) {
+    public RouteEntity addPointToRoute(@RequestBody RoutePointModel model) {
 
-        final long routeId = routePointParams.getRouteId();
-        final long pointId = routePointParams.getPointId();
-        final int sequence = routePointParams.getSequence();
-
-        if (sequence == 0) {
-            throw new ServiceException(ErrorCode.REQUIRED_FIELD);
-        }
-
-        return routeService.addPointToRoute(routeId, pointId, sequence);
+        return routeService.addPointToRoute(model.getRouteId(), model.getPointId(), model.getSequence(), model
+            .getDepartureTime());
     }
 
-    @PostMapping(value = "/delete/point")
+    @PostMapping(value = "/{routeId}/{pointId}")
     @ResponseBody
-    public RouteEntity deletePointFromRoute(@RequestBody RoutePointDeleteParams params) {
-        final long routeId = params.getRouteId();
-        final long pointId = params.getPointId();
+    public RouteEntity deletePointFromRoute(@PathVariable
+    final long routeId, @PathVariable
+    final long pointId) {
         return routeService.deletePointFromRoute(routeId, pointId);
     }
 

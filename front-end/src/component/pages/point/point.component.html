@@ -1,34 +1,65 @@
-<div>
 
-  <mat-table #table [dataSource]="dataSource">
+<!--<div ng-controller="searchCtrl as ctrl">-->
+<div class="search-button">
+  <!-- Pre-Search Bar -->
 
-    <ng-container matColumnDef="name">
+  <!-- Search button (initiates search) -->
+  <div class="search-button" matTooltip="Search point" aria-hidden="true" tooltip-position="left">
+    <button mat-button class="m-toolbar-button">
+      <mat-icon><i class="material-icons md 12 blue">search</i></mat-icon>
+      <span class="material-icons-text">Search</span>
+    </button>
+  </div>
 
-      <mat-header-cell *matHeaderCellDef> Point</mat-header-cell>
+  <!--&lt;!&ndash; Search bar &ndash;&gt;
+  <div class="mat-toolbar" >
+    <button class="mat-icon-button" >
+      <mat-icon> <i class="material-icons md 24 blue">search</i> </mat-icon>
+    </button>
 
-      <mat-cell *matCellDef="let element"> {{element.name}}</mat-cell>
+    &lt;!&ndash; Input Text &ndash;&gt;
+    <mat-input-container flex>
+      &lt;!&ndash; <label for="search">Search</label> &ndash;&gt;
+      <input  type="text"  />
+    </mat-input-container>
 
-    </ng-container>
+    &lt;!&ndash; Close search bar &ndash;&gt;
+    <button class="md-icon-button" >
+      <mat-icon><i class="material-icons">close</i></mat-icon>
+    </button>
+  </div>
+-->
+</div>
 
-    <mat-header-row *matHeaderRowDef="displayedColumns">
+<mat-table #table [dataSource]="dataSource">
 
-    </mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;">
-    </mat-row>
+  <ng-container matColumnDef="name">
 
-  </mat-table>
+    <mat-header-cell *matHeaderCellDef> Point</mat-header-cell>
 
-  <div class="add-point-button-position">
+    <mat-cell *matCellDef="let element"> {{element.name}}</mat-cell>
+
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns">
+
+  </mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;">
+  </mat-row>
+
+</mat-table>
+
+<div class="add-point-button-position">
+  <div class="mat-icon-button" matTooltip="Add point">
     <button mat-icon-button [routerLink]="['./add'] ">
       <mat-icon><i class="material-icons md-48 blue" aria-hidden="true">add_circle</i></mat-icon>
     </button>
   </div>
-
 </div>
 
-  <div class="form-point">
-    <router-outlet></router-outlet>
-  </div>
+<div class="form-point">
+  <router-outlet></router-outlet>
+</div>
 
 
 

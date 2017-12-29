@@ -12,7 +12,7 @@ public class TransportEntity extends BaseEntity implements Comparable<TransportE
     @Column(name = "registration_number", unique = true, nullable = false, length = 20)
     private String registrationNumber;
 
-    @Column(name = "type", nullable = false, length = 20)
+    @Column(name = "type", nullable = false, length = 30)
     @Enumerated(EnumType.STRING)
     private TransportType transportType;
 
@@ -63,6 +63,7 @@ public class TransportEntity extends BaseEntity implements Comparable<TransportE
         this.noFunctionally = noFunctionally;
     }
 
+
     @Override
     public boolean equals(final Object o) {
         if (this == o)
@@ -97,4 +98,5 @@ public class TransportEntity extends BaseEntity implements Comparable<TransportE
             .compareTo(o.getRegistrationNumber()
                 .toLowerCase());
     }
+
 }

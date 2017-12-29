@@ -13,6 +13,7 @@ import javax.transaction.Transactional;
 import java.sql.Time;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Transactional
@@ -38,8 +39,7 @@ public class ScheduleServiceImpl implements ScheduleService {
         ScheduleEntity schedule = new ScheduleEntity();
         schedule.setRoute(routeService.load(routeId));
         schedule.setTransport(transportService.load(transportId));
-        schedule.setStartTime(startTime);
-        schedule.setEndTime(endTime);
+
         schedule.setDirection(direction);
         schedule.setHoliday(isHoliday);
         scheduleRepository.save(schedule);
@@ -47,15 +47,15 @@ public class ScheduleServiceImpl implements ScheduleService {
     }
 
     @Override
-    public List<ScheduleEntity> loadAll(final Optional<Boolean> isHoliday) {
-      if (isHoliday.isPresent()){
-          { if (isHoliday.get()){
-              return scheduleRepository.findAll().stream().filter(scheduleEntity -> scheduleEntity.isHoliday()==true).collect(Collectors.toList());
-          }
-          return scheduleRepository.findAll().stream().filter((scheduleEntity -> scheduleEntity.isHoliday()==false)).collect(Collectors.toList());
-          }
-      }
-        return scheduleRepository.findAll().stream().sorted().collect(Collectors.toList());
+    public List<ScheduleEntity> loadAll(final Optional<Boolean> optIsHoliday) {
+
+      return  optIsHoliday.map(isHoliday -> scheduleRepository.findAllByIsHoliday(isHoliday)).orElseGet(()-> scheduleRepository.findAll());
+      
+       
+       /* if (isHoliday.isPresent()) {
+            return scheduleRepository.findAllByIsHoliday(isHoliday.get());
+        }
+        return scheduleRepository.findAll();*/
     }
 
     @Override
@@ -64,7 +64,7 @@ public class ScheduleServiceImpl implements ScheduleService {
     }
 
     @Override
-    public void delete (final  long id){
+    public void delete(final long id) {
         scheduleRepository.delete(id);
     }
 }

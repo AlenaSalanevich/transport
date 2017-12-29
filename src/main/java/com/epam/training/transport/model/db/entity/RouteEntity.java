@@ -67,7 +67,7 @@ public class RouteEntity extends BaseEntity implements Comparable<RouteEntity> {
 
     @Override
     public String toString() {
-        return "RouteEntity{"
+        return "Route{"
                + "number='"
                + number
                + '\''

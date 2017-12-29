@@ -1,0 +1,9 @@
+.mat-image{
+  position: fixed;
+}
+.image{
+  width: 100%;
+  height: inherit;
+  overflow-y: scroll;
+  position: inherit;
+}

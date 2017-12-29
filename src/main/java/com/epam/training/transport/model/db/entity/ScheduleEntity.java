@@ -3,19 +3,16 @@ package com.epam.training.transport.model.db.entity;
 import com.epam.training.transport.model.Direction;
 
 import javax.persistence.*;
-import java.sql.Time;
-import java.util.GregorianCalendar;
-import java.util.List;
 
 @Entity
 @Table(name = "SCHEDULE")
 public class ScheduleEntity extends BaseEntity {
 
-    @ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name = "route_id")
     private RouteEntity route;
 
-    @ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name = "transport_id")
     private TransportEntity transport;
 
@@ -26,12 +23,6 @@ public class ScheduleEntity extends BaseEntity {
     @Column(name = "is_holiday", nullable = false)
     private boolean isHoliday;
 
-    @Column(name = "start_time", nullable = false)
-    private Time startTime;
-
-    @Column(name = "end_time", nullable = false)
-    private Time endTime;
-
     public ScheduleEntity() {
     }
 
@@ -41,15 +32,13 @@ public class ScheduleEntity extends BaseEntity {
         final TransportEntity transport,
         final Direction direction,
         final boolean isHoliday,
-        final Time startTime,
-        final Time endTime) {
+        final String departureTime) {
         super(id);
         this.route = route;
         this.transport = transport;
         this.direction = direction;
         this.isHoliday = isHoliday;
-        this.startTime = startTime;
-        this.endTime = endTime;
+
     }
 
     public ScheduleEntity(
@@ -57,14 +46,12 @@ public class ScheduleEntity extends BaseEntity {
         final TransportEntity transport,
         final Direction direction,
         final boolean isHoliday,
-        final Time startTime,
-        final Time endTime) {
+        final String departureTime) {
         this.route = route;
         this.transport = transport;
         this.direction = direction;
         this.isHoliday = isHoliday;
-        this.startTime = startTime;
-        this.endTime = endTime;
+
     }
 
     public RouteEntity getRoute() {
@@ -99,19 +86,4 @@ public class ScheduleEntity extends BaseEntity {
         isHoliday = holiday;
     }
 
-    public Time getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(final Time startTime) {
-        this.startTime = startTime;
-    }
-
-    public Time getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(final Time endTime) {
-        this.endTime = endTime;
-    }
 }

@@ -76,7 +76,7 @@ var AppRoutingModule = (function () {
     function AppRoutingModule() {
     }
     AppRoutingModule = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["J" /* NgModule */])({
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["K" /* NgModule */])({
             imports: [
                 __WEBPACK_IMPORTED_MODULE_1__angular_common__["b" /* CommonModule */],
                 __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* RouterModule */].forRoot(routes, routerOptions)
@@ -162,11 +162,11 @@ var AppComponent = (function () {
     AppComponent.MIN_PASSWORD_LENGTH = 6;
     AppComponent.MAX_PASSWORD_LENGTH = 25;
     AppComponent.MIN_POINT_LENGTH = 3;
-    AppComponent.MAX_POINT_LENGTH = 25;
+    AppComponent.MAX_POINT_LENGTH = 20;
     AppComponent.MIN_REGISTER_NUMBER_LENGTH = 9;
-    AppComponent.MAX_REGISTER_NUMBER_LENGTH = 15;
+    AppComponent.MAX_REGISTER_NUMBER_LENGTH = 20;
     AppComponent.MIN_TRANSPORT_TYPE_LENGTH = 3;
-    AppComponent.MAX_TRANSPORT_TYPE_LENGTH = 10;
+    AppComponent.MAX_TRANSPORT_TYPE_LENGTH = 20;
     AppComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
             selector: 'app-root',
@@ -241,7 +241,7 @@ var AppModule = (function () {
     function AppModule() {
     }
     AppModule = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["J" /* NgModule */])({
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["K" /* NgModule */])({
             declarations: [
                 __WEBPACK_IMPORTED_MODULE_2__app_component__["a" /* AppComponent */],
                 __WEBPACK_IMPORTED_MODULE_3__component_pages_point_point_component__["a" /* PointComponent */],
@@ -253,28 +253,31 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_21__component_pages_transport_add_transport_add_transport_component__["a" /* AddTransportComponent */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_8__angular_forms__["c" /* FormsModule */],
+                __WEBPACK_IMPORTED_MODULE_8__angular_forms__["d" /* FormsModule */],
                 __WEBPACK_IMPORTED_MODULE_9__angular_http__["b" /* HttpModule */],
                 __WEBPACK_IMPORTED_MODULE_10__app_routing_app_routing_module__["a" /* AppRoutingModule */],
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
                 __WEBPACK_IMPORTED_MODULE_11__angular_platform_browser_animations__["a" /* BrowserAnimationsModule */],
                 __WEBPACK_IMPORTED_MODULE_12__angular_material__["a" /* MatButtonModule */],
-                __WEBPACK_IMPORTED_MODULE_12__angular_material__["e" /* MatIconModule */],
-                __WEBPACK_IMPORTED_MODULE_12__angular_material__["f" /* MatInputModule */],
-                __WEBPACK_IMPORTED_MODULE_12__angular_material__["n" /* MatToolbarModule */],
-                __WEBPACK_IMPORTED_MODULE_12__angular_material__["h" /* MatMenuModule */],
-                __WEBPACK_IMPORTED_MODULE_12__angular_material__["i" /* MatPaginatorModule */],
-                __WEBPACK_IMPORTED_MODULE_12__angular_material__["k" /* MatSidenavModule */],
-                __WEBPACK_IMPORTED_MODULE_12__angular_material__["g" /* MatListModule */],
-                __WEBPACK_IMPORTED_MODULE_12__angular_material__["d" /* MatGridListModule */],
-                __WEBPACK_IMPORTED_MODULE_12__angular_material__["c" /* MatFormFieldModule */],
-                __WEBPACK_IMPORTED_MODULE_12__angular_material__["j" /* MatSelectModule */],
+                __WEBPACK_IMPORTED_MODULE_12__angular_material__["f" /* MatIconModule */],
+                __WEBPACK_IMPORTED_MODULE_12__angular_material__["g" /* MatInputModule */],
+                __WEBPACK_IMPORTED_MODULE_12__angular_material__["o" /* MatToolbarModule */],
+                __WEBPACK_IMPORTED_MODULE_12__angular_material__["i" /* MatMenuModule */],
+                __WEBPACK_IMPORTED_MODULE_12__angular_material__["j" /* MatPaginatorModule */],
+                __WEBPACK_IMPORTED_MODULE_12__angular_material__["l" /* MatSidenavModule */],
+                __WEBPACK_IMPORTED_MODULE_12__angular_material__["h" /* MatListModule */],
+                __WEBPACK_IMPORTED_MODULE_12__angular_material__["e" /* MatGridListModule */],
+                __WEBPACK_IMPORTED_MODULE_12__angular_material__["d" /* MatFormFieldModule */],
+                __WEBPACK_IMPORTED_MODULE_12__angular_material__["k" /* MatSelectModule */],
                 __WEBPACK_IMPORTED_MODULE_16__angular_router__["b" /* RouterModule */],
-                __WEBPACK_IMPORTED_MODULE_12__angular_material__["m" /* MatTabsModule */],
-                __WEBPACK_IMPORTED_MODULE_12__angular_material__["l" /* MatTableModule */],
-                __WEBPACK_IMPORTED_MODULE_17__angular_common_http__["a" /* HttpClientModule */],
+                __WEBPACK_IMPORTED_MODULE_12__angular_material__["n" /* MatTabsModule */],
+                __WEBPACK_IMPORTED_MODULE_12__angular_material__["m" /* MatTableModule */],
+                __WEBPACK_IMPORTED_MODULE_17__angular_common_http__["b" /* HttpClientModule */],
                 __WEBPACK_IMPORTED_MODULE_12__angular_material__["b" /* MatCardModule */],
-                __WEBPACK_IMPORTED_MODULE_12__angular_material__["o" /* MatTooltipModule */],
+                __WEBPACK_IMPORTED_MODULE_12__angular_material__["p" /* MatTooltipModule */],
+                __WEBPACK_IMPORTED_MODULE_8__angular_forms__["i" /* ReactiveFormsModule */],
+                __WEBPACK_IMPORTED_MODULE_12__angular_material__["c" /* MatCheckboxModule */],
+                __WEBPACK_IMPORTED_MODULE_12__angular_material__["l" /* MatSidenavModule */]
             ],
             providers: [__WEBPACK_IMPORTED_MODULE_13__service_security_service_security_service__["a" /* SecurityService */], __WEBPACK_IMPORTED_MODULE_14__service_transport_service_transport_data_source__["a" /* TransportDataSource */], __WEBPACK_IMPORTED_MODULE_15__service_transport_service_transport_service__["a" /* TransportService */], __WEBPACK_IMPORTED_MODULE_18__service_point_service_point_data_source__["a" /* PointDataSource */], __WEBPACK_IMPORTED_MODULE_19__service_point_service_point_service__["a" /* PointService */]],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_2__app_component__["a" /* AppComponent */]]
@@ -642,7 +645,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".material-icons.md-48 {\r\n  font-size: 48px;\r\n}\r\n\r\n.material-icons.blue {\r\n  color: #3f51b5;\r\n}\r\n\r\n.mat-icon-button{\r\n  position: fixed;\r\n  right: 5%;\r\n  bottom: 5%;\r\n}\r\n\r\n.add-point-button-position {\r\n  position: absolute;\r\n  float: right;\r\n  z-index: 10;\r\n}\r\n\r\n.form-point {\r\n  position: relative;\r\n}\r\n\r\n.point-content {\r\n  position: absolute;\r\n  width: 81.5%;\r\n  color: #636363;\r\n  font-family: inherit;\r\n}\r\n\r\n.point-table {\r\n  background: inherit;\r\n  overflow-y: scroll;\r\n  max-height: 100vh;\r\n}\r\n\r\n.point-mat-header-cell {\r\n  font-family: inherit;\r\n  font-weight: bold;\r\n  font-size: inherit;\r\n}\r\n\r\n.point-mat-cell {\r\n  font-family: inherit;\r\n  font-weight: normal;\r\n  color: inherit;\r\n}\r\n", ""]);
+exports.push([module.i, ".material-icons.md-48 {\r\n  font-size: 48px;\r\n}\r\n.material-icons.md24\r\n{\r\n  font-size: 12px;\r\n}\r\n.material-icons.blue {\r\n  color: #3f51b5;\r\n}\r\n\r\n.material-icons.blue{\r\n  color: #3f51b5;\r\n}\r\n.material-icons-text{\r\n  font-size: 10px;\r\n  font-weight: bold;\r\n  color: #3f51b5;\r\n}\r\n\r\n.mat-icon-button {\r\n  position: fixed;\r\n  right: 5%;\r\n  bottom: 5%;\r\n}\r\n.search-button {\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -webkit-box-orient: horizontal;\r\n  -webkit-box-direction: reverse;\r\n      -ms-flex-direction: row-reverse;\r\n          flex-direction: row-reverse;\r\n}\r\n.add-point-button-position {\r\n  position: absolute;\r\n  float: right;\r\n  z-index: 10;\r\n}\r\n\r\n.form-point {\r\n  position: relative;\r\n}\r\n\r\n.point-content {\r\n  position: absolute;\r\n  width: 81.5%;\r\n  color: #636363;\r\n  font-family: inherit;\r\n}\r\n\r\n.point-table {\r\n  background: inherit;\r\n  overflow-y: scroll;\r\n  max-height: 100vh;\r\n}\r\n\r\n.point-mat-header-cell {\r\n  font-family: inherit;\r\n  font-weight: bold;\r\n  font-size: inherit;\r\n}\r\n\r\n.point-mat-cell {\r\n  font-family: inherit;\r\n  font-weight: normal;\r\n  color: inherit;\r\n}\r\n\r\n.point-list {\r\n  background: inherit;\r\n  overflow-y: scroll;\r\n  max-height: 100vh;\r\n}\r\n\r\n\r\n", ""]);
 
 // exports
 
@@ -655,7 +658,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/component/pages/point/point.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div>\n\n  <mat-table #table [dataSource]=\"dataSource\">\n\n    <ng-container matColumnDef=\"name\">\n\n      <mat-header-cell *matHeaderCellDef> Point</mat-header-cell>\n\n      <mat-cell *matCellDef=\"let element\"> {{element.name}}</mat-cell>\n\n    </ng-container>\n\n    <mat-header-row *matHeaderRowDef=\"displayedColumns\">\n\n    </mat-header-row>\n    <mat-row *matRowDef=\"let row; columns: displayedColumns;\">\n    </mat-row>\n\n  </mat-table>\n\n  <div class=\"add-point-button-position\">\n    <button mat-icon-button [routerLink]=\"['./add'] \">\n      <mat-icon><i class=\"material-icons md-48 blue\" aria-hidden=\"true\">add_circle</i></mat-icon>\n    </button>\n  </div>\n\n</div>\n\n  <div class=\"form-point\">\n    <router-outlet></router-outlet>\n  </div>\n\n\n\n\n"
+module.exports = "\r\n<!--<div ng-controller=\"searchCtrl as ctrl\">-->\r\n<div class=\"search-button\">\r\n  <!-- Pre-Search Bar -->\r\n\r\n  <!-- Search button (initiates search) -->\r\n  <div class=\"search-button\" matTooltip=\"Search point\" aria-hidden=\"true\" tooltip-position=\"left\">\r\n    <button mat-button class=\"m-toolbar-button\">\r\n      <mat-icon><i class=\"material-icons md 12 blue\">search</i></mat-icon>\r\n      <span class=\"material-icons-text\">Search</span>\r\n    </button>\r\n  </div>\r\n\r\n  <!--&lt;!&ndash; Search bar &ndash;&gt;\r\n  <div class=\"mat-toolbar\" >\r\n    <button class=\"mat-icon-button\" >\r\n      <mat-icon> <i class=\"material-icons md 24 blue\">search</i> </mat-icon>\r\n    </button>\r\n\r\n    &lt;!&ndash; Input Text &ndash;&gt;\r\n    <mat-input-container flex>\r\n      &lt;!&ndash; <label for=\"search\">Search</label> &ndash;&gt;\r\n      <input  type=\"text\"  />\r\n    </mat-input-container>\r\n\r\n    &lt;!&ndash; Close search bar &ndash;&gt;\r\n    <button class=\"md-icon-button\" >\r\n      <mat-icon><i class=\"material-icons\">close</i></mat-icon>\r\n    </button>\r\n  </div>\r\n-->\r\n</div>\r\n\r\n<mat-table #table [dataSource]=\"dataSource\">\r\n\r\n  <ng-container matColumnDef=\"name\">\r\n\r\n    <mat-header-cell *matHeaderCellDef> Point</mat-header-cell>\r\n\r\n    <mat-cell *matCellDef=\"let element\"> {{element.name}}</mat-cell>\r\n\r\n  </ng-container>\r\n\r\n  <mat-header-row *matHeaderRowDef=\"displayedColumns\">\r\n\r\n  </mat-header-row>\r\n  <mat-row *matRowDef=\"let row; columns: displayedColumns;\">\r\n  </mat-row>\r\n\r\n</mat-table>\r\n\r\n<div class=\"add-point-button-position\">\r\n  <div class=\"mat-icon-button\" matTooltip=\"Add point\">\r\n    <button mat-icon-button [routerLink]=\"['./add'] \">\r\n      <mat-icon><i class=\"material-icons md-48 blue\" aria-hidden=\"true\">add_circle</i></mat-icon>\r\n    </button>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"form-point\">\r\n  <router-outlet></router-outlet>\r\n</div>\r\n\r\n\r\n\r\n\r\n"
 
 /***/ }),
 
@@ -668,6 +671,8 @@ module.exports = "<div>\n\n  <mat-table #table [dataSource]=\"dataSource\">\n\n 
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__page_component__ = __webpack_require__("../../../../../src/component/page.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__service_point_service_point_data_source__ = __webpack_require__("../../../../../src/service/point-service/point-data-source.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_observable_of__ = __webpack_require__("../../../../rxjs/_esm5/add/observable/of.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_route_list__ = __webpack_require__("../../../../../src/utils/route-list.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -691,11 +696,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
 var PointComponent = (function (_super) {
     __extends(PointComponent, _super);
-    function PointComponent(pointDataSource) {
+    function PointComponent(pointDataSource, router) {
         var _this = _super.call(this) || this;
         _this.pointDataSource = pointDataSource;
+        _this.router = router;
         _this.displayedColumns = ['name'];
         _this.dataSource = pointDataSource;
         return _this;
@@ -703,16 +711,20 @@ var PointComponent = (function (_super) {
     PointComponent.prototype.ngOnInit = function () {
         this.pointDataSource.refresh();
     };
+    PointComponent.prototype.redirectToPoints = function () {
+        this.router.navigateByUrl('/' + __WEBPACK_IMPORTED_MODULE_4__utils_route_list__["a" /* RouteList */].PAGE_POINT);
+    };
     PointComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
             selector: 'app-point',
             template: __webpack_require__("../../../../../src/component/pages/point/point.component.html"),
             styles: [__webpack_require__("../../../../../src/component/pages/point/point.component.css")],
-            encapsulation: __WEBPACK_IMPORTED_MODULE_0__angular_core__["_13" /* ViewEncapsulation */].Emulated,
+            encapsulation: __WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* ViewEncapsulation */].Emulated,
             preserveWhitespaces: true,
             providers: [__WEBPACK_IMPORTED_MODULE_2__service_point_service_point_data_source__["a" /* PointDataSource */]]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__service_point_service_point_data_source__["a" /* PointDataSource */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__service_point_service_point_data_source__["a" /* PointDataSource */],
+            __WEBPACK_IMPORTED_MODULE_5__angular_router__["a" /* Router */]])
     ], PointComponent);
     return PointComponent;
 }(__WEBPACK_IMPORTED_MODULE_1__page_component__["a" /* PageComponent */]));
@@ -729,7 +741,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, ".mat-image{\r\n  position: fixed;\r\n}\r\n.image{\r\n   width: 100%;\r\n  height: inherit;\r\n  overflow-y: scroll;\r\n  position: inherit;\r\n}\r\n", ""]);
 
 // exports
 
@@ -742,7 +754,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/component/pages/route/route.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  route works!\n</p>\n"
+module.exports = "\r\n<div class=\"mat-image\">\r\n  <img class=\"image\" src=\"../../../assets/294.jpg\" />\r\n</div>\r\n\r\n"
 
 /***/ }),
 
@@ -802,7 +814,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, ".mat-image{\r\n  position: fixed;\r\n}\r\n.image{\r\n  width: 100%;\r\n  height: inherit;\r\n  overflow-y: scroll;\r\n  position: inherit;\r\n}\r\n", ""]);
 
 // exports
 
@@ -815,7 +827,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/component/pages/schedule/schedule.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  schedule works!\n</p>\n"
+module.exports = "<div class=\"mat-image\">\r\n  <img src=\"../../../assets/Untitled-1-01.jpg\"/>\r\n  </div>\r\n"
 
 /***/ }),
 
@@ -888,7 +900,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/component/pages/transport/add-transport/add-transport.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"add-point-form-container\">\n  <div class=\"add-point-form\">\n    <form class=\"add-point-data-form mat-elevation-z2\" (ngSubmit)=\"tryCreateTransport()\" #createForm=\"ngForm\">\n      <div class=\"add-point-text-container\">\n        <h2 class=\"add-point-page-title\">Add new transport</h2>\n        <h3 class=\"add-point-page-error\" [hidden]=\"error.length == 0\">\n          {{error}}\n        </h3>\n      </div>\n      <mat-input-container class=\"add-point-data-row\">\n        <input matInput placeholder=\"Transport register number\" id=\"registrationNumber\" required minlength=\"{{minRegisterNumber}}\"\n               maxlength=\"{{maxRegisterNumber}}\"\n               [(ngModel)]=\"transportInfo.registrationNumber\" name=\"registrationNumber\"\n               #name=\"ngModel\">\n      </mat-input-container>\n\n      <mat-input-container class=\"add-point-data-row\">\n        <input matInput placeholder=\"Transport type\" id=\"transportType\" required minlength=\"{{minTransportTypeLenth}}\"\n               maxlength=\"{{maxTransportTypeLenth}}\"\n               [(ngModel)]=\"transportInfo.transportType\" name=\"transportType\"\n               #name=\"ngModel\">\n      </mat-input-container>\n\n      <mat-input-container class=\"add-point-data-row\">\n        <input matInput placeholder=\"Transport is no functionally\" id=\"noFunctionally\"\n               [(ngModel)]=\"transportInfo.noFunctionally\" name=\"noFunctionally\"\n               #name=\"ngModel\">\n      </mat-input-container>\n\n\n      <div class=\"add-point-buttons\">\n        <button class=\"add-point-button\" type=\"submit\" mat-raised-button color=\"primary\"\n                [disabled]=\"!createForm.form.valid\"> Add transport\n        </button>\n        <button class=\"add-point-button\" type=\"submit\" mat-raised-button color=\"primary\"\n                (click)=\"redirectToTransports()\"> Cancel\n        </button>\n      </div>\n    </form>\n  </div>\n</div>\n"
+module.exports = "<div class=\"add-point-form-container\">\n  <div class=\"add-point-form\">\n    <form class=\"add-point-data-form mat-elevation-z2\" (ngSubmit)=\"tryCreateTransport()\" #createForm=\"ngForm\">\n      <div class=\"add-point-text-container\">\n        <h2 class=\"add-point-page-title\">Add new transport</h2>\n        <h3 class=\"add-point-page-error\" [hidden]=\"error.length == 0\">\n          {{error}}\n        </h3>\n      </div>\n      <mat-input-container class=\"add-point-data-row\">\n        <input matInput placeholder=\"Transport register number\" id=\"registrationNumber\" required\n               minlength=\"{{minRegisterNumber}}\"\n               maxlength=\"{{maxRegisterNumber}}\"\n               [(ngModel)]=\"transportInfo.registrationNumber\" name=\"registrationNumber\"\n               #name=\"ngModel\">\n      </mat-input-container>\n\n      <mat-input-container>\n        <mat-select placeholder=\"Transport type\" [formControl]=\"transportTypeControl\" required [(ngModel)]=\"selectedTransportType\"   name=\"transportType\">\n          <mat-option *ngFor=\"let transportType of availableTransportTypes\" [value]=\"transportType.value\">\n            {{ transportType.viewValue }}\n          </mat-option>\n        </mat-select>\n        <mat-error *ngIf=\"transportTypeControl.hasError('required')\">Please choose a transport type</mat-error>\n      </mat-input-container>\n\n      <mat-input-container>\n        <mat-select placeholder=\"Transport functionality\" [(ngModel)]=\"selectedTransportFunctionality\" required\n                    true name=\"noFunctionally\">\n          <mat-option *ngFor=\"let noFunctionally of _availableTransportFunctionality\" [value]=\"noFunctionally.value\">\n            {{ noFunctionally.viewValue }}\n          </mat-option>\n        </mat-select>\n      </mat-input-container>\n\n      <div class=\"add-point-buttons\">\n        <button class=\"add-point-button\" type=\"submit\" mat-raised-button color=\"primary\"\n                [disabled]=\"!createForm.form.valid\"> Add transport\n        </button>\n        <button class=\"add-point-button\" type=\"submit\" mat-raised-button color=\"primary\"\n                (click)=\"redirectToTransports()\"> Cancel\n        </button>\n      </div>\n    </form>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -904,6 +916,7 @@ module.exports = "<div class=\"add-point-form-container\">\n  <div class=\"add-p
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__model_transport_transport_params__ = __webpack_require__("../../../../../src/model/transport/transport-params.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__utils_route_list__ = __webpack_require__("../../../../../src/utils/route-list.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_forms__ = __webpack_require__("../../../forms/esm5/forms.js");
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -930,6 +943,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var AddTransportComponent = (function (_super) {
     __extends(AddTransportComponent, _super);
     function AddTransportComponent(transportService, transportDataSource, router) {
@@ -937,18 +951,28 @@ var AddTransportComponent = (function (_super) {
         _this.transportService = transportService;
         _this.transportDataSource = transportDataSource;
         _this.router = router;
-        _this._transportInfo = new __WEBPACK_IMPORTED_MODULE_4__model_transport_transport_params__["a" /* TransportParams */]('', '', false);
+        _this.transportTypeControl = new __WEBPACK_IMPORTED_MODULE_7__angular_forms__["b" /* FormControl */]('', [__WEBPACK_IMPORTED_MODULE_7__angular_forms__["j" /* Validators */].required]);
+        _this._availableTransportTypes = [
+            { value: __WEBPACK_IMPORTED_MODULE_2__service_transport_service_transport_service__["a" /* TransportService */].TRANSPORT_TYPE_BUS, viewValue: 'BUS' },
+            { value: __WEBPACK_IMPORTED_MODULE_2__service_transport_service_transport_service__["a" /* TransportService */].TRANSPORT_TYPE_TRAM, viewValue: 'TRAM' },
+            { value: __WEBPACK_IMPORTED_MODULE_2__service_transport_service_transport_service__["a" /* TransportService */].TRANSPORT_TYPE_TROLLEYBUS, viewValue: 'TROLLEYBUS' }
+        ];
+        _this._availableTransportFunctionality = [
+            { value: __WEBPACK_IMPORTED_MODULE_2__service_transport_service_transport_service__["a" /* TransportService */].TRANSPORT_FUNCTIONALITY_WORKING, viewValue: "FUNCTIONALLY" },
+            { value: __WEBPACK_IMPORTED_MODULE_2__service_transport_service_transport_service__["a" /* TransportService */].TRANSPORT_FUNCTIONALITY_BROKEN, viewValue: "NO FUNCTIONALLY" }
+        ];
+        _this._transportInfo = new __WEBPACK_IMPORTED_MODULE_4__model_transport_transport_params__["a" /* TransportParams */]('', '', true);
         _this._error = '';
         return _this;
     }
     AddTransportComponent.prototype.tryCreateTransport = function () {
         var _this = this;
+        this.setTransportType();
+        this.setTransportFunctionality();
         this.transportService.createTransport(this._transportInfo, function (message, result) {
             if (result) {
                 var transportInfo = _this.transportInfo;
                 transportInfo.registrationNumber = '';
-                transportInfo.transportType = '';
-                transportInfo.noFunctionally = true;
                 _this.redirectToTransports();
                 _this.transportDataSource.refresh();
             }
@@ -966,6 +990,9 @@ var AddTransportComponent = (function (_super) {
         get: function () {
             return this._transportInfo;
         },
+        set: function (value) {
+            this._transportInfo = value;
+        },
         enumerable: true,
         configurable: true
     });
@@ -973,9 +1000,71 @@ var AddTransportComponent = (function (_super) {
         get: function () {
             return this._error;
         },
+        set: function (value) {
+            this._error = value;
+        },
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(AddTransportComponent.prototype, "selectedTransportType", {
+        get: function () {
+            return this._selectedTransportType;
+        },
+        set: function (value) {
+            this._selectedTransportType = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(AddTransportComponent.prototype, "availableTransportTypes", {
+        get: function () {
+            return this._availableTransportTypes;
+        },
+        set: function (value) {
+            this._availableTransportTypes = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(AddTransportComponent.prototype, "selectedTransportFunctionality", {
+        get: function () {
+            return this._selectedTransportFunctionality;
+        },
+        set: function (value) {
+            this._selectedTransportFunctionality = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    AddTransportComponent.prototype.setTransportType = function () {
+        switch (this._selectedTransportType) {
+            case __WEBPACK_IMPORTED_MODULE_2__service_transport_service_transport_service__["a" /* TransportService */].TRANSPORT_TYPE_TRAM: {
+                this._transportInfo.transportType = __WEBPACK_IMPORTED_MODULE_2__service_transport_service_transport_service__["a" /* TransportService */].TRANSPORT_TYPE_TRAM;
+                break;
+            }
+            case __WEBPACK_IMPORTED_MODULE_2__service_transport_service_transport_service__["a" /* TransportService */].TRANSPORT_TYPE_TROLLEYBUS: {
+                this._transportInfo.transportType = __WEBPACK_IMPORTED_MODULE_2__service_transport_service_transport_service__["a" /* TransportService */].TRANSPORT_TYPE_TROLLEYBUS;
+                break;
+            }
+            case __WEBPACK_IMPORTED_MODULE_2__service_transport_service_transport_service__["a" /* TransportService */].TRANSPORT_TYPE_BUS: {
+                this._transportInfo.transportType = __WEBPACK_IMPORTED_MODULE_2__service_transport_service_transport_service__["a" /* TransportService */].TRANSPORT_TYPE_BUS;
+                break;
+            }
+        }
+    };
+    AddTransportComponent.prototype.setTransportFunctionality = function () {
+        switch (this._selectedTransportFunctionality) {
+            case __WEBPACK_IMPORTED_MODULE_2__service_transport_service_transport_service__["a" /* TransportService */].TRANSPORT_FUNCTIONALITY_BROKEN: {
+                this._transportInfo.noFunctionally = true;
+                break;
+            }
+            default: {
+                this._transportInfo.noFunctionally = false;
+                ;
+                break;
+            }
+        }
+    };
     AddTransportComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
             selector: 'app-add-transport',
@@ -1000,7 +1089,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".material-icons.md-48 {\r\n  font-size: 48px;\r\n}\r\n\r\n.material-icons.blue {\r\n  color: #3f51b5;\r\n}\r\n\r\n.mat-icon-button{\r\n  position: fixed;\r\n  right: 5%;\r\n  bottom: 5%;\r\n}\r\n\r\n.add-point-button-position {\r\n  position: absolute;\r\n  float: right;\r\n  z-index: 10;\r\n}\r\n\r\n.form-point {\r\n  position: relative;\r\n}\r\n\r\n.point-content {\r\n  position: absolute;\r\n  width: 81.5%;\r\n  color: #636363;\r\n  font-family: inherit;\r\n}\r\n\r\n.point-table {\r\n  background: inherit;\r\n  overflow-y: scroll;\r\n  max-height: 100vh;\r\n}\r\n\r\n.point-mat-header-cell {\r\n  font-family: inherit;\r\n  font-weight: bold;\r\n  font-size: inherit;\r\n}\r\n\r\n.point-mat-cell {\r\n  font-family: inherit;\r\n  font-weight: normal;\r\n  color: inherit;\r\n}\r\n", ""]);
+exports.push([module.i, ".material-icons.md-48 {\r\n  font-size: 48px;\r\n}\r\n\r\n.material-icons.blue {\r\n  color: #3f51b5;\r\n}\r\n\r\n.mat-icon-button{\r\n  position: fixed;\r\n  right: 5%;\r\n  bottom: 5%;\r\n}\r\n\r\n.add-transport-button-position {\r\n  position: absolute;\r\n  float: right;\r\n  z-index: 10;\r\n}\r\n\r\n.form-point {\r\n  position: relative;\r\n}\r\n\r\n.point-content {\r\n  position: absolute;\r\n  width: 81.5%;\r\n  color: #636363;\r\n  font-family: inherit;\r\n}\r\n\r\n.mat-table {\r\n  background: inherit;\r\n  overflow-y: scroll;\r\n  max-height: 100vh;\r\n}\r\n\r\n.point-mat-header-cell {\r\n  font-family: inherit;\r\n  font-weight: bold;\r\n  font-size: inherit;\r\n}\r\n\r\n.point-mat-cell {\r\n  font-family: inherit;\r\n  font-weight: normal;\r\n  color: inherit;\r\n}\r\n", ""]);
 
 // exports
 
@@ -1013,7 +1102,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/component/pages/transport/transport.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div >\n\n  <mat-table  #table [dataSource]=\"dataSource\">\n\n    <ng-container matColumnDef=\"registrationNumber\">\n\n      <mat-header-cell  *matHeaderCellDef> Registration number</mat-header-cell>\n\n      <mat-cell *matCellDef=\"let element\"> {{element.registrationNumber}}</mat-cell>\n\n    </ng-container>\n\n    <ng-container matColumnDef=\"transportType\">\n\n      <mat-header-cell *matHeaderCellDef> Transport type</mat-header-cell>\n\n      <mat-cell class=\"file-type-mat-cell\" *matCellDef=\"let element\"> {{element.transportType}}</mat-cell>\n\n    </ng-container>\n\n    <!--<ng-container matColumnDef=noFunctionally\">\n\n      <mat-header-cell  *matHeaderCellDef> No functionally</mat-header-cell>\n\n      <mat-cell *matCellDef=\"let element\"> {{element.noFunctionally}}</mat-cell>\n\n    </ng-container>-->\n\n    <mat-header-row *matHeaderRowDef=\"displayedColumns\">\n\n    </mat-header-row>\n    <mat-row *matRowDef=\"let row; columns: displayedColumns;\">\n    </mat-row>\n\n  </mat-table>\n\n\n\n<div >\n  <button mat-icon-button [routerLink]=\"['./add'] \">\n    <mat-icon><i class=\"material-icons md-48 blue\" aria-hidden=\"true\">add_circle</i></mat-icon>\n  </button>\n</div>\n\n</div>\n\n<div class=\"form-point\">\n  <router-outlet></router-outlet>\n</div>\n"
+module.exports = "<div >\r\n  <div >\r\n    <button mat-button >\r\n     All transport\r\n    </button>\r\n    <button mat-button >\r\n     Buses\r\n    </button>\r\n    <button mat-button>\r\n      Trams\r\n    </button>\r\n    <button mat-button >\r\n      Trolleybuses\r\n    </button>\r\n  </div>\r\n\r\n\r\n  <mat-table  #table [dataSource]=\"dataSource\">\r\n\r\n    <ng-container matColumnDef=\"registrationNumber\">\r\n\r\n      <mat-header-cell  *matHeaderCellDef> Registration number</mat-header-cell>\r\n\r\n      <mat-cell *matCellDef=\"let element\"> {{element.registrationNumber}}</mat-cell>\r\n\r\n    </ng-container>\r\n\r\n    <ng-container matColumnDef=\"transportType\">\r\n\r\n      <mat-header-cell *matHeaderCellDef> Transport type</mat-header-cell>\r\n\r\n      <mat-cell class=\"file-type-mat-cell\" *matCellDef=\"let element\"> {{element.transportType}}</mat-cell>\r\n\r\n    </ng-container>\r\n\r\n<!--   <ng-container matColumnDef=noFunctionally\">\r\n\r\n      <mat-header-cell  *matHeaderCellDef> No functionally</mat-header-cell>\r\n\r\n      <mat-cell> *matCellDef=\"let element\"> {{element.transportType}} </mat-cell>\r\n\r\n    </ng-container>-->\r\n\r\n    <mat-header-row *matHeaderRowDef=\"displayedColumns\">\r\n\r\n    </mat-header-row>\r\n\r\n    <mat-row *matRowDef=\"let row; columns: displayedColumns;\">\r\n    </mat-row>\r\n\r\n  </mat-table>\r\n\r\n\r\n\r\n<div>\r\n  <div class = \"mat-icon-button\" matTooltip=\"Add transport\">\r\n    <button mat-icon-button [routerLink]=\"['./add'] \">\r\n    <mat-icon><i class=\"material-icons md-48 blue\" aria-hidden=\"true\">add_circle</i></mat-icon>\r\n  </button>\r\n  </div>\r\n</div>\r\n\r\n</div>\r\n\r\n<div class=\"form-point\">\r\n  <router-outlet></router-outlet>\r\n</div>\r\n\r\n\r\n"
 
 /***/ }),
 
@@ -1064,7 +1153,7 @@ var TransportComponent = (function (_super) {
             selector: 'app-transport',
             template: __webpack_require__("../../../../../src/component/pages/transport/transport.component.html"),
             styles: [__webpack_require__("../../../../../src/component/pages/transport/transport.component.css")],
-            encapsulation: __WEBPACK_IMPORTED_MODULE_0__angular_core__["_13" /* ViewEncapsulation */].Emulated,
+            encapsulation: __WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* ViewEncapsulation */].Emulated,
             preserveWhitespaces: true,
             providers: [__WEBPACK_IMPORTED_MODULE_2__service_transport_service_transport_data_source__["a" /* TransportDataSource */]]
         }),
@@ -1107,7 +1196,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 if (__WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment */].production) {
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_16" /* enableProdMode */])();
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_17" /* enableProdMode */])();
 }
 Object(__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_2__app_module__["a" /* AppModule */])
     .catch(function (err) { return console.log(err); });
@@ -1260,7 +1349,7 @@ var PointDataSource = (function (_super) {
     PointDataSource.prototype.disconnect = function (collectionViewer) {
     };
     PointDataSource = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__point_service__["a" /* PointService */]])
     ], PointDataSource);
     return PointDataSource;
@@ -1319,7 +1408,7 @@ var PointService = (function () {
     PointService.LOAD_POINTS_URL = '/api/points';
     PointService.ADD_POINT_URL = '/api/points/add';
     PointService = PointService_1 = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Http */], __WEBPACK_IMPORTED_MODULE_1__security_service_security_service__["a" /* SecurityService */]])
     ], PointService);
     return PointService;
@@ -1472,7 +1561,7 @@ var SecurityService = (function () {
      */
     SecurityService.ACCESS_TOKEN_HEADER = 'X-Access-Token';
     SecurityService = SecurityService_1 = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */]])
     ], SecurityService);
     return SecurityService;
@@ -1538,7 +1627,7 @@ var TransportDataSource = (function (_super) {
     TransportDataSource.prototype.disconnect = function (collectionViewer) {
     };
     TransportDataSource = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__transport_service__["a" /* TransportService */]])
     ], TransportDataSource);
     return TransportDataSource;
@@ -1595,8 +1684,13 @@ var TransportService = (function () {
     };
     TransportService.LOAD_TRANSPORTS_URL = '/api/transports';
     TransportService.ADD_TRANSPORT_URL = 'api/transports/add';
+    TransportService.TRANSPORT_TYPE_BUS = "BUS";
+    TransportService.TRANSPORT_TYPE_TRAM = "TRAM";
+    TransportService.TRANSPORT_TYPE_TROLLEYBUS = "TROLLEYBUS";
+    TransportService.TRANSPORT_FUNCTIONALITY_BROKEN = "BROKEN";
+    TransportService.TRANSPORT_FUNCTIONALITY_WORKING = "WORKING";
     TransportService = TransportService_1 = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */], __WEBPACK_IMPORTED_MODULE_2__security_service_security_service__["a" /* SecurityService */]])
     ], TransportService);
     return TransportService;

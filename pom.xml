@@ -184,6 +184,11 @@
             <version>2.6.1</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>org.unitils</groupId>
+            <artifactId>unitils-core</artifactId>
+            <version>RELEASE</version>
+        </dependency>
 
     </dependencies>
 

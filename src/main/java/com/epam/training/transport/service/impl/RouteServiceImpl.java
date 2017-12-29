@@ -97,7 +97,7 @@ public class RouteServiceImpl implements RouteService {
 
     @Override
     public RouteEntity load(final String number) {
-        return routeRepository.findByNumber(number);
+        return routeRepository.findByNumberLike(number);
     }
 
     @Override
@@ -106,7 +106,7 @@ public class RouteServiceImpl implements RouteService {
     }
 
     @Override
-    public RouteEntity addPointToRoute(final long routeId, final long pointId, final int sequence) {
+    public RouteEntity addPointToRoute(final long routeId, final long pointId, final int sequence, final String departureTime) {
 
         final RouteEntity route = load(routeId);
         final PointEntity point = pointService.load(pointId);
@@ -124,7 +124,7 @@ public class RouteServiceImpl implements RouteService {
 
             final List<RoutePointEntity> upRoutePointList =
                 Stream.concat(Stream.concat(routePointsList.stream()
-                    .limit(position), Stream.of(new RoutePointEntity(route, point, sequence))), routePointsList.stream()
+                    .limit(position), Stream.of(new RoutePointEntity(route, point, sequence, departureTime))), routePointsList.stream()
                         .skip(position)
                         .map(routePointEntity -> {
                             routePointEntity.setSequence(routePointEntity.getSequence() + 1);
@@ -136,17 +136,10 @@ public class RouteServiceImpl implements RouteService {
             route.setRoutePoints(upRoutePointList);
             routeRepository.save(route);
         } else {
-            routePointsList.add(new RoutePointEntity(route, point, sequence));
+            routePointsList.add(new RoutePointEntity(route, point, sequence, departureTime));
             routeRepository.save(route);
         }
         return route;
     }
 }
 
-/*
- * List<RoutePointEntity> upRoutePoints = Stream.concat(Stream.concat(routePointsList.stream()
- * .limit((position)), Stream.of(routePoint)), routePointsList.stream() .skip(position)
- * .map(routePointEntity -> { routePointEntity.setSequence(routePointEntity.getSequence() + 1);
- * return routePointEntity; })) .collect(Collectors.toList()); route.setRoutePoints(upRoutePoints);
- * routeRepository.save(route);
- */

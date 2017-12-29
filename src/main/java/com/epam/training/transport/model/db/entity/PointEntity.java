@@ -67,6 +67,6 @@ public class PointEntity extends BaseEntity implements Comparable<PointEntity> {
 
     @Override
     public String toString() {
-        return "PointEntity{" + "name='" + name + '\'' + '}';
+        return "Point{" + "name='" + name + '\'' + '}';
     }
 }

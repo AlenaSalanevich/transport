@@ -20,7 +20,5 @@ public interface TransportService {
 
     TransportEntity update(
         final long id,
-        final String registrationNumber,
-        final boolean noFunctionally,
-        final TransportType transportType);
+       final TransportEntity transport);
 }

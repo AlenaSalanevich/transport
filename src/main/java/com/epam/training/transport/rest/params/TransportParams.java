@@ -1,3 +1,4 @@
+/*
 package com.epam.training.transport.rest.params;
 
 import com.epam.training.transport.model.TransportType;
@@ -42,3 +43,4 @@ public class TransportParams {
         return transportType;
     }
 }
+*/

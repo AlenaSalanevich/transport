@@ -14,8 +14,10 @@ import org.springframework.stereotype.Service;
 
 import javax.sql.rowset.serial.SerialException;
 import javax.transaction.Transactional;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Transactional
@@ -34,10 +36,7 @@ public class PointServiceImpl implements PointService {
 
     @Override
     public PointEntity create(final String name) {
-        if (name.trim()
-            .isEmpty()) {
-            throw new ServiceException(ErrorCode.REQUIRED_FIELD);
-        }
+
         final PointEntity point = new PointEntity(name);
         try {
             pointRepository.save(point);
@@ -59,10 +58,8 @@ public class PointServiceImpl implements PointService {
     @Override
     public PointEntity load(final String name) {
 
-        final PointEntity point = pointRepository.findByName(name);
-        if (point == null) {
-            throw new ServiceException(ErrorCode.NOT_FOUND);
-        }
+        final PointEntity point = pointRepository.findByNameLike(name);
+
         return point;
     }
 
@@ -78,30 +75,26 @@ public class PointServiceImpl implements PointService {
     }
 
     @Override
-    public List<PointEntity> loadAll() {
+    public List<PointEntity> loadAll(Optional<String> startWith) {
 
-        return pointRepository.findAll()
-            .stream()
-            .sorted()
-            .collect(Collectors.toList());
+        return startWith.map(startChar -> pointRepository.findAllByNameStartsWithOrNameContains(startChar.trim(), startChar
+            .trim()))
+            .orElse(pointRepository.findAll());
     }
 
     @Override
-    public PointEntity update(final long id, final String name) {
+    public PointEntity update(final long id, final PointEntity pointEntity) {
 
-        final PointEntity upPoint = load(id);
-        final String upName = name.trim();
-        if (upName.isEmpty()) {
-            throw new ServiceException(ErrorCode.REQUIRED_FIELD);
-        }
-        upPoint.setName(upName);
+        final PointEntity point = load(id);
 
+        point.setName(pointEntity.getName());
         try {
-            pointRepository.save(upPoint);
+
+            pointRepository.save(point);
         } catch (final DataAccessException e) {
             throw new ServiceException(ErrorCode.NAME_ALREADY_EXISTS, e);
         }
+        return point;
 
-        return upPoint;
     }
 }

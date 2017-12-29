@@ -1,7 +1,7 @@
 package com.epam.training.transport.rest.controller;
 
 import com.epam.training.transport.model.db.entity.ScheduleEntity;
-import com.epam.training.transport.rest.params.RoutePointParams;
+import com.epam.training.transport.rest.params.RoutePointModel;
 import com.epam.training.transport.rest.params.ScheduleCreateParams;
 import com.epam.training.transport.service.PointService;
 import com.epam.training.transport.service.RouteService;
@@ -48,14 +48,14 @@ public class ScheduleController {
 
     @PostMapping(value = "/add/transport")
     @ResponseBody
-    public ScheduleEntity addTransportToSchedule(@RequestBody RoutePointParams routePointParams) {
+    public ScheduleEntity addTransportToSchedule(@RequestBody RoutePointModel routePointParams) {
 
         return null;
     }
 
     @PostMapping(value = "/add/route")
     @ResponseBody
-    public ScheduleEntity addRouteToSchedule(@RequestBody RoutePointParams routePointParams) {
+    public ScheduleEntity addRouteToSchedule(@RequestBody RoutePointModel routePointParams) {
 
         return null;
     }
@@ -67,11 +67,11 @@ public class ScheduleController {
         return ResponseEntity.ok("Route is deleted!");
     }
 
-    @GetMapping("/{isHoliday}")
+    @GetMapping()
     @ResponseBody
-    public List<ScheduleEntity> loadAll(@PathVariable
-    final Optional<Boolean> isHoliday) {
-        return scheduleService.loadAll(isHoliday);
+    public List<ScheduleEntity> loadAll(@RequestParam
+    final Optional<Boolean> optIsHoliday) {
+        return scheduleService.loadAll(optIsHoliday);
     }
 
     @GetMapping("/{id}")
