@@ -15,7 +15,7 @@ public interface PointRepository extends JpaRepository<PointEntity, Long> {
     PointEntity findByNameIgnoreCase(@Param("name")
     final String name);
 
-    List<PointEntity> findAllByNameStartsWithOrNameContains(@Param("startChar")
+    List<PointEntity> findAllByNameStartsWithAndNameContains(@Param("startChar")
     final String startChar, @Param("containChar")
     final String containChar);
 

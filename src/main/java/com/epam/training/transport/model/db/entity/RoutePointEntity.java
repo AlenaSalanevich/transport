@@ -13,7 +13,7 @@ public class RoutePointEntity extends BaseEntity implements Serializable, Compar
     @Column(name = "sequence", nullable = false, length = 10)
     private int sequence;
 
-    @Column(name = "departure_time)", nullable = false, length = 5)
+    @Column(name = "departure_time", unique = true, nullable = false, length = 5)
     private String departureTime;
 
     @ManyToOne
@@ -25,15 +25,13 @@ public class RoutePointEntity extends BaseEntity implements Serializable, Compar
     @JsonIgnore
     private RouteEntity route;
 
-
-
     public RoutePointEntity() {
     }
 
     public RoutePointEntity(
         final long id,
-        final PointEntity point,
         final RouteEntity route,
+        final PointEntity point,
         final int sequence,
         final String departureTime) {
         super(id);

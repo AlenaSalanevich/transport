@@ -1,19 +1,22 @@
 package com.epam.training.transport.rest.controller;
 
-import com.epam.training.transport.rest.params.RoutePointDeleteParams;
-import com.epam.training.transport.service.exceptions.ErrorCode;
-import com.epam.training.transport.service.exceptions.ServiceException;
+import com.epam.training.transport.rest.models.RouteModel;
+
+import com.epam.training.transport.utils.RouteModelValidator;
+import com.epam.training.transport.utils.RoutePointModelValidator;
 import com.epam.training.transport.utils.Routes;
-import com.epam.training.transport.rest.params.RouteCreateParams;
-import com.epam.training.transport.rest.params.RoutePointModel;
+import com.epam.training.transport.rest.models.RoutePointModel;
 import com.epam.training.transport.model.db.entity.RouteEntity;
 import com.epam.training.transport.service.PointService;
 import com.epam.training.transport.service.RouteService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -25,32 +28,42 @@ public class RouteController {
     @Autowired
     PointService pointService;
 
+/*    @InitBinder ()
+    private void initBinder(WebDataBinder binder) {
+        binder.addValidators(new RouteModelValidator(), new RoutePointModelValidator());
+    }*/
+
     RouteController(final RouteService routeService, final PointService pointService) {
         this.routeService = routeService;
         this.pointService = pointService;
     }
 
     @PostMapping(value = "/add")
+    @ApiOperation("Create new RouteEntity")
     @ResponseBody
-    public RouteEntity create(@RequestBody RouteCreateParams params) {
-        final String number =
-            params.getNumber()
-                .trim();
-        if (number.isEmpty()) {
-            throw new ServiceException(ErrorCode.REQUIRED_FIELD);
-        }
-        return routeService.create(number, params.getDescription());
+    public RouteEntity create(@RequestBody RouteModel model) {
+
+        return routeService.create(model.getNumber(), model.getDescription());
     }
 
-    @PostMapping(value = "/add/point")
+    @PostMapping(value = "/add/point/{routeId}/{pointId}")
+    @ApiOperation("Add new point to the route")
     @ResponseBody
-    public RouteEntity addPointToRoute(@RequestBody RoutePointModel model) {
+    public RouteEntity addPointToRoute(@PathVariable final long routeId, @PathVariable final long pointId, @RequestBody RoutePointModel routePointModel) {
 
-        return routeService.addPointToRoute(model.getRouteId(), model.getPointId(), model.getSequence(), model
+        return routeService.addPointToRoute(routeId, pointId, routePointModel.getSequence(), routePointModel
             .getDepartureTime());
     }
 
-    @PostMapping(value = "/{routeId}/{pointId}")
+    /*
+     * @PutMapping("/{id}")
+     * 
+     * @ResponseBody public RouteEntity update(@PathVariable final long id, @RequestBody RouteModel
+     * model){ return routeService.update(id, model); }
+     */
+
+    @DeleteMapping(value = "/{routeId}/{pointId}")
+    @ApiOperation("Delete point by id from the route")
     @ResponseBody
     public RouteEntity deletePointFromRoute(@PathVariable
     final long routeId, @PathVariable
@@ -59,6 +72,7 @@ public class RouteController {
     }
 
     @DeleteMapping("/{id}")
+    @ApiOperation("Delete route by id")
     public ResponseEntity<?> delete(@PathVariable
     final long id) {
         routeService.delete(id);
@@ -66,12 +80,14 @@ public class RouteController {
     }
 
     @GetMapping()
+    @ApiOperation("Load all routes  by default. Optionally can load routes by same description")
     @ResponseBody
     public List<RouteEntity> loadAll() {
         return routeService.loadAll();
     }
 
     @GetMapping("/{id}")
+    @ApiOperation("Load route by id")
     @ResponseBody
     public RouteEntity load(@PathVariable
     final long id) {

@@ -91,7 +91,11 @@ public class RouteServiceImpl implements RouteService {
 
         return routeRepository.findAll()
             .stream()
-            .sorted()
+            .map(routeEntity -> {
+                routeEntity.getRoutePoints()
+                    .sort(Comparator.comparingInt(RoutePointEntity::getSequence));
+                return routeEntity;
+            })
             .collect(Collectors.toList());
     }
 
@@ -112,7 +116,7 @@ public class RouteServiceImpl implements RouteService {
         final PointEntity point = pointService.load(pointId);
 
         final List<RoutePointEntity> routePointsList = route.getRoutePoints();
-        Collections.sort(routePointsList);
+        routePointsList.sort(Comparator.comparingInt(RoutePointEntity::getSequence));
 
         final Optional<RoutePointEntity> optional =
             routePointsList.stream()
@@ -124,22 +128,23 @@ public class RouteServiceImpl implements RouteService {
 
             final List<RoutePointEntity> upRoutePointList =
                 Stream.concat(Stream.concat(routePointsList.stream()
-                    .limit(position), Stream.of(new RoutePointEntity(route, point, sequence, departureTime))), routePointsList.stream()
+                    .limit(position), Stream.of(new RoutePointEntity(route, point, sequence, departureTime))), routePointsList
+                        .stream()
                         .skip(position)
                         .map(routePointEntity -> {
                             routePointEntity.setSequence(routePointEntity.getSequence() + 1);
                             return routePointEntity;
                         })
-                        .sorted())
+                        .sorted(Comparator.comparingInt(RoutePointEntity::getSequence)))
                     .collect(Collectors.toList());
 
             route.setRoutePoints(upRoutePointList);
             routeRepository.save(route);
         } else {
             routePointsList.add(new RoutePointEntity(route, point, sequence, departureTime));
+            routePointsList.sort(Comparator.comparingInt(RoutePointEntity::getSequence));
             routeRepository.save(route);
         }
         return route;
     }
 }
-

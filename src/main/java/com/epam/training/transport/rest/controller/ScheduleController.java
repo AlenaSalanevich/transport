@@ -1,12 +1,13 @@
 package com.epam.training.transport.rest.controller;
 
 import com.epam.training.transport.model.db.entity.ScheduleEntity;
-import com.epam.training.transport.rest.params.RoutePointModel;
-import com.epam.training.transport.rest.params.ScheduleCreateParams;
+import com.epam.training.transport.rest.models.RoutePointModel;
+import com.epam.training.transport.rest.models.ScheduleModel;
 import com.epam.training.transport.service.PointService;
 import com.epam.training.transport.service.RouteService;
 import com.epam.training.transport.service.ScheduleService;
 import com.epam.training.transport.utils.Routes;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -38,12 +39,12 @@ public class ScheduleController {
         this.routeService = routeService;
     }
 
-    @PostMapping(value = "/add")
+    @PostMapping(value = "/add/{routeId}/{transportId}")
+    @ApiOperation("Create new Schedule entity")
     @ResponseBody
-    public ScheduleEntity create(@RequestBody ScheduleCreateParams params) {
+    public ScheduleEntity create(@PathVariable final long routeId, @PathVariable final long transportId, @RequestBody final ScheduleModel model) {
 
-        return scheduleService.create(params.getRouteId(), params.getTransportId(), params.getDirection(), params.isHoliday(),
-            params.getStartTime(), params.getEndTime());
+        return scheduleService.create(routeId, transportId, model.getDirection(), model.isHoliday());
     }
 
     @PostMapping(value = "/add/transport")

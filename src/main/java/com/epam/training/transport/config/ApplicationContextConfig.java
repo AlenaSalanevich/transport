@@ -16,6 +16,7 @@ import springfox.documentation.spring.web.plugins.Docket;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 import static springfox.documentation.schema.AlternateTypeRules.newRule;
 
@@ -42,6 +43,7 @@ public class ApplicationContextConfig {
                 .select()
                 .paths(Predicates.not(PathSelectors.regex("/error")))
                 .apis(RequestHandlerSelectors.any())
-                .build();
+                .build()
+                .genericModelSubstitutes(Optional.class);
     }
 }

@@ -18,7 +18,7 @@ public interface TransportService {
 
     void delete(final long id);
 
-    TransportEntity update(
-        final long id,
-       final TransportEntity transport);
+    TransportEntity update(final long id, final TransportEntity transport);
+
+    List<TransportEntity> loadLike(final String registrationNumber);
 }

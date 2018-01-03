@@ -13,9 +13,7 @@ public interface ScheduleService {
         final long routeId,
         final long transportId,
         final Direction direction,
-        final boolean isHoliday,
-        final Time startTime,
-        final Time endTime);
+        final boolean isHoliday);
 
     List<ScheduleEntity> loadAll(final Optional<Boolean> isHoliday);
 

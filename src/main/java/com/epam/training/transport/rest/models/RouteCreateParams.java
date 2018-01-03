@@ -1,4 +1,4 @@
-package com.epam.training.transport.rest.params;
+package com.epam.training.transport.rest.models;
 
 public class RouteCreateParams {
 

@@ -31,8 +31,7 @@ public class ScheduleEntity extends BaseEntity {
         final RouteEntity route,
         final TransportEntity transport,
         final Direction direction,
-        final boolean isHoliday,
-        final String departureTime) {
+        final boolean isHoliday) {
         super(id);
         this.route = route;
         this.transport = transport;
@@ -45,8 +44,7 @@ public class ScheduleEntity extends BaseEntity {
         final RouteEntity route,
         final TransportEntity transport,
         final Direction direction,
-        final boolean isHoliday,
-        final String departureTime) {
+        final boolean isHoliday) {
         this.route = route;
         this.transport = transport;
         this.direction = direction;

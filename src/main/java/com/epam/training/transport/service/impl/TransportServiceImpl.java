@@ -45,6 +45,7 @@ public class TransportServiceImpl implements TransportService {
 
     @Override
     public TransportEntity load(final String registrationNumber) {
+
         return transportRepository.findByRegistrationNumber(registrationNumber);
     }
 
@@ -73,16 +74,23 @@ public class TransportServiceImpl implements TransportService {
     @Override
     public TransportEntity update(final long id, final TransportEntity upTransport) {
 
-        final TransportEntity transport = load(id);
-
-        transport.setRegistrationNumber(upTransport.getRegistrationNumber());
-        transport.setNoFunctionally(upTransport.isNoFunctionally());
-        transport.setTransportType(upTransport.getTransportType());
+        /*
+         * final TransportEntity transport = load(id);
+         * 
+         * transport.setRegistrationNumber(upTransport.getRegistrationNumber());
+         * transport.setNoFunctionally(upTransport.isNoFunctionally());
+         * transport.setTransportType(upTransport.getTransportType());
+         */
         try {
-            transportRepository.save(transport);
+            transportRepository.save(upTransport);
         } catch (final DataIntegrityViolationException e) {
             throw new ServiceException(ErrorCode.NAME_ALREADY_EXISTS, e);
         }
-        return transport;
+        return upTransport;
+    }
+
+    @Override
+    public List<TransportEntity> loadLike(final String registrationNumber) {
+        return transportRepository.findAllByRegistrationNumberContains(registrationNumber);
     }
 }

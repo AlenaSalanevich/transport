@@ -33,13 +33,10 @@ public class ScheduleServiceImpl implements ScheduleService {
         final long routeId,
         final long transportId,
         final Direction direction,
-        final boolean isHoliday,
-        final Time startTime,
-        final Time endTime) {
+        final boolean isHoliday) {
         ScheduleEntity schedule = new ScheduleEntity();
         schedule.setRoute(routeService.load(routeId));
         schedule.setTransport(transportService.load(transportId));
-
         schedule.setDirection(direction);
         schedule.setHoliday(isHoliday);
         scheduleRepository.save(schedule);
@@ -50,12 +47,6 @@ public class ScheduleServiceImpl implements ScheduleService {
     public List<ScheduleEntity> loadAll(final Optional<Boolean> optIsHoliday) {
 
       return  optIsHoliday.map(isHoliday -> scheduleRepository.findAllByIsHoliday(isHoliday)).orElseGet(()-> scheduleRepository.findAll());
-      
-       
-       /* if (isHoliday.isPresent()) {
-            return scheduleRepository.findAllByIsHoliday(isHoliday.get());
-        }
-        return scheduleRepository.findAll();*/
     }
 
     @Override

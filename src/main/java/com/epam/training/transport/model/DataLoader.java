@@ -29,7 +29,7 @@ public class DataLoader {
         this.routeRepository = routeRepository;
         this.transportRepository = transportRepository;
         loadPoints();
-       loadRoutes();
+        loadRoutes();
         loadTransports();
     }
 
@@ -50,10 +50,10 @@ public class DataLoader {
         routeRepository.save(new RouteEntity("60", "From ABC to CDE"));
         routeRepository.save(new RouteEntity("200", "From BCD to CDE"));
         routeRepository.save(new RouteEntity("600", "From DEF to ABC"));
-        routeRepository.save(new RouteEntity("6", "From ABC to EFG"));
-        routeRepository.save(new RouteEntity("210", "From BCD to CDE"));
-        routeRepository.save(new RouteEntity("1100", "From BCD to CDE"));
-        routeRepository.save(new RouteEntity("10", "From BCD to CDE"));
+        routeRepository.save(new RouteEntity("6", "From UVW to OPQ"));
+        routeRepository.save(new RouteEntity("210", "From BCD to ABC"));
+        routeRepository.save(new RouteEntity("1100", "From BCD to HIK"));
+        routeRepository.save(new RouteEntity("10", "From LMN to UVW"));
     }
 
     public void loadTransports() {
@@ -64,5 +64,8 @@ public class DataLoader {
         transportRepository.save(new TransportEntity("1616 IJ-4", TransportType.TRAM, true));
         transportRepository.save(new TransportEntity("1717 KL-4", TransportType.BUS, true));
         transportRepository.save(new TransportEntity("1817 MN-4", TransportType.TROLLEYBUS, true));
+        transportRepository.save(new TransportEntity("7489 PO-3", TransportType.TROLLEYBUS, true));
+        transportRepository.save(new TransportEntity("2245 NJ-8", TransportType.TROLLEYBUS, false));
+        transportRepository.save(new TransportEntity("4528 KL-1", TransportType.TRAM, false));
     }
 }

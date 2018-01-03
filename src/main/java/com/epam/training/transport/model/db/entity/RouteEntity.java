@@ -1,9 +1,11 @@
 package com.epam.training.transport.model.db.entity;
 
+import javafx.collections.transformation.SortedList;
 import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 @Entity
@@ -13,7 +15,7 @@ public class RouteEntity extends BaseEntity implements Comparable<RouteEntity> {
     @Column(name = "number", nullable = false, unique = true, length = 20)
     private String number;
 
-    @Column(name = "description")
+    @Column(name = "description", length = 200)
     private String description;
 
     @OneToMany(mappedBy = "route", cascade = CascadeType.ALL)
@@ -34,6 +36,7 @@ public class RouteEntity extends BaseEntity implements Comparable<RouteEntity> {
     }
 
     public List<RoutePointEntity> getRoutePoints() {
+        routePoints.sort(Comparator.comparingInt(RoutePointEntity::getSequence));
         return routePoints;
     }
 

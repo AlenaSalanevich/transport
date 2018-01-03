@@ -1,6 +1,6 @@
 package com.epam.training.transport.utils;
 
-import com.epam.training.transport.rest.params.PointModel;
+import com.epam.training.transport.rest.models.PointModel;
 
 import com.epam.training.transport.service.exceptions.ErrorCode;
 import org.springframework.validation.Errors;
@@ -24,11 +24,11 @@ public class PointModelValidator implements Validator {
             toValidate.getName()
                 .trim();
         if (trim.isEmpty()) {
-            errors.rejectValue("name", ErrorCode.REQUIRED_FIELD.toString(), "Name could not contain empty spaces.");
+            errors.rejectValue("name", ErrorCode.REQUIRED_FIELD.toString(), "Name could not contain only empty spaces.");
         }
-        if (trim.length() < 3) {
+       /* if (trim.length() < 3) {
             errors.rejectValue("name", ErrorCode.REQUIRED_FIELD.toString(),
                 "Name must contain 3 or more symbols excluding empty spaces.");
-        }
+        }*/
     }
 }

@@ -77,7 +77,7 @@ public class PointServiceImpl implements PointService {
     @Override
     public List<PointEntity> loadAll(Optional<String> startWith) {
 
-        return startWith.map(startChar -> pointRepository.findAllByNameStartsWithOrNameContains(startChar.trim(), startChar
+        return startWith.map(startChar -> pointRepository.findAllByNameStartsWithAndNameContains(startChar.trim(), startChar
             .trim()))
             .orElse(pointRepository.findAll());
     }
@@ -85,16 +85,13 @@ public class PointServiceImpl implements PointService {
     @Override
     public PointEntity update(final long id, final PointEntity pointEntity) {
 
-        final PointEntity point = load(id);
-
-        point.setName(pointEntity.getName());
         try {
 
-            pointRepository.save(point);
+            pointRepository.save(pointEntity);
         } catch (final DataAccessException e) {
             throw new ServiceException(ErrorCode.NAME_ALREADY_EXISTS, e);
         }
-        return point;
+        return pointEntity;
 
     }
 }

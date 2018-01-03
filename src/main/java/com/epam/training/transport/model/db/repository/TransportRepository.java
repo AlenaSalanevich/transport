@@ -14,6 +14,8 @@ public interface TransportRepository extends JpaRepository<TransportEntity, Long
 
     TransportEntity findByRegistrationNumber(final String registrationNumber);
 
+    List<TransportEntity> findAllByRegistrationNumberContains(final String registrationNumber);
+
     List<TransportEntity> findAllByTransportTypeAndNoFunctionally(@Param("transportType")
     final TransportType transportType, @Param("noFunctionally")
     final boolean noFunctionally);

@@ -1,7 +1,6 @@
 package com.epam.training.transport.utils;
 
-import com.epam.training.transport.rest.params.PointModel;
-import com.epam.training.transport.rest.params.TransportModel;
+import com.epam.training.transport.rest.models.TransportModel;
 import com.epam.training.transport.service.exceptions.ErrorCode;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
