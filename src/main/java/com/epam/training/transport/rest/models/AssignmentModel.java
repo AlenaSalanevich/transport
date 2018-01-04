@@ -5,7 +5,7 @@ import io.swagger.annotations.ApiModelProperty;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
-public class ScheduleModel {
+public class AssignmentModel {
 
 
     @NotEmpty(message = "Direction not be empty!")
@@ -16,12 +16,12 @@ public class ScheduleModel {
     @ApiModelProperty(value = "Is holiday", required = true, example = "false")
     private boolean isHoliday;
 
-    public ScheduleModel(final Direction direction, final boolean isHoliday) {
+    public AssignmentModel(final Direction direction, final boolean isHoliday) {
         this.direction = direction;
         this.isHoliday = isHoliday;
     }
 
-    public ScheduleModel() {
+    public AssignmentModel() {
     }
 
     public Direction getDirection() {

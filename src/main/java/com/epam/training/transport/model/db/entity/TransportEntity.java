@@ -5,6 +5,10 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.*;
 
+/**
+ * @author Alena_Salanevich
+ */
+
 @Entity
 @Table(name = "TRANSPORT")
 public class TransportEntity extends BaseEntity implements Comparable<TransportEntity> {

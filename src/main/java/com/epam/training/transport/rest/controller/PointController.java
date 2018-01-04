@@ -23,7 +23,7 @@ import java.util.Optional;
  * @author Alena_Salanevich
  */
 
-@Api(tags = "Point controller ")
+@Api(tags = "Point controller to create, update and delete points")
 @Controller
 @RequestMapping(path = "/" + Routes.API_POINTS)
 public class PointController {

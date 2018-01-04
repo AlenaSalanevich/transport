@@ -1,87 +1,70 @@
 package com.epam.training.transport.model.db.entity;
 
-import com.epam.training.transport.model.Direction;
-
 import javax.persistence.*;
+
+/**
+ * @author Alena_Salanevich
+ */
 
 @Entity
 @Table(name = "SCHEDULE")
 public class ScheduleEntity extends BaseEntity {
 
     @ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
-    @JoinColumn(name = "route_id")
-    private RouteEntity route;
+    @JoinColumn(name = "assignment_id")
+    private AssignmentEntity assignment;
 
-    @ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
-    @JoinColumn(name = "transport_id")
-    private TransportEntity transport;
+    @ManyToOne
+    @JoinColumn (name = "route_point_id")
+    RoutePointEntity routePointEntity;
 
-    @Column(name = "direction", nullable = false, length = 20)
-    @Enumerated(EnumType.STRING)
-    private Direction direction;
+    @Column(name = "departure_time", unique = true, nullable = false)
+    private String departureTime;
 
-    @Column(name = "is_holiday", nullable = false)
-    private boolean isHoliday;
+    public ScheduleEntity(
+        final long id,
+        final AssignmentEntity assignment,
+        final RoutePointEntity routePointEntity,
+        final String departureTime) {
+        super(id);
+        this.assignment = assignment;
+        this.routePointEntity = routePointEntity;
+        this.departureTime = departureTime;
+    }
+
+    public ScheduleEntity(
+        final AssignmentEntity assignment,
+        final RoutePointEntity routePointEntity,
+        final String departureTime) {
+        this.assignment = assignment;
+        this.routePointEntity = routePointEntity;
+        this.departureTime = departureTime;
+    }
 
     public ScheduleEntity() {
     }
 
-    public ScheduleEntity(
-        final long id,
-        final RouteEntity route,
-        final TransportEntity transport,
-        final Direction direction,
-        final boolean isHoliday) {
-        super(id);
-        this.route = route;
-        this.transport = transport;
-        this.direction = direction;
-        this.isHoliday = isHoliday;
-
+    public AssignmentEntity getAssignment() {
+        return assignment;
     }
 
-    public ScheduleEntity(
-        final RouteEntity route,
-        final TransportEntity transport,
-        final Direction direction,
-        final boolean isHoliday) {
-        this.route = route;
-        this.transport = transport;
-        this.direction = direction;
-        this.isHoliday = isHoliday;
-
+    public void setAssignment(final AssignmentEntity assignment) {
+        this.assignment = assignment;
     }
 
-    public RouteEntity getRoute() {
-        return route;
+    public RoutePointEntity getRoutePointEntity() {
+        return routePointEntity;
     }
 
-    public void setRoute(final RouteEntity route) {
-        this.route = route;
+    public void setRoutePointEntity(final RoutePointEntity routePointEntity) {
+        this.routePointEntity = routePointEntity;
     }
 
-    public TransportEntity getTransport() {
-        return transport;
+    public String getDepartureTime() {
+        return departureTime;
     }
 
-    public void setTransport(final TransportEntity transport) {
-        this.transport = transport;
+    public void setDepartureTime(final String departureTime) {
+        this.departureTime = departureTime;
     }
-
-    public Direction getDirection() {
-        return direction;
-    }
-
-    public void setDirection(final Direction direction) {
-        this.direction = direction;
-    }
-
-    public boolean isHoliday() {
-        return isHoliday;
-    }
-
-    public void setHoliday(final boolean holiday) {
-        isHoliday = holiday;
-    }
-
 }

@@ -1,5 +1,9 @@
 package com.epam.training.transport.service.exceptions;
 
+/**
+ * @author Alena_Salanevich
+ */
+
 public class ServiceException extends RuntimeException {
 
     private ErrorCode errorCode;

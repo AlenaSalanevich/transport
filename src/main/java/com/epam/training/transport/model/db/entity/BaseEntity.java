@@ -2,6 +2,10 @@ package com.epam.training.transport.model.db.entity;
 
 import javax.persistence.*;
 
+/**
+ * @author Alena_Salanevich
+ */
+
 @MappedSuperclass
 public abstract class BaseEntity {
 

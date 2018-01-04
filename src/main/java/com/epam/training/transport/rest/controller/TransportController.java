@@ -19,7 +19,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-@Api(tags = "Transport controller")
+/**
+ * @author Alena_Salanevich
+ */
+
+@Api(tags = "Transport controller to create, update and delete transport")
 @Controller
 @RequestMapping(path = "/" + Routes.API_TRANSPORTS)
 public class TransportController {
@@ -39,15 +43,14 @@ public class TransportController {
         this.transportService = transportService;
     }
 
-    @PostMapping(value = "/add")
-    @ApiOperation("Create new transport entity")
+    @PostMapping()
+    @ApiOperation("Create new transport")
     @ResponseBody
     public TransportEntity create(@RequestBody TransportModel model) {
-
         return transportService.create(model.getRegistrationNumber(), model.isNoFunctionally(), model.getTransportType());
     }
 
-    @PutMapping(value = "/update/{id}")
+    @PutMapping(value = "{id}")
     @ApiOperation("Update transport by id with same parameters")
     @ResponseBody
     public TransportEntity update(@PathVariable
@@ -75,7 +78,7 @@ public class TransportController {
 
         return transportService.load(id);
     }
-
+/*
     @GetMapping("/load")
     @ApiOperation("Load transports by registration number")
     @ResponseBody
@@ -84,7 +87,7 @@ public class TransportController {
     final String registrationNumber) {
 
         return transportService.loadLike(registrationNumber);
-    }
+    }*/
 
     @GetMapping()
     @ApiOperation("Load all transports by default. Load transports by parameters: transport type or functionality")
@@ -99,5 +102,4 @@ public class TransportController {
 
         return transportService.loadAll(type, noFunctionally);
     }
-
 }

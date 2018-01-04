@@ -5,6 +5,10 @@ import com.epam.training.transport.service.exceptions.ErrorCode;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
+/**
+ * @author Alena_Salanevich
+ */
+
 public class TransportModelValidator implements Validator {
     @Override
     public boolean supports(final Class<?> clazz) {

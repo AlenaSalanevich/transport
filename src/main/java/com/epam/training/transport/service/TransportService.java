@@ -6,6 +6,10 @@ import com.epam.training.transport.model.db.entity.TransportEntity;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * @author Alena_Salanevich
+ */
+
 public interface TransportService {
 
     TransportEntity create(final String registrationNumber, final boolean noFunctionally, final TransportType transportType);

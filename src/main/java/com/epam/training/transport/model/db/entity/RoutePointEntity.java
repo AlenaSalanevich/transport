@@ -6,17 +6,17 @@ import org.jetbrains.annotations.NotNull;
 import javax.persistence.*;
 import java.io.Serializable;
 
+/**
+ * @author Alena_Salanevich
+ */
+
 @Entity
-@Table(name = "ROUTE_POINT", uniqueConstraints = { @UniqueConstraint(columnNames = { "point_id"})})
+@Table(name = "ROUTE_POINT")
 public class RoutePointEntity extends BaseEntity implements Serializable, Comparable<RoutePointEntity> {
 
     @Column(name = "sequence", nullable = false, length = 10)
     private int sequence;
 
-    /*
-     * @Column(name = "departure_time", unique = true, nullable = false, length = 5) private String
-     * departureTime;
-     */
 
     @ManyToOne
     @JoinColumn(name = "point_id")

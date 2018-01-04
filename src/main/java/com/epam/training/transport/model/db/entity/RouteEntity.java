@@ -1,12 +1,15 @@
 package com.epam.training.transport.model.db.entity;
 
-import javafx.collections.transformation.SortedList;
 import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+
+/**
+ * @author Alena_Salanevich
+ */
 
 @Entity
 @Table(name = "ROUTES")

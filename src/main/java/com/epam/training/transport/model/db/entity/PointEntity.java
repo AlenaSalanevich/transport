@@ -8,6 +8,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * @author Alena_Salanevich
+ */
+
 @Entity
 @Table(name = "POINTS")
 public class PointEntity extends BaseEntity implements Comparable<PointEntity> {

@@ -5,6 +5,10 @@ import com.epam.training.transport.model.db.entity.PointEntity;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * @author Alena_Salanevich
+ */
+
 public interface PointService {
 
     PointEntity create(final String name);

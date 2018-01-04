@@ -4,6 +4,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+/**
+ * @author Alena_Salanevich
+ */
+
 @Entity
 @Table(name = "ROLES")
 public class RoleEntity extends BaseEntity {

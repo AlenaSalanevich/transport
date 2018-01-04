@@ -20,6 +20,10 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+/**
+ * @author Alena_Salanevich
+ */
+
 @Transactional
 @Service("pointService")
 public class PointServiceImpl implements PointService {

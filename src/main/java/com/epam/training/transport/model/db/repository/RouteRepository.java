@@ -8,6 +8,10 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * @author Alena_Salanevich
+ */
+
 @Repository
 public interface RouteRepository extends JpaRepository<RouteEntity, Long> {
 

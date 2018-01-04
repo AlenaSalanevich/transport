@@ -20,6 +20,10 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
+/**
+ * @author Alena_Salanevich
+ */
+
 @Transactional
 @Service("transportService")
 public class TransportServiceImpl implements TransportService {

@@ -2,12 +2,19 @@ package com.epam.training.transport.model;
 
 import com.epam.training.transport.model.db.entity.PointEntity;
 import com.epam.training.transport.model.db.entity.RouteEntity;
+import com.epam.training.transport.model.db.entity.RoutePointEntity;
 import com.epam.training.transport.model.db.entity.TransportEntity;
 import com.epam.training.transport.model.db.repository.PointRepository;
 import com.epam.training.transport.model.db.repository.RouteRepository;
 import com.epam.training.transport.model.db.repository.TransportRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+
+/**
+ * @author Alena_Salanevich
+ */
 
 @Component
 public class DataLoader {

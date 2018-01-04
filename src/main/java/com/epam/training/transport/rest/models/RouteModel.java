@@ -4,6 +4,10 @@ import io.swagger.annotations.ApiModelProperty;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
+/**
+ * @author Alena_Salanevich
+ */
+
 public class RouteModel {
 
     @Length(max = 20, message = "Number of route must contain 20 or less symbols!")
@@ -14,7 +18,6 @@ public class RouteModel {
     @Length(max = 200, message = "Description of route must contain 200 or less symbols!")
     @ApiModelProperty(value = "Description of route", example = "from ABC to BDC")
     private String description;
-
 
     public RouteModel() {
     }

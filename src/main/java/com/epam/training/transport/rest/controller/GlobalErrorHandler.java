@@ -2,13 +2,16 @@ package com.epam.training.transport.rest.controller;
 
 import com.epam.training.transport.rest.response.ErrorResponse;
 import com.epam.training.transport.service.exceptions.ServiceException;
-import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.dao.EmptyResultDataAccessException;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
+
+/**
+ * @author Alena_Salanevich
+ */
 
 @ControllerAdvice(value = "com.epam.training.transport.rest.controller")
 public class GlobalErrorHandler {
