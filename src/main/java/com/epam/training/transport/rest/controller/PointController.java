@@ -19,7 +19,11 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
-@Api(tags = "Point controller")
+/**
+ * @author Alena_Salanevich
+ */
+
+@Api(tags = "Point controller ")
 @Controller
 @RequestMapping(path = "/" + Routes.API_POINTS)
 public class PointController {
@@ -32,7 +36,7 @@ public class PointController {
         binder.addValidators(new PointModelValidator());
     }
 
-    @PostMapping(value = "/add")
+    @PostMapping()
     @ApiOperation("Create new PointEntity")
     @ResponseBody
     public PointEntity create(@Valid
@@ -53,7 +57,7 @@ public class PointController {
         return ResponseEntity.ok("Point is deleted!");
     }
 
-    @PutMapping(value = "/update/{id}")
+    @PutMapping(value = "/{id}")
     @ApiOperation("Update point by id  with same parameters")
     @ResponseBody
     public PointEntity update(@PathVariable
@@ -76,18 +80,11 @@ public class PointController {
     }
 
     @GetMapping()
-    @ApiOperation("Load all points by default. Load points by name like same chars")
+    @ApiOperation("Load all points by default. Load points by name likes same chars")
     @ResponseBody
-    public List<PointEntity> loadAll(@ApiParam (value = "Search point by same symbols") @RequestParam (required = false)
+    public List<PointEntity> loadAll(@ApiParam(value = "Search point by same symbols")
+    @RequestParam(required = false)
     final String likeChars) {
-               return pointService.loadAll( Optional.ofNullable(likeChars));
-    }
-
-    @GetMapping("/load")
-    @ApiOperation("Load point by the name")
-    @ResponseBody
-    public PointEntity loadByName(@RequestParam
-    final String name) {
-        return pointService.load(name.trim());
+        return pointService.loadAll(Optional.ofNullable(likeChars));
     }
 }

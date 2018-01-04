@@ -19,6 +19,10 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
+/**
+ * @author Alena_Salanevich
+ */
+
 @Controller
 @RequestMapping(path = "/" + Routes.API_ROUTES)
 public class RouteController {
@@ -28,17 +32,17 @@ public class RouteController {
     @Autowired
     PointService pointService;
 
-/*    @InitBinder ()
-    private void initBinder(WebDataBinder binder) {
-        binder.addValidators(new RouteModelValidator(), new RoutePointModelValidator());
-    }*/
+    /*
+     * @InitBinder () private void initBinder(WebDataBinder binder) { binder.addValidators(new
+     * RouteModelValidator(), new RoutePointModelValidator()); }
+     */
 
     RouteController(final RouteService routeService, final PointService pointService) {
         this.routeService = routeService;
         this.pointService = pointService;
     }
 
-    @PostMapping(value = "/add")
+    @PostMapping()
     @ApiOperation("Create new RouteEntity")
     @ResponseBody
     public RouteEntity create(@RequestBody RouteModel model) {
@@ -46,13 +50,23 @@ public class RouteController {
         return routeService.create(model.getNumber(), model.getDescription());
     }
 
-    @PostMapping(value = "/add/point/{routeId}/{pointId}")
-    @ApiOperation("Add new point to the route")
+    @PutMapping(value = "{routeId}/points/{pointId}")
+    @ApiOperation("Insert new point to the route")
     @ResponseBody
-    public RouteEntity addPointToRoute(@PathVariable final long routeId, @PathVariable final long pointId, @RequestBody RoutePointModel routePointModel) {
+    public RouteEntity insertPointToRoute(@PathVariable
+    final long routeId, @PathVariable
+    final long pointId, @RequestBody RoutePointModel routePointModel) {
 
-        return routeService.addPointToRoute(routeId, pointId, routePointModel.getSequence(), routePointModel
-            .getDepartureTime());
+        return routeService.insertPointToRoute(routeId, pointId, routePointModel.getSequence(), routePointModel.getDepartureTime());
+    }
+
+    @PostMapping(value = "{routeId}/points/{pointId}")
+    @ApiOperation("Add new point to the route")
+    public RouteEntity addPointToRoute(@PathVariable
+    final long routeId, @PathVariable
+    final long pointId) {
+
+        return routeService.addPointToRoute(routeId, pointId);
     }
 
     /*
@@ -62,7 +76,7 @@ public class RouteController {
      * model){ return routeService.update(id, model); }
      */
 
-    @DeleteMapping(value = "/{routeId}/{pointId}")
+    @DeleteMapping(value = "{routeId}/points/{pointId}")
     @ApiOperation("Delete point by id from the route")
     @ResponseBody
     public RouteEntity deletePointFromRoute(@PathVariable

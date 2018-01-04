@@ -82,6 +82,14 @@ public class RouteServiceImpl implements RouteService {
     }
 
     @Override
+    public RouteEntity addPointToRoute(long routeId, long pointId) {
+        final RouteEntity route = load(routeId);
+       route.getRoutePoints().stream().sorted(Comparator.comparingInt(RoutePointEntity::getSequence));
+
+        return null;
+    }
+
+    @Override
     public void delete(final long id) {
         routeRepository.delete(id);
     }
@@ -110,7 +118,7 @@ public class RouteServiceImpl implements RouteService {
     }
 
     @Override
-    public RouteEntity addPointToRoute(final long routeId, final long pointId, final int sequence, final String departureTime) {
+    public RouteEntity insertPointToRoute(final long routeId, final long pointId, final int sequence) {
 
         final RouteEntity route = load(routeId);
         final PointEntity point = pointService.load(pointId);
@@ -128,7 +136,7 @@ public class RouteServiceImpl implements RouteService {
 
             final List<RoutePointEntity> upRoutePointList =
                 Stream.concat(Stream.concat(routePointsList.stream()
-                    .limit(position), Stream.of(new RoutePointEntity(route, point, sequence, departureTime))), routePointsList
+                    .limit(position), Stream.of(new RoutePointEntity(route, point, sequence))), routePointsList
                         .stream()
                         .skip(position)
                         .map(routePointEntity -> {
@@ -141,7 +149,7 @@ public class RouteServiceImpl implements RouteService {
             route.setRoutePoints(upRoutePointList);
             routeRepository.save(route);
         } else {
-            routePointsList.add(new RoutePointEntity(route, point, sequence, departureTime));
+            routePointsList.add(new RoutePointEntity(route, point, sequence));
             routePointsList.sort(Comparator.comparingInt(RoutePointEntity::getSequence));
             routeRepository.save(route);
         }
