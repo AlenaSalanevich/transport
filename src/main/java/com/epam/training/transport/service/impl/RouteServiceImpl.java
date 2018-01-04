@@ -5,6 +5,7 @@ import com.epam.training.transport.model.db.entity.RouteEntity;
 import com.epam.training.transport.model.db.entity.RoutePointEntity;
 import com.epam.training.transport.model.db.repository.RoutePointRepository;
 import com.epam.training.transport.model.db.repository.RouteRepository;
+import com.epam.training.transport.rest.models.AddPointModel;
 import com.epam.training.transport.service.PointService;
 import com.epam.training.transport.service.RouteService;
 import com.epam.training.transport.service.exceptions.ErrorCode;
@@ -80,8 +81,12 @@ public class RouteServiceImpl implements RouteService {
     }
 
     @Override
-    public RouteEntity insertPoints(long routeId, List<RoutePointEntity> points) {
-        return null;
+    public RouteEntity insertPoints(long routeId, List<AddPointModel> points) {
+       RouteEntity route = load(routeId);
+      
+       points.stream().map(point->insertPoint(routeId, point.getPointId(), point.getSequense()));
+    
+             return route;
     }
 
     @Override

@@ -35,10 +35,10 @@ public class RouteController {
     @Autowired
     PointService pointService;
 
-    @InitBinder()
+/*    @InitBinder()
     private void initBinder(WebDataBinder binder) {
         binder.addValidators(new RouteModelValidator());
-    }
+    }*/
 
     RouteController(final RouteService routeService, final PointService pointService) {
         this.routeService = routeService;
@@ -70,12 +70,9 @@ public class RouteController {
     public RouteEntity insertPoints(@PathVariable
     final long routeId, @RequestBody
     final List<AddPointModel> points) {
-        RouteEntity route = routeService.load(routeId);
-        List<RoutePointEntity> routePoints = route.getRoutePoints();
-        for (AddPointModel point : points) {
-            routePoints.add(new RoutePointEntity(route, pointService.load(point.getPointId()), point.getSequense()));
-        }
-        return routeService.insertPoints(routeId, routePoints);
+
+
+        return routeService.insertPoints(routeId, points);
     }
 
     @PostMapping(value = "{routeId}/points/{pointId}")

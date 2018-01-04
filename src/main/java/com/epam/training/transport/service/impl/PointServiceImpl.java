@@ -14,10 +14,7 @@ import org.springframework.stereotype.Service;
 
 import javax.sql.rowset.serial.SerialException;
 import javax.transaction.Transactional;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -96,6 +93,10 @@ public class PointServiceImpl implements PointService {
             throw new ServiceException(ErrorCode.NAME_ALREADY_EXISTS, e);
         }
         return pointEntity;
+    }
 
+    @Override
+    public List<PointEntity> loadByListId(ArrayList<Long> idList){
+        return pointRepository.findAllById(idList);
     }
 }

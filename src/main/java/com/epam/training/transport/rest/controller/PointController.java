@@ -16,6 +16,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,11 +32,11 @@ public class PointController {
     @Autowired
     PointService pointService;
 
-    @InitBinder
+   /* @InitBinder
     private void initBinder(WebDataBinder binder) {
         binder.addValidators(new PointModelValidator());
     }
-
+*/
     @PostMapping()
     @ApiOperation("Create new PointEntity")
     @ResponseBody
@@ -87,4 +88,11 @@ public class PointController {
     final String likeChars) {
         return pointService.loadAll(Optional.ofNullable(likeChars));
     }
+
+    /*@GetMapping(value = "/byList")
+    @ApiOperation("Load all points by default. Load points by name list of id")
+    @ResponseBody
+    public List<PointEntity> loadByList(final ArrayList<Long> idList) {
+        return pointService.loadByListId(idList);
+    }*/
 }

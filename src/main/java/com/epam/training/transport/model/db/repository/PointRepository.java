@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,4 +26,6 @@ public interface PointRepository extends JpaRepository<PointEntity, Long> {
 
     PointEntity findByNameLike(@Param("likeChars")
     final String likeChars);
+
+    List<PointEntity> findAllById( final ArrayList<Long> idList);
 }
