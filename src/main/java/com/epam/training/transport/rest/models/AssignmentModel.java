@@ -5,8 +5,11 @@ import io.swagger.annotations.ApiModelProperty;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
-public class AssignmentModel {
+import javax.xml.validation.Validator;
+import java.util.ArrayList;
+import java.util.List;
 
+public class AssignmentModel {
 
     @NotEmpty(message = "Direction not be empty!")
     @ApiModelProperty(value = "Direction of route", required = true, example = "DIRECT")
@@ -21,7 +24,62 @@ public class AssignmentModel {
         this.isHoliday = isHoliday;
     }
 
+    @NotEmpty
+    @ApiModelProperty(value = "The transport id", required = true, example = "1")
+    private long transportId;
+
+    @NotEmpty
+    @ApiModelProperty(value = "The route id", required = true, example = "1")
+    private long routeId;
+
+    @ApiModelProperty(value = "List of points with departure time")
+    private List<ScheduleModel> scheduleModelList = new ArrayList<>();
+
     public AssignmentModel() {
+    }
+
+    public AssignmentModel(
+        final long transportId,
+        final long routeId,
+        final Direction direction,
+        final boolean isHoliday,
+        final List<ScheduleModel> scheduleModelList) {
+        this.transportId = transportId;
+        this.routeId = routeId;
+        this.direction = direction;
+        this.isHoliday = isHoliday;
+        this.scheduleModelList = scheduleModelList;
+    }
+
+    public AssignmentModel(final long transportId, final long routeId, final Direction direction, final boolean isHoliday) {
+        this.transportId = transportId;
+        this.routeId = routeId;
+        this.direction = direction;
+        this.isHoliday = isHoliday;
+    }
+
+    public long getTransportId() {
+        return transportId;
+    }
+
+    public void setTransportId(final long transportId) {
+        this.transportId = transportId;
+    }
+
+    public long getRouteId() {
+        return routeId;
+    }
+
+    public void setRouteId(final long routeId) {
+        this.routeId = routeId;
+    }
+
+    public List<ScheduleModel> getScheduleModelList() {
+        return scheduleModelList;
+    }
+
+    public void setScheduleModelList(final List<ScheduleModel> scheduleModelList) {
+        this.scheduleModelList = scheduleModelList;
     }
 
     public Direction getDirection() {

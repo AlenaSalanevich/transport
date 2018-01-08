@@ -3,6 +3,7 @@ package com.epam.training.transport.model.db.entity;
 import com.epam.training.transport.model.Direction;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * @author Alena_Salanevich
@@ -19,6 +20,7 @@ public class AssignmentEntity extends BaseEntity {
     @ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name = "transport_id")
     private TransportEntity transport;
+
 
     @Column(name = "direction", nullable = false, length = 20)
     @Enumerated(EnumType.STRING)

@@ -14,6 +14,8 @@ public interface RouteService {
 
     RouteEntity create(final String number, final String description);
 
+    RouteEntity update(long routId, AddPointModel point);
+
     RouteEntity insertPoint(final long routeId, final long pointId, final int sequence);
 
     RouteEntity deletePoint(long routeId, long pointId);
@@ -31,6 +33,8 @@ public interface RouteService {
     RouteEntity load(final long id);
 
     RouteEntity insertPoints(final long routeId, final List<AddPointModel> points);
+
+    RouteEntity update (final long routId, final List <AddPointModel> points);
 
     List<RoutePointEntity> loadPoints(final long routeId);
 }

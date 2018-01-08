@@ -1,9 +1,13 @@
 package com.epam.training.transport.rest.models;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class AddPointModel {
 
+    @NotEmpty
     long pointId;
 
+    @NotEmpty
     int sequence;
 
     public AddPointModel(long pointId, int sequence) {

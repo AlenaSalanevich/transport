@@ -82,49 +82,98 @@ public class RouteServiceImpl implements RouteService {
 
     @Override
     public RouteEntity insertPoints(long routeId, List<AddPointModel> points) {
-       RouteEntity route = load(routeId);
-      
-       points.stream().map(point->insertPoint(routeId, point.getPointId(), point.getSequense()));
-    
-             return route;
+        RouteEntity route = load(routeId);
+
+        for (AddPointModel point : points) {
+            insertPoint(routeId, point.getPointId(), point.getSequense());
+        }
+        return route;
+    }
+
+    @Override
+    public RouteEntity update(long routId, List<AddPointModel> points) {
+        RouteEntity routeEntity = load(routId);
+        List<RoutePointEntity> routePointEntities =
+            routeEntity.getRoutePoints()
+                .stream()
+                .sorted(Comparator.comparingInt(RoutePointEntity::getSequence))
+                .collect(Collectors.toList());
+        List<RoutePointEntity> upRoutePointEntities = new ArrayList<>();
+
+        for (AddPointModel point : points) {
+
+            upRoutePointEntities =
+                routePointEntities.stream()
+                    .filter(routePointEntity -> routePointEntity.getPoint()
+                        .getId() == point.getPointId())
+                    .map(routePointEntity -> {
+                        routePointEntity.setSequence(point.getSequense());
+                        return routePointEntity;
+                    })
+                    .collect(Collectors.toList());
+        /*    routePointEntities.stream()
+                .filter(routePointEntity -> routePointEntity.getPoint()
+                    .getId() != point.getPointId())
+                .forEach(routePointEntity -> routePointRepository.delete(routePointEntity));*/
+        }
+
+        routeEntity.setRoutePoints(upRoutePointEntities);
+        routeRepository.save(routeEntity);
+        return routeEntity;
+    }
+
+    @Override
+    public RouteEntity update(long routId, AddPointModel point) {
+        RouteEntity routeEntity = load(routId);
+        List<RoutePointEntity> routePointEntities;
+
+        RoutePointEntity routePointEntity1 = routeEntity.getRoutePoints()
+                .stream()
+                .sorted(Comparator.comparingInt(RoutePointEntity::getSequence))
+                .filter(routePointEntity -> routePointEntity.getPoint()
+                        .getId() == point.getPointId())
+                .findFirst().map(routePointEntity -> {
+                    routePointEntity.setSequence(point.getSequense());
+                    return routePointEntity;
+                }).orElseThrow(() -> new ServiceException(ErrorCode.NOT_FOUND));
+
+        return routeEntity;
     }
 
     @Override
     public RouteEntity insertPoint(final long routeId, final long pointId, final int sequence) {
 
-        final RouteEntity route = load(routeId);
-        final PointEntity point = pointService.load(pointId);
+        final RouteEntity routeEntity = load(routeId);
+        final PointEntity pointEntity = pointService.load(pointId);
 
-        final List<RoutePointEntity> routePointsList = route.getRoutePoints();
-        routePointsList.sort(Comparator.comparingInt(RoutePointEntity::getSequence));
+        final List<RoutePointEntity> routePointsList =
+            routeEntity.getRoutePoints()
+                .stream()
+                .sorted(Comparator.comparingInt(RoutePointEntity::getSequence))
+                .collect(Collectors.toList());
 
-        final Optional<RoutePointEntity> optional =
+        final Integer position =
             routePointsList.stream()
                 .filter(rp -> rp.getSequence() == sequence)
-                .findFirst();
+                .findFirst()
+                .map(rp -> routePointsList.indexOf(rp))
+                .orElse(routePointsList.size() + 1);
 
-        if (optional.isPresent()) {
-            final int position = routePointsList.indexOf(optional.get());
+        final List<RoutePointEntity> upRoutePointList =
+            Stream.concat(Stream.concat(routePointsList.stream()
+                .limit(position), Stream.of(new RoutePointEntity(routeEntity, pointEntity, sequence))), routePointsList.stream()
+                    .skip(position)
+                    .map(routePointEntity -> {
+                        routePointEntity.setSequence(routePointEntity.getSequence() + 1);
+                        return routePointEntity;
+                    })
+                    .sorted(Comparator.comparingInt(RoutePointEntity::getSequence)))
+                .collect(Collectors.toList());
 
-            final List<RoutePointEntity> upRoutePointList =
-                Stream.concat(Stream.concat(routePointsList.stream()
-                    .limit(position), Stream.of(new RoutePointEntity(route, point, sequence))), routePointsList.stream()
-                        .skip(position)
-                        .map(routePointEntity -> {
-                            routePointEntity.setSequence(routePointEntity.getSequence() + 1);
-                            return routePointEntity;
-                        })
-                        .sorted(Comparator.comparingInt(RoutePointEntity::getSequence)))
-                    .collect(Collectors.toList());
+        routeEntity.setRoutePoints(upRoutePointList);
+        routeRepository.save(routeEntity);
 
-            route.setRoutePoints(upRoutePointList);
-            routeRepository.save(route);
-        } else {
-            routePointsList.add(new RoutePointEntity(route, point, sequence));
-            routePointsList.sort(Comparator.comparingInt(RoutePointEntity::getSequence));
-            routeRepository.save(route);
-        }
-        return route;
+        return routeEntity;
     }
 
     @Override
@@ -155,22 +204,26 @@ public class RouteServiceImpl implements RouteService {
     @Override
     public RouteEntity deletePoint(final long routeId, final long pointId) {
 
-        final RouteEntity route = load(routeId);
-        final List<RoutePointEntity> routePoints = route.getRoutePoints();
-        Collections.sort(routePoints);
+        final RouteEntity routeEntity = load(routeId);
 
-        final Optional<RoutePointEntity> optional =
+        final List<RoutePointEntity> routePoints =
+            routeEntity.getRoutePoints()
+                .stream()
+                .sorted(Comparator.comparingInt(RoutePointEntity::getSequence))
+                .collect(Collectors.toList());
+
+        final Optional<Integer> position =
             routePoints.stream()
                 .filter(routePoint -> routePoint.getPoint()
                     .getId() == pointId)
-                .findFirst();
-        if (optional.isPresent()) {
-            final int position = routePoints.indexOf(optional.get());
+                .findFirst()
+                .map(rp -> routePoints.indexOf(rp));
 
+        if (position.isPresent()) {
             final List<RoutePointEntity> upRoutePoints =
                 Stream.concat(routePoints.stream()
-                    .limit(position), routePoints.stream()
-                        .skip(position)
+                    .limit(position.get()), routePoints.stream()
+                        .skip(position.get())
                         .filter(routePoint -> routePoint.getPoint()
                             .getId() != pointId)
                         .map(routePointEntity -> {
@@ -179,13 +232,13 @@ public class RouteServiceImpl implements RouteService {
                         })
                         .sorted())
                     .collect(Collectors.toList());
-            routePointRepository.delete(optional.get());
-            route.setRoutePoints(upRoutePoints);
-            routeRepository.save(route);
+            routePointRepository.delete(routePoints.get(position.get()));
+            routeEntity.setRoutePoints(upRoutePoints);
+            routeRepository.save(routeEntity);
         } else {
             throw new ServiceException(ErrorCode.NOT_FOUND);
         }
-        return route;
+        return routeEntity;
     }
 
     @Override

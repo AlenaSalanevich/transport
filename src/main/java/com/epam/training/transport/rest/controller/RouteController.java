@@ -35,10 +35,10 @@ public class RouteController {
     @Autowired
     PointService pointService;
 
-/*    @InitBinder()
+    @InitBinder({ "routeModel"})
     private void initBinder(WebDataBinder binder) {
         binder.addValidators(new RouteModelValidator());
-    }*/
+    }
 
     RouteController(final RouteService routeService, final PointService pointService) {
         this.routeService = routeService;
@@ -48,9 +48,9 @@ public class RouteController {
     @PostMapping()
     @ApiOperation("Create new route")
     @ResponseBody
-    public RouteEntity create(@RequestBody RouteModel model) {
+    public RouteEntity create(@RequestBody RouteModel routeModel) {
 
-        return routeService.create(model.getNumber(), model.getDescription());
+        return routeService.create(routeModel.getNumber(), routeModel.getDescription());
     }
 
     @PutMapping(value = "{routeId}/points/{pointId}")
@@ -71,7 +71,6 @@ public class RouteController {
     final long routeId, @RequestBody
     final List<AddPointModel> points) {
 
-
         return routeService.insertPoints(routeId, points);
     }
 
@@ -85,12 +84,14 @@ public class RouteController {
 
     }
 
-    /*
-     * @PutMapping("/{id}")
-     * 
-     * @ResponseBody public RouteEntity update(@PathVariable final long id, @RequestBody RouteModel
-     * model){ return routeService.update(id, model); }
-     */
+    @PutMapping("/{id}")
+    @ApiOperation("Update route by id")
+    @ResponseBody
+    public RouteEntity update(@PathVariable
+    final long id, @RequestBody
+    final List<AddPointModel> points) {
+        return routeService.update(id, points);
+    }
 
     @DeleteMapping(value = "{routeId}/points/{pointId}")
     @ApiOperation("Delete the point from the route")

@@ -32,19 +32,19 @@ public class PointController {
     @Autowired
     PointService pointService;
 
-   /* @InitBinder
+    @InitBinder({"pointModel"})
     private void initBinder(WebDataBinder binder) {
         binder.addValidators(new PointModelValidator());
     }
-*/
+
     @PostMapping()
     @ApiOperation("Create new PointEntity")
     @ResponseBody
     public PointEntity create(@Valid
     @RequestBody
-    final PointModel model) {
+    final PointModel pointModel) {
 
-        return pointService.create(model.getName()
+        return pointService.create(pointModel.getName()
             .trim()
             .toUpperCase());
     }

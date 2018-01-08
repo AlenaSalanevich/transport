@@ -24,4 +24,14 @@ public class ScheduleServiceImpl implements ScheduleService {
     public List<ScheduleEntity> loadAll() {
         return scheduleRepository.findAll();
     }
+
+    @Override
+    public  void delete(final long id){
+        scheduleRepository.delete(id);
+    }
+
+    @Override
+    public void deleteByAssignment(long assignmentId) {
+        scheduleRepository.deleteByAssignment_Id(assignmentId);
+    }
 }

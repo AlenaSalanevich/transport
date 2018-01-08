@@ -34,7 +34,7 @@ public class TransportController {
     @Autowired
     TransportService transportService;
 
-    @InitBinder
+    @InitBinder({"transportModel"})
     private void initBinder(WebDataBinder binder) {
         binder.addValidators(new TransportModelValidator());
     }
@@ -46,18 +46,18 @@ public class TransportController {
     @PostMapping()
     @ApiOperation("Create new transport")
     @ResponseBody
-    public TransportEntity create(@RequestBody TransportModel model) {
-        return transportService.create(model.getRegistrationNumber(), model.isNoFunctionally(), model.getTransportType());
+    public TransportEntity create(@RequestBody TransportModel transportModel) {
+        return transportService.create(transportModel.getRegistrationNumber(), transportModel.isNoFunctionally(), transportModel.getTransportType());
     }
 
     @PutMapping(value = "{id}")
     @ApiOperation("Update transport by id with same parameters")
     @ResponseBody
     public TransportEntity update(@PathVariable
-    final long id, @RequestBody TransportModel model) {
+    final long id, @RequestBody TransportModel transportModel) {
 
-        return transportService.update(id, new TransportEntity(id, model.getRegistrationNumber()
-            .trim(), model.getTransportType(), model.isNoFunctionally()));
+        return transportService.update(id, new TransportEntity(id, transportModel.getRegistrationNumber()
+            .trim(), transportModel.getTransportType(), transportModel.isNoFunctionally()));
     }
 
     @DeleteMapping("/{id}")

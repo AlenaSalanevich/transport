@@ -5,18 +5,19 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Alena_Salanevich
  */
 
 @Entity
-@Table(name = "ROUTE_POINT")
+@Table(name = "ROUTE_POINT", uniqueConstraints = @UniqueConstraint(columnNames = { "point_id", "route_id"}))
 public class RoutePointEntity extends BaseEntity implements Serializable, Comparable<RoutePointEntity> {
 
     @Column(name = "sequence", nullable = false, length = 10)
     private int sequence;
-
 
     @ManyToOne
     @JoinColumn(name = "point_id")
@@ -27,14 +28,46 @@ public class RoutePointEntity extends BaseEntity implements Serializable, Compar
     @JsonIgnore
     private RouteEntity route;
 
+    @OneToMany(mappedBy = "routePointEntity", cascade = CascadeType.ALL)
+    List<ScheduleEntity> scheduleEntities = new ArrayList<>();
+
     public RoutePointEntity() {
     }
 
     public RoutePointEntity(
-        final long id,
-        final RouteEntity route,
+        final int sequence,
         final PointEntity point,
-        final int sequence) {
+        final RouteEntity route,
+        final List<ScheduleEntity> scheduleEntities) {
+        this.sequence = sequence;
+        this.point = point;
+        this.route = route;
+        this.scheduleEntities = scheduleEntities;
+    }
+
+    public RoutePointEntity(
+        final long id,
+        final int sequence,
+        final PointEntity point,
+        final RouteEntity route,
+        final List<ScheduleEntity> scheduleEntities) {
+        super(id);
+        this.sequence = sequence;
+        this.point = point;
+        this.route = route;
+        this.scheduleEntities = scheduleEntities;
+    }
+
+    public List<ScheduleEntity> getScheduleEntities() {
+
+        return scheduleEntities;
+    }
+
+    public void setScheduleEntities(final List<ScheduleEntity> scheduleEntities) {
+        this.scheduleEntities = scheduleEntities;
+    }
+
+    public RoutePointEntity(final long id, final RouteEntity route, final PointEntity point, final int sequence) {
         super(id);
         this.point = point;
         this.route = route;
@@ -86,7 +119,9 @@ public class RoutePointEntity extends BaseEntity implements Serializable, Compar
             return false;
         if (point != null ? !point.equals(that.point) : that.point != null)
             return false;
-        return route != null ? route.equals(that.route) : that.route == null;
+        if (route != null ? !route.equals(that.route) : that.route != null)
+            return false;
+        return scheduleEntities != null ? scheduleEntities.equals(that.scheduleEntities) : that.scheduleEntities == null;
     }
 
     @Override
@@ -95,6 +130,7 @@ public class RoutePointEntity extends BaseEntity implements Serializable, Compar
         result = 31 * result + sequence;
         result = 31 * result + (point != null ? point.hashCode() : 0);
         result = 31 * result + (route != null ? route.hashCode() : 0);
+        result = 31 * result + (scheduleEntities != null ? scheduleEntities.hashCode() : 0);
         return result;
     }
 
