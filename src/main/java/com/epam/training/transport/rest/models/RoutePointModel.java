@@ -1,6 +1,9 @@
 package com.epam.training.transport.rest.models;
 
 import io.swagger.annotations.ApiModelProperty;
+import org.hibernate.validator.constraints.NotEmpty;
+
+import javax.validation.constraints.Min;
 
 /**
  * @author Alena_Salanevich
@@ -10,6 +13,8 @@ import io.swagger.annotations.ApiModelProperty;
 public class RoutePointModel {
 
     @ApiModelProperty(value = "Point sequence", required = true, example = "1")
+    @NotEmpty
+    @Min(1)
     private int sequence;
 
     public RoutePointModel() {

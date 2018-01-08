@@ -5,13 +5,19 @@ import io.swagger.annotations.ApiModelProperty;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
-import javax.xml.validation.Validator;
+import javax.validation.constraints.Min;
 import java.util.ArrayList;
 import java.util.List;
+
+
+/**
+ * @author Alena_Salanevich
+ */
 
 public class AssignmentModel {
 
     @NotEmpty(message = "Direction not be empty!")
+    @Length(min = 6, max = 7)
     @ApiModelProperty(value = "Direction of route", required = true, example = "DIRECT")
     private Direction direction;
 
@@ -19,20 +25,18 @@ public class AssignmentModel {
     @ApiModelProperty(value = "Is holiday", required = true, example = "false")
     private boolean isHoliday;
 
-    public AssignmentModel(final Direction direction, final boolean isHoliday) {
-        this.direction = direction;
-        this.isHoliday = isHoliday;
-    }
-
     @NotEmpty
+    @Min(1)
     @ApiModelProperty(value = "The transport id", required = true, example = "1")
     private long transportId;
 
     @NotEmpty
+    @Min(1)
     @ApiModelProperty(value = "The route id", required = true, example = "1")
     private long routeId;
 
-    @ApiModelProperty(value = "List of points with departure time")
+
+    @ApiModelProperty(value = "The list of the points with the departure time")
     private List<ScheduleModel> scheduleModelList = new ArrayList<>();
 
     public AssignmentModel() {
@@ -54,6 +58,10 @@ public class AssignmentModel {
     public AssignmentModel(final long transportId, final long routeId, final Direction direction, final boolean isHoliday) {
         this.transportId = transportId;
         this.routeId = routeId;
+        this.direction = direction;
+        this.isHoliday = isHoliday;
+    }
+    public AssignmentModel(final Direction direction, final boolean isHoliday) {
         this.direction = direction;
         this.isHoliday = isHoliday;
     }

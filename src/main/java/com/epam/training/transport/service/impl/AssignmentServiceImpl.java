@@ -3,6 +3,7 @@ package com.epam.training.transport.service.impl;
 import com.epam.training.transport.model.Direction;
 import com.epam.training.transport.model.db.entity.AssignmentEntity;
 import com.epam.training.transport.model.db.entity.RouteEntity;
+import com.epam.training.transport.model.db.entity.RoutePointEntity;
 import com.epam.training.transport.model.db.entity.ScheduleEntity;
 import com.epam.training.transport.model.db.repository.AssignmentRepository;
 import com.epam.training.transport.rest.models.ScheduleModel;
@@ -16,8 +17,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 /**
  * @author Alena_Salanevich
@@ -48,26 +53,61 @@ public class AssignmentServiceImpl implements AssignmentService {
         assignment.setTransport(transportService.load(transportId));
         assignment.setDirection(direction);
         assignment.setHoliday(isHoliday);
-        if (routeEntity.getRoutePoints()
-            .size() == scheduleModels.size()) {
+
+      /*  List<RoutePointEntity> routePointEntitiesModel = new ArrayList<>();
+        for (ScheduleModel scheduleModel : scheduleModels) {
+            routePointEntitiesModel.add(routeService.loadByPoint(routeId, scheduleModel.getPointId()));
+        }
+        routePointEntitiesModel.stream().sorted(Comparator.comparingInt(RoutePointEntity::getSequence)).collect(Collectors.toList());*/
+
+        List<RoutePointEntity> routePointEntities = routeEntity.getRoutePoints().stream().sorted(Comparator.comparingInt(RoutePointEntity::getSequence)).collect(Collectors.toList());
+        scheduleModels.stream().sorted(Comparator.comparingInt(ScheduleModel::getDepartureTime)).forEach(s -> {
+            RoutePointEntity routePouint = routePointEntities.remove(0);
+            if (s.getPointId() != routePouint.getPoint().getId()) {
+                throw new ServiceException(ErrorCode.REQUIRED_FIELD);
+            }
+
+            new ScheduleEntity(assignment, routePouint, s.getDepartureTime()));
+        });
+
+
+
+        // 1. достато пары время -> сиквенс
+        // 2. отсортировать по сиквенсу - 1 лист
+        // 3. остортировать по времени - 2й лист
+        // 4. написать компоратор по сиквесу и времени
+        // 5. сравнить 2 листа
+
+
+        if (routePointEntities.equals(routePointEntitiesModel)) {
+
+
             for (ScheduleModel scheduleModel : scheduleModels) {
 
-                routeEntity.getRoutePoints()
-                    .stream()
-                    .filter(routePointEntity -> routePointEntity.getPoint()
-                        .getId() == scheduleModel.getPointId())
-                    .findFirst()
-                    .map(routePointEntity -> routePointEntity.getScheduleEntities()
-                        .add(new ScheduleEntity(assignment, routePointEntity, scheduleModel.getDepartureTime())))
-                    .orElseThrow(() -> new ServiceException(ErrorCode.NOT_FOUND));
+                routePointEntities
+                        .stream()
+                        .filter(routePointEntity -> routePointEntity.getPoint()
+                                .getId() == scheduleModel.getPointId())
+                        .findFirst()
+                        .map(routePointEntity -> routePointEntity.getScheduleEntities()
+                                .add(new ScheduleEntity(assignment, routePointEntity, scheduleModel.getDepartureTime())))
+                        .orElseThrow(() -> new ServiceException(ErrorCode.NOT_FOUND));
             }
-            assignment.setRoute(routeEntity);
-            assignmentRepository.save(assignment);
-            return assignment;
+
+            List<RoutePointEntity> routePointEntitiesByTime = routePointEntities.stream().sorted(Comparator.comparingInt(RoutePointEntity::)).collect(Collectors.toList());
+            if (routePointEntities.equals(routePointEntitiesByTime)) {
+
+                assignment.setRoute(routeEntity);
+                assignmentRepository.save(assignment);
+
+                return assignment;
+
         } else {
             throw new ServiceException(ErrorCode.REQUIRED_FIELD);
         }
     }
+
+
 
     @Override
     public List<AssignmentEntity> loadAll(final Optional<Boolean> optIsHoliday) {

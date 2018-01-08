@@ -25,4 +25,6 @@ public interface AssignmentService {
     AssignmentEntity load(final long id);
 
     void delete(final long id);
+
+
 }

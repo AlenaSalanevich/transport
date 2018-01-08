@@ -37,4 +37,6 @@ public interface RouteService {
     RouteEntity update (final long routId, final List <AddPointModel> points);
 
     List<RoutePointEntity> loadPoints(final long routeId);
+
+    RoutePointEntity loadByPoint (final long routeId, final  long pointId);
 }

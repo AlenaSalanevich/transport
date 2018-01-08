@@ -5,7 +5,6 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,9 +27,6 @@ public class RoutePointEntity extends BaseEntity implements Serializable, Compar
     @JsonIgnore
     private RouteEntity route;
 
-    @OneToMany(mappedBy = "routePointEntity", cascade = CascadeType.ALL)
-    List<ScheduleEntity> scheduleEntities = new ArrayList<>();
-
     public RoutePointEntity() {
     }
 
@@ -42,7 +38,6 @@ public class RoutePointEntity extends BaseEntity implements Serializable, Compar
         this.sequence = sequence;
         this.point = point;
         this.route = route;
-        this.scheduleEntities = scheduleEntities;
     }
 
     public RoutePointEntity(
@@ -55,16 +50,6 @@ public class RoutePointEntity extends BaseEntity implements Serializable, Compar
         this.sequence = sequence;
         this.point = point;
         this.route = route;
-        this.scheduleEntities = scheduleEntities;
-    }
-
-    public List<ScheduleEntity> getScheduleEntities() {
-
-        return scheduleEntities;
-    }
-
-    public void setScheduleEntities(final List<ScheduleEntity> scheduleEntities) {
-        this.scheduleEntities = scheduleEntities;
     }
 
     public RoutePointEntity(final long id, final RouteEntity route, final PointEntity point, final int sequence) {
@@ -104,35 +89,6 @@ public class RoutePointEntity extends BaseEntity implements Serializable, Compar
         this.sequence = sequence;
     }
 
-    @Override
-    public boolean equals(final Object o) {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
-        if (!super.equals(o))
-            return false;
-
-        final RoutePointEntity that = (RoutePointEntity) o;
-
-        if (sequence != that.sequence)
-            return false;
-        if (point != null ? !point.equals(that.point) : that.point != null)
-            return false;
-        if (route != null ? !route.equals(that.route) : that.route != null)
-            return false;
-        return scheduleEntities != null ? scheduleEntities.equals(that.scheduleEntities) : that.scheduleEntities == null;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = super.hashCode();
-        result = 31 * result + sequence;
-        result = 31 * result + (point != null ? point.hashCode() : 0);
-        result = 31 * result + (route != null ? route.hashCode() : 0);
-        result = 31 * result + (scheduleEntities != null ? scheduleEntities.hashCode() : 0);
-        return result;
-    }
 
     @Override
     public int compareTo(@NotNull
