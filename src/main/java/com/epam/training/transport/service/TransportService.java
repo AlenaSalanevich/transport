@@ -12,7 +12,7 @@ import java.util.Optional;
 
 public interface TransportService {
 
-    TransportEntity create(final String registrationNumber, final boolean noFunctionally, final TransportType transportType);
+    TransportEntity create(final String registrationNumber,  final TransportType transportType, final boolean noFunctionally);
 
     TransportEntity load(final String registrationNumber);
 

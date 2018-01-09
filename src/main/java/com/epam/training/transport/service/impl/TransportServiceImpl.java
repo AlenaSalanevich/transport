@@ -34,8 +34,8 @@ public class TransportServiceImpl implements TransportService {
     @Override
     public TransportEntity create(
         final String registrationNumber,
-        final boolean noFunctionally,
-        final TransportType transportType) {
+
+        final TransportType transportType, final boolean noFunctionally) {
 
         final TransportEntity transport = new TransportEntity(registrationNumber, transportType, noFunctionally);
 

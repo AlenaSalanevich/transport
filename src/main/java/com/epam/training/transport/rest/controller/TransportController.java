@@ -34,7 +34,7 @@ public class TransportController {
     @Autowired
     TransportService transportService;
 
-    @InitBinder({"transportModel"})
+    @InitBinder({ "transportModel"})
     private void initBinder(WebDataBinder binder) {
         binder.addValidators(new TransportModelValidator());
     }
@@ -47,7 +47,8 @@ public class TransportController {
     @ApiOperation("Create new transport")
     @ResponseBody
     public TransportEntity create(@RequestBody TransportModel transportModel) {
-        return transportService.create(transportModel.getRegistrationNumber(), transportModel.isNoFunctionally(), transportModel.getTransportType());
+        return transportService.create(transportModel.getRegistrationNumber(), transportModel.getTransportType(), transportModel
+            .isNoFunctionally());
     }
 
     @PutMapping(value = "{id}")
@@ -78,16 +79,18 @@ public class TransportController {
 
         return transportService.load(id);
     }
-/*
-    @GetMapping("/load")
-    @ApiOperation("Load transports by registration number")
-    @ResponseBody
-    public List<TransportEntity> load(@ApiParam(value = "load transports by same number", example = "1214")
-    @RequestParam
-    final String registrationNumber) {
-
-        return transportService.loadLike(registrationNumber);
-    }*/
+    /*
+     * @GetMapping("/load")
+     * 
+     * @ApiOperation("Load transports by registration number")
+     * 
+     * @ResponseBody public List<TransportEntity> load(@ApiParam(value =
+     * "load transports by same number", example = "1214")
+     * 
+     * @RequestParam final String registrationNumber) {
+     * 
+     * return transportService.loadLike(registrationNumber); }
+     */
 
     @GetMapping()
     @ApiOperation("Load all transports by default. Load transports by parameters: transport type or functionality")

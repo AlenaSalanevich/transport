@@ -9,6 +9,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
+import org.mockito.stubbing.Answer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,6 +23,11 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
+
+/**
+ * @author Alena_Salanevich
+ */
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { PointServiceTest.PointServiceTestConfig.class})
@@ -45,29 +51,46 @@ public class PointServiceTest {
     @Autowired
     PointRepository pointRepository;
 
-    PointEntity point, point1;
+    PointEntity pointA, pointB, pointC;
 
     List<PointEntity> points;
 
     @Before
     public void setUp() throws Exception {
-        point = new PointEntity();
-        point.setId(1l);
-        point.setName("AAA");
-        point1 = new PointEntity();
-        point1.setId(2l);
-        point1.setName("DDD");
+        pointA = new PointEntity(1l, "AAA");
+        pointB = new PointEntity(2l, "BAB");
+        pointC = new PointEntity(3l, "CCC");
         points = new ArrayList<>();
-        points.add(point);
-        points.add(point1);
+        points.add(pointA);
+        points.add(pointB);
+        points.add(pointC);
 
-        Mockito.when(pointRepository.findByNameIgnoreCase(Mockito.eq("AAA")))
-            .thenReturn(point);
-        Mockito.when(pointRepository.findOne(Mockito.eq(1l)))
-            .thenReturn(point);
-        Mockito.when(pointRepository.findAll())
-            .thenReturn(Arrays.asList(point, point1));
-      // Mockito.when(pointRepository.findAllByNameStartsWith(Mockito.any(String.class))).thenAnswer();
+        when(pointRepository.findByNameIgnoreCase(eq("ccc"))).thenReturn(pointC);
+
+        when(pointRepository.findOne(eq(1l))).thenReturn(pointA);
+
+        when(pointRepository.findAll()).thenReturn(Arrays.asList(pointA, pointB, pointC));
+
+        when(pointRepository.findAllByNameStartsWithAndNameContains(any(String.class), any(String.class))).thenAnswer(
+            (Answer<List<PointEntity>>) invocation -> {
+
+                List<PointEntity> optPoints = new ArrayList<>();
+
+                String likeChar = (String) invocation.getArguments()[0];
+                if (pointA.getName()
+                    .contains(likeChar)) {
+                    optPoints.add(pointA);
+                }
+                if (pointB.getName()
+                    .contains(likeChar)) {
+                    optPoints.add(pointB);
+                }
+                if (pointC.getName()
+                    .contains(likeChar)) {
+                    optPoints.add(pointC);
+                }
+                return optPoints;
+            });
     }
 
     @After
@@ -78,47 +101,52 @@ public class PointServiceTest {
     @Test
     public void create() throws Exception {
 
-        pointService.create("BBB");
+        pointService.create("BAB");
         ArgumentCaptor<PointEntity> captor = ArgumentCaptor.forClass(PointEntity.class);
-        Mockito.verify(pointRepository, Mockito.times(1))
-            .save(captor.capture());
+        verify(pointRepository, times(1)).save(captor.capture());
         assertEquals(captor.getValue()
-            .getName(), "BBB");
+            .getName(), "BAB");
     }
 
     @Test
     public void delete() throws Exception {
         pointService.delete(2l);
-        Mockito.verify(pointRepository, Mockito.times(1))
-            .delete(Mockito.eq(2l));
+        verify(pointRepository, times(1)).delete(Mockito.eq(2l));
     }
 
     @Test
     public void loadAll() throws Exception {
 
-        List<PointEntity> en = pointService.loadAll(Optional.of("a"));
-        assertEquals(en.size(), 1l);
-        assertEquals(en, points);
-    }
+        List<PointEntity> pointEntityListByCharA = pointService.loadAll(Optional.of("A"));
+        assertEquals(pointEntityListByCharA.size(), 2l);
+        verify(pointRepository, times(1)).findAllByNameStartsWithAndNameContains("A", "A");
 
-    /*
-     * @Test public void load() throws Exception { PointEntity point = pointService.load("AAA");
-     * assertEquals("AAA", point.getName()); }
-     */
+        List<PointEntity> pointEntityListAll = pointService.loadAll(Optional.empty());
+        assertEquals(pointEntityListAll, points);
+        assertEquals(pointEntityListAll.size(), 3l);
+        verify(pointRepository, times(2)).findAll();
+    }
 
     @Test
     public void load() throws Exception {
-        PointEntity point = pointService.load(1l);
-        assertEquals(1l, point.getId());
+        PointEntity pointById = pointService.load(1l);
+        assertEquals(1l, pointById.getId());
+        verify(pointRepository, times(1)).findOne(1l);
     }
+    /*
+     * @Test public void load() throws Exception { String name = "ccc"; PointEntity pointByName =
+     * pointService.load(name); assertEquals("CCC", pointByName.getName());
+     * Mockito.verify(pointRepository, Mockito.times(1)).findByNameIgnoreCase(name); }
+     */
 
-   /* @Test
+    @Test
     public void update() throws Exception {
-        pointService.update(1l, "CCC");
+        pointService.update(1l, new PointEntity(1l, "ABC"));
         ArgumentCaptor<PointEntity> captor = ArgumentCaptor.forClass(PointEntity.class);
-        Mockito.verify(pointRepository, Mockito.times(1))
-            .save(captor.capture());
+        verify(pointRepository, times(1)).save(captor.capture());
         assertEquals(captor.getValue()
-            .getName(), "CCC");
-    }*/
+            .getName(), "ABC");
+        assertEquals(captor.getValue()
+            .getId(), 1l);
+    }
 }

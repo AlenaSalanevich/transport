@@ -81,6 +81,11 @@ public class RouteServiceImpl implements RouteService {
     }
 
     @Override
+    public RouteEntity update(long routId, AddPointModel point) {
+        return null;
+    }
+
+    @Override
     public RouteEntity insertPoints(long routeId, List<AddPointModel> points) {
         RouteEntity route = load(routeId);
 
@@ -106,7 +111,7 @@ public class RouteServiceImpl implements RouteService {
     List<RoutePointEntity> delRoutePointEntities;
         routePointEntities.retainAll(upRoutePointEntities);
         routePointEntities.removeAll(upRoutePointEntities);
-
+/*
         RoutePointEntity routePointEntity1 = routeEntity.getRoutePoints()
                 .stream()
                 .sorted(Comparator.comparingInt(RoutePointEntity::getSequence))
@@ -115,7 +120,7 @@ public class RouteServiceImpl implements RouteService {
                 .findFirst().map(routePointEntity -> {
                     routePointEntity.setSequence(point.getSequense());
                     return routePointEntity;
-                }).orElseThrow(() -> new ServiceException(ErrorCode.NOT_FOUND));
+                }).orElseThrow(() -> new ServiceException(ErrorCode.NOT_FOUND));*/
 
         return routeEntity;
     }

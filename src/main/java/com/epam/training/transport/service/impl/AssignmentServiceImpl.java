@@ -59,7 +59,7 @@ public class AssignmentServiceImpl implements AssignmentService {
             routePointEntitiesModel.add(routeService.loadByPoint(routeId, scheduleModel.getPointId()));
         }
         routePointEntitiesModel.stream().sorted(Comparator.comparingInt(RoutePointEntity::getSequence)).collect(Collectors.toList());*/
-
+/*
         List<RoutePointEntity> routePointEntities = routeEntity.getRoutePoints().stream().sorted(Comparator.comparingInt(RoutePointEntity::getSequence)).collect(Collectors.toList());
         scheduleModels.stream().sorted(Comparator.comparingInt(ScheduleModel::getDepartureTime)).forEach(s -> {
             RoutePointEntity routePouint = routePointEntities.remove(0);
@@ -67,7 +67,7 @@ public class AssignmentServiceImpl implements AssignmentService {
                 throw new ServiceException(ErrorCode.REQUIRED_FIELD);
             }
 
-            new ScheduleEntity(assignment, routePouint, s.getDepartureTime()));
+            new ScheduleEntity(assignment, routePouint, s.getDepartureTime());
         });
 
 
@@ -104,7 +104,8 @@ public class AssignmentServiceImpl implements AssignmentService {
 
         } else {
             throw new ServiceException(ErrorCode.REQUIRED_FIELD);
-        }
+        }*/
+return null;
     }
 
 
