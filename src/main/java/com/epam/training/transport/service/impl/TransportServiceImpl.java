@@ -6,19 +6,13 @@ import com.epam.training.transport.model.db.repository.TransportRepository;
 import com.epam.training.transport.service.TransportService;
 import com.epam.training.transport.service.exceptions.ErrorCode;
 import com.epam.training.transport.service.exceptions.ServiceException;
-import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
-import org.unitils.reflectionassert.util.HibernateUtil;
 
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
-import java.util.function.Function;
-import java.util.function.Supplier;
-import java.util.stream.Collectors;
 
 /**
  * @author Alena_Salanevich
@@ -33,11 +27,11 @@ public class TransportServiceImpl implements TransportService {
 
     @Override
     public TransportEntity create(
-        final String registrationNumber,
+            final String registrationNumber,
 
-        final TransportType transportType, final boolean noFunctionally) {
+            final TransportType transportType, final boolean functionality) {
 
-        final TransportEntity transport = new TransportEntity(registrationNumber, transportType, noFunctionally);
+        final TransportEntity transport = new TransportEntity(registrationNumber, transportType, functionality);
 
         try {
             transportRepository.save(transport);
@@ -60,14 +54,14 @@ public class TransportServiceImpl implements TransportService {
 
     @Override
     public List<TransportEntity> loadAll(
-        final Optional<TransportType> optTransportType,
-        final Optional<Boolean> optNoFunctionally) {
+            final Optional<TransportType> optTransportType,
+            final Optional<Boolean> optFunctionality) {
 
-        return optTransportType.map(transportType -> optNoFunctionally.map(noFunctionally -> transportRepository
-            .findAllByTransportTypeAndNoFunctionally(transportType, noFunctionally))
-            .orElseGet(() -> transportRepository.findAllByTransportType(transportType)))
-            .orElseGet(() -> optNoFunctionally.map(noFunctionally -> transportRepository.findAllByNoFunctionally(noFunctionally))
-                .orElseGet(() -> transportRepository.findAll()));
+        return optTransportType.map(transportType -> optFunctionality.map(functionality -> transportRepository
+                .findAllByTransportTypeAndFunctionality(transportType, functionality))
+                .orElseGet(() -> transportRepository.findAllByTransportType(transportType)))
+                .orElseGet(() -> optFunctionality.map(functionality -> transportRepository.findAllByFunctionality(functionality))
+                        .orElseGet(() -> transportRepository.findAll()));
     }
 
     @Override
@@ -76,25 +70,20 @@ public class TransportServiceImpl implements TransportService {
     }
 
     @Override
-    public TransportEntity update(final long id, final TransportEntity upTransport) {
+    public TransportEntity update(final long id, final TransportEntity transportEntity) {
 
         /*
          * final TransportEntity transport = load(id);
-         * 
+         *
          * transport.setRegistrationNumber(upTransport.getRegistrationNumber());
-         * transport.setNoFunctionally(upTransport.isNoFunctionally());
+         * transport.setFunctionality(upTransport.isFunctionality());
          * transport.setTransportType(upTransport.getTransportType());
          */
         try {
-            transportRepository.save(upTransport);
+            transportRepository.save(transportEntity);
         } catch (final DataIntegrityViolationException e) {
             throw new ServiceException(ErrorCode.NAME_ALREADY_EXISTS, e);
         }
-        return upTransport;
-    }
-
-    @Override
-    public List<TransportEntity> loadLike(final String registrationNumber) {
-        return transportRepository.findAllByRegistrationNumberContains(registrationNumber);
+        return transportEntity;
     }
 }

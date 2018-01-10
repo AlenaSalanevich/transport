@@ -20,13 +20,13 @@ public interface TransportRepository extends JpaRepository<TransportEntity, Long
 
     List<TransportEntity> findAllByRegistrationNumberContains(final String registrationNumber);
 
-    List<TransportEntity> findAllByTransportTypeAndNoFunctionally(@Param("transportType")
-    final TransportType transportType, @Param("noFunctionally")
+    List<TransportEntity> findAllByTransportTypeAndFunctionality(@Param("transportType")
+    final TransportType transportType, @Param("functionality")
     final boolean noFunctionally);
 
     List<TransportEntity> findAllByTransportType(@Param("transportType")
     final TransportType transportType);
 
-    List<TransportEntity> findAllByNoFunctionally(@Param("noFunctionally")
+    List<TransportEntity> findAllByFunctionality(@Param("functionality")
     final boolean noFunctionally);
 }

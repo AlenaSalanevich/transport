@@ -48,7 +48,7 @@ public class TransportController {
     @ResponseBody
     public TransportEntity create(@RequestBody TransportModel transportModel) {
         return transportService.create(transportModel.getRegistrationNumber(), transportModel.getTransportType(), transportModel
-            .isNoFunctionally());
+            .isFunctionality());
     }
 
     @PutMapping(value = "{id}")
@@ -58,7 +58,7 @@ public class TransportController {
     final long id, @RequestBody TransportModel transportModel) {
 
         return transportService.update(id, new TransportEntity(id, transportModel.getRegistrationNumber()
-            .trim(), transportModel.getTransportType(), transportModel.isNoFunctionally()));
+            .trim(), transportModel.getTransportType(), transportModel.isFunctionality()));
     }
 
     @DeleteMapping("/{id}")
@@ -101,8 +101,8 @@ public class TransportController {
         final Optional<TransportType> type,
         @ApiParam(value = "Select true or false", allowableValues = "true, false")
         @RequestParam(required = false)
-        final Optional<Boolean> noFunctionally) {
+        final Optional<Boolean> functionality) {
 
-        return transportService.loadAll(type, noFunctionally);
+        return transportService.loadAll(type, functionality);
     }
 }

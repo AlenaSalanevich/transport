@@ -69,6 +69,7 @@ public class TransportServiceTest {
 
         when(transportRepository.findAll()).thenReturn(Arrays.asList(bus, tram, trolleybus));
         when(transportRepository.findOne(eq(3l))).thenReturn(trolleybus);
+        when(transportRepository.findAllByTransportType(TransportType.BUS)).thenReturn(Arrays.asList(bus));
         when(transportRepository.findAllByTransportType(Mockito.any(TransportType.class))).thenAnswer(
             (Answer<List<TransportEntity>>) invocation -> {
 
@@ -90,39 +91,39 @@ public class TransportServiceTest {
                 return optTransports;
             });
 
-        when(transportRepository.findAllByNoFunctionally(anyBoolean())).thenAnswer((Answer<List<TransportEntity>>) invocation -> {
+        when(transportRepository.findAllByFunctionality(anyBoolean())).thenAnswer((Answer<List<TransportEntity>>) invocation -> {
 
             List<TransportEntity> optTransports = new ArrayList<>();
 
             Boolean noFunctionally = (Boolean) invocation.getArguments()[0];
-            if (bus.isNoFunctionally() == noFunctionally) {
+            if (bus.isFunctionality() == noFunctionally) {
                 optTransports.add(bus);
             }
-            if (tram.isNoFunctionally() == noFunctionally) {
+            if (tram.isFunctionality() == noFunctionally) {
                 optTransports.add(tram);
             }
-            if (trolleybus.isNoFunctionally() == noFunctionally) {
+            if (trolleybus.isFunctionality() == noFunctionally) {
                 optTransports.add(trolleybus);
             }
             return optTransports;
         });
 
-        when(transportRepository.findAllByTransportTypeAndNoFunctionally(any(TransportType.class), anyBoolean())).thenAnswer(
+        when(transportRepository.findAllByTransportTypeAndFunctionality(any(TransportType.class), anyBoolean())).thenAnswer(
             invocation -> {
                 List<TransportEntity> optTransports = new ArrayList<>();
                 Boolean noFunctionally = (Boolean) invocation.getArguments()[1];
                 TransportType type = (TransportType) invocation.getArguments()[0];
-                if ((bus.isNoFunctionally() == noFunctionally)
+                if ((bus.isFunctionality() == noFunctionally)
                     && (bus.getTransportType()
                         .equals(type))) {
                     optTransports.add(bus);
                 }
-                if ((tram.isNoFunctionally() == noFunctionally)
+                if ((tram.isFunctionality() == noFunctionally)
                     && (tram.getTransportType()
                         .equals(type))) {
                     optTransports.add(tram);
                 }
-                if ((trolleybus.isNoFunctionally() == noFunctionally)
+                if ((trolleybus.isFunctionality() == noFunctionally)
                     && (trolleybus.getTransportType()
                         .equals(type))) {
                     optTransports.add(trolleybus);
@@ -147,14 +148,14 @@ public class TransportServiceTest {
         assertEquals(captor.getValue()
             .getTransportType(), TransportType.TRAM);
         assertFalse(captor.getValue()
-            .isNoFunctionally());
+            .isFunctionality());
     }
 
     @Test
     public void load() {
         TransportEntity transport = transportService.load(3l);
         assertEquals(transport.getRegistrationNumber(), "8888");
-        assertTrue(transport.isNoFunctionally());
+        assertTrue(transport.isFunctionality());
         assertEquals(transport.getTransportType(), TransportType.TROLLEYBUS);
         verify(transportRepository, times(1)).findOne(3l);
     }
@@ -175,13 +176,13 @@ public class TransportServiceTest {
         assertEquals(transportByNoFunctionally.size(), 2l);
         assertEquals(transportByNoFunctionally.get(0), bus);
         assertEquals(transportByNoFunctionally.get(1), trolleybus);
-        verify(transportRepository, times(1)).findAllByNoFunctionally(true);
+        verify(transportRepository, times(1)).findAllByFunctionality(true);
 
         List<TransportEntity> transportByTypeAndNoFunctionally =
             transportService.loadAll(Optional.of(TransportType.BUS), Optional.of(Boolean.TRUE));
         assertEquals(transportByTypeAndNoFunctionally.size(), 1l);
         assertEquals(transportByTypeAndNoFunctionally.get(0), bus);
-        verify(transportRepository, times(1)).findAllByTransportTypeAndNoFunctionally(TransportType.BUS, true);
+        verify(transportRepository, times(1)).findAllByTransportTypeAndFunctionality(TransportType.BUS, true);
 
     }
 
@@ -200,7 +201,7 @@ public class TransportServiceTest {
         assertEquals(captor.getValue()
             .getTransportType(), TransportType.BUS);
         assertFalse(captor.getValue()
-            .isNoFunctionally());
+            .isFunctionality());
         assertEquals(captor.getValue()
             .getId(), 1l);
         assertEquals(captor.getValue()

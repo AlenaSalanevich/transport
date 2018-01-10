@@ -26,9 +26,9 @@
 
       <mat-input-container>
         <mat-select placeholder="Transport functionality" [(ngModel)]="selectedTransportFunctionality" required
-                    true name="noFunctionally">
-          <mat-option *ngFor="let noFunctionally of _availableTransportFunctionality" [value]="noFunctionally.value">
-            {{ noFunctionally.viewValue }}
+                    true name="functionality">
+          <mat-option *ngFor="let functionality of _availableTransportFunctionality" [value]="functionality.value">
+            {{ functionality.viewValue }}
           </mat-option>
         </mat-select>
       </mat-input-container>

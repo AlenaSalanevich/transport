@@ -4,8 +4,6 @@ import com.epam.training.transport.model.Direction;
 import com.epam.training.transport.model.db.entity.RouteEntity;
 import com.epam.training.transport.model.db.entity.TransportEntity;
 
-import java.util.Date;
-
 public class ScheduleView {
 
     private RouteEntity route;
@@ -20,21 +18,14 @@ public class ScheduleView {
     private boolean isHoliday;
 
 
-    private Date startTime;
-
-
-    private Date endTime;
-
     public ScheduleView() {
     }
 
-    public ScheduleView(RouteEntity route, TransportEntity transport, Direction direction, boolean isHoliday, Date startTime, Date endTime) {
+    public ScheduleView(RouteEntity route, TransportEntity transport, Direction direction, boolean isHoliday) {
         this.route = route;
         this.transport = transport;
         this.direction = direction;
         this.isHoliday = isHoliday;
-        this.startTime = startTime;
-        this.endTime = endTime;
     }
 
     public RouteEntity getRoute() {
@@ -69,19 +60,4 @@ public class ScheduleView {
         isHoliday = holiday;
     }
 
-    public Date getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(Date startTime) {
-        this.startTime = startTime;
-    }
-
-    public Date getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
-    }
 }

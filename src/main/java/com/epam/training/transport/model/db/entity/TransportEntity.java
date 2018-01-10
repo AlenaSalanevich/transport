@@ -21,7 +21,7 @@ public class TransportEntity extends BaseEntity implements Comparable<TransportE
     private TransportType transportType;
 
     @Column(name = "no_functionally", nullable = false)
-    private boolean noFunctionally;
+    private boolean functionality;
 
     public TransportEntity() {
     }
@@ -30,17 +30,17 @@ public class TransportEntity extends BaseEntity implements Comparable<TransportE
         final long id,
         final String registrationNumber,
         final TransportType transportType,
-        final boolean noFunctionally) {
+        final boolean functionality) {
         super(id);
         this.transportType = transportType;
         this.registrationNumber = registrationNumber;
-        this.noFunctionally = noFunctionally;
+        this.functionality = functionality;
     }
 
-    public TransportEntity(final String registrationNumber, final TransportType transportType, final boolean noFunctionally) {
+    public TransportEntity(final String registrationNumber, final TransportType transportType, final boolean functionality) {
         this.transportType = transportType;
         this.registrationNumber = registrationNumber;
-        this.noFunctionally = noFunctionally;
+        this.functionality = functionality;
     }
 
     public TransportType getTransportType() {
@@ -59,12 +59,12 @@ public class TransportEntity extends BaseEntity implements Comparable<TransportE
         this.registrationNumber = registrationNumber;
     }
 
-    public boolean isNoFunctionally() {
-        return noFunctionally;
+    public boolean isFunctionality() {
+        return functionality;
     }
 
-    public void setNoFunctionally(final boolean noFunctionally) {
-        this.noFunctionally = noFunctionally;
+    public void setFunctionality(final boolean functionality) {
+        this.functionality = functionality;
     }
 
 
@@ -79,7 +79,7 @@ public class TransportEntity extends BaseEntity implements Comparable<TransportE
 
         final TransportEntity that = (TransportEntity) o;
 
-        if (noFunctionally != that.noFunctionally)
+        if (functionality != that.functionality)
             return false;
         if (transportType != that.transportType)
             return false;
@@ -91,7 +91,7 @@ public class TransportEntity extends BaseEntity implements Comparable<TransportE
         int result = super.hashCode();
         result = 31 * result + (transportType != null ? transportType.hashCode() : 0);
         result = 31 * result + (registrationNumber != null ? registrationNumber.hashCode() : 0);
-        result = 31 * result + (noFunctionally ? 1 : 0);
+        result = 31 * result + (functionality ? 1 : 0);
         return result;
     }
 

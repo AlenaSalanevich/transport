@@ -12,17 +12,15 @@ import java.util.Optional;
 
 public interface TransportService {
 
-    TransportEntity create(final String registrationNumber,  final TransportType transportType, final boolean noFunctionally);
+    TransportEntity create(final String registrationNumber,  final TransportType transportType, final boolean functionality);
 
     TransportEntity load(final String registrationNumber);
 
     TransportEntity load(final long id);
 
-    List<TransportEntity> loadAll(final Optional<TransportType> optTransportType, final Optional<Boolean> optNoFunctionally);
+    List<TransportEntity> loadAll(final Optional<TransportType> transportType, final Optional<Boolean> functionality);
 
     void delete(final long id);
 
-    TransportEntity update(final long id, final TransportEntity transport);
-
-    List<TransportEntity> loadLike(final String registrationNumber);
+    TransportEntity update(final long id, final TransportEntity transportEntity);
 }
