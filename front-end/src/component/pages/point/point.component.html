@@ -43,15 +43,67 @@
       <mat-card-actions>
 
         <button mat-icon-button class="mat-icon-button-card-actions">
-          <mat-icon><i class="material-icons md-24 grey" aria-hidden="true">delete</i></mat-icon>
+          <mat-icon><i class="material-icons md-24 grey" aria-hidden="true" (click)="onDeleteSelect(point)">delete</i></mat-icon>
         </button>
 
         <button mat-icon-button class="mat-icon-button-card-actions">
-          <mat-icon><i class="material-icons md-24 grey" aria-hidden="true">mode_edit</i></mat-icon>
+          <mat-icon><i class="material-icons md-24 grey" aria-hidden="true" (click)="onEditSelect(point)">mode_edit</i></mat-icon>
         </button>
 
       </mat-card-actions>
     </mat-card>
+  </div>
+</div>
+
+
+<div class="add-point-form-container" *ngIf="editSelectedPoint">
+  <div class="add-point-form">
+    <form class="add-point-data-form mat-elevation-z2" (ngSubmit)="tryUpdatePoint()" #createForm="ngForm">
+  <h2> DETAILS: {{ editSelectedPoint.name | uppercase }} </h2>
+      <h3 class="add-point-page-error" [hidden]="error.length == 0">
+        {{error}}
+      </h3>
+  <div>
+    <mat-input-container class="add-point-data-row">
+      <input matInput placeholder="The point name" id="name" required
+             minlength="{{minPointLenth}}"
+             maxlength="{{maxPointLenth}}"
+             [(ngModel)]="pointInfo.name" name="name"
+             #name="ngModel">
+    </mat-input-container>
+  </div>
+
+
+  <div class="add-point-buttons">
+    <button class="add-point-button" type="submit" mat-raised-button color="primary"
+            [disabled]="!createForm.form.valid"> Update point
+    </button>
+    <button class="add-point-button" type="submit" mat-raised-button color="primary"
+            (click)="redirectToPoints()"> Cancel
+    </button>
+  </div>
+    </form>
+  </div>
+</div>
+
+<div class="add-point-form-container" *ngIf="deleteSelectedPoint">
+  <div class="add-point-form">
+    <form class="add-point-data-form mat-elevation-z2">
+  <h2>DELETE{{ deleteSelectedPoint.name | uppercase }} </h2>
+  <h3 class="add-point-page-error" [hidden]="error.length == 0">
+    {{error}}
+  </h3>
+  <p> Are you sure to delete this point?</p>
+
+  <div class="add-point-buttons">
+    <button class="add-point-button" type="submit" mat-raised-button color="primary"
+            (click)="tryDeletePoint()"> Delete point
+    </button>
+    <button class="add-point-button" type="submit" mat-raised-button color="primary"
+            (click)="redirectToPoints()"> Cancel
+    </button>
+  </div>
+    </form>
   </div>
 </div>
 
@@ -62,6 +114,12 @@
     </button>
   </div>
 </div>
+
+<mat-paginator
+  [length]="setLength"
+               [pageSize]="30"
+               [pageSizeOptions]="[30, 60]">
+</mat-paginator>
 
 <div class="form-point">
   <router-outlet></router-outlet>

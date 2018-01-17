@@ -1,69 +1,127 @@
-<div >
-  <div >
-    <button mat-button >
-     All transport
+<div>
+  <div class="sort-container">
+    <button mat-button mat-raised-button color="primary">
+      All transport
     </button>
-    <button mat-button >
-     Buses
+    <button mat-button mat-raised-button color="primary">
+      Buses
     </button>
-    <button mat-button>
+    <button mat-button mat-raised-button color="primary">
       Trams
     </button>
-    <button mat-button >
+    <button mat-button mat-raised-button color="primary">
       Trolleybuses
     </button>
   </div>
 
 
-  <mat-table  #table [dataSource]="dataSource">
+  <div class="points">
+    <div *ngFor="let transport of transports">
+      <mat-card class="card">
+        <mat-card-header>
+          <mat-card-title></mat-card-title>
+          <mat-card-subtitle></mat-card-subtitle>
+        </mat-card-header>
 
-    <ng-container matColumnDef="registrationNumber">
+        <img src="../../../assets/ic_directions_bus_black_24dp_2x.png"/>
 
-      <mat-header-cell  *matHeaderCellDef> Registration number</mat-header-cell>
+        <mat-card-content>
+          <p> {{transport.transportType}}</p>
+          <p>{{transport.registrationNumber}}</p>
+          <mat-checkbox *ngIf="transport.noFunctionally == true" [checked]="true" color="primary"> Is functional
+          </mat-checkbox>
+        </mat-card-content>
+        <mat-card-actions>
 
-      <mat-cell *matCellDef="let element"> {{element.registrationNumber}}</mat-cell>
+          <button mat-icon-button class="mat-icon-button-card-actions">
+            <mat-icon><i class="material-icons md-24 grey" aria-hidden="true"
+                         (click)="onDeleteSelect(transport)">delete</i></mat-icon>
+          </button>
 
-    </ng-container>
+          <button mat-icon-button class="mat-icon-button-card-actions">
+            <mat-icon><i class="material-icons md-24 grey" aria-hidden="true"
+                         (click)="onEditSelect(transport)">mode_edit</i></mat-icon>
+          </button>
 
-    <ng-container matColumnDef="transportType">
-
-      <mat-header-cell *matHeaderCellDef> Transport type</mat-header-cell>
-
-      <mat-cell class="file-type-mat-cell" *matCellDef="let element"> {{element.transportType}}</mat-cell>
-
-    </ng-container>
-
-<!--   <ng-container matColumnDef=noFunctionally">
-
-      <mat-header-cell  *matHeaderCellDef> No functionally</mat-header-cell>
-
-      <mat-cell> *matCellDef="let element"> {{element.transportType}} </mat-cell>
-
-    </ng-container>-->
-
-    <mat-header-row *matHeaderRowDef="displayedColumns">
-
-    </mat-header-row>
-
-    <mat-row *matRowDef="let row; columns: displayedColumns;">
-    </mat-row>
-
-  </mat-table>
-
-
-
-<div>
-  <div class = "mat-icon-button" matTooltip="Add transport">
-    <button mat-icon-button [routerLink]="['./add'] ">
-    <mat-icon><i class="material-icons md-48 blue" aria-hidden="true">add_circle</i></mat-icon>
-  </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
   </div>
-</div>
+
+  <div *ngIf="editSelectedTransport">
+
+    <h2> DETAILS: {{ editSelectedTransport.registrationNumber | uppercase }} </h2>
+
+    <div>
+      <mat-input-container>
+        <mat-select placeholder="Transport functionality" [(ngModel)]="selectedTransportFunctionality" required
+                    true name="functionality">
+          <mat-option *ngFor="let functionality of _availableTransportFunctionality" [value]="functionality.value">
+            {{ functionality.viewValue }}
+          </mat-option>
+        </mat-select>
+      </mat-input-container>
+    </div>
+    <div>
+      <mat-input-container class="add-point-data-row">
+        <input matInput placeholder="Transport register number" id="registrationNumber" required
+               minlength="{{minRegisterNumber}}"
+               maxlength="{{maxRegisterNumber}}"
+               [(ngModel)]="transportInfo.registrationNumber" name="registrationNumber"
+               #name="ngModel">
+      </mat-input-container>
+    </div>
+
+    <div>
+      <label>Registration Number:
+        <input placeholder="Registration Number" [(ngModel)]="editSelectedTransport.registrationNumber ">
+      </label>
+    </div>
+    <mat-input-container>
+      <mat-select placeholder="Transport type" [formControl]="transportTypeControl" required
+                  [(ngModel)]="selectedTransportType" name="transportType">
+        <mat-option *ngFor="let transportType of availableTransportTypes" [value]="transportType.value">
+          {{ transportType.viewValue }}
+        </mat-option>
+      </mat-select>
+    </mat-input-container>
+
+    <div class="add-point-buttons">
+      <button class="add-point-button" type="submit" mat-raised-button color="primary"
+              [disabled]="!createForm.form.valid" (click)="tryUpdateTransport()"> Update transport
+      </button>
+      <button class="add-point-button" type="submit" mat-raised-button color="primary"
+              (click)="redirectToTransports()"> Cancel
+      </button>
+    </div>
+  </div>
+
+  <div class = "form-delete-transport" *ngIf="deleteSelectedTransport">
+
+    <h2>DELETE{{ deleteSelectedTransport.registrationNumber | uppercase }} </h2>
+
+    <p> Are you sure to delete this transport?</p>
+    <div class="add-point-buttons">
+      <button class="add-point-button" type="submit" mat-raised-button color="primary"
+              (click)="tryDeleteTransport()"> Delete transport
+      </button>
+      <button class="add-point-button" type="submit" mat-raised-button color="primary"
+              (click)="redirectToTransports()"> Cancel
+      </button>
+    </div>
+  </div>
+
+  <div>
+    <div class="mat-icon-button" matTooltip="Add transport">
+      <button mat-icon-button [routerLink]="['./add'] ">
+        <mat-icon><i class="material-icons md-48 blue" aria-hidden="true">add_circle</i></mat-icon>
+      </button>
+    </div>
+  </div>
+
+
+  <div class="form-point">
+    <router-outlet></router-outlet>
+  </div>
 
 </div>
-
-<div class="form-point">
-  <router-outlet></router-outlet>
-</div>
-
-

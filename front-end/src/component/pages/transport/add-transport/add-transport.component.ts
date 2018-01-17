@@ -6,6 +6,7 @@ import {TransportParams} from "../../../../model/transport/transport-params";
 import {Router} from "@angular/router";
 import {RouteList} from "../../../../utils/route-list";
 import {FormControl, Validators} from "@angular/forms";
+import {TransportComponent} from "../transport.component";
 
 @Component({
   selector: 'app-add-transport',
@@ -34,7 +35,7 @@ export class AddTransportComponent extends PageComponent {
     {value: TransportService.TRANSPORT_FUNCTIONALITY_BROKEN, viewValue: "NO FUNCTIONALLY"}
   ]
 
-  constructor(private readonly transportService: TransportService, private readonly transportDataSource: TransportDataSource, private readonly router: Router) {
+  constructor(private readonly transportService: TransportService, private readonly router: Router,private readonly transportComponent: TransportComponent) {
     super()
     this._transportInfo = new TransportParams('', '', true);
     this._error = '';
@@ -47,12 +48,13 @@ export class AddTransportComponent extends PageComponent {
         if (result) {
           let transportInfo = this.transportInfo;
           transportInfo.registrationNumber = '';
+         this.transportService.loadTransports();
           this.redirectToTransports();
-          this.transportDataSource.refresh();
         }
         else {
           this._error = message;
         }
+      this.transportService.loadTransports();
       }
     )
   }
@@ -61,7 +63,8 @@ export class AddTransportComponent extends PageComponent {
   }
 
   public redirectToTransports() {
-    this.router.navigateByUrl('/' + RouteList.PAGE_TRANSPORT)
+    this.router.navigateByUrl('/' + RouteList.PAGE_TRANSPORT);
+   this.transportComponent.ngOnInit();
   }
 
   get transportInfo(): TransportParams {

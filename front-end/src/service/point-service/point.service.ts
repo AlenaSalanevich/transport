@@ -8,7 +8,6 @@ import {Utils} from "../../utils/utils";
 @Injectable()
 export class PointService {
   private static readonly PAGE_POINTS_URL = '/api/points';
-  private static readonly ADD_POINT_URL = '/api/points/add'
 
   constructor(private readonly http: Http, private readonly security: SecurityService) {
   }
@@ -35,7 +34,11 @@ export class PointService {
   }
 
  public deletePoint(point: PointEntity, handler: (message: string, result: boolean)=>void): void{
-    this.http.delete(PointService.PAGE_POINTS_URL, <RequestOptionsArgs>point.id).toPromise().then(response=>handler(null, true))
+    this.http.delete(PointService.PAGE_POINTS_URL+'/'+point.id).toPromise().then(response=>handler(null, true))
+      .catch(error=>Utils.handleErrorMessageJson(error, (ex: string) => handler(ex, false)));
+  }
+  public updatePoint(point: PointEntity, handler: (message: string, result: boolean)=>void): void{
+    this.http.put(PointService.PAGE_POINTS_URL+ '/' + point.id, point).toPromise().then(response=>handler(null, true))
       .catch(error=>Utils.handleErrorMessageJson(error, (ex: string) => handler(ex, false)));
   }
 }

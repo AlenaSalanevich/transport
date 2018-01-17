@@ -31,4 +31,16 @@ export class TransportEntity {
   public get noFunctionally(): boolean {
     return this._noFunctionally;
   }
+
+ public set transportType(value: string) {
+    this._transportType = value;
+  }
+
+  public set registrationNumber(value: string) {
+    this._registrationNumber = value;
+  }
+
+  public set noFunctionally(value: boolean) {
+    this._noFunctionally = value;
+  }
 }

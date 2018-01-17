@@ -68,3 +68,9 @@ position: relative;
 .mat-icon-button-card-actions:hover {
   color: grey;
 }
+
+.mat-paginator {
+  position: relative;
+
+
+}
