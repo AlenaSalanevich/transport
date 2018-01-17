@@ -1,12 +1,12 @@
 package com.epam.training.transport.rest.controller;
 
-import com.epam.training.transport.utils.Routes;
+import com.epam.training.transport.utils.routes.Routes;
 import com.epam.training.transport.rest.models.TransportModel;
 
 import com.epam.training.transport.model.TransportType;
 import com.epam.training.transport.model.db.entity.TransportEntity;
 import com.epam.training.transport.service.TransportService;
-import com.epam.training.transport.utils.TransportModelValidator;
+import com.epam.training.transport.utils.validators.TransportModelValidator;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;

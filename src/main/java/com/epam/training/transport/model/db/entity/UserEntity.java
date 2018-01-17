@@ -1,5 +1,7 @@
 package com.epam.training.transport.model.db.entity;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import javax.persistence.*;
 
 /**
@@ -16,8 +18,9 @@ public class UserEntity extends BaseEntity {
     @Column(name = "password", length = 10, nullable = false)
     private String password;
 
-    @OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}, fetch = FetchType.LAZY)
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}, fetch = FetchType.LAZY)
     @JoinColumn(name = "role_id")
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     private RoleEntity role;
 
     public UserEntity() {

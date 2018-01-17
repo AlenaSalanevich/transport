@@ -8,5 +8,6 @@ public enum  ErrorCode {
     NAME_ALREADY_EXISTS,
     REQUIRED_FIELD,
     UNKNOWN,
-    NOT_FOUND;
+    NOT_FOUND,
+    INCORRECT_ORDER;
 }

@@ -1,7 +1,7 @@
 package com.epam.training.transport.rest.controller;
 
-import com.epam.training.transport.utils.PointModelValidator;
-import com.epam.training.transport.utils.Routes;
+import com.epam.training.transport.utils.validators.PointModelValidator;
+import com.epam.training.transport.utils.routes.Routes;
 import com.epam.training.transport.rest.models.PointModel;
 import com.epam.training.transport.model.db.entity.PointEntity;
 import com.epam.training.transport.service.PointService;
@@ -16,7 +16,6 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 

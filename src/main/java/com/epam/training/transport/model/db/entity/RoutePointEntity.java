@@ -12,7 +12,7 @@ import java.util.List;
  */
 
 @Entity
-@Table(name = "ROUTE_POINT", uniqueConstraints = @UniqueConstraint(columnNames = { "point_id", "route_id"}))
+@Table(name = "ROUTE_POINT", uniqueConstraints = {@UniqueConstraint(columnNames = {"route_id", "point_id"})})
 public class RoutePointEntity extends BaseEntity implements Serializable, Comparable<RoutePointEntity> {
 
     @Column(name = "sequence", nullable = false, length = 10)
@@ -28,28 +28,6 @@ public class RoutePointEntity extends BaseEntity implements Serializable, Compar
     private RouteEntity route;
 
     public RoutePointEntity() {
-    }
-
-    public RoutePointEntity(
-        final int sequence,
-        final PointEntity point,
-        final RouteEntity route,
-        final List<ScheduleEntity> scheduleEntities) {
-        this.sequence = sequence;
-        this.point = point;
-        this.route = route;
-    }
-
-    public RoutePointEntity(
-        final long id,
-        final int sequence,
-        final PointEntity point,
-        final RouteEntity route,
-        final List<ScheduleEntity> scheduleEntities) {
-        super(id);
-        this.sequence = sequence;
-        this.point = point;
-        this.route = route;
     }
 
     public RoutePointEntity(final long id, final RouteEntity route, final PointEntity point, final int sequence) {
@@ -91,8 +69,7 @@ public class RoutePointEntity extends BaseEntity implements Serializable, Compar
 
 
     @Override
-    public int compareTo(@NotNull
-    final RoutePointEntity o) {
+    public int compareTo(@NotNull final RoutePointEntity o) {
         return this.sequence - o.getSequence();
     }
 }

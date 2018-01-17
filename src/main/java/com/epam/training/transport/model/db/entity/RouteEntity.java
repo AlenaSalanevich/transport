@@ -1,5 +1,6 @@
 package com.epam.training.transport.model.db.entity;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.*;
@@ -22,6 +23,7 @@ public class RouteEntity extends BaseEntity implements Comparable<RouteEntity> {
     private String description;
 
     @OneToMany(mappedBy = "route", cascade = CascadeType.ALL)
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     List<RoutePointEntity> routePoints = new ArrayList<>();
 
     public RouteEntity() {
@@ -64,25 +66,24 @@ public class RouteEntity extends BaseEntity implements Comparable<RouteEntity> {
     }
 
     @Override
-    public int compareTo(@NotNull
-    final RouteEntity o) {
+    public int compareTo(@NotNull final RouteEntity o) {
         return this.number.toLowerCase()
-            .compareTo(o.getNumber()
-                .toLowerCase());
+                .compareTo(o.getNumber()
+                        .toLowerCase());
     }
 
     @Override
     public String toString() {
         return "Route{"
-               + "number='"
-               + number
-               + '\''
-               + ", description='"
-               + description
-               + '\''
-               + ", routePoints="
-               + routePoints
-               + '}';
+                + "number='"
+                + number
+                + '\''
+                + ", description='"
+                + description
+                + '\''
+                + ", routePoints="
+                + routePoints
+                + '}';
     }
 
     @Override

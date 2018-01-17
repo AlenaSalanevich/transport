@@ -7,14 +7,14 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
-public class ScheduleModel {
+public class ScheduleModel implements Comparable<ScheduleModel> {
 
     @NotEmpty
     @Min(1)
     @Max(1439)
     @ApiModelProperty(value = "Departure time in minutes by 00:00, for example 08:30 = 8*60 + 30 = 510 minutes",
-                      required = true,
-                      example = "30")
+            required = true,
+            example = "30")
     private int departureTime;
 
     @NotEmpty
@@ -44,5 +44,10 @@ public class ScheduleModel {
     }
 
     public ScheduleModel() {
+    }
+
+    @Override
+    public int compareTo(@org.jetbrains.annotations.NotNull ScheduleModel o) {
+        return this.departureTime - o.getDepartureTime();
     }
 }

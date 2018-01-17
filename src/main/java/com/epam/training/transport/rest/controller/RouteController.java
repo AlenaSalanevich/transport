@@ -1,25 +1,27 @@
 package com.epam.training.transport.rest.controller;
 
+import com.epam.training.transport.model.Direction;
+import com.epam.training.transport.model.TransportType;
 import com.epam.training.transport.model.db.entity.RoutePointEntity;
 import com.epam.training.transport.rest.models.AddPointModel;
 import com.epam.training.transport.rest.models.RouteModel;
 
-import com.epam.training.transport.utils.RouteModelValidator;
-import com.epam.training.transport.utils.Routes;
+import com.epam.training.transport.utils.validators.RouteModelValidator;
+import com.epam.training.transport.utils.routes.Routes;
 import com.epam.training.transport.model.db.entity.RouteEntity;
 import com.epam.training.transport.service.PointService;
 import com.epam.training.transport.service.RouteService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author Alena_Salanevich
@@ -89,8 +91,8 @@ public class RouteController {
     @ResponseBody
     public RouteEntity update(@PathVariable
     final long id, @RequestBody
-    final List<AddPointModel> points) {
-        return routeService.update(id, points);
+    final RouteEntity routeEntity) {
+        return routeService.update(id, routeEntity);
     }
 
     @DeleteMapping(value = "{routeId}/points/{pointId}")

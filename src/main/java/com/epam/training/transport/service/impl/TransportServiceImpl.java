@@ -8,6 +8,7 @@ import com.epam.training.transport.service.exceptions.ErrorCode;
 import com.epam.training.transport.service.exceptions.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -36,7 +37,7 @@ public class TransportServiceImpl implements TransportService {
         try {
             transportRepository.save(transport);
         } catch (final DataIntegrityViolationException e) {
-            throw new ServiceException(ErrorCode.NAME_ALREADY_EXISTS, e);
+            throw new ServiceException(ErrorCode.NAME_ALREADY_EXISTS, e, "Transport " + registrationNumber + " already exists.");
         }
         return transport;
     }
@@ -66,23 +67,20 @@ public class TransportServiceImpl implements TransportService {
 
     @Override
     public void delete(final long id) {
-        transportRepository.delete(id);
+        try {
+            transportRepository.delete(id);
+        } catch (EmptyResultDataAccessException e) {
+            throw new ServiceException(ErrorCode.NOT_FOUND, e, "Transport with id " + id + " doesn't exists.");
+        }
     }
 
     @Override
     public TransportEntity update(final long id, final TransportEntity transportEntity) {
 
-        /*
-         * final TransportEntity transport = load(id);
-         *
-         * transport.setRegistrationNumber(upTransport.getRegistrationNumber());
-         * transport.setFunctionality(upTransport.isFunctionality());
-         * transport.setTransportType(upTransport.getTransportType());
-         */
         try {
             transportRepository.save(transportEntity);
         } catch (final DataIntegrityViolationException e) {
-            throw new ServiceException(ErrorCode.NAME_ALREADY_EXISTS, e);
+            throw new ServiceException(ErrorCode.NAME_ALREADY_EXISTS, e, "Transport " + transportEntity.getRegistrationNumber() + " already exists.");
         }
         return transportEntity;
     }

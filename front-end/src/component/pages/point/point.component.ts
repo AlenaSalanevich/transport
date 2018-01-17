@@ -2,10 +2,9 @@ import {Component, ViewEncapsulation} from '@angular/core';
 import {PageComponent} from "../../page.component";
 import {PointDataSource} from "../../../service/point-service/point-data-source";
 import {PointEntity} from "../../../model/point/poit-entity";
-import {DataSource} from "@angular/cdk/collections";
 import 'rxjs/add/observable/of';
-import {RouteList} from "../../../utils/route-list";
 import {Router} from "@angular/router";
+import {PointService} from "../../../service/point-service/point.service";
 
 @Component({
   selector: 'app-point',
@@ -18,21 +17,21 @@ import {Router} from "@angular/router";
 })
 export class PointComponent extends PageComponent {
 
-  displayedColumns = ['name'];
+  points: PointEntity[];
 
-  dataSource: DataSource<PointEntity>;
-
-  constructor(private readonly pointDataSource: PointDataSource,
-                            private readonly router: Router) {
+  constructor(private readonly pointService: PointService,
+              private readonly router: Router) {
     super()
-    this.dataSource = pointDataSource;
+    this.loadPoints();
   }
 
   ngOnInit() {
-    this.pointDataSource.refresh();
+    this.loadPoints();
   }
-  redirectToPoints() {
-    this.router.navigateByUrl('/' + RouteList.PAGE_POINT);
+
+  public loadPoints(): void {
+    this.pointService.loadPoints()
+      .then(value => this.points = value)
   }
 
 }

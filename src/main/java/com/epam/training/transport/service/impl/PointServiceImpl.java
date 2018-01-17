@@ -5,17 +5,16 @@ import com.epam.training.transport.model.db.repository.PointRepository;
 import com.epam.training.transport.service.PointService;
 import com.epam.training.transport.service.exceptions.ErrorCode;
 import com.epam.training.transport.service.exceptions.ServiceException;
-import org.omg.CORBA.Object;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
-import javax.sql.rowset.serial.SerialException;
 import javax.transaction.Transactional;
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 /**
  * @author Alena_Salanevich
@@ -42,7 +41,7 @@ public class PointServiceImpl implements PointService {
         try {
             pointRepository.save(point);
         } catch (DataIntegrityViolationException e) {
-            throw new ServiceException(ErrorCode.NAME_ALREADY_EXISTS, e);
+            throw new ServiceException(ErrorCode.NAME_ALREADY_EXISTS, e, "Point with name " + name + " already exists.");
         }
         return point;
     }
@@ -52,7 +51,7 @@ public class PointServiceImpl implements PointService {
         try {
             pointRepository.delete(id);
         } catch (EmptyResultDataAccessException e) {
-            throw new ServiceException(ErrorCode.NOT_FOUND, e);
+            throw new ServiceException(ErrorCode.NOT_FOUND, e, "Point with id " + id + " doesn't exists.");
         }
     }
 
@@ -68,9 +67,7 @@ public class PointServiceImpl implements PointService {
     public PointEntity load(final long id) {
 
         final PointEntity point = pointRepository.findOne(id);
-        if (point == null) {
-            throw new ServiceException(ErrorCode.NOT_FOUND);
-        }
+
         return point;
 
     }
@@ -79,24 +76,28 @@ public class PointServiceImpl implements PointService {
     public List<PointEntity> loadAll(Optional<String> startWith) {
 
         return startWith.map(startChar -> pointRepository.findAllByNameStartsWithAndNameContains(startChar.trim(), startChar
-            .trim()))
-            .orElse(pointRepository.findAll());
+                .trim()))
+                .orElse(pointRepository.findAll());
     }
 
     @Override
     public PointEntity update(final long id, final PointEntity pointEntity) {
 
         try {
-
             pointRepository.save(pointEntity);
         } catch (final DataAccessException e) {
-            throw new ServiceException(ErrorCode.NAME_ALREADY_EXISTS, e);
+            throw new ServiceException(ErrorCode.NAME_ALREADY_EXISTS, e, "Point with name " + pointEntity.getName() + " already exists.");
         }
         return pointEntity;
     }
 
     @Override
-    public List<PointEntity> loadByListId(ArrayList<Long> idList){
-        return pointRepository.findAllById(idList);
+    public List<PointEntity> loadByListId(final ArrayList<Long> idList) {
+        final List<PointEntity> pointEntityList = new ArrayList<>();
+
+        for (Long id : idList) {
+            pointEntityList.add(pointRepository.findOne(id));
+        }
+        return pointEntityList;
     }
 }

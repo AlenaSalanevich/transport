@@ -1,4 +1,4 @@
-package com.epam.training.transport.utils;
+package com.epam.training.transport.utils.validators;
 
 import com.epam.training.transport.rest.models.RouteModel;
 import com.epam.training.transport.service.exceptions.ErrorCode;

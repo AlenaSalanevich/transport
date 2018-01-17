@@ -26,6 +26,4 @@ public interface PointRepository extends JpaRepository<PointEntity, Long> {
 
     PointEntity findByNameLike(@Param("likeChars")
     final String likeChars);
-
-    List<PointEntity> findAllById( final ArrayList<Long> idList);
 }

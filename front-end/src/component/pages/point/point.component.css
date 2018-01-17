@@ -1,17 +1,11 @@
-.material-icons.md-48 {
-  font-size: 48px;
-}
-.material-icons.md24
-{
-  font-size: 12px;
-}
-.material-icons.blue {
-  color: #3f51b5;
-}
-
 .material-icons.blue{
   color: #3f51b5;
+  font-size: 48px;
 }
+.material-icons.grey{
+  color: lightgrey;
+}
+
 .material-icons-text{
   font-size: 10px;
   font-weight: bold;
@@ -34,7 +28,11 @@
 }
 
 .form-point {
-  position: relative;
+  position: absolute;
+  height:inherit;
+  width: max-content;
+  align-self: center;
+  margin-top: initial;
 }
 
 .point-content {
@@ -44,28 +42,29 @@
   font-family: inherit;
 }
 
-.point-table {
-  background: inherit;
-  overflow-y: scroll;
-  max-height: 100vh;
+.card {
+  float: left;
+  margin: 10px;
+  position: relative;
+  width: 100px;
 }
-
-.point-mat-header-cell {
-  font-family: inherit;
+.mat-button{
+}
+.mat-card-actions {
+  display: flex;
+  flex-direction: row-reverse;
+}
+.mat-card-content{
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: medium;
   font-weight: bold;
-  font-size: inherit;
+  color: #3f51b5;
+  text-align: center;
 }
 
-.point-mat-cell {
-  font-family: inherit;
-  font-weight: normal;
-  color: inherit;
+.mat-icon-button-card-actions {
+position: relative;
 }
-
-.point-list {
-  background: inherit;
-  overflow-y: scroll;
-  max-height: 100vh;
+.mat-icon-button-card-actions:hover {
+  color: grey;
 }
-
-

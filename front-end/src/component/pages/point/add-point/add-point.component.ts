@@ -1,10 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {PageComponent} from "../../../page.component";
 import {PointParams} from "../../../../model/point/point-params";
 import {PointService} from "../../../../service/point-service/point.service";
 import {PointDataSource} from "../../../../service/point-service/point-data-source";
 import {Router} from "@angular/router";
 import {RouteList} from "../../../../utils/route-list";
+import {PointComponent} from "../point.component";
 
 @Component({
   selector: 'app-add-point',
@@ -14,13 +15,12 @@ import {RouteList} from "../../../../utils/route-list";
 })
 export class AddPointComponent extends PageComponent {
 
-  private _pointInfo: PointParams;
+   private _pointInfo: PointParams;
 
   private _error: string;
 
   constructor(private readonly pointService: PointService,
-              private readonly dataSource: PointDataSource,
-              private readonly router: Router) {
+              private readonly router: Router, private readonly pointComponent: PointComponent) {
     super()
     this._pointInfo = new PointParams('');
     this._error = '';
@@ -28,22 +28,25 @@ export class AddPointComponent extends PageComponent {
 
   tryCreatePoint() {
     this.pointService.createPoint(this._pointInfo, (message, result) => {
-        if (result) {
+      if (result) {
         let pointInfo = this.pointInfo;
         pointInfo.name = '';
         this._error = '';
-        this.dataSource.refresh();
+        this.pointService.loadPoints();
         this.redirectToPoints();
+        this.pointService.loadPoints();
       }
       else {
         this._error = message;
       }
+      this.pointService.loadPoints();
     })
   }
 
   redirectToPoints() {
-    this.router.navigateByUrl('/' + RouteList.PAGE_POINT);
-    this.dataSource.refresh()
+        this.router.navigateByUrl('/' + RouteList.PAGE_POINT);
+    this.pointComponent.ngOnInit();
+
   }
 
   get pointInfo(): PointParams {
@@ -61,5 +64,4 @@ export class AddPointComponent extends PageComponent {
   set error(value: string) {
     this._error = value;
   }
-
 }

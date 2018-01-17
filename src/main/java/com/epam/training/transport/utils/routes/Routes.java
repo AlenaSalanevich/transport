@@ -1,4 +1,4 @@
-package com.epam.training.transport.utils;
+package com.epam.training.transport.utils.routes;
 
 /**
  * @author Alena_Salanevich

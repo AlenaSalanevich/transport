@@ -1,12 +1,11 @@
 package com.epam.training.transport.rest.controller;
 
 import com.epam.training.transport.model.db.entity.AssignmentEntity;
-import com.epam.training.transport.rest.models.RoutePointModel;
 import com.epam.training.transport.rest.models.AssignmentModel;
 import com.epam.training.transport.service.PointService;
 import com.epam.training.transport.service.RouteService;
 import com.epam.training.transport.service.AssignmentService;
-import com.epam.training.transport.utils.Routes;
+import com.epam.training.transport.utils.routes.Routes;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -2,7 +2,7 @@ package com.epam.training.transport.rest.controller;
 
 import com.epam.training.transport.model.db.entity.ScheduleEntity;
 import com.epam.training.transport.service.ScheduleService;
-import com.epam.training.transport.utils.Routes;
+import com.epam.training.transport.utils.routes.Routes;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

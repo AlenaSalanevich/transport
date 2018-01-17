@@ -34,4 +34,9 @@ public class ScheduleServiceImpl implements ScheduleService {
     public void deleteByAssignment(long assignmentId) {
         scheduleRepository.deleteByAssignment_Id(assignmentId);
     }
+
+    @Override
+    public ScheduleEntity create() {
+        return null;
+    }
 }
