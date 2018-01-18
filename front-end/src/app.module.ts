@@ -27,7 +27,7 @@ import {
   MatFormFieldModule,
   MatSelectModule,
   MatTabsModule,
-  MatTooltipModule, MatCheckboxModule,
+  MatTooltipModule, MatCheckboxModule, MatSuffix,
 } from "@angular/material";
 import {SecurityService} from "./service/security-service/security.service";
 import {TransportDataSource} from "./service/transport-service/transport-data-source";
@@ -52,31 +52,30 @@ import {AddTransportComponent} from './component/pages/transport/add-transport/a
 
   ],
   imports: [
+    HttpClientModule,
     FormsModule,
     HttpModule,
     AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
     MatButtonModule,
+    MatCardModule,
+    MatCheckboxModule,
+    MatGridListModule,
+    MatFormFieldModule,
     MatIconModule,
     MatInputModule,
-    MatToolbarModule,
+    MatListModule,
     MatMenuModule,
     MatPaginatorModule,
     MatSidenavModule,
-    MatListModule,
-    MatGridListModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    RouterModule,
     MatTabsModule,
     MatTableModule,
-    HttpClientModule,
-    MatCardModule,
+    MatToolbarModule,
     MatTooltipModule,
-    ReactiveFormsModule,
-    MatCheckboxModule,
-    MatSidenavModule
+    MatSelectModule,
+    RouterModule,
+   ReactiveFormsModule
   ],
   providers: [SecurityService, TransportDataSource, TransportService, PointDataSource, PointService],
   bootstrap: [AppComponent]

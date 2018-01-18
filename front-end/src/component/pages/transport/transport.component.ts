@@ -35,6 +35,15 @@ export class TransportComponent extends PageComponent {
 
   transportTypeControl = new FormControl('', [Validators.required]);
 
+  private _availableTransportTypes = [
+    {value: TransportService.TRANSPORT_TYPE_BUS, viewValue: 'BUS'},
+    {value: TransportService.TRANSPORT_TYPE_TRAM, viewValue: 'TRAM'},
+    {value: TransportService.TRANSPORT_TYPE_TROLLEYBUS, viewValue: 'TROLLEYBUS'}
+  ];
+  private _availableTransportFunctionality = [
+    {value: TransportService.TRANSPORT_FUNCTIONALITY_WORKING, viewValue: "FUNCTIONALLY"},
+    {value: TransportService.TRANSPORT_FUNCTIONALITY_BROKEN, viewValue: "NO FUNCTIONALLY"}
+  ]
 
   constructor(private readonly transportService: TransportService, private readonly router: Router) {
     super()
@@ -65,44 +74,77 @@ export class TransportComponent extends PageComponent {
   }
 
 
-  get selectedTransportType(): string {
+  public get selectedTransportType(): string {
     return this._selectedTransportType;
   }
 
-  set selectedTransportType(value: string) {
+  public set selectedTransportType(value: string) {
     this._selectedTransportType = value;
   }
 
-  get selectedTransportFunctionality(): string {
+  public get selectedTransportFunctionality(): string {
     return this._selectedTransportFunctionality;
   }
 
-  set selectedTransportFunctionality(value: string) {
+  public set selectedTransportFunctionality(value: string) {
     this._selectedTransportFunctionality = value;
   }
 
-  get editSelectedTransport(): TransportEntity {
+  public get editSelectedTransport(): TransportEntity {
     return this._editSelectedTransport;
   }
 
-  set editSelectedTransport(value: TransportEntity) {
+  public set editSelectedTransport(value: TransportEntity) {
     this._editSelectedTransport = value;
   }
 
-  get deleteSelectedTransport(): TransportEntity {
+  public get deleteSelectedTransport(): TransportEntity {
     return this._deleteSelectedTransport;
   }
 
-  set deleteSelectedTransport(value: TransportEntity) {
+  public set deleteSelectedTransport(value: TransportEntity) {
     this._deleteSelectedTransport = value;
   }
 
-  get transports(): TransportEntity[] {
+  public get transports(): TransportEntity[] {
     return this._transports;
   }
 
-  set transports(value: TransportEntity[]) {
+  public set transports(value: TransportEntity[]) {
     this._transports = value;
+  }
+
+
+  public get availableTransportTypes(): { value: string; viewValue: string }[] {
+    return this._availableTransportTypes;
+  }
+
+  public set availableTransportTypes(value: { value: string; viewValue: string }[]) {
+    this._availableTransportTypes = value;
+  }
+
+  public get availableTransportFunctionality(): { value: string; viewValue: string }[] {
+    return this._availableTransportFunctionality;
+  }
+
+  public set availableTransportFunctionality(value: { value: string; viewValue: string }[]) {
+    this._availableTransportFunctionality = value;
+  }
+
+  public get error(): string {
+    return this._error;
+  }
+
+  public set error(value: string) {
+    this._error = value;
+  }
+
+  public get transportInfo(): TransportEntity {
+    return this._transportInfo;
+  }
+
+  public set transportInfo(value: TransportEntity) {
+    this._transportInfo = value;
   }
 
   private setTransportType() {
@@ -125,11 +167,11 @@ export class TransportComponent extends PageComponent {
   private setTransportFunctionality() {
     switch (this._selectedTransportFunctionality) {
       case TransportService.TRANSPORT_FUNCTIONALITY_BROKEN: {
-        this._transportInfo.noFunctionally = true;
+        this._transportInfo.functionality = true;
         break;
       }
       default: {
-        this._transportInfo.noFunctionally = false;
+        this._transportInfo.functionality = false;
         ;
         break;
       }

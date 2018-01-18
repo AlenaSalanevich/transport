@@ -22,14 +22,18 @@
           <mat-card-title></mat-card-title>
           <mat-card-subtitle></mat-card-subtitle>
         </mat-card-header>
-
-        <img src="../../../assets/ic_directions_bus_black_24dp_2x.png"/>
+        <div>
+          <img src="../../../assets/ic_directions_bus_black_24dp_2x.png" [hidden]="transport.transportType !='BUS'"/>
+          <img src="../../../assets/ic_tram_black_24dp_2x.png" [hidden]="transport.transportType !='TRAM'"/>
+          <img src="../../../assets/ic_train_black_24dp_2x.png" [hidden]="transport.transportType !='TROLLEYBUS'"/>
+          <img src="../../../assets/ic_build_black_24dp_1x.png" height="12" width="12"
+               [hidden]="transport.functionality != true"/>
+        </div>
 
         <mat-card-content>
           <p> {{transport.transportType}}</p>
           <p>{{transport.registrationNumber}}</p>
-          <mat-checkbox *ngIf="transport.noFunctionally == true" [checked]="true" color="primary"> Is functional
-          </mat-checkbox>
+
         </mat-card-content>
         <mat-card-actions>
 
@@ -48,35 +52,20 @@
     </div>
   </div>
 
-  <div *ngIf="editSelectedTransport">
+  <form *ngIf="editSelectedTransport"  #createForm="ngForm">
 
     <h2> DETAILS: {{ editSelectedTransport.registrationNumber | uppercase }} </h2>
+    <h3 class="add-point-page-error" [hidden]="error.length == 0">
+      {{error}}
+    </h3>
+    <mat-input-container class="add-point-data-row">
+      <input matInput placeholder="Transport register number" id="registrationNumber" required
+             minlength="{{minRegisterNumber}}"
+             maxlength="{{maxRegisterNumber}}"
+             [(ngModel)]="transportInfo.registrationNumber" name="registrationNumber"
+             #name="ngModel">
+    </mat-input-container>
 
-    <div>
-      <mat-input-container>
-        <mat-select placeholder="Transport functionality" [(ngModel)]="selectedTransportFunctionality" required
-                    true name="functionality">
-          <mat-option *ngFor="let functionality of _availableTransportFunctionality" [value]="functionality.value">
-            {{ functionality.viewValue }}
-          </mat-option>
-        </mat-select>
-      </mat-input-container>
-    </div>
-    <div>
-      <mat-input-container class="add-point-data-row">
-        <input matInput placeholder="Transport register number" id="registrationNumber" required
-               minlength="{{minRegisterNumber}}"
-               maxlength="{{maxRegisterNumber}}"
-               [(ngModel)]="transportInfo.registrationNumber" name="registrationNumber"
-               #name="ngModel">
-      </mat-input-container>
-    </div>
-
-    <div>
-      <label>Registration Number:
-        <input placeholder="Registration Number" [(ngModel)]="editSelectedTransport.registrationNumber ">
-      </label>
-    </div>
     <mat-input-container>
       <mat-select placeholder="Transport type" [formControl]="transportTypeControl" required
                   [(ngModel)]="selectedTransportType" name="transportType">
@@ -84,32 +73,40 @@
           {{ transportType.viewValue }}
         </mat-option>
       </mat-select>
+      <mat-error *ngIf="transportTypeControl.hasError('required')">Please choose a transport type</mat-error>
+    </mat-input-container>
+
+    <mat-input-container>
+      <mat-select placeholder="Transport functionality" [(ngModel)]="selectedTransportFunctionality" required
+                  true name="functionality">
+        <mat-option *ngFor="let functionality of _availableTransportFunctionality" [value]="functionality.value">
+          {{ functionality.viewValue }}
+        </mat-option>
+      </mat-select>
     </mat-input-container>
 
     <div class="add-point-buttons">
       <button class="add-point-button" type="submit" mat-raised-button color="primary"
-              [disabled]="!createForm.form.valid" (click)="tryUpdateTransport()"> Update transport
+              [disabled]="!createForm.form.valid" (click)="tryUpdateTransport(); !onEditSelect()"> Update transport
       </button>
       <button class="add-point-button" type="submit" mat-raised-button color="primary"
-              (click)="redirectToTransports()"> Cancel
+              (click)="!onEditSelect()"> Cancel
       </button>
     </div>
-  </div>
+  </form>
 
-  <div class = "form-delete-transport" *ngIf="deleteSelectedTransport">
+  <form class="form-delete-transport" *ngIf="deleteSelectedTransport">
 
-    <h2>DELETE{{ deleteSelectedTransport.registrationNumber | uppercase }} </h2>
+    <h2>DELETE: {{ deleteSelectedTransport.registrationNumber | uppercase }} </h2>
 
     <p> Are you sure to delete this transport?</p>
-    <div class="add-point-buttons">
-      <button class="add-point-button" type="submit" mat-raised-button color="primary"
-              (click)="tryDeleteTransport()"> Delete transport
-      </button>
-      <button class="add-point-button" type="submit" mat-raised-button color="primary"
-              (click)="redirectToTransports()"> Cancel
-      </button>
-    </div>
-  </div>
+    <button class="add-point-button" type="submit" mat-raised-button color="primary"
+            (click)="tryDeleteTransport(); !onDeleteSelect()"> Delete transport
+    </button>
+    <button class="add-point-button" type="submit" mat-raised-button color="primary"
+            (click)="!onDeleteSelect()"> Cancel
+    </button>
+  </form>
 
   <div>
     <div class="mat-icon-button" matTooltip="Add transport">

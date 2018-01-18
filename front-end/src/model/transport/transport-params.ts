@@ -4,11 +4,11 @@ export class TransportParams {
 
   registrationNumber: string;
 
-  noFunctionally: boolean;
+  functionality: boolean;
 
-  constructor(transportType: string, registrationNumber: string, noFunctionally: boolean) {
+  constructor(transportType: string, registrationNumber: string, functionality: boolean) {
     this.transportType = transportType;
     this.registrationNumber = registrationNumber;
-    this.noFunctionally = noFunctionally;
+    this.functionality = functionality;
   }
 }

@@ -5,8 +5,6 @@ import {PointEntity} from "../../../model/point/poit-entity";
 import 'rxjs/add/observable/of';
 import {Router} from "@angular/router";
 import {PointService} from "../../../service/point-service/point.service";
-import {PointParams} from "../../../model/point/point-params";
-import {TransportEntity} from "../../../model/transport/transport-entity";
 import {RouteList} from "../../../utils/route-list";
 
 @Component({
@@ -20,29 +18,28 @@ import {RouteList} from "../../../utils/route-list";
 })
 export class PointComponent extends PageComponent {
 
- private  _deleteSelectedPoint: PointEntity;
+  private _deleteSelectedPoint: PointEntity;
 
- private _editSelectedPoint: PointEntity;
+  private _editSelectedPoint: PointEntity;
 
   private _pointInfo: PointEntity;
 
   private _error: string;
 
-  private  _length: number;
+  private _length: number;
 
   private _points: PointEntity[];
+
+ value = 'Search me';
 
   constructor(private readonly pointService: PointService,
               private readonly router: Router) {
     super()
     this.loadPoints();
-    this.setLength();
   }
 
   ngOnInit() {
     this.loadPoints();
-    this.setLength();
-
   }
 
   public loadPoints(): void {
@@ -65,7 +62,7 @@ export class PointComponent extends PageComponent {
   }
 
   public tryUpdatePoint() {
-        this.pointService.updatePoint(this._pointInfo, (message, result) => {
+    this.pointService.updatePoint(this._pointInfo, (message, result) => {
         if (result) {
           this.pointService.loadPoints();
           this.redirectToPoints();
@@ -101,7 +98,7 @@ export class PointComponent extends PageComponent {
   }
 
   private setLength() {
-   this._length=30;
+   /* this._length = this.points.length;*/
   }
 
   get deleteSelectedPoint(): PointEntity {
@@ -143,4 +140,5 @@ export class PointComponent extends PageComponent {
   set points(value: PointEntity[]) {
     this._points = value;
   }
+
 }

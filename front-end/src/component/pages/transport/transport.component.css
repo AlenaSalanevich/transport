@@ -65,7 +65,7 @@
 .mat-raised-button{
   margin-top: 2%;
   margin-left: 2%;
-  width: max-content;
+  width: fit-content;
 }
 
 .mat-card-actions {
@@ -96,7 +96,7 @@
 }
 
 .form-delete-transport{
-  position: page;
+  position: relative;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   font-size: medium;
   font-weight: bold;

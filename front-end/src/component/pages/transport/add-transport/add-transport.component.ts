@@ -127,11 +127,11 @@ export class AddTransportComponent extends PageComponent {
   private setTransportFunctionality() {
     switch (this._selectedTransportFunctionality) {
       case TransportService.TRANSPORT_FUNCTIONALITY_BROKEN: {
-        this._transportInfo.noFunctionally = true;
+        this._transportInfo.functionality = true;
         break;
       }
       default: {
-        this._transportInfo.noFunctionally = false;
+        this._transportInfo.functionality = false;
         ;
         break;
       }

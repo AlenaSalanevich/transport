@@ -6,13 +6,13 @@ export class TransportEntity {
 
   private _registrationNumber: string;
 
-  private _noFunctionally: boolean;
+  private _functionality: boolean;
 
-  constructor(id: number, transportType: string, registrationNumber: string, noFunctionally: boolean) {
+  constructor(id: number, transportType: string, registrationNumber: string, functionality: boolean) {
     this._id = id;
     this._transportType = transportType;
     this._registrationNumber = registrationNumber;
-    this._noFunctionally = noFunctionally;
+    this._functionality = functionality;
   }
 
 
@@ -28,11 +28,15 @@ export class TransportEntity {
     return this._registrationNumber;
   }
 
-  public get noFunctionally(): boolean {
-    return this._noFunctionally;
+  public get functionality(): boolean {
+    return this._functionality;
   }
 
- public set transportType(value: string) {
+  public set id(value: number) {
+    this._id = value;
+  }
+
+  public set transportType(value: string) {
     this._transportType = value;
   }
 
@@ -40,7 +44,7 @@ export class TransportEntity {
     this._registrationNumber = value;
   }
 
-  public set noFunctionally(value: boolean) {
-    this._noFunctionally = value;
+  public set functionality(value: boolean) {
+    this._functionality = value;
   }
 }
