@@ -75,8 +75,7 @@ public class PointServiceImpl implements PointService {
     @Override
     public List<PointEntity> loadAll(Optional<String> startWith) {
 
-        return startWith.map(startChar -> pointRepository.findAllByNameStartsWithAndNameContains(startChar.trim(), startChar
-                .trim()))
+        return startWith.map(startChar -> pointRepository.findAllByNameContains(startChar.trim()))
                 .orElse(pointRepository.findAll());
     }
 

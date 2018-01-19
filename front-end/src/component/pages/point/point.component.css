@@ -6,8 +6,9 @@
 .material-icons.grey {
   color: lightgrey;
 }
-.material-icons.greySearch {
-  color: lightgrey;
+
+.material-icons.search {
+  color: grey;
   font-size: 18px;
 }
 
@@ -95,7 +96,7 @@
 }
 
 .delete-data-form {
- position: fixed;
+  position: fixed;
   margin-left: 33%;
   margin-top: 33%;
   width: 33%;
@@ -116,7 +117,31 @@
   border-spacing: 1px;
   padding: 10px;
 }
-.delete-point-button{
+
+.delete-point-button {
   margin-top: 0.8%;
   width: 70%;
+}
+
+.search-form-field {
+  font-family: inherit;
+  color: inherit;
+  display: flex;
+  flex-direction: row;
+  width: 60%;
+}
+
+.search-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+  display: flex;
+  flex-direction: row-reverse;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  color: #3f51b5;
+  align-items: right;
+}
+
+.mat-form-field-infix {
+  display: flex;
 }

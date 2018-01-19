@@ -88,7 +88,7 @@ public class PointController {
         return pointService.loadAll(Optional.ofNullable(likeChars));
     }
 
-    /*@GetMapping(value = "/byList")
+    /*@GetMapping(likeChars = "/byList")
     @ApiOperation("Load all points by default. Load points by name list of id")
     @ResponseBody
     public List<PointEntity> loadByList(final ArrayList<Long> idList) {

@@ -71,7 +71,7 @@ public class PointServiceTest {
 
         when(pointRepository.findAll()).thenReturn(Arrays.asList(pointA, pointB, pointC));
 
-        when(pointRepository.findAllByNameStartsWithAndNameContains(any(String.class), any(String.class))).thenAnswer(
+        when(pointRepository.findAllByNameContains(any(String.class))).thenAnswer(
             (Answer<List<PointEntity>>) invocation -> {
 
                 List<PointEntity> optPoints = new ArrayList<>();
@@ -119,7 +119,7 @@ public class PointServiceTest {
 
         List<PointEntity> pointEntityListByCharA = pointService.loadAll(Optional.of("A"));
         assertEquals(pointEntityListByCharA.size(), 2l);
-        verify(pointRepository, times(1)).findAllByNameStartsWithAndNameContains("A", "A");
+        verify(pointRepository, times(1)).findAllByNameContains("A");
 
         List<PointEntity> pointEntityListAll = pointService.loadAll(Optional.empty());
         assertEquals(pointEntityListAll, points);

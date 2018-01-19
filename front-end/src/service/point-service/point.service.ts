@@ -12,8 +12,8 @@ export class PointService {
   constructor(private readonly http: Http, private readonly security: SecurityService) {
   }
 
-  public loadPoints(): Promise<PointEntity[]> {
-    return this.http.get(PointService.PAGE_POINTS_URL)
+  public loadPoints(chars: string): Promise<PointEntity[]> {
+    return this.http.get(PointService.PAGE_POINTS_URL+chars)
       .toPromise()
       .then(response => {
         let body = response.json();

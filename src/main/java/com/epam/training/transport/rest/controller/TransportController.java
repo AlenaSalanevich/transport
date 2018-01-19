@@ -84,7 +84,7 @@ public class TransportController {
      * 
      * @ApiOperation("Load transports by registration number")
      * 
-     * @ResponseBody public List<TransportEntity> load(@ApiParam(value =
+     * @ResponseBody public List<TransportEntity> load(@ApiParam(likeChars =
      * "load transports by same number", example = "1214")
      * 
      * @RequestParam final String registrationNumber) {

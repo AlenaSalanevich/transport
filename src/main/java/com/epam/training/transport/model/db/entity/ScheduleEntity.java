@@ -20,7 +20,6 @@ public class ScheduleEntity extends BaseEntity implements Comparable<ScheduleEnt
     private AssignmentEntity assignment;
 
     @ManyToOne
-   /* @JsonIgnore*/
     @JoinColumn(name = "route_point_id")
     RoutePointEntity routePointEntity;
 

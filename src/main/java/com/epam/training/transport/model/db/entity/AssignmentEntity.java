@@ -15,7 +15,7 @@ import java.util.Objects;
  */
 
 @Entity
-@Table(name = "ASSIGNMENT")
+@Table(name = "ASSIGNMENT", uniqueConstraints = {@UniqueConstraint(columnNames = {"route_id", "direction"})})
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class AssignmentEntity extends BaseEntity {
 

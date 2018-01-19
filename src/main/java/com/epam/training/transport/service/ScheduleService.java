@@ -11,8 +11,6 @@ import java.util.List;
 public interface ScheduleService {
 
     List<ScheduleEntity> loadAll();
-    void delete(final long id);
-    void deleteByAssignment(final long assignmentId);
 
-    ScheduleEntity create ();
+    void delete(final long id);
 }

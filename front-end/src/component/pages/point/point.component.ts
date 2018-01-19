@@ -6,6 +6,7 @@ import 'rxjs/add/observable/of';
 import {Router} from "@angular/router";
 import {PointService} from "../../../service/point-service/point.service";
 import {RouteList} from "../../../utils/route-list";
+import {TransportService} from "../../../service/transport-service/transport.service";
 
 @Component({
   selector: 'app-point',
@@ -30,47 +31,54 @@ export class PointComponent extends PageComponent {
 
   private _points: PointEntity[];
 
- value = 'Search me';
+  private _likeChars: string;
 
   constructor(private readonly pointService: PointService,
               private readonly router: Router) {
     super()
-    this.loadPoints();
+    this.tryLoadPoints();
   }
 
   ngOnInit() {
-    this.loadPoints();
+    this.tryLoadPoints();
+    this._likeChars = '';
   }
 
-  public loadPoints(): void {
-    this.pointService.loadPoints()
-      .then(value => this._points = value)
+  public tryLoadPoints(): void {
+    console.log(this.likeChars);
+    this.setLikeChars();
+    this.pointService.loadPoints(this.likeChars)
+      .then(value => this._points = value);
+    this.likeChars = '';
   }
 
 
   tryDeletePoint() {
     this.pointService.deletePoint(this._pointInfo, (message, result) => {
       if (result) {
-        this.pointService.loadPoints();
+        this.pointService.loadPoints(this.likeChars);
         this.ngOnInit();
       }
       else {
         this._error = message;
       }
-      this.loadPoints();
+      this.tryLoadPoints();
     })
   }
 
   public tryUpdatePoint() {
+
     this.pointService.updatePoint(this._pointInfo, (message, result) => {
         if (result) {
-          this.pointService.loadPoints();
+          this.likeChars = '';
+          this.pointService.loadPoints(this.likeChars);
           this.redirectToPoints();
         }
         else {
           this._error = message;
         }
-        this.pointService.loadPoints();
+        this.likeChars = '';
+        this.pointService.loadPoints(this.likeChars);
       }
     )
   }
@@ -93,12 +101,35 @@ export class PointComponent extends PageComponent {
   }
 
 
+  get likeChars(): string {
+    return this._likeChars;
+  }
+
+
+  set likeChars(value: string) {
+    this._likeChars = value;
+  }
+
+  setLikeChars() {
+    switch (this._likeChars) {
+      case '': {
+        break;
+      }
+      default: {
+        this._likeChars = '?likeChars=' + this._likeChars;
+        break;
+      }
+    }
+  }
+
+
   get length(): number {
     return this._length;
   }
 
-  private setLength() {
-   /* this._length = this.points.length;*/
+  private
+
+  setLength() {
   }
 
   get deleteSelectedPoint(): PointEntity {

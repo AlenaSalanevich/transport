@@ -12,10 +12,10 @@ import com.epam.training.transport.service.exceptions.ErrorCode;
 import com.epam.training.transport.service.exceptions.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
@@ -54,7 +54,6 @@ public class RouteServiceImpl implements RouteService {
                 })
                 .collect(Collectors.toList());
     }
-
 
     @Override
     public RouteEntity load(final String number) {
@@ -161,7 +160,11 @@ public class RouteServiceImpl implements RouteService {
 
     @Override
     public void delete(final long id) {
-        routeRepository.delete(id);
+        try {
+            routeRepository.delete(id);
+        } catch (EmptyResultDataAccessException e) {
+            throw new ServiceException(ErrorCode.NOT_FOUND, e, "Route with id " + id + " doesn't exists.");
+        }
     }
 
     @Override
@@ -199,7 +202,7 @@ public class RouteServiceImpl implements RouteService {
             routeEntity.setRoutePoints(upRoutePoints);
             routeRepository.save(routeEntity);
         } else {
-            throw new ServiceException(ErrorCode.NOT_FOUND);
+            throw new ServiceException(ErrorCode.NOT_FOUND, "The route doesn't contain point with id = " + pointId + ".");
         }
         return routeEntity;
     }
@@ -213,10 +216,5 @@ public class RouteServiceImpl implements RouteService {
         routePoints.clear();
         routeRepository.save(route);
         return route;
-    }
-
-    @Override
-    public RoutePointEntity loadByPoint(final long routeId, final long pointId) {
-        return routePointRepository.findOneByRoute_IdAndPoint_Id(routeId, pointId);
     }
 }

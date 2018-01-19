@@ -1,12 +1,10 @@
 package com.epam.training.transport.service;
 
-import com.epam.training.transport.model.Direction;
 import com.epam.training.transport.model.db.entity.RouteEntity;
 import com.epam.training.transport.model.db.entity.RoutePointEntity;
 import com.epam.training.transport.rest.models.AddPointModel;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * @author Alena_Salanevich
@@ -37,6 +35,4 @@ public interface RouteService {
     RouteEntity insertPoints(final long routeId, final List<AddPointModel> points);
 
     List<RoutePointEntity> loadPoints(final long routeId);
-
-    RoutePointEntity loadByPoint(final long routeId, final long pointId);
 }

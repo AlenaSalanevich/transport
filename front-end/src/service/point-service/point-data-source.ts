@@ -20,7 +20,7 @@ export class PointDataSource extends DataSource<PointEntity> {
   ngOnInit() {
   }
 
-  public refresh(){ this.pointService.loadPoints().then(value => {
+  public refresh(){ this.pointService.loadPoints(null).then(value => {
     this.points.next(value);
   })
   }

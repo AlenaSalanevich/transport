@@ -14,13 +14,11 @@ import com.epam.training.transport.service.TransportService;
 import com.epam.training.transport.service.exceptions.ErrorCode;
 import com.epam.training.transport.service.exceptions.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StreamUtils;
 
 import javax.transaction.Transactional;
 import java.util.*;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
 
 /**
  * @author Alena_Salanevich
@@ -50,44 +48,42 @@ public class AssignmentServiceImpl implements AssignmentService {
         RouteEntity routeEntity = routeService.load(routeId);
         List<RoutePointEntity> routePoints = routeEntity.getRoutePoints();
         Collections.sort(scheduleModels);
-        if (routePoints.size() == scheduleModels.size()) {
-
-            List<ScheduleEntity> scheduleEntities = new ArrayList<>();
-
-            switch (direction) {
-                case DIRECT: {
-                    Collections.sort(routePoints);
-                }
-                break;
-
-                case REVERSE: {
-                    routePoints.sort(Collections.reverseOrder());
-                    break;
-                }
-            }
-
-            for (ScheduleModel scheduleModel : scheduleModels) {
-                RoutePointEntity routePointEntity = routeService.loadByPoint(routeId, scheduleModel.getPointId());
-                if ((routePoints.contains(routePointEntity)) && (routePoints.indexOf(routePointEntity) == scheduleModels.indexOf(scheduleModel))) {
-
-                    scheduleEntities.add(new ScheduleEntity(assignment, routePointEntity, scheduleModel.getDepartureTime()));
-                }
-            }
-            if (scheduleEntities.size() == routePoints.size()) {
-                assignment.setRoute(routeEntity);
-                assignment.setTransport(transportService.load(transportId));
-                assignment.setDirection(direction);
-                assignment.setHoliday(isHoliday);
-                assignment.setScheduleEntities(scheduleEntities);
-                assignmentRepository.save(assignment);
-                return assignment;
-            }
-            throw new ServiceException(ErrorCode.INCORRECT_ORDER, "Please, set the departure time for all points in the route in accordance with sequence of points and direction.");
-        } else {
+        if (routePoints.size() != scheduleModels.size()) {
             throw new ServiceException(ErrorCode.INCORRECT_ORDER, "The route contains " + routePoints.size() + " points. Please set the departure time for all points.");
         }
-    }
+        List<ScheduleEntity> scheduleEntities = new ArrayList<>();
 
+        switch (direction) {
+            case DIRECT: {
+                Collections.sort(routePoints);
+            }
+            break;
+
+            case REVERSE: {
+                routePoints.sort(Collections.reverseOrder());
+                break;
+            }
+        }
+        for (ScheduleModel scheduleModel : scheduleModels) {
+            long pointId = scheduleModel.getPointId();
+            int pointPosition = findPointPosition(pointId, routePoints);
+            int modelPosition = scheduleModels.indexOf(scheduleModel);
+            if (pointPosition == modelPosition) {
+
+                scheduleEntities.add(new ScheduleEntity(assignment, routePoints.get(pointPosition), scheduleModel.getDepartureTime()));
+            }
+        }
+        if (scheduleEntities.size() != routePoints.size()) {
+            throw new ServiceException(ErrorCode.INCORRECT_ORDER, "Please, set the departure time for all points in the route in accordance with sequence of points and direction.");
+        }
+        assignment.setRoute(routeEntity);
+        assignment.setTransport(transportService.load(transportId));
+        assignment.setDirection(direction);
+        assignment.setHoliday(isHoliday);
+        assignment.setScheduleEntities(scheduleEntities);
+        assignmentRepository.save(assignment);
+        return assignment;
+    }
 
     @Override
     public List<AssignmentEntity> loadAll(final Optional<Boolean> optIsHoliday) {
@@ -103,7 +99,27 @@ public class AssignmentServiceImpl implements AssignmentService {
 
     @Override
     public void delete(final long id) {
-        scheduleService.deleteByAssignment(id);
         assignmentRepository.delete(id);
+    }
+
+    @Override
+    public int findPointPosition(final long pointId, List<RoutePointEntity> routePointEntities) {
+
+        Optional<Integer> position = routePointEntities.stream().filter(routePointEntity -> routePointEntity.getPoint().getId() == pointId).findFirst().map(routePointEntity -> routePointEntities.indexOf(routePointEntity));
+        if (position.isPresent()) {
+            return position.get();
+        } else throw new ServiceException(ErrorCode.NOT_FOUND, "The route doesn't contain point with id = " + pointId);
+    }
+
+    @Override
+    public AssignmentEntity update(long id, AssignmentEntity assignmentEntity) {
+
+        try {
+            assignmentRepository.save(assignmentEntity);
+        } catch (DataIntegrityViolationException e) {
+            throw new ServiceException(ErrorCode.NAME_ALREADY_EXISTS, e, "The route " + assignmentEntity.getRoute().getNumber() + "with direction " + assignmentEntity.getDirection() + "already exists.");
+        }
+
+        return assignmentEntity;
     }
 }

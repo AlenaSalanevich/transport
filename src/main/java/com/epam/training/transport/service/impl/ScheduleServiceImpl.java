@@ -26,17 +26,7 @@ public class ScheduleServiceImpl implements ScheduleService {
     }
 
     @Override
-    public  void delete(final long id){
+    public void delete(final long id) {
         scheduleRepository.delete(id);
-    }
-
-    @Override
-    public void deleteByAssignment(long assignmentId) {
-        scheduleRepository.deleteByAssignment_Id(assignmentId);
-    }
-
-    @Override
-    public ScheduleEntity create() {
-        return null;
     }
 }
