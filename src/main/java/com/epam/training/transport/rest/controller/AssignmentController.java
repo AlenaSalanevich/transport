@@ -8,6 +8,7 @@ import com.epam.training.transport.service.AssignmentService;
 import com.epam.training.transport.utils.routes.Routes;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -36,9 +37,9 @@ public class AssignmentController {
     }
 
     public AssignmentController(
-        final RouteService routeService,
-        final PointService pointService,
-        final AssignmentService assignmentService) {
+            final RouteService routeService,
+            final PointService pointService,
+            final AssignmentService assignmentService) {
         this.pointService = pointService;
         this.assignmentService = assignmentService;
         this.routeService = routeService;
@@ -47,32 +48,35 @@ public class AssignmentController {
     @GetMapping()
     @ResponseBody
     @ApiOperation("Load all assignments ")
-    public List<AssignmentEntity> loadAll(@RequestParam
-    final Optional<Boolean> optIsHoliday) {
+    public List<AssignmentEntity> loadAll(@ApiParam(value = "Select is holiday ", allowableValues = "true, false") @RequestParam(required = false) final Optional<Boolean> optIsHoliday) {
         return assignmentService.loadAll(optIsHoliday);
     }
 
     @GetMapping("/{id}")
     @ResponseBody
-    public AssignmentEntity load(@PathVariable
-    final long id) {
+    public AssignmentEntity load(@PathVariable final long id) {
         return assignmentService.load(id);
     }
 
     @PostMapping()
     @ApiOperation("Create new Assignment entity")
     @ResponseBody
-    public AssignmentEntity create(@RequestBody
-    final AssignmentModel assignmentModel) {
+    public AssignmentEntity create(@RequestBody final AssignmentModel assignmentModel) {
 
         return assignmentService.create(assignmentModel.getTransportId(), assignmentModel.getRouteId(), assignmentModel
-            .getDirection(), assignmentModel.isHoliday(), assignmentModel.getScheduleModelList());
+                .getDirection(), assignmentModel.isHoliday(), assignmentModel.getScheduleModelList());
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable
-    final long id) {
-assignmentService.delete(id);
+    public ResponseEntity<?> delete(@PathVariable final long id) {
+        assignmentService.delete(id);
         return ResponseEntity.ok("Assignment is deleted!");
+    }
+
+    @PutMapping("/{id}")
+    @ApiOperation("Update assignmentEntity by id")
+    @ResponseBody
+    public AssignmentEntity update(@PathVariable final long id, @RequestBody final AssignmentEntity assignmentEntity) {
+        return assignmentService.update(id, assignmentEntity);
     }
 }

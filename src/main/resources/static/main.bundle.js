@@ -113,7 +113,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n<mat-toolbar class=\"app-bar mat-elevation-z6\" color=\"primary\">\n\n  <button mat-button class=\"m-toolbar-button\" routerLink=\"/schedule\" routerLinkActive=\"m-toolbar-button-active\">\n    <mat-icon><i class=\"material-icons\">schedule</i>\n    </mat-icon>\n    <span class = \"material-icons_text\"> Schedule</span>\n  </button>\n\n  <button mat-button class=\"m-toolbar-button\" routerLink=\"/route\"\n          routerLinkActive=\"m-toolbar-button-active\"><mat-icon><i class=\"material-icons\">router</i></mat-icon>\n    <span class = \"material-icons_text\"> Route</span>\n  </button>\n\n  <button mat-button class=\"m-toolbar-button\" routerLink=\"/point\"\n          routerLinkActive=\"m-toolbar-button-active\"><mat-icon><i class=\"material-icons\">store</i></mat-icon>\n    <span class = \"material-icons_text\"> Point</span>\n  </button>\n\n  <button mat-button class=\"m-toolbar-button\" routerLink=\"/transport\"\n          routerLinkActive=\"m-toolbar-button-active\">\n    <mat-icon><i class=\"material-icons\">directions_bus</i></mat-icon>\n    <span class = \"material-icons_text\"> Transport</span>\n  </button>\n\n  <span class=\"app-toolbar-filler\"></span>\n  <button mat-icon-button class=\"m-toolbar-button\" *ngIf=\"!authed\" routerLink=\"/login\"\n          routerLinkActive=\"m-toolbar-button-active\">\n    <mat-icon><i class=\"material-icons\" aria-hidden=\"true\">lock_outline</i></mat-icon>\n  </button>\n  <button mat-button class=\"m-toolbar-button\" *ngIf=\"authed\" routerLink=\"/\" (click)=\"logout()\">\n   <mat-icon> <i class=\"material-icons\">lock_open</i></mat-icon>\n  </button>\n\n</mat-toolbar>\n<div class=\"root-content\">\n  <router-outlet></router-outlet>\n</div>\n"
+module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n<mat-toolbar class=\"app-bar mat-elevation-z6\" color=\"primary\">\n\n  <button mat-button class=\"m-toolbar-button\" routerLink=\"/schedule\" routerLinkActive=\"m-toolbar-button-active\">\n    <mat-icon><i class=\"material-icons\">schedule</i>\n    </mat-icon>\n    <span class = \"material-icons_text\"> Schedule</span>\n  </button>\n\n  <button mat-button class=\"m-toolbar-button\" routerLink=\"/route\"\n          routerLinkActive=\"m-toolbar-button-active\">\n    <mat-icon><i class=\"material-icons\">directions</i>\n      </mat-icon>\n    <span class = \"material-icons_text\"> Route</span>\n  </button>\n\n  <button mat-button class=\"m-toolbar-button\" routerLink=\"/point\"\n          routerLinkActive=\"m-toolbar-button-active\"><mat-icon><i class=\"material-icons\">store</i></mat-icon>\n    <span class = \"material-icons_text\"> Point</span>\n  </button>\n\n  <button mat-button class=\"m-toolbar-button\" routerLink=\"/transport\"\n          routerLinkActive=\"m-toolbar-button-active\">\n    <mat-icon><i class=\"material-icons\">directions_bus</i></mat-icon>\n    <span class = \"material-icons_text\"> Transport</span>\n  </button>\n\n  <span class=\"app-toolbar-filler\"></span>\n  <button mat-icon-button class=\"m-toolbar-button\" *ngIf=\"!authed\" routerLink=\"/login\"\n          routerLinkActive=\"m-toolbar-button-active\">\n    <mat-icon><i class=\"material-icons\" aria-hidden=\"true\">lock_outline</i></mat-icon>\n  </button>\n  <button mat-button class=\"m-toolbar-button\" *ngIf=\"authed\" routerLink=\"/\" (click)=\"logout()\">\n   <mat-icon> <i class=\"material-icons\">lock_open</i></mat-icon>\n  </button>\n\n</mat-toolbar>\n<div class=\"root-content\">\n  <router-outlet></router-outlet>\n</div>\n"
 
 /***/ }),
 
@@ -199,22 +199,28 @@ var AppComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__angular_http__ = __webpack_require__("../../../http/esm5/http.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__app_routing_app_routing_module__ = __webpack_require__("../../../../../src/app-routing/app-routing.module.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__angular_platform_browser_animations__ = __webpack_require__("../../../platform-browser/esm5/animations.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__angular_material__ = __webpack_require__("../../../material/esm5/material.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__service_security_service_security_service__ = __webpack_require__("../../../../../src/service/security-service/security.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__service_transport_service_transport_data_source__ = __webpack_require__("../../../../../src/service/transport-service/transport-data-source.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__service_transport_service_transport_service__ = __webpack_require__("../../../../../src/service/transport-service/transport.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__angular_common_http__ = __webpack_require__("../../../common/esm5/http.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__service_point_service_point_data_source__ = __webpack_require__("../../../../../src/service/point-service/point-data-source.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__service_point_service_point_service__ = __webpack_require__("../../../../../src/service/point-service/point.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__component_pages_point_add_point_add_point_component__ = __webpack_require__("../../../../../src/component/pages/point/add-point/add-point.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__component_pages_transport_add_transport_add_transport_component__ = __webpack_require__("../../../../../src/component/pages/transport/add-transport/add-transport.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__angular_material_slider__ = __webpack_require__("../../../material/esm5/slider.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__angular_material_radio__ = __webpack_require__("../../../material/esm5/radio.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__angular_material__ = __webpack_require__("../../../material/esm5/material.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__service_security_service_security_service__ = __webpack_require__("../../../../../src/service/security-service/security.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__service_transport_service_transport_data_source__ = __webpack_require__("../../../../../src/service/transport-service/transport-data-source.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__service_transport_service_transport_service__ = __webpack_require__("../../../../../src/service/transport-service/transport.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__angular_common_http__ = __webpack_require__("../../../common/esm5/http.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__service_point_service_point_data_source__ = __webpack_require__("../../../../../src/service/point-service/point-data-source.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__service_point_service_point_service__ = __webpack_require__("../../../../../src/service/point-service/point.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__component_pages_point_add_point_add_point_component__ = __webpack_require__("../../../../../src/component/pages/point/add-point/add-point.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__component_pages_transport_add_transport_add_transport_component__ = __webpack_require__("../../../../../src/component/pages/transport/add-transport/add-transport.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__service_route_service_route_service__ = __webpack_require__("../../../../../src/service/route-service/route.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
+
 
 
 
@@ -249,36 +255,38 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_5__component_pages_route_route_component__["a" /* RouteComponent */],
                 __WEBPACK_IMPORTED_MODULE_6__component_pages_schedule_schedule_component__["a" /* ScheduleComponent */],
                 __WEBPACK_IMPORTED_MODULE_7__component_pages_login_login_component__["a" /* LoginComponent */],
-                __WEBPACK_IMPORTED_MODULE_20__component_pages_point_add_point_add_point_component__["a" /* AddPointComponent */],
-                __WEBPACK_IMPORTED_MODULE_21__component_pages_transport_add_transport_add_transport_component__["a" /* AddTransportComponent */],
+                __WEBPACK_IMPORTED_MODULE_22__component_pages_point_add_point_add_point_component__["a" /* AddPointComponent */],
+                __WEBPACK_IMPORTED_MODULE_23__component_pages_transport_add_transport_add_transport_component__["a" /* AddTransportComponent */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_17__angular_common_http__["b" /* HttpClientModule */],
+                __WEBPACK_IMPORTED_MODULE_19__angular_common_http__["b" /* HttpClientModule */],
                 __WEBPACK_IMPORTED_MODULE_8__angular_forms__["d" /* FormsModule */],
                 __WEBPACK_IMPORTED_MODULE_9__angular_http__["b" /* HttpModule */],
                 __WEBPACK_IMPORTED_MODULE_10__app_routing_app_routing_module__["a" /* AppRoutingModule */],
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
                 __WEBPACK_IMPORTED_MODULE_11__angular_platform_browser_animations__["a" /* BrowserAnimationsModule */],
-                __WEBPACK_IMPORTED_MODULE_12__angular_material__["a" /* MatButtonModule */],
-                __WEBPACK_IMPORTED_MODULE_12__angular_material__["b" /* MatCardModule */],
-                __WEBPACK_IMPORTED_MODULE_12__angular_material__["c" /* MatCheckboxModule */],
-                __WEBPACK_IMPORTED_MODULE_12__angular_material__["e" /* MatGridListModule */],
-                __WEBPACK_IMPORTED_MODULE_12__angular_material__["d" /* MatFormFieldModule */],
-                __WEBPACK_IMPORTED_MODULE_12__angular_material__["f" /* MatIconModule */],
-                __WEBPACK_IMPORTED_MODULE_12__angular_material__["g" /* MatInputModule */],
-                __WEBPACK_IMPORTED_MODULE_12__angular_material__["h" /* MatListModule */],
-                __WEBPACK_IMPORTED_MODULE_12__angular_material__["i" /* MatMenuModule */],
-                __WEBPACK_IMPORTED_MODULE_12__angular_material__["j" /* MatPaginatorModule */],
-                __WEBPACK_IMPORTED_MODULE_12__angular_material__["l" /* MatSidenavModule */],
-                __WEBPACK_IMPORTED_MODULE_12__angular_material__["n" /* MatTabsModule */],
-                __WEBPACK_IMPORTED_MODULE_12__angular_material__["m" /* MatTableModule */],
-                __WEBPACK_IMPORTED_MODULE_12__angular_material__["o" /* MatToolbarModule */],
-                __WEBPACK_IMPORTED_MODULE_12__angular_material__["p" /* MatTooltipModule */],
-                __WEBPACK_IMPORTED_MODULE_12__angular_material__["k" /* MatSelectModule */],
-                __WEBPACK_IMPORTED_MODULE_16__angular_router__["b" /* RouterModule */],
+                __WEBPACK_IMPORTED_MODULE_14__angular_material__["a" /* MatButtonModule */],
+                __WEBPACK_IMPORTED_MODULE_14__angular_material__["b" /* MatCardModule */],
+                __WEBPACK_IMPORTED_MODULE_14__angular_material__["c" /* MatCheckboxModule */],
+                __WEBPACK_IMPORTED_MODULE_14__angular_material__["e" /* MatGridListModule */],
+                __WEBPACK_IMPORTED_MODULE_14__angular_material__["d" /* MatFormFieldModule */],
+                __WEBPACK_IMPORTED_MODULE_14__angular_material__["f" /* MatIconModule */],
+                __WEBPACK_IMPORTED_MODULE_14__angular_material__["g" /* MatInputModule */],
+                __WEBPACK_IMPORTED_MODULE_14__angular_material__["h" /* MatListModule */],
+                __WEBPACK_IMPORTED_MODULE_14__angular_material__["i" /* MatMenuModule */],
+                __WEBPACK_IMPORTED_MODULE_14__angular_material__["j" /* MatPaginatorModule */],
+                __WEBPACK_IMPORTED_MODULE_13__angular_material_radio__["a" /* MatRadioModule */],
+                __WEBPACK_IMPORTED_MODULE_14__angular_material__["l" /* MatSidenavModule */],
+                __WEBPACK_IMPORTED_MODULE_12__angular_material_slider__["a" /* MatSliderModule */],
+                __WEBPACK_IMPORTED_MODULE_14__angular_material__["n" /* MatTabsModule */],
+                __WEBPACK_IMPORTED_MODULE_14__angular_material__["m" /* MatTableModule */],
+                __WEBPACK_IMPORTED_MODULE_14__angular_material__["o" /* MatToolbarModule */],
+                __WEBPACK_IMPORTED_MODULE_14__angular_material__["p" /* MatTooltipModule */],
+                __WEBPACK_IMPORTED_MODULE_14__angular_material__["k" /* MatSelectModule */],
+                __WEBPACK_IMPORTED_MODULE_18__angular_router__["b" /* RouterModule */],
                 __WEBPACK_IMPORTED_MODULE_8__angular_forms__["i" /* ReactiveFormsModule */]
             ],
-            providers: [__WEBPACK_IMPORTED_MODULE_13__service_security_service_security_service__["a" /* SecurityService */], __WEBPACK_IMPORTED_MODULE_14__service_transport_service_transport_data_source__["a" /* TransportDataSource */], __WEBPACK_IMPORTED_MODULE_15__service_transport_service_transport_service__["a" /* TransportService */], __WEBPACK_IMPORTED_MODULE_18__service_point_service_point_data_source__["a" /* PointDataSource */], __WEBPACK_IMPORTED_MODULE_19__service_point_service_point_service__["a" /* PointService */]],
+            providers: [__WEBPACK_IMPORTED_MODULE_15__service_security_service_security_service__["a" /* SecurityService */], __WEBPACK_IMPORTED_MODULE_16__service_transport_service_transport_data_source__["a" /* TransportDataSource */], __WEBPACK_IMPORTED_MODULE_17__service_transport_service_transport_service__["a" /* TransportService */], __WEBPACK_IMPORTED_MODULE_20__service_point_service_point_data_source__["a" /* PointDataSource */], __WEBPACK_IMPORTED_MODULE_21__service_point_service_point_service__["a" /* PointService */], __WEBPACK_IMPORTED_MODULE_24__service_route_service_route_service__["a" /* RouteService */]],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_2__app_component__["a" /* AppComponent */]]
         })
     ], AppModule);
@@ -588,14 +596,13 @@ var AddPointComponent = (function (_super) {
                 var pointInfo = _this.pointInfo;
                 pointInfo.name = '';
                 _this._error = '';
-                _this.pointService.loadPoints();
+                _this.pointService.loadPoints(_this.pointComponent.likeChars);
                 _this.redirectToPoints();
-                _this.pointService.loadPoints();
             }
             else {
                 _this._error = message;
             }
-            _this.pointService.loadPoints();
+            _this.pointService.loadPoints(_this.pointComponent.likeChars);
         });
     };
     AddPointComponent.prototype.redirectToPoints = function () {
@@ -647,7 +654,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".material-icons.blue {\r\n  color: #3f51b5;\r\n  font-size: 48px;\r\n}\r\n\r\n.material-icons.grey {\r\n  color: lightgrey;\r\n}\r\n.material-icons.greySearch {\r\n  color: lightgrey;\r\n  font-size: 18px;\r\n}\r\n\r\n.material-icons-text {\r\n  font-size: 10px;\r\n  font-weight: bold;\r\n  color: #3f51b5;\r\n}\r\n\r\n.mat-icon-button {\r\n  position: fixed;\r\n  right: 5%;\r\n  bottom: 5%;\r\n}\r\n\r\n.search-button {\r\n  position: relative;\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -webkit-box-orient: horizontal;\r\n  -webkit-box-direction: reverse;\r\n      -ms-flex-direction: row-reverse;\r\n          flex-direction: row-reverse;\r\n}\r\n\r\n.add-point-button-position {\r\n  position: absolute;\r\n  float: right;\r\n  z-index: 10;\r\n}\r\n\r\n.form-point {\r\n  position: absolute;\r\n  height: inherit;\r\n  width: -webkit-max-content;\r\n  width: -moz-max-content;\r\n  width: max-content;\r\n  -ms-flex-item-align: center;\r\n      -ms-grid-row-align: center;\r\n      align-self: center;\r\n  margin-top: initial;\r\n}\r\n\r\n.point-content {\r\n  position: absolute;\r\n  width: 81.5%;\r\n  color: #636363;\r\n  font-family: inherit;\r\n}\r\n\r\n.card {\r\n  float: left;\r\n  margin: 10px;\r\n  position: relative;\r\n  width: 100px;\r\n}\r\n\r\n.mat-button {\r\n}\r\n\r\n.mat-card-actions {\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -webkit-box-orient: horizontal;\r\n  -webkit-box-direction: reverse;\r\n      -ms-flex-direction: row-reverse;\r\n          flex-direction: row-reverse;\r\n}\r\n\r\n.mat-card-content, h2, p {\r\n  font-family: Roboto, \"Helvetica Neue\", sans-serif;\r\n  font-size: medium;\r\n  font-weight: bold;\r\n  color: #3f51b5;\r\n  text-align: center;\r\n}\r\n\r\n.mat-icon-button-card-actions {\r\n  position: relative;\r\n}\r\n\r\n.mat-icon-button-card-actions:hover {\r\n  color: grey;\r\n}\r\n\r\n.mat-paginator-container {\r\n  position: revert;\r\n  margin-bottom: 0%;\r\n  width: 100%;\r\n  height: -webkit-fit-content;\r\n  height: -moz-fit-content;\r\n  height: fit-content;\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -webkit-box-orient: horizontal;\r\n  -webkit-box-direction: normal;\r\n      -ms-flex-direction: row;\r\n          flex-direction: row;\r\n}\r\n\r\n.delete-point-form-container {\r\n\r\n}\r\n\r\n.delete-data-form {\r\n position: fixed;\r\n  margin-left: 33%;\r\n  margin-top: 33%;\r\n  width: 33%;\r\n  height: 33%;\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -webkit-box-orient: vertical;\r\n  -webkit-box-direction: normal;\r\n      -ms-flex-direction: column;\r\n          flex-direction: column;\r\n  -webkit-box-align: center;\r\n      -ms-flex-align: center;\r\n          align-items: center;\r\n  -ms-flex-item-align: center;\r\n      align-self: center;\r\n  background-color: white;\r\n  position: relative;\r\n  font-family: Roboto, \"Helvetica Neue\", sans-serif;\r\n  font-size: medium;\r\n  font-weight: bold;\r\n  color: #3f51b5;\r\n  text-align: center;\r\n  border-collapse: collapse;\r\n  border-radius: 2px;\r\n  border-spacing: 1px;\r\n  padding: 10px;\r\n}\r\n.delete-point-button{\r\n  margin-top: 0.8%;\r\n  width: 70%;\r\n}\r\n", ""]);
+exports.push([module.i, ".material-icons.blue {\r\n  color: #3f51b5;\r\n  font-size: 48px;\r\n}\r\n\r\n.material-icons.grey {\r\n  color: lightgrey;\r\n}\r\n\r\n.material-icons.search {\r\n  color: grey;\r\n  font-size: 18px;\r\n}\r\n\r\n.material-icons-text {\r\n  font-size: 10px;\r\n  font-weight: bold;\r\n  color: #3f51b5;\r\n}\r\n\r\n.mat-icon-button {\r\n  position: fixed;\r\n  right: 5%;\r\n  bottom: 5%;\r\n}\r\n\r\n.search-button {\r\n  position: relative;\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -webkit-box-orient: horizontal;\r\n  -webkit-box-direction: reverse;\r\n      -ms-flex-direction: row-reverse;\r\n          flex-direction: row-reverse;\r\n}\r\n\r\n.add-point-button-position {\r\n  position: absolute;\r\n  float: right;\r\n  z-index: 10;\r\n}\r\n\r\n.form-point {\r\n  position: absolute;\r\n  height: inherit;\r\n  width: -webkit-max-content;\r\n  width: -moz-max-content;\r\n  width: max-content;\r\n  -ms-flex-item-align: center;\r\n      -ms-grid-row-align: center;\r\n      align-self: center;\r\n  margin-top: initial;\r\n}\r\n\r\n.point-content {\r\n  position: absolute;\r\n  width: 81.5%;\r\n  color: #636363;\r\n  font-family: inherit;\r\n}\r\n\r\n.card {\r\n  float: left;\r\n  margin: 10px;\r\n  position: relative;\r\n  width: 100px;\r\n}\r\n\r\n.mat-button {\r\n}\r\n\r\n.mat-card-actions {\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -webkit-box-orient: horizontal;\r\n  -webkit-box-direction: reverse;\r\n      -ms-flex-direction: row-reverse;\r\n          flex-direction: row-reverse;\r\n}\r\n\r\n.mat-card-content, h2, p {\r\n  font-family: Roboto, \"Helvetica Neue\", sans-serif;\r\n  font-size: medium;\r\n  font-weight: bold;\r\n  color: #3f51b5;\r\n  text-align: center;\r\n}\r\n\r\n.mat-icon-button-card-actions {\r\n  position: relative;\r\n}\r\n\r\n.mat-icon-button-card-actions:hover {\r\n  color: grey;\r\n}\r\n\r\n.mat-paginator-container {\r\n  position: revert;\r\n  margin-bottom: 0%;\r\n  width: 100%;\r\n  height: -webkit-fit-content;\r\n  height: -moz-fit-content;\r\n  height: fit-content;\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -webkit-box-orient: horizontal;\r\n  -webkit-box-direction: normal;\r\n      -ms-flex-direction: row;\r\n          flex-direction: row;\r\n}\r\n\r\n.delete-point-form-container {\r\n\r\n}\r\n\r\n.delete-data-form {\r\n  position: fixed;\r\n  margin-left: 33%;\r\n  margin-top: 33%;\r\n  width: 33%;\r\n  height: 33%;\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -webkit-box-orient: vertical;\r\n  -webkit-box-direction: normal;\r\n      -ms-flex-direction: column;\r\n          flex-direction: column;\r\n  -webkit-box-align: center;\r\n      -ms-flex-align: center;\r\n          align-items: center;\r\n  -ms-flex-item-align: center;\r\n      align-self: center;\r\n  background-color: white;\r\n  position: relative;\r\n  font-family: Roboto, \"Helvetica Neue\", sans-serif;\r\n  font-size: medium;\r\n  font-weight: bold;\r\n  color: #3f51b5;\r\n  text-align: center;\r\n  border-collapse: collapse;\r\n  border-radius: 2px;\r\n  border-spacing: 1px;\r\n  padding: 10px;\r\n}\r\n\r\n.delete-point-button {\r\n  margin-top: 0.8%;\r\n  width: 70%;\r\n}\r\n\r\n.search-form-field {\r\n  font-family: inherit;\r\n  color: inherit;\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -webkit-box-orient: horizontal;\r\n  -webkit-box-direction: normal;\r\n      -ms-flex-direction: row;\r\n          flex-direction: row;\r\n  width: 60%;\r\n}\r\n\r\n.search-form {\r\n  min-width: 150px;\r\n  max-width: 500px;\r\n  width: 100%;\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -webkit-box-orient: horizontal;\r\n  -webkit-box-direction: reverse;\r\n      -ms-flex-direction: row-reverse;\r\n          flex-direction: row-reverse;\r\n  font-family: Roboto, \"Helvetica Neue\", sans-serif;\r\n  color: #3f51b5;\r\n  -webkit-box-align: right;\r\n      -ms-flex-align: right;\r\n          align-items: right;\r\n}\r\n\r\n.mat-form-field-infix {\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n}\r\n", ""]);
 
 // exports
 
@@ -660,7 +667,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/component/pages/point/point.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!-- Search button (initiates search) -->\r\n<div>\r\n <div>\r\n   <button mat-button>\r\n    <mat-icon><i class=\"material-icons greySearch\">search</i></mat-icon>\r\n  </button>\r\n  <mat-form-field class=\"example-form-field\">\r\n    <input matInput type=\"text\" [(ngModel)]=\"value\">\r\n    <button mat-button *ngIf=\"value\" matSuffix mat-icon-button aria-label=\"Search\" (click)=\"value=''\">\r\n      <mat-icon>close</mat-icon>\r\n    </button>\r\n  </mat-form-field>\r\n </div>\r\n\r\n  <div>\r\n    <div class=\"points\">\r\n      <div *ngFor=\"let point of points\">\r\n        <mat-card class=\"card\">\r\n          <mat-card-header>\r\n            <mat-card-title></mat-card-title>\r\n            <mat-card-subtitle></mat-card-subtitle>\r\n          </mat-card-header>\r\n\r\n          <img src=\"../../../assets/ic_store_black_24dp_2x.png\"/>\r\n          <mat-card-content>\r\n            {{point.name}}\r\n          </mat-card-content>\r\n          <mat-card-actions>\r\n\r\n            <button mat-icon-button class=\"mat-icon-button-card-actions\">\r\n              <mat-icon><i class=\"material-icons md-24 grey\" aria-hidden=\"true\"\r\n                           (click)=\"onDeleteSelect(point)\">delete</i>\r\n              </mat-icon>\r\n            </button>\r\n\r\n            <button mat-icon-button class=\"mat-icon-button-card-actions\">\r\n              <mat-icon><i class=\"material-icons md-24 grey\" aria-hidden=\"true\"\r\n                           (click)=\"onEditSelect(point)\">mode_edit</i>\r\n              </mat-icon>\r\n            </button>\r\n\r\n          </mat-card-actions>\r\n        </mat-card>\r\n      </div>\r\n    </div>\r\n\r\n    <form class=\"delete-data-form mat-elevation-z2\" *ngIf=\"editSelectedPoint\" (ngSubmit)=\"tryUpdatePoint()\"\r\n          #createForm=\"ngForm\">\r\n      <h2> DETAILS: {{ editSelectedPoint.name | uppercase }} </h2>\r\n      <h3 class=\"add-point-page-error\" [hidden]=\"error.length == 0\">\r\n        {{error}}\r\n      </h3>\r\n      <mat-input-container class=\"add-point-data-row\">\r\n        <input matInput placeholder=\"The point name\" id=\"name\" required\r\n               minlength=\"{{minPointLenth}}\"\r\n               maxlength=\"{{maxPointLenth}}\"\r\n               [(ngModel)]=\"pointInfo.name\" name=\"name\"\r\n               #name=\"ngModel\">\r\n      </mat-input-container>\r\n      <button class=\"delete-point-button\" type=\"submit\" mat-raised-button color=\"primary\"\r\n              [disabled]=\"!createForm.form.valid\" (click)=\"!onEditSelect()\"> Update point\r\n      </button>\r\n      <button class=\"delete-point-button\" type=\"submit\" mat-raised-button color=\"primary\"\r\n              (click)=\"!onEditSelect()\"> Cancel\r\n      </button>\r\n    </form>\r\n\r\n    <form class=\"delete-data-form mat-elevation-z2\" *ngIf=\"deleteSelectedPoint\">\r\n      <h2>DELETE: {{ deleteSelectedPoint.name | uppercase }} </h2>\r\n      <h3 class=\"add-point-page-error\" [hidden]=\"error.length == 0\">\r\n        {{error}}\r\n      </h3>\r\n      <p> Are you sure to delete this point?</p>\r\n      <button class=\"delete-point-button\" type=\"submit\" mat-raised-button color=\"primary\"\r\n              (click)=\"tryDeletePoint();\r\n                         !onDeleteSelect()\"> Delete point\r\n      </button>\r\n      <button class=\"delete-point-button\" type=\"submit\" mat-raised-button color=\"primary\"\r\n              (click)=\"!onDeleteSelect()\"> Cancel\r\n      </button>\r\n    </form>\r\n\r\n<div class=\"add-point-button-position\">\r\n     <button mat-icon-button [routerLink]=\"['./add'] \">\r\n      <mat-icon><i class=\"material-icons md-48 blue\" aria-hidden=\"true\">add_circle</i></mat-icon>\r\n    </button>\r\n  </div>\r\n\r\n  </div>\r\n</div>\r\n\r\n\r\n  <mat-paginator class=\"mat-paginator-container\"\r\n    [length]=\"30\"\r\n    [pageSize]=\"30\"\r\n    [pageSizeOptions]=\"[30, 60]\">\r\n  </mat-paginator>\r\n\r\n\r\n<div class=\"form-point\">\r\n  <router-outlet></router-outlet>\r\n</div>\r\n\r\n\r\n\r\n\r\n"
+module.exports = "<!-- Search button (initiates search) -->\r\n<div>\r\n  <form class=\"search-form\">\r\n     <mat-form-field class=\"search-form-field\">\r\n\r\n     <input matInput type=\"text\" placeholder=\"Search\" [(ngModel)]=\"likeChars\" name=\"value\" #name=\"ngModel\"/>\r\n\r\n     <button mat-button *ngIf=\"likeChars\" (click)=\"likeChars=''\">\r\n       <mat-icon><i class=\"material-icons.search\">close</i></mat-icon>\r\n     </button>\r\n   </mat-form-field>\r\n\r\n    <button mat-button (click)=\"tryLoadPoints(likeChars)\">\r\n      <mat-icon><i class=\"material-icons.search\">search</i></mat-icon>\r\n    </button>\r\n  </form>\r\n\r\n  <div>\r\n    <div class=\"points\">\r\n      <div *ngFor=\"let point of points\">\r\n        <mat-card class=\"card\">\r\n          <mat-card-header>\r\n            <mat-card-title></mat-card-title>\r\n            <mat-card-subtitle></mat-card-subtitle>\r\n          </mat-card-header>\r\n\r\n          <img src=\"../../../assets/ic_store_black_24dp_2x.png\"/>\r\n          <mat-card-content>\r\n            {{point.name}}\r\n          </mat-card-content>\r\n          <mat-card-actions>\r\n\r\n            <button mat-icon-button class=\"mat-icon-button-card-actions\">\r\n              <mat-icon><i class=\"material-icons md-24 grey\" aria-hidden=\"true\"\r\n                           (click)=\"onDeleteSelect(point); editSelectedPoint = null\">delete</i>\r\n              </mat-icon>\r\n            </button>\r\n\r\n            <button mat-icon-button class=\"mat-icon-button-card-actions\">\r\n              <mat-icon><i class=\"material-icons md-24 grey\" aria-hidden=\"true\"\r\n                           (click)=\"onEditSelect(point); deleteSelectedPoint = null\">mode_edit</i>\r\n              </mat-icon>\r\n            </button>\r\n\r\n          </mat-card-actions>\r\n        </mat-card>\r\n      </div>\r\n    </div>\r\n\r\n    <form class=\"delete-data-form mat-elevation-z2\" *ngIf=\"editSelectedPoint\" (ngSubmit)=\"tryUpdatePoint()\"\r\n          #createForm=\"ngForm\">\r\n      <h2> DETAILS: {{ editSelectedPoint.name | uppercase }} </h2>\r\n      <h3 class=\"add-point-page-error\" [hidden]=\"error.length == 0\">\r\n        {{error}}\r\n      </h3>\r\n      <mat-input-container class=\"add-point-data-row\">\r\n        <input matInput placeholder=\"The point name\" id=\"name\" required\r\n               minlength=\"{{minPointLenth}}\"\r\n               maxlength=\"{{maxPointLenth}}\"\r\n               [(ngModel)]=\"pointInfo.name\"  name=\"name\"\r\n               #name=\"ngModel\">\r\n      </mat-input-container>\r\n      <button class=\"delete-point-button\" type=\"submit\" mat-raised-button color=\"primary\"\r\n              [disabled]=\"!createForm.form.valid\" (click)=\"!onEditSelect()\"> Update point\r\n      </button>\r\n      <button class=\"delete-point-button\" type=\"submit\" mat-raised-button color=\"primary\"\r\n              (click)=\"!onEditSelect()\"> Cancel\r\n      </button>\r\n    </form>\r\n\r\n    <form class=\"delete-data-form mat-elevation-z2\" *ngIf=\"deleteSelectedPoint\">\r\n      <h2>DELETE: {{ deleteSelectedPoint.name | uppercase }} </h2>\r\n      <h3 class=\"add-point-page-error\" [hidden]=\"error.length == 0\">\r\n        {{error}}\r\n      </h3>\r\n      <p> Are you sure to delete this point?</p>\r\n      <button class=\"delete-point-button\" type=\"submit\" mat-raised-button color=\"primary\"\r\n              (click)=\"tryDeletePoint();\r\n                         !onDeleteSelect()\"> Delete point\r\n      </button>\r\n      <button class=\"delete-point-button\" type=\"submit\" mat-raised-button color=\"primary\"\r\n              (click)=\"!onDeleteSelect()\"> Cancel\r\n      </button>\r\n    </form>\r\n    <mat-divider></mat-divider>\r\n<div class=\"add-point-button-position\">\r\n     <button mat-icon-button [routerLink]=\"['./add'] \">\r\n      <mat-icon><i class=\"material-icons md-48 blue\" aria-hidden=\"true\">add_circle</i></mat-icon>\r\n    </button>\r\n  </div>\r\n\r\n  </div>\r\n\r\n</div>\r\n\r\n<div class=\"form-point\">\r\n  <router-outlet></router-outlet>\r\n</div>\r\n<!--\r\n\r\n  <mat-paginator class=\"mat-paginator-container\"\r\n    [length]=\"30\"\r\n    [pageSize]=\"30\"\r\n    [pageSizeOptions]=\"[30, 60]\">\r\n  </mat-paginator>\r\n-->\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n"
 
 /***/ }),
 
@@ -708,42 +715,47 @@ var PointComponent = (function (_super) {
         var _this = _super.call(this) || this;
         _this.pointService = pointService;
         _this.router = router;
-        _this.value = 'Search me';
-        _this.loadPoints();
+        _this.tryLoadPoints();
         return _this;
     }
     PointComponent.prototype.ngOnInit = function () {
-        this.loadPoints();
+        this.tryLoadPoints();
+        this._likeChars = '';
     };
-    PointComponent.prototype.loadPoints = function () {
+    PointComponent.prototype.tryLoadPoints = function () {
         var _this = this;
-        this.pointService.loadPoints()
+        console.log(this.likeChars);
+        this.setLikeChars();
+        this.pointService.loadPoints(this.likeChars)
             .then(function (value) { return _this._points = value; });
+        this.likeChars = '';
     };
     PointComponent.prototype.tryDeletePoint = function () {
         var _this = this;
         this.pointService.deletePoint(this._pointInfo, function (message, result) {
             if (result) {
-                _this.pointService.loadPoints();
+                _this.pointService.loadPoints(_this.likeChars);
                 _this.ngOnInit();
             }
             else {
                 _this._error = message;
             }
-            _this.loadPoints();
+            _this.tryLoadPoints();
         });
     };
     PointComponent.prototype.tryUpdatePoint = function () {
         var _this = this;
         this.pointService.updatePoint(this._pointInfo, function (message, result) {
             if (result) {
-                _this.pointService.loadPoints();
+                _this.likeChars = '';
+                _this.pointService.loadPoints(_this.likeChars);
                 _this.redirectToPoints();
             }
             else {
                 _this._error = message;
             }
-            _this.pointService.loadPoints();
+            _this.likeChars = '';
+            _this.pointService.loadPoints(_this.likeChars);
         });
     };
     PointComponent.prototype.redirectToPoints = function () {
@@ -760,6 +772,27 @@ var PointComponent = (function (_super) {
         this._pointInfo = this._deleteSelectedPoint;
         this._error = '';
     };
+    Object.defineProperty(PointComponent.prototype, "likeChars", {
+        get: function () {
+            return this._likeChars;
+        },
+        set: function (value) {
+            this._likeChars = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    PointComponent.prototype.setLikeChars = function () {
+        switch (this._likeChars) {
+            case '': {
+                break;
+            }
+            default: {
+                this._likeChars = '?likeChars=' + this._likeChars;
+                break;
+            }
+        }
+    };
     Object.defineProperty(PointComponent.prototype, "length", {
         get: function () {
             return this._length;
@@ -768,7 +801,6 @@ var PointComponent = (function (_super) {
         configurable: true
     });
     PointComponent.prototype.setLength = function () {
-        /* this._length = this.points.length;*/
     };
     Object.defineProperty(PointComponent.prototype, "deleteSelectedPoint", {
         get: function () {
@@ -847,7 +879,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".mat-image{\r\n  position: fixed;\r\n}\r\n.image{\r\n   width: 100%;\r\n  height: inherit;\r\n  overflow-y: scroll;\r\n  position: inherit;\r\n}\r\n", ""]);
+exports.push([module.i, ".mat-image{\r\n  position: fixed;\r\n}\r\n.image{\r\n   width: 100%;\r\n  height: inherit;\r\n  overflow-y: scroll;\r\n  position: inherit;\r\n}\r\n.route-card{\r\n  background-color:  #3f51b5;\r\n  text-align: center;\r\n  font-family: Roboto, \"Helvetica Neue\", sans-serif;\r\n  color: white;\r\n  font-weight: bold;\r\n  font-size: large;\r\n  width: -webkit-fit-content;\r\n  width: -moz-fit-content;\r\n  width: fit-content;\r\n  height: -webkit-fit-content;\r\n  height: -moz-fit-content;\r\n  height: fit-content;\r\n  margin: 1% 1% 1% 1%;\r\n}\r\n.routes{\r\n  display:-webkit-inline-box;\r\n  display:-ms-inline-flexbox;\r\n  display:inline-flex;\r\n  -webkit-box-orient: horizontal;\r\n  -webkit-box-direction: normal;\r\n      -ms-flex-direction: row;\r\n          flex-direction: row;\r\n  -webkit-box-align: center;\r\n      -ms-flex-align: center;\r\n          align-items: center;\r\n}\r\n", ""]);
 
 // exports
 
@@ -860,7 +892,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/component/pages/route/route.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\r\n<div class=\"mat-image\">\r\n  <img class=\"image\" src=\"../../../assets/294.jpg\" />\r\n</div>\r\n\r\n"
+module.exports = "\r\n  <div class=\"routes\">\r\n    <div class=\"routes\" *ngFor=\"let route of routes\">\r\n      <mat-card class=\"route-card\">\r\n        <mat-card-header>\r\n          <mat-card-title></mat-card-title>\r\n          <mat-card-subtitle></mat-card-subtitle>\r\n        </mat-card-header>\r\n               <mat-card-content>\r\n          <p> {{route.number}}</p>\r\n          </mat-card-content>\r\n        <mat-card-actions>\r\n\r\n          <button mat-icon-button class=\"mat-icon-button-card-actions\">\r\n            <mat-icon><i class=\"material-icons md-24 grey\" aria-hidden=\"true\"\r\n                         (click)=\"onDeleteSelect(route)\">delete</i></mat-icon>\r\n          </button>\r\n\r\n          <button mat-icon-button class=\"mat-icon-button-card-actions\">\r\n            <mat-icon><i class=\"material-icons md-24 grey\" aria-hidden=\"true\"\r\n                         (click)=\"onEditSelect(route)\">mode_edit</i></mat-icon>\r\n          </button>\r\n\r\n        </mat-card-actions>\r\n      </mat-card>\r\n    </div>\r\n  </div>\r\n\r\n\r\n"
 
 /***/ }),
 
@@ -871,6 +903,9 @@ module.exports = "\r\n<div class=\"mat-image\">\r\n  <img class=\"image\" src=\"
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RouteComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__page_component__ = __webpack_require__("../../../../../src/component/page.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_route_list__ = __webpack_require__("../../../../../src/utils/route-list.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__service_route_service_route_service__ = __webpack_require__("../../../../../src/service/route-service/route.service.ts");
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -892,18 +927,97 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
+
+
 var RouteComponent = (function (_super) {
     __extends(RouteComponent, _super);
-    function RouteComponent() {
-        return _super.call(this) || this;
+    function RouteComponent(routeService, router) {
+        var _this = _super.call(this) || this;
+        _this.routeService = routeService;
+        _this.router = router;
+        _this.tryLoadRoutes();
+        return _this;
     }
+    RouteComponent.prototype.ngOnInit = function () {
+        this.tryLoadRoutes();
+    };
+    RouteComponent.prototype.tryLoadRoutes = function () {
+        var _this = this;
+        this.routeService.loadRoutes()
+            .then(function (value) { return _this._routes = value; });
+    };
+    RouteComponent.prototype.tryDeletePoint = function () {
+        var _this = this;
+        this.routeService.deleteRoute(this._routeInfo, function (message, result) {
+            if (result) {
+                _this.routeService.loadRoutes();
+                _this.ngOnInit();
+            }
+            else {
+                _this._error = message;
+            }
+            _this.tryLoadRoutes();
+        });
+    };
+    RouteComponent.prototype.tryUpdatePoint = function () {
+        var _this = this;
+        this.routeService.updateRoute(this._routeInfo, function (message, result) {
+            if (result) {
+                _this.routeService.loadRoutes();
+            }
+            else {
+                _this._error = message;
+            }
+            _this.tryLoadRoutes();
+        });
+    };
+    RouteComponent.prototype.redirectToRoutes = function () {
+        this.router.navigateByUrl('/' + __WEBPACK_IMPORTED_MODULE_2__utils_route_list__["a" /* RouteList */].PAGE_ROUTE);
+        this.ngOnInit();
+    };
+    RouteComponent.prototype.onEditSelect = function (route) {
+    };
+    RouteComponent.prototype.onDeleteSelect = function (route) {
+    };
+    Object.defineProperty(RouteComponent.prototype, "error", {
+        get: function () {
+            return this._error;
+        },
+        set: function (value) {
+            this._error = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(RouteComponent.prototype, "routeInfo", {
+        get: function () {
+            return this._routeInfo;
+        },
+        set: function (value) {
+            this._routeInfo = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(RouteComponent.prototype, "routes", {
+        get: function () {
+            return this._routes;
+        },
+        set: function (value) {
+            this._routes = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
     RouteComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
             selector: 'app-route',
             template: __webpack_require__("../../../../../src/component/pages/route/route.component.html"),
             styles: [__webpack_require__("../../../../../src/component/pages/route/route.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_4__service_route_service_route_service__["a" /* RouteService */],
+            __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* Router */]])
     ], RouteComponent);
     return RouteComponent;
 }(__WEBPACK_IMPORTED_MODULE_1__page_component__["a" /* PageComponent */]));
@@ -1199,7 +1313,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "\r\n.mat-icon-button{\r\n  position: fixed;\r\n  right: 5%;\r\n  bottom: 5%;\r\n}\r\n\r\n.add-transport-button-position {\r\n  position: absolute;\r\n  float: right;\r\n  z-index: 10;\r\n}\r\n\r\n.form-point {\r\n  position: absolute;\r\n  height:350px;\r\n  width: -webkit-max-content;\r\n  width: -moz-max-content;\r\n  width: max-content;\r\n  -ms-flex-item-align: center;\r\n      -ms-grid-row-align: center;\r\n      align-self: center;\r\n  margin-top: 10%;\r\n  margin-left: 30%;\r\n}\r\n\r\n.point-content {\r\n  position: absolute;\r\n  width: 81.5%;\r\n  color: #636363;\r\n  font-family: inherit;\r\n}\r\n\r\n.material-icons.blue{\r\n  color: #3f51b5;\r\n  font-size: 48px;\r\n}\r\n.material-icons.grey{\r\n  color: lightgrey;\r\n}\r\n\r\n.material-icons-text{\r\n  font-size: 10px;\r\n  font-weight: bold;\r\n  color: #3f51b5;\r\n}\r\n\r\n.mat-icon-button {\r\n  position: fixed;\r\n  right: 5%;\r\n  bottom: 5%;\r\n}\r\n.search-button {\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -webkit-box-orient: horizontal;\r\n  -webkit-box-direction: reverse;\r\n      -ms-flex-direction: row-reverse;\r\n          flex-direction: row-reverse;\r\n}\r\n.add-point-button-position {\r\n  position: absolute;\r\n  float: right;\r\n  z-index: 10;\r\n}\r\n\r\n.card {\r\n  float: left;\r\n  margin: 10px;\r\n  position: relative;\r\n  width: 100px;\r\n}\r\n.mat-raised-button{\r\n  margin-top: 2%;\r\n  margin-left: 2%;\r\n  width: -webkit-fit-content;\r\n  width: -moz-fit-content;\r\n  width: fit-content;\r\n}\r\n\r\n.mat-card-actions {\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -webkit-box-orient: horizontal;\r\n  -webkit-box-direction: reverse;\r\n      -ms-flex-direction: row-reverse;\r\n          flex-direction: row-reverse;\r\n}\r\n.mat-card-content{\r\n  font-family: Roboto, \"Helvetica Neue\", sans-serif;\r\n  font-size: medium;\r\n  font-weight: bold;\r\n  color: #3f51b5;\r\n  text-align: center;\r\n}\r\n\r\n.mat-icon-button-card-actions {\r\n  position: relative;\r\n}\r\n.mat-icon-button-card-actions:hover {\r\n  color: red;\r\n}\r\n.sort-container{\r\n  margin-top: 2%;\r\n  position: relative;\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -webkit-box-orient: horizontal;\r\n  -webkit-box-direction: normal;\r\n      -ms-flex-direction: row;\r\n          flex-direction: row;\r\n  width: -webkit-max-content;\r\n  width: -moz-max-content;\r\n  width: max-content;\r\n  height: inherit;\r\n}\r\n\r\n.form-delete-transport{\r\n  position: relative;\r\n  font-family: Roboto, \"Helvetica Neue\", sans-serif;\r\n  font-size: medium;\r\n  font-weight: bold;\r\n  color: #3f51b5;\r\n  text-align: center;\r\n  border-collapse: collapse;\r\n  border-radius: 2px;\r\n  border-spacing: 0px;\r\n  padding: 10px;\r\n  background-color: white;\r\n}\r\n", ""]);
+exports.push([module.i, "\r\n.mat-icon-button{\r\n  position: fixed;\r\n  right: 5%;\r\n  bottom: 5%;\r\n}\r\n\r\n.add-transport-button-position {\r\n  position: absolute;\r\n  float: right;\r\n  z-index: 10;\r\n}\r\n\r\n.form-point {\r\n  position: absolute;\r\n  height:350px;\r\n  width: -webkit-max-content;\r\n  width: -moz-max-content;\r\n  width: max-content;\r\n  -ms-flex-item-align: center;\r\n      -ms-grid-row-align: center;\r\n      align-self: center;\r\n  margin-top: 10%;\r\n  margin-left: 30%;\r\n}\r\n\r\n.point-content {\r\n  position: absolute;\r\n  width: 81.5%;\r\n  color: #636363;\r\n  font-family: inherit;\r\n}\r\n\r\n.material-icons.blue{\r\n  color: #3f51b5;\r\n  font-size: 48px;\r\n}\r\n.material-icons.grey{\r\n  color: lightgrey;\r\n}\r\n\r\n.material-icons-text{\r\n  font-size: 10px;\r\n  font-weight: bold;\r\n  color: #3f51b5;\r\n}\r\n\r\n.mat-icon-button {\r\n  position: fixed;\r\n  right: 5%;\r\n  bottom: 5%;\r\n}\r\n.search-button {\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -webkit-box-orient: horizontal;\r\n  -webkit-box-direction: reverse;\r\n      -ms-flex-direction: row-reverse;\r\n          flex-direction: row-reverse;\r\n}\r\n.add-point-button-position {\r\n  position: absolute;\r\n  float: right;\r\n  z-index: 10;\r\n}\r\n\r\n.card {\r\n  float: left;\r\n  margin: 10px;\r\n  position: relative;\r\n  width: 100px;\r\n}\r\n.mat-raised-button{\r\n  margin-top: 2%;\r\n  margin-left: 2%;\r\n  width: -webkit-fit-content;\r\n  width: -moz-fit-content;\r\n  width: fit-content;\r\n}\r\n\r\n.mat-card-actions {\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -webkit-box-orient: horizontal;\r\n  -webkit-box-direction: reverse;\r\n      -ms-flex-direction: row-reverse;\r\n          flex-direction: row-reverse;\r\n}\r\n.mat-card-content{\r\n  font-family: Roboto, \"Helvetica Neue\", sans-serif;\r\n  font-size: medium;\r\n  font-weight: bold;\r\n  color: #3f51b5;\r\n  text-align: center;\r\n}\r\n\r\n.mat-icon-button-card-actions {\r\n  position: relative;\r\n}\r\n.mat-icon-button-card-actions:hover {\r\n  color: red;\r\n}\r\n.sort-container{\r\n  margin-top: 2%;\r\n  position: relative;\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -webkit-box-orient: horizontal;\r\n  -webkit-box-direction: normal;\r\n      -ms-flex-direction: row;\r\n          flex-direction: row;\r\n  width: -webkit-max-content;\r\n  width: -moz-max-content;\r\n  width: max-content;\r\n  height: inherit;\r\n}\r\n\r\n.form-delete-transport{\r\n  position: relative;\r\n  font-family: Roboto, \"Helvetica Neue\", sans-serif;\r\n  font-size: medium;\r\n  font-weight: bold;\r\n  color: #3f51b5;\r\n  text-align: center;\r\n  border-collapse: collapse;\r\n  border-radius: 2px;\r\n  border-spacing: 0px;\r\n  padding: 10px;\r\n  background-color: white;\r\n}\r\n.radio-group {\r\n  display: -webkit-inline-box;\r\n  display: -ms-inline-flexbox;\r\n  display: inline-flex;\r\n  -webkit-box-orient: horizontal;\r\n  -webkit-box-direction: normal;\r\n      -ms-flex-direction: row;\r\n          flex-direction: row;\r\n  color: #3f51b5;\r\n  font-family: Roboto, \"Helvetica Neue\", sans-serif;\r\n}\r\n\r\n.radio-button {\r\n  margin: 5px;\r\n}\r\n\r\n.selected-value {\r\n  margin: 15px 0;\r\n  color: #3f51b5;\r\n  font-family: Roboto, \"Helvetica Neue\", sans-serif;\r\n}\r\n", ""]);
 
 // exports
 
@@ -1212,7 +1326,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/component/pages/transport/transport.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div>\r\n  <div class=\"sort-container\">\r\n    <button mat-button mat-raised-button color=\"primary\">\r\n      All transport\r\n    </button>\r\n    <button mat-button mat-raised-button color=\"primary\">\r\n      Buses\r\n    </button>\r\n    <button mat-button mat-raised-button color=\"primary\">\r\n      Trams\r\n    </button>\r\n    <button mat-button mat-raised-button color=\"primary\">\r\n      Trolleybuses\r\n    </button>\r\n  </div>\r\n\r\n\r\n  <div class=\"points\">\r\n    <div *ngFor=\"let transport of transports\">\r\n      <mat-card class=\"card\">\r\n        <mat-card-header>\r\n          <mat-card-title></mat-card-title>\r\n          <mat-card-subtitle></mat-card-subtitle>\r\n        </mat-card-header>\r\n        <div>\r\n          <img src=\"../../../assets/ic_directions_bus_black_24dp_2x.png\" [hidden]=\"transport.transportType !='BUS'\"/>\r\n          <img src=\"../../../assets/ic_tram_black_24dp_2x.png\" [hidden]=\"transport.transportType !='TRAM'\"/>\r\n          <img src=\"../../../assets/ic_train_black_24dp_2x.png\" [hidden]=\"transport.transportType !='TROLLEYBUS'\"/>\r\n          <img src=\"../../../assets/ic_build_black_24dp_1x.png\" height=\"12\" width=\"12\"\r\n               [hidden]=\"transport.functionality != true\"/>\r\n        </div>\r\n\r\n        <mat-card-content>\r\n          <p> {{transport.transportType}}</p>\r\n          <p>{{transport.registrationNumber}}</p>\r\n\r\n        </mat-card-content>\r\n        <mat-card-actions>\r\n\r\n          <button mat-icon-button class=\"mat-icon-button-card-actions\">\r\n            <mat-icon><i class=\"material-icons md-24 grey\" aria-hidden=\"true\"\r\n                         (click)=\"onDeleteSelect(transport)\">delete</i></mat-icon>\r\n          </button>\r\n\r\n          <button mat-icon-button class=\"mat-icon-button-card-actions\">\r\n            <mat-icon><i class=\"material-icons md-24 grey\" aria-hidden=\"true\"\r\n                         (click)=\"onEditSelect(transport)\">mode_edit</i></mat-icon>\r\n          </button>\r\n\r\n        </mat-card-actions>\r\n      </mat-card>\r\n    </div>\r\n  </div>\r\n\r\n  <form *ngIf=\"editSelectedTransport\"  #createForm=\"ngForm\">\r\n\r\n    <h2> DETAILS: {{ editSelectedTransport.registrationNumber | uppercase }} </h2>\r\n    <h3 class=\"add-point-page-error\" [hidden]=\"error.length == 0\">\r\n      {{error}}\r\n    </h3>\r\n    <mat-input-container class=\"add-point-data-row\">\r\n      <input matInput placeholder=\"Transport register number\" id=\"registrationNumber\" required\r\n             minlength=\"{{minRegisterNumber}}\"\r\n             maxlength=\"{{maxRegisterNumber}}\"\r\n             [(ngModel)]=\"transportInfo.registrationNumber\" name=\"registrationNumber\"\r\n             #name=\"ngModel\">\r\n    </mat-input-container>\r\n\r\n    <mat-input-container>\r\n      <mat-select placeholder=\"Transport type\" [formControl]=\"transportTypeControl\" required\r\n                  [(ngModel)]=\"selectedTransportType\" name=\"transportType\">\r\n        <mat-option *ngFor=\"let transportType of availableTransportTypes\" [value]=\"transportType.value\">\r\n          {{ transportType.viewValue }}\r\n        </mat-option>\r\n      </mat-select>\r\n      <mat-error *ngIf=\"transportTypeControl.hasError('required')\">Please choose a transport type</mat-error>\r\n    </mat-input-container>\r\n\r\n    <mat-input-container>\r\n      <mat-select placeholder=\"Transport functionality\" [(ngModel)]=\"selectedTransportFunctionality\" required\r\n                  true name=\"functionality\">\r\n        <mat-option *ngFor=\"let functionality of _availableTransportFunctionality\" [value]=\"functionality.value\">\r\n          {{ functionality.viewValue }}\r\n        </mat-option>\r\n      </mat-select>\r\n    </mat-input-container>\r\n\r\n    <div class=\"add-point-buttons\">\r\n      <button class=\"add-point-button\" type=\"submit\" mat-raised-button color=\"primary\"\r\n              [disabled]=\"!createForm.form.valid\" (click)=\"tryUpdateTransport(); !onEditSelect()\"> Update transport\r\n      </button>\r\n      <button class=\"add-point-button\" type=\"submit\" mat-raised-button color=\"primary\"\r\n              (click)=\"!onEditSelect()\"> Cancel\r\n      </button>\r\n    </div>\r\n  </form>\r\n\r\n  <form class=\"form-delete-transport\" *ngIf=\"deleteSelectedTransport\">\r\n\r\n    <h2>DELETE: {{ deleteSelectedTransport.registrationNumber | uppercase }} </h2>\r\n\r\n    <p> Are you sure to delete this transport?</p>\r\n    <button class=\"add-point-button\" type=\"submit\" mat-raised-button color=\"primary\"\r\n            (click)=\"tryDeleteTransport(); !onDeleteSelect()\"> Delete transport\r\n    </button>\r\n    <button class=\"add-point-button\" type=\"submit\" mat-raised-button color=\"primary\"\r\n            (click)=\"!onDeleteSelect()\"> Cancel\r\n    </button>\r\n  </form>\r\n\r\n  <div>\r\n    <div class=\"mat-icon-button\" matTooltip=\"Add transport\">\r\n      <button mat-icon-button [routerLink]=\"['./add'] \">\r\n        <mat-icon><i class=\"material-icons md-48 blue\" aria-hidden=\"true\">add_circle</i></mat-icon>\r\n      </button>\r\n    </div>\r\n  </div>\r\n\r\n\r\n  <div class=\"form-point\">\r\n    <router-outlet></router-outlet>\r\n  </div>\r\n\r\n</div>\r\n"
+module.exports = "<div>\r\n\r\n<div class=\"sort-container\">\r\n  <mat-radio-group class=\"radio-group\" [(ngModel)]=\"transportFilter\">\r\n    <mat-radio-button class=\"radio-button\" *ngFor=\"let availableFilter of availableFilters\"\r\n                      [value]=\"availableFilter\" color=\"primary\">\r\n      {{availableFilter}}\r\n    </mat-radio-button>\r\n  </mat-radio-group>\r\n <span> <div class=\"selected-value\">Selected transport type {{transportFilter}}</div></span>\r\n</div>\r\n  <div class=\"points\">\r\n    <div *ngFor=\"let transport of transports\">\r\n      <mat-card class=\"card\">\r\n        <mat-card-header>\r\n          <mat-card-title></mat-card-title>\r\n          <mat-card-subtitle></mat-card-subtitle>\r\n        </mat-card-header>\r\n        <div>\r\n          <img src=\"../../../assets/ic_directions_bus_black_24dp_2x.png\" [hidden]=\"transport.transportType !='BUS'\"/>\r\n          <img src=\"../../../assets/ic_tram_black_24dp_2x.png\" [hidden]=\"transport.transportType !='TRAM'\"/>\r\n          <img src=\"../../../assets/ic_train_black_24dp_2x.png\" [hidden]=\"transport.transportType !='TROLLEYBUS'\"/>\r\n          <img src=\"../../../assets/ic_build_black_24dp_1x.png\" height=\"12\" width=\"12\"\r\n               [hidden]=\"transport.functionality != true\"/>\r\n        </div>\r\n\r\n        <mat-card-content>\r\n          <p> {{transport.transportType}}</p>\r\n          <p>{{transport.registrationNumber}}</p>\r\n\r\n        </mat-card-content>\r\n        <mat-card-actions>\r\n\r\n          <button mat-icon-button class=\"mat-icon-button-card-actions\">\r\n            <mat-icon><i class=\"material-icons md-24 grey\" aria-hidden=\"true\"\r\n                         (click)=\"onDeleteSelect(transport)\">delete</i></mat-icon>\r\n          </button>\r\n\r\n          <button mat-icon-button class=\"mat-icon-button-card-actions\">\r\n            <mat-icon><i class=\"material-icons md-24 grey\" aria-hidden=\"true\"\r\n                         (click)=\"onEditSelect(transport)\">mode_edit</i></mat-icon>\r\n          </button>\r\n\r\n        </mat-card-actions>\r\n      </mat-card>\r\n    </div>\r\n  </div>\r\n\r\n  <form *ngIf=\"editSelectedTransport\" #createForm=\"ngForm\">\r\n\r\n    <h2> DETAILS: {{ editSelectedTransport.registrationNumber | uppercase }} </h2>\r\n    <h3 class=\"add-point-page-error\" [hidden]=\"error.length == 0\">\r\n      {{error}}\r\n    </h3>\r\n    <mat-input-container class=\"add-point-data-row\">\r\n      <input matInput placeholder=\"Transport register number\" id=\"registrationNumber\" required\r\n             minlength=\"{{minRegisterNumber}}\"\r\n             maxlength=\"{{maxRegisterNumber}}\"\r\n             [(ngModel)]=\"transportInfo.registrationNumber\" name=\"registrationNumber\"\r\n             #name=\"ngModel\">\r\n    </mat-input-container>\r\n\r\n    <mat-input-container>\r\n      <mat-select placeholder=\"Transport type\" [formControl]=\"transportTypeControl\" required\r\n                  [(ngModel)]=\"selectedTransportType\" name=\"transportType\">\r\n        <mat-option *ngFor=\"let transportType of availableTransportTypes\" [value]=\"transportType.value\">\r\n          {{ transportType.viewValue }}\r\n        </mat-option>\r\n      </mat-select>\r\n      <mat-error *ngIf=\"transportTypeControl.hasError('required')\">Please choose a transport type</mat-error>\r\n    </mat-input-container>\r\n\r\n    <mat-input-container>\r\n      <mat-select placeholder=\"Transport functionality\" [(ngModel)]=\"selectedTransportFunctionality\" required\r\n                  true name=\"functionality\">\r\n        <mat-option *ngFor=\"let functionality of _availableTransportFunctionality\" [value]=\"functionality.value\">\r\n          {{ functionality.viewValue }}\r\n        </mat-option>\r\n      </mat-select>\r\n    </mat-input-container>\r\n\r\n    <div class=\"add-point-buttons\">\r\n      <button class=\"add-point-button\" type=\"submit\" mat-raised-button color=\"primary\"\r\n              [disabled]=\"!createForm.form.valid\" (click)=\"tryUpdateTransport(); !onEditSelect()\"> Update transport\r\n      </button>\r\n      <button class=\"add-point-button\" type=\"submit\" mat-raised-button color=\"primary\"\r\n              (click)=\"!onEditSelect()\"> Cancel\r\n      </button>\r\n    </div>\r\n  </form>\r\n\r\n  <form class=\"form-delete-transport\" *ngIf=\"deleteSelectedTransport\">\r\n\r\n    <h2>DELETE: {{ deleteSelectedTransport.registrationNumber | uppercase }} </h2>\r\n\r\n    <p> Are you sure to delete this transport?</p>\r\n    <button class=\"add-point-button\" type=\"submit\" mat-raised-button color=\"primary\"\r\n            (click)=\"tryDeleteTransport(); !onDeleteSelect()\"> Delete transport\r\n    </button>\r\n    <button class=\"add-point-button\" type=\"submit\" mat-raised-button color=\"primary\"\r\n            (click)=\"!onDeleteSelect()\"> Cancel\r\n    </button>\r\n  </form>\r\n\r\n  <div>\r\n    <div class=\"mat-icon-button\" matTooltip=\"Add transport\">\r\n      <button mat-icon-button [routerLink]=\"['./add'] \">\r\n        <mat-icon><i class=\"material-icons md-48 blue\" aria-hidden=\"true\">add_circle</i></mat-icon>\r\n      </button>\r\n    </div>\r\n  </div>\r\n\r\n\r\n  <div class=\"form-point\">\r\n    <router-outlet></router-outlet>\r\n  </div>\r\n\r\n</div>\r\n"
 
 /***/ }),
 
@@ -1261,6 +1375,12 @@ var TransportComponent = (function (_super) {
         _this.transportService = transportService;
         _this.router = router;
         _this.transportTypeControl = new __WEBPACK_IMPORTED_MODULE_4__angular_forms__["b" /* FormControl */]('', [__WEBPACK_IMPORTED_MODULE_4__angular_forms__["j" /* Validators */].required]);
+        _this._availableFilters = [
+            'All transports',
+            'Buses',
+            'Trams',
+            'Trolleybuses',
+        ];
         _this._availableTransportTypes = [
             { value: __WEBPACK_IMPORTED_MODULE_3__service_transport_service_transport_service__["a" /* TransportService */].TRANSPORT_TYPE_BUS, viewValue: 'BUS' },
             { value: __WEBPACK_IMPORTED_MODULE_3__service_transport_service_transport_service__["a" /* TransportService */].TRANSPORT_TYPE_TRAM, viewValue: 'TRAM' },
@@ -1395,6 +1515,9 @@ var TransportComponent = (function (_super) {
                 this._transportInfo.transportType = __WEBPACK_IMPORTED_MODULE_3__service_transport_service_transport_service__["a" /* TransportService */].TRANSPORT_TYPE_BUS;
                 break;
             }
+            default:
+                this._transportInfo.transportType = this._editSelectedTransport.transportType;
+                break;
         }
     };
     TransportComponent.prototype.setTransportFunctionality = function () {
@@ -1403,8 +1526,12 @@ var TransportComponent = (function (_super) {
                 this._transportInfo.functionality = true;
                 break;
             }
-            default: {
+            case __WEBPACK_IMPORTED_MODULE_3__service_transport_service_transport_service__["a" /* TransportService */].TRANSPORT_FUNCTIONALITY_WORKING: {
                 this._transportInfo.functionality = false;
+                break;
+            }
+            default: {
+                this._transportInfo.functionality = this._editSelectedTransport.functionality;
                 ;
                 break;
             }
@@ -1442,6 +1569,26 @@ var TransportComponent = (function (_super) {
             _this.transportService.loadTransports();
         });
     };
+    Object.defineProperty(TransportComponent.prototype, "transportFilter", {
+        get: function () {
+            return this._transportFilter;
+        },
+        set: function (value) {
+            this._transportFilter = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(TransportComponent.prototype, "availableFilters", {
+        get: function () {
+            return this._availableFilters;
+        },
+        set: function (value) {
+            this._availableFilters = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
     TransportComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
             selector: 'app-transport',
@@ -1633,7 +1780,7 @@ var PointDataSource = (function (_super) {
     };
     PointDataSource.prototype.refresh = function () {
         var _this = this;
-        this.pointService.loadPoints().then(function (value) {
+        this.pointService.loadPoints(null).then(function (value) {
             _this.points.next(value);
         });
     };
@@ -1681,17 +1828,14 @@ var PointService = (function () {
         this.security = security;
     }
     PointService_1 = PointService;
-    PointService.prototype.loadPoints = function () {
-        return this.http.get(PointService_1.PAGE_POINTS_URL)
+    PointService.prototype.loadPoints = function (chars) {
+        return this.http.get(PointService_1.PAGE_POINTS_URL + chars)
             .toPromise()
             .then(function (response) {
             var body = response.json();
             return body;
         })
-            .catch(this.hadnlerError);
-    };
-    PointService.prototype.hadnlerError = function (error) {
-        return Promise.reject(error.message || error);
+            .catch(__WEBPACK_IMPORTED_MODULE_3__utils_utils__["a" /* Utils */].handleError);
     };
     PointService.prototype.createPoint = function (params, handler) {
         this.http.post(PointService_1.PAGE_POINTS_URL, params)
@@ -1714,6 +1858,70 @@ var PointService = (function () {
     ], PointService);
     return PointService;
     var PointService_1;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/service/route-service/route.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RouteService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/esm5/http.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__security_service_security_service__ = __webpack_require__("../../../../../src/service/security-service/security.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_utils__ = __webpack_require__("../../../../../src/utils/utils.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var RouteService = (function () {
+    function RouteService(http, security) {
+        this.http = http;
+        this.security = security;
+    }
+    RouteService_1 = RouteService;
+    RouteService.prototype.loadRoutes = function () {
+        return this.http.get(RouteService_1.PAGE_ROUTES_URL)
+            .toPromise()
+            .then(function (response) {
+            var body = response.json();
+            return body;
+        })
+            .catch(__WEBPACK_IMPORTED_MODULE_3__utils_utils__["a" /* Utils */].handleError);
+    };
+    RouteService.prototype.createRoute = function (params, handler) {
+        this.http.post(RouteService_1.PAGE_ROUTES_URL, params)
+            .toPromise()
+            .then(function (response) { return handler(null, true); })
+            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_3__utils_utils__["a" /* Utils */].handleErrorMessageJson(error, function (ex) { return handler(ex, false); }); });
+    };
+    RouteService.prototype.deleteRoute = function (route, handler) {
+        this.http.delete(RouteService_1.PAGE_ROUTES_URL + '/' + route.id).toPromise().then(function (response) { return handler(null, true); })
+            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_3__utils_utils__["a" /* Utils */].handleErrorMessageJson(error, function (ex) { return handler(ex, false); }); });
+    };
+    RouteService.prototype.updateRoute = function (route, handler) {
+        this.http.put(RouteService_1.PAGE_ROUTES_URL + '/' + route.id, route).toPromise().then(function (response) { return handler(null, true); })
+            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_3__utils_utils__["a" /* Utils */].handleErrorMessageJson(error, function (ex) { return handler(ex, false); }); });
+    };
+    RouteService.PAGE_ROUTES_URL = '/api/routes';
+    RouteService = RouteService_1 = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */], __WEBPACK_IMPORTED_MODULE_2__security_service_security_service__["a" /* SecurityService */]])
+    ], RouteService);
+    return RouteService;
+    var RouteService_1;
 }());
 
 
@@ -1972,10 +2180,7 @@ var TransportService = (function () {
             var body = response.json();
             return body;
         })
-            .catch(this.hadnlerError);
-    };
-    TransportService.prototype.hadnlerError = function (error) {
-        return Promise.reject(error.message || error);
+            .catch(__WEBPACK_IMPORTED_MODULE_3__utils_utils__["a" /* Utils */].handleError);
     };
     TransportService.prototype.createTransport = function (params, handler) {
         this.http.post(TransportService_1.TRANSPORTS_URL, params)

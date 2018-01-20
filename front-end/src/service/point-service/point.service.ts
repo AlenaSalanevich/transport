@@ -19,11 +19,7 @@ export class PointService {
         let body = response.json();
         return body;
       })
-      .catch(this.hadnlerError)
-  }
-
-  private hadnlerError(error: Response | any) {
-    return Promise.reject(error.message || error)
+      .catch(Utils.handleError)
   }
 
   public createPoint(params: PointParams, handler: (message: string, result: boolean) => void): void {

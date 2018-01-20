@@ -35,6 +35,15 @@ export class TransportComponent extends PageComponent {
 
   transportTypeControl = new FormControl('', [Validators.required]);
 
+  private _transportFilter: string;
+
+  private _availableFilters = [
+    'All transports',
+    'Buses',
+    'Trams',
+    'Trolleybuses',
+  ];
+
   private _availableTransportTypes = [
     {value: TransportService.TRANSPORT_TYPE_BUS, viewValue: 'BUS'},
     {value: TransportService.TRANSPORT_TYPE_TRAM, viewValue: 'TRAM'},
@@ -161,6 +170,9 @@ export class TransportComponent extends PageComponent {
         this._transportInfo.transportType = TransportService.TRANSPORT_TYPE_BUS;
         break;
       }
+      default:
+        this._transportInfo.transportType =  this._editSelectedTransport.transportType;
+        break;
     }
   }
 
@@ -170,8 +182,12 @@ export class TransportComponent extends PageComponent {
         this._transportInfo.functionality = true;
         break;
       }
-      default: {
+      case TransportService.TRANSPORT_FUNCTIONALITY_WORKING: {
         this._transportInfo.functionality = false;
+        break;
+      }
+      default: {
+        this._transportInfo.functionality = this._editSelectedTransport.functionality;
         ;
         break;
       }
@@ -211,6 +227,22 @@ export class TransportComponent extends PageComponent {
         this.transportService.loadTransports();
       }
     )
+  }
 
+
+  get transportFilter(): string {
+    return this._transportFilter;
+  }
+
+  set transportFilter(value: string) {
+    this._transportFilter = value;
+  }
+
+  get availableFilters(): string[] {
+    return this._availableFilters;
+  }
+
+  set availableFilters(value: string[]) {
+    this._availableFilters = value;
   }
 }

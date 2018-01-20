@@ -1,5 +1,29 @@
 
-<div class="mat-image">
-  <img class="image" src="../../../assets/294.jpg" />
-</div>
+  <div class="routes">
+    <div class="routes" *ngFor="let route of routes">
+      <mat-card class="route-card">
+        <mat-card-header>
+          <mat-card-title></mat-card-title>
+          <mat-card-subtitle></mat-card-subtitle>
+        </mat-card-header>
+               <mat-card-content>
+          <p class="route-number"> {{route.number}}</p>
+          </mat-card-content>
+        <mat-card-actions>
+
+          <button mat-icon-button class="mat-icon-button-card-actions">
+            <mat-icon><i class="material-icons md-24 grey" aria-hidden="true"
+                         (click)="onDeleteSelect(route)">delete</i></mat-icon>
+          </button>
+
+          <button mat-icon-button class="mat-icon-button-card-actions">
+            <mat-icon><i class="material-icons md-24 grey" aria-hidden="true"
+                         (click)="onEditSelect(route)">mode_edit</i></mat-icon>
+          </button>
+
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+
 

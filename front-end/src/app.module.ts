@@ -12,6 +12,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpModule} from "@angular/http";
 import {AppRoutingModule} from "./app-routing/app-routing.module";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {MatSliderModule} from '@angular/material/slider';
+import {MatRadioModule} from '@angular/material/radio';
 import {
   MatButtonModule,
   MatIconModule,
@@ -27,7 +29,7 @@ import {
   MatFormFieldModule,
   MatSelectModule,
   MatTabsModule,
-  MatTooltipModule, MatCheckboxModule, MatSuffix,
+  MatTooltipModule, MatCheckboxModule
 } from "@angular/material";
 import {SecurityService} from "./service/security-service/security.service";
 import {TransportDataSource} from "./service/transport-service/transport-data-source";
@@ -38,6 +40,7 @@ import {PointDataSource} from "./service/point-service/point-data-source";
 import {PointService} from "./service/point-service/point.service";
 import {AddPointComponent} from './component/pages/point/add-point/add-point.component';
 import {AddTransportComponent} from './component/pages/transport/add-transport/add-transport.component';
+import {RouteService} from "./service/route-service/route.service";
 
 @NgModule({
   declarations: [
@@ -68,7 +71,9 @@ import {AddTransportComponent} from './component/pages/transport/add-transport/a
     MatListModule,
     MatMenuModule,
     MatPaginatorModule,
+    MatRadioModule,
     MatSidenavModule,
+    MatSliderModule,
     MatTabsModule,
     MatTableModule,
     MatToolbarModule,
@@ -77,7 +82,7 @@ import {AddTransportComponent} from './component/pages/transport/add-transport/a
     RouterModule,
    ReactiveFormsModule
   ],
-  providers: [SecurityService, TransportDataSource, TransportService, PointDataSource, PointService],
+  providers: [SecurityService, TransportDataSource, TransportService, PointDataSource, PointService, RouteService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -27,7 +27,5 @@ public interface AssignmentService {
 
     void delete(final long id);
 
-    int findPointPosition(final long pointId, final List<RoutePointEntity> routePointEntities);
-
     AssignmentEntity update(final long id, final AssignmentEntity assignmentEntity);
 }

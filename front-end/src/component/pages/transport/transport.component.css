@@ -108,3 +108,19 @@
   padding: 10px;
   background-color: white;
 }
+.radio-group {
+  display: inline-flex;
+  flex-direction: row;
+  color: #3f51b5;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.radio-button {
+  margin: 5px;
+}
+
+.selected-value {
+  margin: 15px 0;
+  color: #3f51b5;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

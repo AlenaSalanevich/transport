@@ -32,12 +32,13 @@ export class AddPointComponent extends PageComponent {
         let pointInfo = this.pointInfo;
         pointInfo.name = '';
         this._error = '';
-        this.pointService.loadPoints(null);
+        this.pointService.loadPoints(this.pointComponent.likeChars);
+        this.redirectToPoints();
       }
       else {
         this._error = message;
       }
-      this.pointService.loadPoints(null);
+      this.pointService.loadPoints(this.pointComponent.likeChars);
     })
   }
 

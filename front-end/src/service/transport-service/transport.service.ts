@@ -29,11 +29,7 @@ export class TransportService {
         let body = response.json();
         return body;
       })
-      .catch(this.hadnlerError);
-  }
-
-  private hadnlerError(error: Response | any) {
-    return Promise.reject(error.message || error)
+      .catch(Utils.handleError);
   }
 
   public createTransport(params: TransportParams, handler: (message: string, result: boolean) => void): void {
@@ -44,14 +40,14 @@ export class TransportService {
   }
 
   public updateTransport(transport: TransportEntity, handler: (message: string, result: boolean) => void): void {
-    this.http.put(TransportService.TRANSPORTS_URL + '/'+transport.id, transport)
+    this.http.put(TransportService.TRANSPORTS_URL + '/' + transport.id, transport)
       .toPromise()
       .then(response => handler(null, true))
       .catch(error => Utils.handleErrorMessageJson(error, (ex: string) => handler(ex, false)));
   }
 
   public deleteTransport(transport: TransportEntity, handler: (message: string, result: boolean) => void): void {
-    this.http.delete(TransportService.TRANSPORTS_URL+ '/' + transport.id).toPromise().then(response => handler(null, true))
+    this.http.delete(TransportService.TRANSPORTS_URL + '/' + transport.id).toPromise().then(response => handler(null, true))
       .catch(error => Utils.handleErrorMessageJson(error, (ex: string) => handler(ex, false)));
   }
 }

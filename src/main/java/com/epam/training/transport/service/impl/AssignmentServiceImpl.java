@@ -7,8 +7,8 @@ import com.epam.training.transport.model.db.entity.RoutePointEntity;
 import com.epam.training.transport.model.db.entity.ScheduleEntity;
 import com.epam.training.transport.model.db.repository.AssignmentRepository;
 import com.epam.training.transport.rest.models.ScheduleModel;
-import com.epam.training.transport.service.RouteService;
 import com.epam.training.transport.service.AssignmentService;
+import com.epam.training.transport.service.RouteService;
 import com.epam.training.transport.service.ScheduleService;
 import com.epam.training.transport.service.TransportService;
 import com.epam.training.transport.service.exceptions.ErrorCode;
@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @author Alena_Salanevich
@@ -44,38 +45,28 @@ public class AssignmentServiceImpl implements AssignmentService {
             final Direction direction,
             final boolean isHoliday,
             final List<ScheduleModel> scheduleModels) {
-        final AssignmentEntity assignment = new AssignmentEntity();
+
+
         RouteEntity routeEntity = routeService.load(routeId);
         List<RoutePointEntity> routePoints = routeEntity.getRoutePoints();
-        Collections.sort(scheduleModels);
         if (routePoints.size() != scheduleModels.size()) {
             throw new ServiceException(ErrorCode.INCORRECT_ORDER, "The route contains " + routePoints.size() + " points. Please set the departure time for all points.");
         }
+        Collections.sort(scheduleModels);
+        sortByDirection(direction, routePoints);
         List<ScheduleEntity> scheduleEntities = new ArrayList<>();
-
-        switch (direction) {
-            case DIRECT: {
-                Collections.sort(routePoints);
-            }
-            break;
-
-            case REVERSE: {
-                routePoints.sort(Collections.reverseOrder());
-                break;
-            }
-        }
+        final AssignmentEntity assignment = new AssignmentEntity();
         for (ScheduleModel scheduleModel : scheduleModels) {
-            long pointId = scheduleModel.getPointId();
-            int pointPosition = findPointPosition(pointId, routePoints);
+            int pointPosition = findPointPosition(scheduleModel.getPointId(), routePoints);
             int modelPosition = scheduleModels.indexOf(scheduleModel);
             if (pointPosition == modelPosition) {
-
                 scheduleEntities.add(new ScheduleEntity(assignment, routePoints.get(pointPosition), scheduleModel.getDepartureTime()));
             }
         }
         if (scheduleEntities.size() != routePoints.size()) {
             throw new ServiceException(ErrorCode.INCORRECT_ORDER, "Please, set the departure time for all points in the route in accordance with sequence of points and direction.");
         }
+
         assignment.setRoute(routeEntity);
         assignment.setTransport(transportService.load(transportId));
         assignment.setDirection(direction);
@@ -103,23 +94,44 @@ public class AssignmentServiceImpl implements AssignmentService {
     }
 
     @Override
-    public int findPointPosition(final long pointId, List<RoutePointEntity> routePointEntities) {
-
-        Optional<Integer> position = routePointEntities.stream().filter(routePointEntity -> routePointEntity.getPoint().getId() == pointId).findFirst().map(routePointEntity -> routePointEntities.indexOf(routePointEntity));
-        if (position.isPresent()) {
-            return position.get();
-        } else throw new ServiceException(ErrorCode.NOT_FOUND, "The route doesn't contain point with id = " + pointId);
-    }
-
-    @Override
     public AssignmentEntity update(long id, AssignmentEntity assignmentEntity) {
 
+         List<ScheduleEntity> scheduleEntities = assignmentEntity.getScheduleEntities();
+        Collections.sort(scheduleEntities);
+        List<RoutePointEntity> routePoints = assignmentEntity.getRoute().getRoutePoints();
+        sortByDirection(assignmentEntity.getDirection(), routePoints);
+        List<ScheduleEntity> collectedScheduleEntities = scheduleEntities.stream()
+                .filter(scheduleEntity -> scheduleEntities.indexOf(scheduleEntity) == findPointPosition(scheduleEntity.getRoutePointEntity().getPoint().getId(), routePoints))
+                .collect(Collectors.toList());
+        if (!scheduleEntities.equals(collectedScheduleEntities)) {
+            throw new ServiceException(ErrorCode.INCORRECT_ORDER, "Please, set the departure time for all points in the route in accordance with sequence of points and direction.");
+        }
         try {
             assignmentRepository.save(assignmentEntity);
         } catch (DataIntegrityViolationException e) {
             throw new ServiceException(ErrorCode.NAME_ALREADY_EXISTS, e, "The route " + assignmentEntity.getRoute().getNumber() + "with direction " + assignmentEntity.getDirection() + "already exists.");
         }
-
         return assignmentEntity;
+    }
+
+    public List<RoutePointEntity> sortByDirection(final Direction direction, final List<RoutePointEntity> routePointEntities) {
+        switch (direction) {
+            case DIRECT: {
+                Collections.sort(routePointEntities);
+            }
+            break;
+            case REVERSE: {
+                Collections.sort(routePointEntities, Comparator.reverseOrder());
+                break;
+            }
+        }
+        return routePointEntities;
+    }
+
+    public int findPointPosition(final long pointId, List<RoutePointEntity> routePointEntities) {
+        Optional<Integer> position = routePointEntities.stream().filter(routePointEntity -> routePointEntity.getPoint().getId() == pointId).findFirst().map(routePointEntity -> routePointEntities.indexOf(routePointEntity));
+        if (position.isPresent()) {
+            return position.get();
+        } else throw new ServiceException(ErrorCode.NOT_FOUND, "The route doesn't contain point with id = " + pointId);
     }
 }

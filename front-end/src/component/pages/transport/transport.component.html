@@ -1,20 +1,14 @@
 <div>
-  <div class="sort-container">
-    <button mat-button mat-raised-button color="primary">
-      All transport
-    </button>
-    <button mat-button mat-raised-button color="primary">
-      Buses
-    </button>
-    <button mat-button mat-raised-button color="primary">
-      Trams
-    </button>
-    <button mat-button mat-raised-button color="primary">
-      Trolleybuses
-    </button>
-  </div>
 
-
+<div class="sort-container">
+  <mat-radio-group class="radio-group" [(ngModel)]="transportFilter">
+    <mat-radio-button class="radio-button" *ngFor="let availableFilter of availableFilters"
+                      [value]="availableFilter" color="primary">
+      {{availableFilter}}
+    </mat-radio-button>
+  </mat-radio-group>
+ <span> <div class="selected-value">Selected transport type {{transportFilter}}</div></span>
+</div>
   <div class="points">
     <div *ngFor="let transport of transports">
       <mat-card class="card">
@@ -52,7 +46,7 @@
     </div>
   </div>
 
-  <form *ngIf="editSelectedTransport"  #createForm="ngForm">
+  <form *ngIf="editSelectedTransport" #createForm="ngForm">
 
     <h2> DETAILS: {{ editSelectedTransport.registrationNumber | uppercase }} </h2>
     <h3 class="add-point-page-error" [hidden]="error.length == 0">
