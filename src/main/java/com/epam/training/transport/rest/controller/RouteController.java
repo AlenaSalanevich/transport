@@ -106,7 +106,7 @@ public class RouteController {
 
     @DeleteMapping("/{id}")
     @ApiOperation("Delete route by id")
-    public ResponseEntity<?> delete(@PathVariable
+    public ResponseEntity delete(@PathVariable
     final long id) {
         routeService.delete(id);
         return ResponseEntity.ok("Route is deleted!");

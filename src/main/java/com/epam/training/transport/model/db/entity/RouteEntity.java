@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -14,7 +15,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "ROUTES")
-public class RouteEntity extends BaseEntity implements Comparable<RouteEntity> {
+public class RouteEntity extends BaseEntity implements Comparable<RouteEntity>, Serializable {
 
     @Column(name = "number", nullable = false, unique = true, length = 20)
     private String number;

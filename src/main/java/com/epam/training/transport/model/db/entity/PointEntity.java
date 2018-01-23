@@ -2,11 +2,10 @@ package com.epam.training.transport.model.db.entity;
 
 import org.jetbrains.annotations.NotNull;
 
-import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import java.io.Serializable;
 
 /**
  * @author Alena_Salanevich
@@ -14,7 +13,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "POINTS")
-public class PointEntity extends BaseEntity implements Comparable<PointEntity> {
+public class PointEntity extends BaseEntity implements Comparable<PointEntity>, Serializable{
 
     @Column(name = "name", unique = true, length = 100, nullable = false)
     private String name;

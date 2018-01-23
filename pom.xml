@@ -31,8 +31,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.8.RELEASE</version>FKe3u4djucdqueh9kh0ggq8tjsq
-        <relativePath/> <!-- lookup parent from repository -->
+        <version>1.5.8.RELEASE</version>
     </parent>
 
     <properties>
@@ -214,6 +213,14 @@
             <artifactId>unitils-core</artifactId>
             <version>RELEASE</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.sonarsource.sonarqube/sonar-plugin-api -->
+        <dependency>
+            <groupId>org.sonarsource.sonarqube</groupId>
+            <artifactId>sonar-plugin-api</artifactId>
+            <version>6.7</version>
+        </dependency>
+
 
     </dependencies>
 

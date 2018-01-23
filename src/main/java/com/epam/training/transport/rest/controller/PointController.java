@@ -50,7 +50,7 @@ public class PointController {
 
     @DeleteMapping("/{id}")
     @ApiOperation("Delete point by id")
-    public ResponseEntity<?> delete(@PathVariable
+    public ResponseEntity delete(@PathVariable
     final long id) {
         pointService.delete(id);
 

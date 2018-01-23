@@ -11,5 +11,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ScheduleRepository extends JpaRepository<ScheduleEntity, Long> {
 
-    void deleteByAssignment_Id(final long assignmentId);
+    void deleteByAssignmentId(final long assignmentId);
 }

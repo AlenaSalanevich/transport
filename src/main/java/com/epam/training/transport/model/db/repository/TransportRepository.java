@@ -2,7 +2,6 @@ package com.epam.training.transport.model.db.repository;
 
 import com.epam.training.transport.model.TransportType;
 import com.epam.training.transport.model.db.entity.TransportEntity;
-import org.springframework.data.domain.Example;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;

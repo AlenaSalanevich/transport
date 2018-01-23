@@ -64,7 +64,7 @@ public class TransportController {
     @DeleteMapping("/{id}")
     @ApiOperation("Delete transport by id")
     @ResponseBody
-    public ResponseEntity<?> delete(@PathVariable
+    public ResponseEntity delete(@PathVariable
     final long id) {
         transportService.delete(id);
 

@@ -3,6 +3,7 @@ package com.epam.training.transport.model.db.entity;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 /**
  * @author Alena_Salanevich
@@ -61,5 +62,22 @@ public class UserEntity extends BaseEntity {
 
     public void setRole(final RoleEntity role) {
         this.role = role;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        UserEntity that = (UserEntity) o;
+        return Objects.equals(login, that.login) &&
+                Objects.equals(password, that.password) &&
+                Objects.equals(role, that.role);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(super.hashCode(), login, password, role);
     }
 }

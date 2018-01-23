@@ -5,7 +5,7 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
+import java.util.Objects;
 
 /**
  * @author Alena_Salanevich
@@ -67,6 +67,22 @@ public class RoutePointEntity extends BaseEntity implements Serializable, Compar
         this.sequence = sequence;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        RoutePointEntity that = (RoutePointEntity) o;
+        return sequence == that.sequence &&
+                Objects.equals(point, that.point) &&
+                Objects.equals(route, that.route);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(super.hashCode(), sequence, point, route);
+    }
 
     @Override
     public int compareTo(@NotNull final RoutePointEntity o) {

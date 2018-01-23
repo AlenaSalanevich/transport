@@ -14,6 +14,7 @@ import {AppRoutingModule} from "./app-routing/app-routing.module";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatSliderModule} from '@angular/material/slider';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatChipsModule} from '@angular/material/chips';
 import {
   MatButtonModule,
   MatIconModule,
@@ -64,6 +65,7 @@ import {RouteService} from "./service/route-service/route.service";
     MatButtonModule,
     MatCardModule,
     MatCheckboxModule,
+    MatChipsModule,
     MatGridListModule,
     MatFormFieldModule,
     MatIconModule,

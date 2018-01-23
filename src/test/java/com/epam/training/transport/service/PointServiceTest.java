@@ -13,7 +13,6 @@ import org.mockito.stubbing.Answer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -22,7 +21,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 
 /**
@@ -30,7 +29,7 @@ import static org.mockito.Mockito.*;
  */
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = { PointServiceTest.PointServiceTestConfig.class})
+@ContextConfiguration(classes = {PointServiceTest.PointServiceTestConfig.class})
 public class PointServiceTest {
 
     @Configuration
@@ -72,25 +71,25 @@ public class PointServiceTest {
         when(pointRepository.findAll()).thenReturn(Arrays.asList(pointA, pointB, pointC));
 
         when(pointRepository.findAllByNameContains(any(String.class))).thenAnswer(
-            (Answer<List<PointEntity>>) invocation -> {
+                (Answer<List<PointEntity>>) invocation -> {
 
-                List<PointEntity> optPoints = new ArrayList<>();
+                    List<PointEntity> optPoints = new ArrayList<>();
 
-                String likeChar = (String) invocation.getArguments()[0];
-                if (pointA.getName()
-                    .contains(likeChar)) {
-                    optPoints.add(pointA);
-                }
-                if (pointB.getName()
-                    .contains(likeChar)) {
-                    optPoints.add(pointB);
-                }
-                if (pointC.getName()
-                    .contains(likeChar)) {
-                    optPoints.add(pointC);
-                }
-                return optPoints;
-            });
+                    String likeChar = (String) invocation.getArguments()[0];
+                    if (pointA.getName()
+                            .contains(likeChar)) {
+                        optPoints.add(pointA);
+                    }
+                    if (pointB.getName()
+                            .contains(likeChar)) {
+                        optPoints.add(pointB);
+                    }
+                    if (pointC.getName()
+                            .contains(likeChar)) {
+                        optPoints.add(pointC);
+                    }
+                    return optPoints;
+                });
     }
 
     @After
@@ -104,8 +103,8 @@ public class PointServiceTest {
         pointService.create("BAB");
         ArgumentCaptor<PointEntity> captor = ArgumentCaptor.forClass(PointEntity.class);
         verify(pointRepository, times(1)).save(captor.capture());
-        assertEquals(captor.getValue()
-            .getName(), "BAB");
+        assertEquals("BAB", captor.getValue()
+                .getName());
     }
 
     @Test
@@ -118,12 +117,12 @@ public class PointServiceTest {
     public void loadAll() throws Exception {
 
         List<PointEntity> pointEntityListByCharA = pointService.loadAll(Optional.of("A"));
-        assertEquals(pointEntityListByCharA.size(), 2l);
+        assertEquals(2l, pointEntityListByCharA.size());
         verify(pointRepository, times(1)).findAllByNameContains("A");
 
         List<PointEntity> pointEntityListAll = pointService.loadAll(Optional.empty());
-        assertEquals(pointEntityListAll, points);
-        assertEquals(pointEntityListAll.size(), 3l);
+        assertEquals(points, pointEntityListAll);
+        assertEquals(3l, pointEntityListAll.size());
         verify(pointRepository, times(2)).findAll();
     }
 
@@ -144,9 +143,9 @@ public class PointServiceTest {
         pointService.update(1l, new PointEntity(1l, "ABC"));
         ArgumentCaptor<PointEntity> captor = ArgumentCaptor.forClass(PointEntity.class);
         verify(pointRepository, times(1)).save(captor.capture());
-        assertEquals(captor.getValue()
-            .getName(), "ABC");
-        assertEquals(captor.getValue()
-            .getId(), 1l);
+        assertEquals("ABC",captor.getValue()
+                .getName());
+        assertEquals(1l, captor.getValue()
+                .getId());
     }
 }

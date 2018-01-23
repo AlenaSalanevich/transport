@@ -1,8 +1,6 @@
 package com.epam.training.transport.model.db.entity;
 
 import com.epam.training.transport.model.Direction;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import javax.persistence.*;

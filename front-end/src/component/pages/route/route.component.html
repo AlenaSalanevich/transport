@@ -1,4 +1,4 @@
-
+<!--
   <div class="routes">
     <div class="routes" *ngFor="let route of routes">
       <mat-card class="route-card">
@@ -23,7 +23,14 @@
 
         </mat-card-actions>
       </mat-card>
+
+
     </div>
-  </div>
+  </div>-->
 
 
+  <mat-chip-list *ngFor="let route of routes" class="mat-chip-list-stacked">
+    <mat-chip  selected="true" color="primary">
+      {{route.number}}
+    </mat-chip>
+  </mat-chip-list>

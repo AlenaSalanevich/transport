@@ -68,7 +68,7 @@ public class AssignmentController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable final long id) {
+    public ResponseEntity delete(@PathVariable final long id) {
         assignmentService.delete(id);
         return ResponseEntity.ok("Assignment is deleted!");
     }

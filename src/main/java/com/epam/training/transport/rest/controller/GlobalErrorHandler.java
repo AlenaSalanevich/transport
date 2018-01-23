@@ -26,7 +26,7 @@ public class GlobalErrorHandler {
             .toString());
         final ErrorResponse errorResponse =
             new ErrorResponse("", e.getErrorCode()
-                .name().toString(), e.getCause()
+                .name(), e.getCause()
                     .toString(), e.getClass()
                         .toString());
         switch (e.getErrorCode()) {
@@ -44,6 +44,11 @@ public class GlobalErrorHandler {
             }
             case UNKNOWN: {
                 errorResponse.setMessage("Unexpected error! Please contact system  admin");
+                break;
+            }
+            case INCORRECT_ORDER:{
+
+                errorResponse.setMessage("Please validate the departure time according to the oder op points");
                 break;
             }
         }

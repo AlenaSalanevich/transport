@@ -31,7 +31,7 @@ import static org.mockito.Mockito.*;
  */
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = { TransportServiceTest.TransportServiceConfig.class})
+@ContextConfiguration(classes = {TransportServiceTest.TransportServiceConfig.class})
 public class TransportServiceTest {
 
     @Configuration
@@ -71,25 +71,25 @@ public class TransportServiceTest {
         when(transportRepository.findOne(eq(3l))).thenReturn(trolleybus);
         when(transportRepository.findAllByTransportType(TransportType.BUS)).thenReturn(Arrays.asList(bus));
         when(transportRepository.findAllByTransportType(Mockito.any(TransportType.class))).thenAnswer(
-            (Answer<List<TransportEntity>>) invocation -> {
+                (Answer<List<TransportEntity>>) invocation -> {
 
-                List<TransportEntity> optTransports = new ArrayList<>();
+                    List<TransportEntity> optTransports = new ArrayList<>();
 
-                TransportType type = (TransportType) invocation.getArguments()[0];
-                if (bus.getTransportType()
-                    .equals(type)) {
-                    optTransports.add(bus);
-                }
-                if (tram.getTransportType()
-                    .equals(type)) {
-                    optTransports.add(tram);
-                }
-                if (trolleybus.getTransportType()
-                    .equals(type)) {
-                    optTransports.add(trolleybus);
-                }
-                return optTransports;
-            });
+                    TransportType type = (TransportType) invocation.getArguments()[0];
+                    if (bus.getTransportType()
+                            .equals(type)) {
+                        optTransports.add(bus);
+                    }
+                    if (tram.getTransportType()
+                            .equals(type)) {
+                        optTransports.add(tram);
+                    }
+                    if (trolleybus.getTransportType()
+                            .equals(type)) {
+                        optTransports.add(trolleybus);
+                    }
+                    return optTransports;
+                });
 
         when(transportRepository.findAllByFunctionality(anyBoolean())).thenAnswer((Answer<List<TransportEntity>>) invocation -> {
 
@@ -109,27 +109,27 @@ public class TransportServiceTest {
         });
 
         when(transportRepository.findAllByTransportTypeAndFunctionality(any(TransportType.class), anyBoolean())).thenAnswer(
-            invocation -> {
-                List<TransportEntity> optTransports = new ArrayList<>();
-                Boolean noFunctionally = (Boolean) invocation.getArguments()[1];
-                TransportType type = (TransportType) invocation.getArguments()[0];
-                if ((bus.isFunctionality() == noFunctionally)
-                    && (bus.getTransportType()
-                        .equals(type))) {
-                    optTransports.add(bus);
-                }
-                if ((tram.isFunctionality() == noFunctionally)
-                    && (tram.getTransportType()
-                        .equals(type))) {
-                    optTransports.add(tram);
-                }
-                if ((trolleybus.isFunctionality() == noFunctionally)
-                    && (trolleybus.getTransportType()
-                        .equals(type))) {
-                    optTransports.add(trolleybus);
-                }
-                return optTransports;
-            });
+                invocation -> {
+                    List<TransportEntity> optTransports = new ArrayList<>();
+                    Boolean noFunctionally = (Boolean) invocation.getArguments()[1];
+                    TransportType type = (TransportType) invocation.getArguments()[0];
+                    if ((bus.isFunctionality() == noFunctionally)
+                            && (bus.getTransportType()
+                            .equals(type))) {
+                        optTransports.add(bus);
+                    }
+                    if ((tram.isFunctionality() == noFunctionally)
+                            && (tram.getTransportType()
+                            .equals(type))) {
+                        optTransports.add(tram);
+                    }
+                    if ((trolleybus.isFunctionality() == noFunctionally)
+                            && (trolleybus.getTransportType()
+                            .equals(type))) {
+                        optTransports.add(trolleybus);
+                    }
+                    return optTransports;
+                });
 
     }
 
@@ -143,45 +143,45 @@ public class TransportServiceTest {
         transportService.create("5555", TransportType.TRAM, false);
         ArgumentCaptor<TransportEntity> captor = ArgumentCaptor.forClass(TransportEntity.class);
         verify(transportRepository, times(1)).save(captor.capture());
-        assertEquals(captor.getValue()
-            .getRegistrationNumber(), "5555");
-        assertEquals(captor.getValue()
-            .getTransportType(), TransportType.TRAM);
+        assertEquals("5555", captor.getValue()
+                .getRegistrationNumber());
+        assertEquals(TransportType.TRAM, captor.getValue()
+                .getTransportType());
         assertFalse(captor.getValue()
-            .isFunctionality());
+                .isFunctionality());
     }
 
     @Test
     public void load() {
         TransportEntity transport = transportService.load(3l);
-        assertEquals(transport.getRegistrationNumber(), "8888");
+        assertEquals("8888", transport.getRegistrationNumber());
         assertTrue(transport.isFunctionality());
-        assertEquals(transport.getTransportType(), TransportType.TROLLEYBUS);
+        assertEquals(TransportType.TROLLEYBUS, transport.getTransportType());
         verify(transportRepository, times(1)).findOne(3l);
     }
 
     @Test
     public void loadAll() {
         List<TransportEntity> transportEntities = transportService.loadAll(Optional.empty(), Optional.empty());
-        assertEquals(transportEntities.size(), 3l);
-        assertEquals(transportEntities, transports);
+        assertEquals(3l, transportEntities.size());
+        assertEquals(transports, transportEntities);
         verify(transportRepository, times(1)).findAll();
 
         List<TransportEntity> transportByType = transportService.loadAll(Optional.of(TransportType.BUS), Optional.empty());
-        assertEquals(transportByType.size(), 1l);
-        assertEquals(transportByType.get(0), bus);
+        assertEquals(1l, transportByType.size());
+        assertEquals(bus, transportByType.get(0));
         verify(transportRepository, times(1)).findAllByTransportType(TransportType.BUS);
 
         List<TransportEntity> transportByNoFunctionally = transportService.loadAll(Optional.empty(), Optional.of(Boolean.TRUE));
-        assertEquals(transportByNoFunctionally.size(), 2l);
-        assertEquals(transportByNoFunctionally.get(0), bus);
-        assertEquals(transportByNoFunctionally.get(1), trolleybus);
+        assertEquals(2l, transportByNoFunctionally.size());
+        assertEquals(bus, transportByNoFunctionally.get(0));
+        assertEquals(trolleybus, transportByNoFunctionally.get(1));
         verify(transportRepository, times(1)).findAllByFunctionality(true);
 
         List<TransportEntity> transportByTypeAndNoFunctionally =
-            transportService.loadAll(Optional.of(TransportType.BUS), Optional.of(Boolean.TRUE));
-        assertEquals(transportByTypeAndNoFunctionally.size(), 1l);
-        assertEquals(transportByTypeAndNoFunctionally.get(0), bus);
+                transportService.loadAll(Optional.of(TransportType.BUS), Optional.of(Boolean.TRUE));
+        assertEquals(1l, transportByTypeAndNoFunctionally.size());
+        assertEquals(bus, transportByTypeAndNoFunctionally.get(0));
         verify(transportRepository, times(1)).findAllByTransportTypeAndFunctionality(TransportType.BUS, true);
 
     }
@@ -198,14 +198,14 @@ public class TransportServiceTest {
         ArgumentCaptor<TransportEntity> captor = ArgumentCaptor.forClass(TransportEntity.class);
 
         verify(transportRepository, times(1)).save(captor.capture());
-        assertEquals(captor.getValue()
-            .getTransportType(), TransportType.BUS);
+        assertEquals(TransportType.BUS, captor.getValue()
+                .getTransportType());
         assertFalse(captor.getValue()
-            .isFunctionality());
-        assertEquals(captor.getValue()
-            .getId(), 1l);
-        assertEquals(captor.getValue()
-            .getRegistrationNumber(), "3333");
+                .isFunctionality());
+        assertEquals(1l, captor.getValue()
+                .getId());
+        assertEquals("3333", captor.getValue()
+                .getRegistrationNumber());
     }
 
     @Test

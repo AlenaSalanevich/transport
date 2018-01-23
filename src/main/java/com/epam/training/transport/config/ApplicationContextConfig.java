@@ -25,10 +25,10 @@ public class ApplicationContextConfig {
     @Bean
     public Docket workflowApiDocket() {
         TypeResolver typeResolver = new TypeResolver();
-        AlternateTypeRule alternateTypeRule =
+      /*  AlternateTypeRule alternateTypeRule =
                 newRule(typeResolver.resolve(Collection.class, WildcardType.class),
                         typeResolver.resolve(List.class, WildcardType.class));
-
+*/
         return new Docket(DocumentationType.SWAGGER_2).groupName("TransportApplication")
                 .useDefaultResponseMessages(false)
                 .apiInfo(

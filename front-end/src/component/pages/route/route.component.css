@@ -1,31 +1,46 @@
-.mat-image{
+.mat-image {
   position: fixed;
 }
-.image{
-   width: 100%;
+
+.image {
+  width: 100%;
   height: inherit;
   overflow-y: scroll;
   position: inherit;
 }
-.route-card{
-  background-color:  #3f51b5;
+
+.route-card {
+  background-color: #3f51b5;
   text-align: center;
+  height: 100px;
 
   width: fit-content;
-  height: fit-content;
-  margin: 1% 1% 1% 1%;
+  margin-top: 5%;
+  margin-left: 5%;
 }
-.routes{
-  display:inline-flex;
+
+.routes {
+  display: inline-flex;
   flex-direction: row;
   align-items: center;
 }
-.mat-card>.mat-card-actions:last-child{
+
+.mat-card > .mat-card-actions:last-child {
   display: flex;
   flex-direction: row-reverse
 }
-.route-number{
+
+.route-number {
   font-family: Roboto, "Helvetica Neue", sans-serif;
   font-weight: bold;
   font-size: xx-large;
+  color: white;
+}
+mat-chip {
+  max-width: 100px;
+  max-height: 100px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-weight: bold;
+  font-size: xx-large;
+  color: white;
 }
