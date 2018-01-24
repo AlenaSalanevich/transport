@@ -15,7 +15,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "ASSIGNMENT", uniqueConstraints = {@UniqueConstraint(columnNames = {"route_id", "direction"})})
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-public class AssignmentEntity extends BaseEntity {
+public class AssignmentEntity extends BaseEntity  {
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name = "route_id")

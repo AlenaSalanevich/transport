@@ -23,14 +23,10 @@ public class TransportModelValidator implements Validator {
     public void validate(final Object target, final Errors errors) {
         final TransportModel toValidate = TransportModel.class.cast(target);
         final String trim =
-            toValidate.getRegistrationNumber()
-                .trim();
+                toValidate.getRegistrationNumber()
+                        .trim();
         if (trim.isEmpty()) {
             errors.rejectValue("registrationNumber", ErrorCode.REQUIRED_FIELD.toString(), "Name could not contain empty spaces.");
         }
-       /* if (trim.length() < 9) {
-            errors.rejectValue("registrationNumber", ErrorCode.REQUIRED_FIELD.toString(),
-                "RegistrationNumber must contain 9 or more symbols excluding empty spaces.");
-        }*/
     }
 }

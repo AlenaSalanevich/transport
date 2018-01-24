@@ -1,10 +1,8 @@
 package com.epam.training.transport.rest.controller;
 
-import com.epam.training.transport.utils.routes.Routes;
-import com.epam.training.transport.rest.models.TransportModel;
-
 import com.epam.training.transport.model.TransportType;
 import com.epam.training.transport.model.db.entity.TransportEntity;
+import com.epam.training.transport.rest.models.TransportModel;
 import com.epam.training.transport.service.TransportService;
 import com.epam.training.transport.utils.validators.TransportModelValidator;
 import io.swagger.annotations.Api;
@@ -19,13 +17,15 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+import static com.epam.training.transport.utils.routes.Routes.API_TRANSPORTS;
+
 /**
  * @author Alena_Salanevich
  */
 
 @Api(tags = "Transport controller to create, update and delete transport")
 @Controller
-@RequestMapping(path = "/" + Routes.API_TRANSPORTS)
+@RequestMapping(path = "/" + API_TRANSPORTS)
 public class TransportController {
 
     public TransportController() {
@@ -79,18 +79,6 @@ public class TransportController {
 
         return transportService.load(id);
     }
-    /*
-     * @GetMapping("/load")
-     * 
-     * @ApiOperation("Load transports by registration number")
-     * 
-     * @ResponseBody public List<TransportEntity> load(@ApiParam(likeChars =
-     * "load transports by same number", example = "1214")
-     * 
-     * @RequestParam final String registrationNumber) {
-     * 
-     * return transportService.loadLike(registrationNumber); }
-     */
 
     @GetMapping()
     @ApiOperation("Load all transports by default. Load transports by parameters: transport type or functionality")

@@ -57,19 +57,12 @@ public class PointServiceImpl implements PointService {
 
     @Override
     public PointEntity load(final String name) {
-
-        final PointEntity point = pointRepository.findByNameLike(name);
-
-        return point;
+        return pointRepository.findByNameLike(name);
     }
 
     @Override
     public PointEntity load(final long id) {
-
-        final PointEntity point = pointRepository.findOne(id);
-
-        return point;
-
+        return pointRepository.findOne(id);
     }
 
     @Override
@@ -91,7 +84,7 @@ public class PointServiceImpl implements PointService {
     }
 
     @Override
-    public List<PointEntity> loadByListId(final ArrayList<Long> idList) {
+    public List<PointEntity> loadByListId(final List<Long> idList) {
         final List<PointEntity> pointEntityList = new ArrayList<>();
 
         for (Long id : idList) {

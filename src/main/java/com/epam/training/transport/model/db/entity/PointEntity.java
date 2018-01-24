@@ -5,7 +5,6 @@ import org.jetbrains.annotations.NotNull;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import java.io.Serializable;
 
 /**
  * @author Alena_Salanevich
@@ -13,7 +12,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "POINTS")
-public class PointEntity extends BaseEntity implements Comparable<PointEntity>, Serializable{
+public class PointEntity extends BaseEntity implements Comparable<PointEntity>{
 
     @Column(name = "name", unique = true, length = 100, nullable = false)
     private String name;

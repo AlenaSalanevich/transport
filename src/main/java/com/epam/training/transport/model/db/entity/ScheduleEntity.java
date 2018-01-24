@@ -11,10 +11,10 @@ import java.util.Objects;
  */
 
 @Entity
-@Table(name = "SCHEDULE", uniqueConstraints = @UniqueConstraint(columnNames = { "assignment_id", "departure_time"}))
-public class ScheduleEntity extends BaseEntity implements Comparable<ScheduleEntity>{
+@Table(name = "SCHEDULE", uniqueConstraints = @UniqueConstraint(columnNames = {"assignment_id", "departure_time"}))
+public class ScheduleEntity extends BaseEntity implements Comparable<ScheduleEntity> {
 
-    @ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     @JsonIgnore
     @JoinColumn(name = "assignment_id")
     private AssignmentEntity assignment;
@@ -27,10 +27,10 @@ public class ScheduleEntity extends BaseEntity implements Comparable<ScheduleEnt
     private int departureTime;
 
     public ScheduleEntity(
-        final long id,
-        final AssignmentEntity assignment,
-        final RoutePointEntity routePointEntity,
-        final int departureTime) {
+            final long id,
+            final AssignmentEntity assignment,
+            final RoutePointEntity routePointEntity,
+            final int departureTime) {
         super(id);
         this.assignment = assignment;
         this.routePointEntity = routePointEntity;
@@ -67,7 +67,7 @@ public class ScheduleEntity extends BaseEntity implements Comparable<ScheduleEnt
         this.routePointEntity = routePointEntity;
     }
 
-    public  int getDepartureTime() {
+    public int getDepartureTime() {
         return departureTime;
     }
 
@@ -77,15 +77,15 @@ public class ScheduleEntity extends BaseEntity implements Comparable<ScheduleEnt
 
     @Override
     public int compareTo(@NotNull final ScheduleEntity o) {
-            return this.departureTime - o.getDepartureTime();
-        }
+        return this.departureTime - o.getDepartureTime();
+    }
 
     @Override
-    public boolean equals(final Object o) {
+    public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
-       final ScheduleEntity that = (ScheduleEntity) o;
+        ScheduleEntity that = (ScheduleEntity) o;
         return departureTime == that.departureTime &&
                 Objects.equals(assignment, that.assignment) &&
                 Objects.equals(routePointEntity, that.routePointEntity);
@@ -93,8 +93,8 @@ public class ScheduleEntity extends BaseEntity implements Comparable<ScheduleEnt
 
     @Override
     public int hashCode() {
+
         return Objects.hash(super.hashCode(), assignment, routePointEntity, departureTime);
     }
-
 }
 

@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Objects;
 
 /**
@@ -13,7 +12,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "ROUTE_POINT", uniqueConstraints = {@UniqueConstraint(columnNames = {"route_id", "point_id"})})
-public class RoutePointEntity extends BaseEntity implements Serializable, Comparable<RoutePointEntity> {
+public class RoutePointEntity extends BaseEntity implements Comparable<RoutePointEntity> {
 
     @Column(name = "sequence", nullable = false, length = 10)
     private int sequence;

@@ -2,7 +2,6 @@ package com.epam.training.transport.service;
 
 import com.epam.training.transport.model.Direction;
 import com.epam.training.transport.model.db.entity.AssignmentEntity;
-import com.epam.training.transport.model.db.entity.RoutePointEntity;
 import com.epam.training.transport.rest.models.ScheduleModel;
 
 import java.util.List;

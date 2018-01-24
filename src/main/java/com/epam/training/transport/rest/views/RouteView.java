@@ -2,16 +2,16 @@ package com.epam.training.transport.rest.views;
 
 import com.epam.training.transport.model.db.entity.PointEntity;
 
-import java.util.HashMap;
+import java.util.Map;
 
 public class RouteView {
 
     private long id;
     private String number;
     private String description;
-    private HashMap<PointEntity, String> points;
+    private Map<PointEntity, String> points;
 
-    public RouteView(final long id,final String number,final String description, final HashMap<PointEntity, String> points) {
+    public RouteView(final long id,final String number,final String description, final Map<PointEntity, String> points) {
         this.id = id;
         this.number = number;
         this.description = description;
@@ -45,11 +45,11 @@ public class RouteView {
         this.description = description;
     }
 
-    public HashMap<PointEntity, String> getPoints() {
+    public Map<PointEntity, String> getPoints() {
         return points;
     }
 
-    public void setPoints( final HashMap<PointEntity, String> points) {
+    public void setPoints( final Map<PointEntity, String> points) {
         this.points = points;
     }
 }

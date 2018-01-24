@@ -1,19 +1,14 @@
 package com.epam.training.transport.rest.controller;
 
-import com.epam.training.transport.model.Direction;
-import com.epam.training.transport.model.TransportType;
+import com.epam.training.transport.model.db.entity.RouteEntity;
 import com.epam.training.transport.model.db.entity.RoutePointEntity;
 import com.epam.training.transport.rest.models.AddPointModel;
 import com.epam.training.transport.rest.models.RouteModel;
-
-import com.epam.training.transport.utils.validators.RouteModelValidator;
-import com.epam.training.transport.utils.routes.Routes;
-import com.epam.training.transport.model.db.entity.RouteEntity;
 import com.epam.training.transport.service.PointService;
 import com.epam.training.transport.service.RouteService;
+import com.epam.training.transport.utils.validators.RouteModelValidator;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -21,7 +16,8 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
+
+import static com.epam.training.transport.utils.routes.Routes.API_ROUTES;
 
 /**
  * @author Alena_Salanevich
@@ -29,7 +25,7 @@ import java.util.Optional;
 
 @Api(tags = "Route controller to create, update and delete routes")
 @Controller
-@RequestMapping(path = "/" + Routes.API_ROUTES)
+@RequestMapping(path = "/" + API_ROUTES)
 public class RouteController {
 
     @Autowired
@@ -143,5 +139,4 @@ public class RouteController {
 
         return routeService.loadPoints(routeId);
     }
-
 }

@@ -2,10 +2,9 @@ package com.epam.training.transport.rest.controller;
 
 import com.epam.training.transport.model.db.entity.AssignmentEntity;
 import com.epam.training.transport.rest.models.AssignmentModel;
+import com.epam.training.transport.service.AssignmentService;
 import com.epam.training.transport.service.PointService;
 import com.epam.training.transport.service.RouteService;
-import com.epam.training.transport.service.AssignmentService;
-import com.epam.training.transport.utils.routes.Routes;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -17,12 +16,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+import static com.epam.training.transport.utils.routes.Routes.API_ASSIGNMENTS;
+
 /**
  * @author Alena_Salanevich
  */
 
 @Controller
-@RequestMapping(path = "/" + Routes.API_ASSIGNMENTS)
+@RequestMapping(path = "/" + API_ASSIGNMENTS)
 @Api(tags = "Controller for assignment transport, route and departure time to schedule")
 public class AssignmentController {
 

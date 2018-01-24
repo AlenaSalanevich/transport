@@ -30,9 +30,5 @@ public class PointModelValidator implements Validator {
         if (trim.isEmpty()) {
             errors.rejectValue("name", ErrorCode.REQUIRED_FIELD.toString(), "Name could not contain only empty spaces.");
         }
-       /* if (trim.length() < 3) {
-            errors.rejectValue("name", ErrorCode.REQUIRED_FIELD.toString(),
-                "Name must contain 3 or more symbols excluding empty spaces.");
-        }*/
     }
 }

@@ -201,23 +201,25 @@ var AppComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__angular_platform_browser_animations__ = __webpack_require__("../../../platform-browser/esm5/animations.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__angular_material_slider__ = __webpack_require__("../../../material/esm5/slider.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__angular_material_radio__ = __webpack_require__("../../../material/esm5/radio.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__angular_material__ = __webpack_require__("../../../material/esm5/material.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__service_security_service_security_service__ = __webpack_require__("../../../../../src/service/security-service/security.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__service_transport_service_transport_data_source__ = __webpack_require__("../../../../../src/service/transport-service/transport-data-source.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__service_transport_service_transport_service__ = __webpack_require__("../../../../../src/service/transport-service/transport.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__angular_common_http__ = __webpack_require__("../../../common/esm5/http.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__service_point_service_point_data_source__ = __webpack_require__("../../../../../src/service/point-service/point-data-source.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__service_point_service_point_service__ = __webpack_require__("../../../../../src/service/point-service/point.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__component_pages_point_add_point_add_point_component__ = __webpack_require__("../../../../../src/component/pages/point/add-point/add-point.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__component_pages_transport_add_transport_add_transport_component__ = __webpack_require__("../../../../../src/component/pages/transport/add-transport/add-transport.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__service_route_service_route_service__ = __webpack_require__("../../../../../src/service/route-service/route.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__angular_material_chips__ = __webpack_require__("../../../material/esm5/chips.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__angular_material__ = __webpack_require__("../../../material/esm5/material.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__service_security_service_security_service__ = __webpack_require__("../../../../../src/service/security-service/security.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__service_transport_service_transport_data_source__ = __webpack_require__("../../../../../src/service/transport-service/transport-data-source.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__service_transport_service_transport_service__ = __webpack_require__("../../../../../src/service/transport-service/transport.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__angular_common_http__ = __webpack_require__("../../../common/esm5/http.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__service_point_service_point_data_source__ = __webpack_require__("../../../../../src/service/point-service/point-data-source.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__service_point_service_point_service__ = __webpack_require__("../../../../../src/service/point-service/point.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__component_pages_point_add_point_add_point_component__ = __webpack_require__("../../../../../src/component/pages/point/add-point/add-point.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__component_pages_transport_add_transport_add_transport_component__ = __webpack_require__("../../../../../src/component/pages/transport/add-transport/add-transport.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__service_route_service_route_service__ = __webpack_require__("../../../../../src/service/route-service/route.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -255,38 +257,39 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_5__component_pages_route_route_component__["a" /* RouteComponent */],
                 __WEBPACK_IMPORTED_MODULE_6__component_pages_schedule_schedule_component__["a" /* ScheduleComponent */],
                 __WEBPACK_IMPORTED_MODULE_7__component_pages_login_login_component__["a" /* LoginComponent */],
-                __WEBPACK_IMPORTED_MODULE_22__component_pages_point_add_point_add_point_component__["a" /* AddPointComponent */],
-                __WEBPACK_IMPORTED_MODULE_23__component_pages_transport_add_transport_add_transport_component__["a" /* AddTransportComponent */],
+                __WEBPACK_IMPORTED_MODULE_23__component_pages_point_add_point_add_point_component__["a" /* AddPointComponent */],
+                __WEBPACK_IMPORTED_MODULE_24__component_pages_transport_add_transport_add_transport_component__["a" /* AddTransportComponent */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_19__angular_common_http__["b" /* HttpClientModule */],
+                __WEBPACK_IMPORTED_MODULE_20__angular_common_http__["b" /* HttpClientModule */],
                 __WEBPACK_IMPORTED_MODULE_8__angular_forms__["d" /* FormsModule */],
                 __WEBPACK_IMPORTED_MODULE_9__angular_http__["b" /* HttpModule */],
                 __WEBPACK_IMPORTED_MODULE_10__app_routing_app_routing_module__["a" /* AppRoutingModule */],
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
                 __WEBPACK_IMPORTED_MODULE_11__angular_platform_browser_animations__["a" /* BrowserAnimationsModule */],
-                __WEBPACK_IMPORTED_MODULE_14__angular_material__["a" /* MatButtonModule */],
-                __WEBPACK_IMPORTED_MODULE_14__angular_material__["b" /* MatCardModule */],
-                __WEBPACK_IMPORTED_MODULE_14__angular_material__["c" /* MatCheckboxModule */],
-                __WEBPACK_IMPORTED_MODULE_14__angular_material__["e" /* MatGridListModule */],
-                __WEBPACK_IMPORTED_MODULE_14__angular_material__["d" /* MatFormFieldModule */],
-                __WEBPACK_IMPORTED_MODULE_14__angular_material__["f" /* MatIconModule */],
-                __WEBPACK_IMPORTED_MODULE_14__angular_material__["g" /* MatInputModule */],
-                __WEBPACK_IMPORTED_MODULE_14__angular_material__["h" /* MatListModule */],
-                __WEBPACK_IMPORTED_MODULE_14__angular_material__["i" /* MatMenuModule */],
-                __WEBPACK_IMPORTED_MODULE_14__angular_material__["j" /* MatPaginatorModule */],
+                __WEBPACK_IMPORTED_MODULE_15__angular_material__["a" /* MatButtonModule */],
+                __WEBPACK_IMPORTED_MODULE_15__angular_material__["b" /* MatCardModule */],
+                __WEBPACK_IMPORTED_MODULE_15__angular_material__["c" /* MatCheckboxModule */],
+                __WEBPACK_IMPORTED_MODULE_14__angular_material_chips__["a" /* MatChipsModule */],
+                __WEBPACK_IMPORTED_MODULE_15__angular_material__["e" /* MatGridListModule */],
+                __WEBPACK_IMPORTED_MODULE_15__angular_material__["d" /* MatFormFieldModule */],
+                __WEBPACK_IMPORTED_MODULE_15__angular_material__["f" /* MatIconModule */],
+                __WEBPACK_IMPORTED_MODULE_15__angular_material__["g" /* MatInputModule */],
+                __WEBPACK_IMPORTED_MODULE_15__angular_material__["h" /* MatListModule */],
+                __WEBPACK_IMPORTED_MODULE_15__angular_material__["i" /* MatMenuModule */],
+                __WEBPACK_IMPORTED_MODULE_15__angular_material__["j" /* MatPaginatorModule */],
                 __WEBPACK_IMPORTED_MODULE_13__angular_material_radio__["a" /* MatRadioModule */],
-                __WEBPACK_IMPORTED_MODULE_14__angular_material__["l" /* MatSidenavModule */],
+                __WEBPACK_IMPORTED_MODULE_15__angular_material__["l" /* MatSidenavModule */],
                 __WEBPACK_IMPORTED_MODULE_12__angular_material_slider__["a" /* MatSliderModule */],
-                __WEBPACK_IMPORTED_MODULE_14__angular_material__["n" /* MatTabsModule */],
-                __WEBPACK_IMPORTED_MODULE_14__angular_material__["m" /* MatTableModule */],
-                __WEBPACK_IMPORTED_MODULE_14__angular_material__["o" /* MatToolbarModule */],
-                __WEBPACK_IMPORTED_MODULE_14__angular_material__["p" /* MatTooltipModule */],
-                __WEBPACK_IMPORTED_MODULE_14__angular_material__["k" /* MatSelectModule */],
-                __WEBPACK_IMPORTED_MODULE_18__angular_router__["b" /* RouterModule */],
+                __WEBPACK_IMPORTED_MODULE_15__angular_material__["n" /* MatTabsModule */],
+                __WEBPACK_IMPORTED_MODULE_15__angular_material__["m" /* MatTableModule */],
+                __WEBPACK_IMPORTED_MODULE_15__angular_material__["o" /* MatToolbarModule */],
+                __WEBPACK_IMPORTED_MODULE_15__angular_material__["p" /* MatTooltipModule */],
+                __WEBPACK_IMPORTED_MODULE_15__angular_material__["k" /* MatSelectModule */],
+                __WEBPACK_IMPORTED_MODULE_19__angular_router__["b" /* RouterModule */],
                 __WEBPACK_IMPORTED_MODULE_8__angular_forms__["i" /* ReactiveFormsModule */]
             ],
-            providers: [__WEBPACK_IMPORTED_MODULE_15__service_security_service_security_service__["a" /* SecurityService */], __WEBPACK_IMPORTED_MODULE_16__service_transport_service_transport_data_source__["a" /* TransportDataSource */], __WEBPACK_IMPORTED_MODULE_17__service_transport_service_transport_service__["a" /* TransportService */], __WEBPACK_IMPORTED_MODULE_20__service_point_service_point_data_source__["a" /* PointDataSource */], __WEBPACK_IMPORTED_MODULE_21__service_point_service_point_service__["a" /* PointService */], __WEBPACK_IMPORTED_MODULE_24__service_route_service_route_service__["a" /* RouteService */]],
+            providers: [__WEBPACK_IMPORTED_MODULE_16__service_security_service_security_service__["a" /* SecurityService */], __WEBPACK_IMPORTED_MODULE_17__service_transport_service_transport_data_source__["a" /* TransportDataSource */], __WEBPACK_IMPORTED_MODULE_18__service_transport_service_transport_service__["a" /* TransportService */], __WEBPACK_IMPORTED_MODULE_21__service_point_service_point_data_source__["a" /* PointDataSource */], __WEBPACK_IMPORTED_MODULE_22__service_point_service_point_service__["a" /* PointService */], __WEBPACK_IMPORTED_MODULE_25__service_route_service_route_service__["a" /* RouteService */]],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_2__app_component__["a" /* AppComponent */]]
         })
     ], AppModule);
@@ -879,7 +882,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".mat-image{\r\n  position: fixed;\r\n}\r\n.image{\r\n   width: 100%;\r\n  height: inherit;\r\n  overflow-y: scroll;\r\n  position: inherit;\r\n}\r\n.route-card{\r\n  background-color:  #3f51b5;\r\n  text-align: center;\r\n  font-family: Roboto, \"Helvetica Neue\", sans-serif;\r\n  color: white;\r\n  font-weight: bold;\r\n  font-size: large;\r\n  width: -webkit-fit-content;\r\n  width: -moz-fit-content;\r\n  width: fit-content;\r\n  height: -webkit-fit-content;\r\n  height: -moz-fit-content;\r\n  height: fit-content;\r\n  margin: 1% 1% 1% 1%;\r\n}\r\n.routes{\r\n  display:-webkit-inline-box;\r\n  display:-ms-inline-flexbox;\r\n  display:inline-flex;\r\n  -webkit-box-orient: horizontal;\r\n  -webkit-box-direction: normal;\r\n      -ms-flex-direction: row;\r\n          flex-direction: row;\r\n  -webkit-box-align: center;\r\n      -ms-flex-align: center;\r\n          align-items: center;\r\n}\r\n", ""]);
+exports.push([module.i, ".mat-image {\r\n  position: fixed;\r\n}\r\n\r\n.image {\r\n  width: 100%;\r\n  height: inherit;\r\n  overflow-y: scroll;\r\n  position: inherit;\r\n}\r\n\r\n.route-card {\r\n  background-color: #3f51b5;\r\n  text-align: center;\r\n  height: 100px;\r\n\r\n  width: -webkit-fit-content;\r\n\r\n  width: -moz-fit-content;\r\n\r\n  width: fit-content;\r\n  margin-top: 5%;\r\n  margin-left: 5%;\r\n}\r\n\r\n.routes {\r\n  display: -webkit-inline-box;\r\n  display: -ms-inline-flexbox;\r\n  display: inline-flex;\r\n  -webkit-box-orient: horizontal;\r\n  -webkit-box-direction: normal;\r\n      -ms-flex-direction: row;\r\n          flex-direction: row;\r\n  -webkit-box-align: center;\r\n      -ms-flex-align: center;\r\n          align-items: center;\r\n}\r\n\r\n.mat-card > .mat-card-actions:last-child {\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -webkit-box-orient: horizontal;\r\n  -webkit-box-direction: reverse;\r\n      -ms-flex-direction: row-reverse;\r\n          flex-direction: row-reverse\r\n}\r\n\r\n.route-number {\r\n  font-family: Roboto, \"Helvetica Neue\", sans-serif;\r\n  font-weight: bold;\r\n  font-size: xx-large;\r\n  color: white;\r\n}\r\nmat-chip {\r\n  max-width: 100px;\r\n  max-height: 100px;\r\n  font-family: Roboto, \"Helvetica Neue\", sans-serif;\r\n  font-weight: bold;\r\n  font-size: xx-large;\r\n  color: white;\r\n}\r\n", ""]);
 
 // exports
 
@@ -892,7 +895,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/component/pages/route/route.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\r\n  <div class=\"routes\">\r\n    <div class=\"routes\" *ngFor=\"let route of routes\">\r\n      <mat-card class=\"route-card\">\r\n        <mat-card-header>\r\n          <mat-card-title></mat-card-title>\r\n          <mat-card-subtitle></mat-card-subtitle>\r\n        </mat-card-header>\r\n               <mat-card-content>\r\n          <p> {{route.number}}</p>\r\n          </mat-card-content>\r\n        <mat-card-actions>\r\n\r\n          <button mat-icon-button class=\"mat-icon-button-card-actions\">\r\n            <mat-icon><i class=\"material-icons md-24 grey\" aria-hidden=\"true\"\r\n                         (click)=\"onDeleteSelect(route)\">delete</i></mat-icon>\r\n          </button>\r\n\r\n          <button mat-icon-button class=\"mat-icon-button-card-actions\">\r\n            <mat-icon><i class=\"material-icons md-24 grey\" aria-hidden=\"true\"\r\n                         (click)=\"onEditSelect(route)\">mode_edit</i></mat-icon>\r\n          </button>\r\n\r\n        </mat-card-actions>\r\n      </mat-card>\r\n    </div>\r\n  </div>\r\n\r\n\r\n"
+module.exports = "<!--\r\n  <div class=\"routes\">\r\n    <div class=\"routes\" *ngFor=\"let route of routes\">\r\n      <mat-card class=\"route-card\">\r\n        <mat-card-header>\r\n          <mat-card-title></mat-card-title>\r\n          <mat-card-subtitle></mat-card-subtitle>\r\n        </mat-card-header>\r\n               <mat-card-content>\r\n          <p class=\"route-number\"> {{route.number}}</p>\r\n          </mat-card-content>\r\n        <mat-card-actions>\r\n\r\n          <button mat-icon-button class=\"mat-icon-button-card-actions\">\r\n            <mat-icon><i class=\"material-icons md-24 grey\" aria-hidden=\"true\"\r\n                         (click)=\"onDeleteSelect(route)\">delete</i></mat-icon>\r\n          </button>\r\n\r\n          <button mat-icon-button class=\"mat-icon-button-card-actions\">\r\n            <mat-icon><i class=\"material-icons md-24 grey\" aria-hidden=\"true\"\r\n                         (click)=\"onEditSelect(route)\">mode_edit</i></mat-icon>\r\n          </button>\r\n\r\n        </mat-card-actions>\r\n      </mat-card>\r\n\r\n\r\n    </div>\r\n  </div>-->\r\n\r\n\r\n  <mat-chip-list *ngFor=\"let route of routes\" class=\"mat-chip-list-stacked\">\r\n    <mat-chip  selected=\"true\" color=\"primary\">\r\n      {{route.number}}\r\n    </mat-chip>\r\n  </mat-chip-list>\r\n"
 
 /***/ }),
 
