@@ -1,6 +1,8 @@
 package com.epam.training.transport.model.db.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.apache.commons.lang.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
 import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.*;
@@ -95,6 +97,10 @@ public class ScheduleEntity extends BaseEntity implements Comparable<ScheduleEnt
     public int hashCode() {
 
         return Objects.hash(super.hashCode(), assignment, routePointEntity, departureTime);
+    }
+    @Override
+    public String toString() {
+        return ReflectionToStringBuilder.toString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
 }
 

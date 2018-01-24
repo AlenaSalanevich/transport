@@ -1,5 +1,8 @@
 package com.epam.training.transport.model.db.entity;
 
+import org.apache.commons.lang.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -38,7 +41,7 @@ public class RoleEntity extends BaseEntity /*implements GrantedAuthority*/ {
 
     @Override
     public String toString() {
-        return "RoleEntity{" + "name='" + name + '\'' + '}';
+        return ReflectionToStringBuilder.toString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
 
     @Override

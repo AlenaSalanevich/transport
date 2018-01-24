@@ -1,6 +1,8 @@
 package com.epam.training.transport.model.db.entity;
 
 import com.epam.training.transport.model.TransportType;
+import org.apache.commons.lang.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
 import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.*;
@@ -67,7 +69,6 @@ public class TransportEntity extends BaseEntity implements Comparable<TransportE
         this.functionality = functionality;
     }
 
-
     @Override
     public boolean equals(final Object o) {
         if (this == o)
@@ -96,11 +97,17 @@ public class TransportEntity extends BaseEntity implements Comparable<TransportE
     }
 
     @Override
-    public int compareTo(@NotNull final TransportEntity o) {
+    public int compareTo(@NotNull
+    final TransportEntity o) {
         return this.getRegistrationNumber()
             .toLowerCase()
             .compareTo(o.getRegistrationNumber()
                 .toLowerCase());
+    }
+
+    @Override
+    public String toString() {
+        return ReflectionToStringBuilder.toString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
 
 }

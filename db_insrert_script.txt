@@ -1,0 +1,42 @@
+
+
+INSERT INTO route_point (sequence, point_id, route_id) VALUES (1, 1,1);
+INSERT INTO route_point (sequence, point_id, route_id) VALUES (2, 2,1);
+INSERT INTO route_point (sequence, point_id, route_id) VALUES (3, 3,1);
+
+INSERT INTO route_point (sequence, point_id, route_id) VALUES (1, 4,2);
+INSERT INTO route_point (sequence, point_id, route_id) VALUES (2, 5,2);
+
+INSERT INTO route_point (sequence, point_id, route_id) VALUES (1, 6,3);
+
+
+INSERT INTO route_point (sequence, point_id, route_id) VALUES (1, 7,4);
+
+INSERT INTO route_point (sequence, point_id, route_id) VALUES (2, 8,4);
+
+
+INSERT INTO assignment (direction, is_holiday, route_id, transport_id, user_id) VALUES ('DIRECT', FALSE , 1,1, NULL );
+INSERT INTO assignment (direction, is_holiday, route_id, transport_id, user_id) VALUES ('REVERSE', FALSE , 1,1, NULL );
+INSERT INTO assignment (direction, is_holiday, route_id, transport_id, user_id) VALUES ('DIRECT', FALSE , 2,3, NULL );
+INSERT INTO assignment (direction, is_holiday, route_id, transport_id, user_id) VALUES ('REVERSE', FALSE , 2,3, NULL );
+INSERT INTO assignment (direction, is_holiday, route_id, transport_id, user_id) VALUES ('DIRECT', TRUE , 3,4, NULL );
+INSERT INTO assignment (direction, is_holiday, route_id, transport_id, user_id) VALUES ('REVERSE', TRUE , 3,4, NULL );
+
+INSERT INTO schedule (departure_time, assignment_id, route_point_id) VALUES (600, 1, 1);
+INSERT INTO schedule (departure_time, assignment_id, route_point_id) VALUES (630, 1, 2);
+INSERT INTO schedule (departure_time, assignment_id, route_point_id) VALUES (660, 1, 3);
+
+INSERT INTO schedule (departure_time, assignment_id, route_point_id) VALUES (750, 2, 1);
+INSERT INTO schedule (departure_time, assignment_id, route_point_id) VALUES (720, 2, 2);
+INSERT INTO schedule (departure_time, assignment_id, route_point_id) VALUES (690, 2, 3);
+
+
+INSERT INTO schedule (departure_time, assignment_id, route_point_id) VALUES (690, 3, 4);
+INSERT INTO schedule (departure_time, assignment_id, route_point_id) VALUES (720, 3, 5);
+
+INSERT INTO schedule (departure_time, assignment_id, route_point_id) VALUES (760, 4, 4);
+INSERT INTO schedule (departure_time, assignment_id, route_point_id) VALUES (730, 4, 5);
+
+INSERT INTO schedule (departure_time, assignment_id, route_point_id) VALUES (900, 5, 6);
+
+INSERT INTO schedule (departure_time, assignment_id, route_point_id) VALUES (1000, 6, 6);

@@ -1,6 +1,8 @@
 package com.epam.training.transport.model.db.entity;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import org.apache.commons.lang.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
 import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.*;
@@ -66,24 +68,16 @@ public class RouteEntity extends BaseEntity implements Comparable<RouteEntity> {
     }
 
     @Override
-    public int compareTo(@NotNull final RouteEntity o) {
+    public int compareTo(@NotNull
+    final RouteEntity o) {
         return this.number.toLowerCase()
-                .compareTo(o.getNumber()
-                        .toLowerCase());
+            .compareTo(o.getNumber()
+                .toLowerCase());
     }
 
     @Override
     public String toString() {
-        return "Route{"
-                + "number='"
-                + number
-                + '\''
-                + ", description='"
-                + description
-                + '\''
-                + ", routePoints="
-                + routePoints
-                + '}';
+        return ReflectionToStringBuilder.toString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
 
     @Override

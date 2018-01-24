@@ -1,6 +1,8 @@
 package com.epam.training.transport.model.db.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.apache.commons.lang.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
 import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.*;
@@ -86,5 +88,10 @@ public class RoutePointEntity extends BaseEntity implements Comparable<RoutePoin
     @Override
     public int compareTo(@NotNull final RoutePointEntity o) {
         return this.sequence - o.getSequence();
+    }
+
+    @Override
+    public String toString() {
+        return ReflectionToStringBuilder.toString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
 }

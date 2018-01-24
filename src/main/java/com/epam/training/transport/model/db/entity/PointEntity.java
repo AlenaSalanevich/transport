@@ -1,5 +1,7 @@
 package com.epam.training.transport.model.db.entity;
 
+import org.apache.commons.lang.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
 import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.Column;
@@ -12,7 +14,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "POINTS")
-public class PointEntity extends BaseEntity implements Comparable<PointEntity>{
+public class PointEntity extends BaseEntity implements Comparable<PointEntity> {
 
     @Column(name = "name", unique = true, length = 100, nullable = false)
     private String name;
@@ -69,6 +71,6 @@ public class PointEntity extends BaseEntity implements Comparable<PointEntity>{
 
     @Override
     public String toString() {
-        return "Point{" + "name='" + name + '\'' + '}';
+        return ReflectionToStringBuilder.toString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
 }
