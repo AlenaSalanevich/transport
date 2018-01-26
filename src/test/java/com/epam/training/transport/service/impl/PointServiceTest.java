@@ -1,9 +1,9 @@
-package com.epam.training.transport.service;
+package com.epam.training.transport.service.impl;
 
 import com.epam.training.transport.model.db.entity.PointEntity;
 import com.epam.training.transport.model.db.repository.PointRepository;
+import com.epam.training.transport.service.PointService;
 import com.epam.training.transport.service.exceptions.ServiceException;
-import com.epam.training.transport.service.impl.PointServiceImpl;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 import org.mockito.stubbing.Answer;

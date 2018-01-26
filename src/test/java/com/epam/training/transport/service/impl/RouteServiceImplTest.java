@@ -1,4 +1,4 @@
-package com.epam.training.transport.service;
+package com.epam.training.transport.service.impl;
 
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;

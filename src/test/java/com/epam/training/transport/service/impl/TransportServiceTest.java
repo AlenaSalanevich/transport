@@ -1,10 +1,10 @@
-package com.epam.training.transport.service;
+package com.epam.training.transport.service.impl;
 
 import com.epam.training.transport.model.TransportType;
 import com.epam.training.transport.model.db.entity.TransportEntity;
 import com.epam.training.transport.model.db.repository.TransportRepository;
+import com.epam.training.transport.service.TransportService;
 import com.epam.training.transport.service.exceptions.ServiceException;
-import com.epam.training.transport.service.impl.TransportServiceImpl;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 import org.mockito.stubbing.Answer;
