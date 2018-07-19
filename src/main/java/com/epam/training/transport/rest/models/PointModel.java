@@ -1,8 +1,9 @@
 package com.epam.training.transport.rest.models;
 
-import io.swagger.annotations.ApiModelProperty;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
+
+import io.swagger.annotations.ApiModelProperty;
 
 /**
  * @author Alena_Salanevich
@@ -24,5 +25,9 @@ public class PointModel {
 
     public String getName() {
         return name;
+    }
+
+    public void setName(final String name) {
+        this.name = name;
     }
 }
