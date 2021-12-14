@@ -26,7 +26,7 @@
         <slf4j.version>1.7.25</slf4j.version>
         <jacoco.plugin.version>0.7.9</jacoco.plugin.version>
         <jackson-jsr310.version>2.8.7</jackson-jsr310.version>
-        <springfox.swagger.version>2.6.1</springfox.swagger.version>
+        <springfox.swagger.version>2.10.0</springfox.swagger.version>
         <sonar-plugin-api.version>6.7</sonar-plugin-api.version>
         <unitils-core.version>3.4.6</unitils-core.version>
         <mockito-core.version>2.7.22</mockito-core.version>
@@ -158,7 +158,7 @@
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt</artifactId>
-            <version>0.7.0</version>
+            <version>0.9.1</version>
         </dependency>
 
         <!--https://mvnrepository.com/artifact/org.apache.commons/commons-text-->
