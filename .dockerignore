@@ -1,0 +1,36 @@
+# Version control
+.git
+.gitignore
+
+# Node.js dependencies
+front-end/node_modules
+front-end/dist
+
+# Maven build directory
+target/
+
+# IDE files
+.idea/
+*.iml
+.vscode/
+
+# Logs
+*.log
+
+# Environment files
+.env
+*.env.local
+
+# Test files
+*/test/
+*/tests/
+*.spec.ts
+
+# Documentation
+*.md
+docs/
+
+# Docker files
+Dockerfile*
+docker-compose*
+.docker/
