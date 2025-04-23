@@ -1,5 +1,5 @@
 # Build stage
-FROM maven:3.8.4-openjdk-17-slim AS build
+FROM eclipse-temurin:23-jdk AS build
 
 WORKDIR /app
 
@@ -14,9 +14,12 @@ COPY src ./src
 RUN mvn clean package -DskipTests
 
 # Production stage
-FROM openjdk:17-jdk-slim
+FROM eclipse-temurin:23-jre-jammy
 
 WORKDIR /app
+
+# Create non-root user
+RUN groupadd -r appuser && useradd -r -g appuser appuser
 
 # Copy the built artifact from build stage
 COPY --from=build /app/target/*.jar app.jar
@@ -24,6 +27,23 @@ COPY --from=build /app/target/*.jar app.jar
 # Environment variables
 ENV SPRING_PROFILES_ACTIVE=prod
 
+# Set file ownership to non-root user
+RUN chown appuser:appuser /app/app.jar
+
+# Set security configurations
+RUN mkdir -p /app/logs && \
+    chown -R appuser:appuser /app/logs && \
+    chmod -R 755 /app
+
+# Switch to non-root user
+USER appuser
+
+# Set security options
+ENV JAVA_OPTS="-Djava.security.egd=file:/dev/./urandom -Dfile.encoding=UTF-8 -Duser.timezone=UTC"
+
 EXPOSE 8080
+
+HEALTHCHECK --interval=30s --timeout=3s \
+  CMD curl -f http://localhost:8080/actuator/health || exit 1
 
 ENTRYPOINT ["java", "-jar", "app.jar"]
