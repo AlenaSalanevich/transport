@@ -2,9 +2,31 @@
 
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
+/* Custom CSS Variables */
+:root {
+  --primary-color: #3f51b5;
+  --accent-color: #ff4081;
+  --warn-color: #f44336;
+  --text-primary: rgba(0, 0, 0, 0.87);
+  --text-secondary: rgba(0, 0, 0, 0.54);
+  --background-color: #efefef;
+  --card-background: #ffffff;
+  --border-radius: 4px;
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+}
+
+/* Global Typography */
 html, body {
   height: 100%;
-  min-height: 100%
+  min-height: 100%;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--text-primary);
 }
 
 body {
@@ -13,9 +35,36 @@ body {
   flex-direction: column;
   align-items: stretch;
   align-content: stretch;
-  background-color: #efefef;
+  background-color: var(--background-color);
 }
 
+/* Typography Styles */
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-weight: 400;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: var(--spacing-lg);
+}
+
+h2 {
+  display: block;
+  font-size: 1.5rem;
+  margin-bottom: var(--spacing-md);
+}
+
+h3 {
+  font-size: 1.17rem;
+  margin-bottom: var(--spacing-sm);
+}
+
+p {
+  margin: 0 0 var(--spacing-md);
+}
+
+/* Component Styles */
 app-root {
   font-family: Roboto, "Helvetica Neue", sans-serif;
   height: 100%;
@@ -32,15 +81,55 @@ app-login, app-register {
   align-content: center;
 }
 
-h1, h2, h3 {
-  font-weight: 400;
-}
-
-h2 {
-  display: block;
-  font-size: 1.5em;
-}
-
+/* Utility Classes */
 .app-toolbar-filler {
   flex: 1 1 auto;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.m-0 { margin: 0 !important; }
+.p-0 { padding: 0 !important; }
+.mt-1 { margin-top: var(--spacing-sm) !important; }
+.mb-1 { margin-bottom: var(--spacing-sm) !important; }
+.mx-1 { margin-left: var(--spacing-sm) !important; margin-right: var(--spacing-sm) !important; }
+.my-1 { margin-top: var(--spacing-sm) !important; margin-bottom: var(--spacing-sm) !important; }
+
+/* Material Design Overrides */
+.mat-card {
+  border-radius: var(--border-radius);
+  background-color: var(--card-background);
+  margin: var(--spacing-md);
+}
+
+.mat-button, .mat-raised-button {
+  border-radius: var(--border-radius);
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+.mat-toolbar {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.mat-snack-bar-container {
+  border-radius: var(--border-radius);
+}
+
+.mat-dialog-container {
+  border-radius: var(--border-radius);
+  padding: var(--spacing-lg) !important;
 }

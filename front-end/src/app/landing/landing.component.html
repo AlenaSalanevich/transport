@@ -1,0 +1,45 @@
+<app-error-boundary>
+  <div class="landing-container">
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <h1>Welcome to Pet Transport</h1>
+      <p>Managing your pet's transportation has never been easier</p>
+      <div class="cta-buttons">
+        <button mat-raised-button color="primary" routerLink="/schedule">
+          Schedule Transport
+        </button>
+        <button mat-stroked-button color="accent" routerLink="/points">
+          View Routes
+        </button>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <ng-container *ngIf="isContentLoaded">
+      <section class="features-section">
+        <mat-card>
+          <mat-icon>schedule</mat-icon>
+          <h3>Easy Scheduling</h3>
+          <p>Book transportation for your pets with just a few clicks</p>
+        </mat-card>
+
+        <mat-card>
+          <mat-icon>map</mat-icon>
+          <h3>Route Tracking</h3>
+          <p>Track your pet's journey in real-time</p>
+        </mat-card>
+
+        <mat-card>
+          <mat-icon>pets</mat-icon>
+          <h3>Pet Friendly</h3>
+          <p>Specialized care for all types of pets</p>
+        </mat-card>
+      </section>
+    </ng-container>
+
+    <!-- Loading State -->
+    <div class="skeleton-loader" *ngIf="!isContentLoaded">
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </div>
+  </div>
+</app-error-boundary>

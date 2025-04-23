@@ -12,7 +12,11 @@ import {AddTransportComponent} from "../component/pages/transport/add-transport/
 
 
 const routes: Routes = [
-  {path: '', redirectTo: '/' + RouteList.PAGE_SCHEDULE, pathMatch: 'full'},
+  {path: '', redirectTo: '/' + RouteList.PAGE_LANDING, pathMatch: 'full'},
+  {
+    path: RouteList.PAGE_LANDING,
+    loadChildren: () => import('../modules/landing/landing.module').then(m => m.LandingModule)
+  },
   {path: RouteList.PAGE_SCHEDULE, component: ScheduleComponent},
   {path: RouteList.PAGE_LOGIN, component: LoginComponent},
   {
