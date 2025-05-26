@@ -1,0 +1,18 @@
+openapi: 3.0.0
+info:
+  title: Property Definition
+  version: 1.0.0
+
+components:
+  schemas:
+    PropertyObject:
+      type: object
+      properties:
+        prop1:
+          type: array
+          items:
+            type: string
+          description: An array of strings
+          example: ["value1"]
+      required:
+        - prop1
