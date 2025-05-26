@@ -5,6 +5,7 @@ import {PointEntity} from "../../model/point/poit-entity";
 import {Utils} from "../../utils/utils";
 import {RouteParams} from "../../model/route/route-params";
 import {RouteEntity} from "../../model/route/route-entity";
+import { RouteHashMapModel } from '../../model/route/route-hashmap.model';
 
 @Injectable()
 export class RouteService {
@@ -26,6 +27,13 @@ export class RouteService {
 
   public createRoute(params: RouteParams, handler: (message: string, result: boolean) => void): void {
     this.http.post(RouteService.PAGE_ROUTES_URL, params)
+      .toPromise()
+      .then(response => handler(null, true))
+      .catch(error => Utils.handleErrorMessageJson(error, (ex: string) => handler(ex, false)));
+  }
+
+  public createRouteFromHashMap(params: RouteHashMapModel, handler: (message: string, result: boolean) => void): void {
+    this.http.post(RouteService.PAGE_ROUTES_URL + '/hashmap', params)
       .toPromise()
       .then(response => handler(null, true))
       .catch(error => Utils.handleErrorMessageJson(error, (ex: string) => handler(ex, false)));
