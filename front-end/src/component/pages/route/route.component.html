@@ -28,9 +28,12 @@
     </div>
   </div>-->
 
+<button mat-button (click)="createRouteWithHashMap()">
+    Create Route Using HashMap
+</button>
 
-  <mat-chip-list *ngFor="let route of routes" class="mat-chip-list-stacked">
+<mat-chip-list *ngFor="let route of routes" class="mat-chip-list-stacked">
     <mat-chip  selected="true" color="primary">
       {{route.number}}
     </mat-chip>
-  </mat-chip-list>
+</mat-chip-list>

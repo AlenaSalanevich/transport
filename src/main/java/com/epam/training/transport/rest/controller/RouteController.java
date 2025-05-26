@@ -23,6 +23,7 @@ import com.epam.training.transport.model.db.entity.RouteEntity;
 import com.epam.training.transport.model.db.entity.RoutePointEntity;
 import com.epam.training.transport.rest.models.AddPointModel;
 import com.epam.training.transport.rest.models.RouteModel;
+import com.epam.training.transport.rest.models.RouteHashMapModel;
 import com.epam.training.transport.service.PointService;
 import com.epam.training.transport.service.RouteService;
 import com.epam.training.transport.utils.validators.RouteModelValidator;
@@ -58,8 +59,16 @@ public class RouteController extends AbstractController {
     @ApiOperation("Create new route")
     @ResponseBody
     public RouteEntity create(@RequestBody RouteModel routeModel) {
-
         return routeService.create(routeModel.getNumber(), routeModel.getDescription());
+    }
+
+    @PostMapping("/hashmap")
+    @ApiOperation("Create new route from hashmap")
+    @ResponseBody
+    public RouteEntity createFromHashMap(@RequestBody RouteHashMapModel model) {
+        String number = model.getProperties().get("number");
+        String description = model.getProperties().get("description");
+        return routeService.create(number, description);
     }
 
     @PutMapping(value = "{routeId}/points/{pointId}")
@@ -69,7 +78,6 @@ public class RouteController extends AbstractController {
     final long routeId, @PathVariable
     final long pointId, @RequestParam
     final int sequence) {
-
         return routeService.insertPoint(routeId, pointId, sequence);
     }
 
@@ -79,7 +87,6 @@ public class RouteController extends AbstractController {
     public RouteEntity insertPoints(@PathVariable
     final long routeId, @RequestBody
     final List<AddPointModel> points) {
-
         return routeService.insertPoints(routeId, points);
     }
 
@@ -90,7 +97,6 @@ public class RouteController extends AbstractController {
     final long routeId, @PathVariable
     final long pointId) {
         return routeService.addPoint(routeId, pointId);
-
     }
 
     @PutMapping("/{id}")
@@ -147,7 +153,6 @@ public class RouteController extends AbstractController {
     @ResponseBody
     public List<RoutePointEntity> loadAllPoints(@PathVariable
     final long routeId) {
-
         return routeService.loadPoints(routeId);
     }
 }
